@@ -1,4 +1,5 @@
 import streamlit as st
+from mamacare import render_mamacare
 from datetime import date, datetime, time, timedelta
 from html import escape
 
@@ -174,6 +175,9 @@ elif page == "🤰 Pregnancy care":
     st.checkbox("I have written down a question to ask at my next antenatal visit.",key="preg_extra")
     
 elif page == "💞 MamaCare journey":
+    render_mamacare(go)
+    st.divider()
+    st.caption("Additional MamaCare journey guidance")
     st.markdown('<div class="section-head">💞 MamaCare Continuity</div>',unsafe_allow_html=True)
     st.markdown('<p class="lead"><b>Care should not stop when a mother leaves the hospital.</b> Explore each recovery stage and prepare for conversations with your healthcare team.</p>',unsafe_allow_html=True)
     st.info("This is educational planning, not a medical assessment or a personalized follow-up service. Your answers are not sent to a clinician. Follow the schedule given by your maternity team.")
