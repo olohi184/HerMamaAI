@@ -40,12 +40,27 @@ HOSPITALS = [("FCT","Abuja","National Hospital Abuja"),
     ("Rivers","Port Harcourt","University of Port Harcourt Teaching Hospital"),
     ("Akwa Ibom","Uyo","University of Uyo Teaching Hospital")]
 
+# Official website findings are published information, not live phone verification.
+# Only display institution contact details sourced from the institution itself.
+OFFICIAL_DETAILS = {
+    "University of Abuja Teaching Hospital": {
+        "service": "Obstetrics & Gynaecology department documented on hospital website",
+        "service_url": "https://www.uath.gov.ng/department_profile",
+        "contact": "+234 704 004 5614",
+        "contact_url": "https://www.uath.gov.ng/contact",
+    },
+    "Lagos University Teaching Hospital": {
+        "service": "Obstetrics & Gynaecology department documented on hospital website",
+        "service_url": "https://luth.gov.ng/departments/obstetrics/",
+    },
+}
+
 def render_find_care():
     st.markdown('<div class="section-head">🏥 Find Care Across Nigeria</div>', unsafe_allow_html=True)
     st.markdown('<p class="lead">Explore a starter directory of government-listed teaching hospitals in Abuja and other Nigerian cities. This is a planning aid, not a clinical referral or booking service.</p>', unsafe_allow_html=True)
     st.error("**Emergency warning:** Heavy bleeding, chest pain, trouble breathing, seizures, severe headache or visual changes, fainting, or thoughts of harming yourself or your baby need immediate in-person emergency assessment. Go to the nearest appropriate emergency department or contact local emergency services. Do not wait for this app.")
     st.warning("**Important:** Being listed by the Federal Ministry of Health does not mean HerMamaAI has verified maternity services, opening hours, emergency capacity, precise map location or current operations. **None of these hospitals is claimed as a HerMamaAI partner.** Confirm details with the facility before a non-urgent visit.")
-    st.caption("No phone numbers are displayed until independently verified. HerMamaAI does not request your live location or store your medical information here.")
+    st.caption("Only phone numbers published on official hospital websites are shown; they have not been independently tested. HerMamaAI does not request your live location or store your medical information here.")
     regions = ["All listed states and FCT"] + sorted({item[0] for item in HOSPITALS})
     selected_region = st.selectbox("Select state or FCT", regions, index=regions.index("FCT"), key="findcare_region")
     region_results = [item for item in HOSPITALS if selected_region == regions[0] or item[0] == selected_region]
@@ -58,6 +73,17 @@ def render_find_care():
             st.markdown(f"#### 🏥 {name}")
             st.write(f"📍 {city}, {region}, Nigeria")
             st.caption("Institution listed in government directory · Service availability unverified · No partnership claimed")
+            details = OFFICIAL_DETAILS.get(name)
+            if details:
+                st.success("Official hospital website reviewed · Current clinic hours and capacity NOT confirmed")
+                st.write(details["service"])
+                st.link_button("🏥 Official department information ↗", details["service_url"], use_container_width=True)
+                if details.get("contact"):
+                    st.write("Published hospital contact (not independently tested): " + details["contact"])
+                    st.link_button("☎️ Official hospital contact page ↗", details["contact_url"], use_container_width=True)
+            else:
+                st.caption("Hospital-specific maternity services and contact details awaiting review")
+
             query = quote(f"{name}, {city}, {region}, Nigeria", safe="")
             st.link_button("🗺️ Search on Google Maps / Directions ↗", f"https://www.google.com/maps/search/?api=1&query={query}", use_container_width=True)
             st.link_button("📖 View government source ↗", SOURCE_URL, use_container_width=True)
