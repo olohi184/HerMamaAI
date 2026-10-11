@@ -68,8 +68,12 @@ def render_find_care():
     st.error("**Emergency warning:** Heavy bleeding, chest pain, trouble breathing, seizures, severe headache or visual changes, fainting, or thoughts of harming yourself or your baby need immediate in-person emergency assessment. Go to the nearest appropriate emergency department or contact local emergency services. Do not wait for this app.")
     st.warning("**Important:** Being listed by the Federal Ministry of Health does not mean HerMamaAI has verified maternity services, opening hours, emergency capacity, precise map location or current operations. **None of these hospitals is claimed as a HerMamaAI partner.** Confirm details with the facility before a non-urgent visit.")
     st.caption("Only phone numbers supported by published hospital information or a hospital-management notice are shown; they have not been independently tested. HerMamaAI does not request your live location or store your medical information here.")
+    phase_two_states = ["Rivers", "Oyo", "Kano", "Kaduna", "Enugu", "Edo", "Anambra"]
+    st.markdown("**Phase 2 expansion — explore teaching hospitals in seven additional states**")
+    st.caption("These are existing directory listings, not newly verified maternity providers. Hospital-specific maternity services, contacts and operating capacity remain unconfirmed unless evidence is shown on a hospital card.")
+    phase_two_choice = st.selectbox("Quickly explore a Phase 2 state", ["Choose a state below"] + phase_two_states, key="findcare_phase2_quick")
     regions = ["All listed states and FCT"] + sorted({item[0] for item in HOSPITALS})
-    selected_region = st.selectbox("Select state or FCT", regions, index=regions.index("FCT"), key="findcare_region")
+    selected_region = st.selectbox("Select state or FCT", regions, index=regions.index(phase_two_choice) if phase_two_choice in regions else regions.index("FCT"), key="findcare_region")
     region_results = [item for item in HOSPITALS if selected_region == regions[0] or item[0] == selected_region]
     cities = ["All listed cities"] + sorted({item[1] for item in region_results})
     selected_city = st.selectbox("Select city", cities, key="findcare_city")
