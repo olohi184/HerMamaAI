@@ -176,41 +176,6 @@ elif page == "🤰 Pregnancy care":
     
 elif page == "💞 MamaCare journey":
     render_mamacare(go)
-    st.divider()
-    st.caption("Additional MamaCare journey guidance")
-    st.markdown('<div class="section-head">💞 MamaCare Continuity</div>',unsafe_allow_html=True)
-    st.markdown('<p class="lead"><b>Care should not stop when a mother leaves the hospital.</b> Explore each recovery stage and prepare for conversations with your healthcare team.</p>',unsafe_allow_html=True)
-    st.info("This is educational planning, not a medical assessment or a personalized follow-up service. Your answers are not sent to a clinician. Follow the schedule given by your maternity team.")
-    stages = [
-        ("🌸 Days 1–7", "Early recovery", "Review discharge instructions, feeding support, bleeding, pain, wound or perineal care, and the date of your next postnatal contact.", ["Do I know how to contact my maternity facility?","Have I reviewed my discharge instructions?","Do I know when my next postnatal appointment is?"]),
-        ("💗 Weeks 2–3", "Stay connected", "New or worsening problems can occur after returning home. Keep recommended contacts and ask for assessment if you are worried about your recovery.", ["Do I know how to contact a qualified professional?","Have I arranged my recommended follow-up?","Do I know how to access urgent care?"]),
-        ("🌷 Weeks 4–6", "Recovery and well-being", "Discuss continuing physical recovery, feeding, sleep, emotional health, contraception where relevant, and any symptoms affecting everyday life.", ["Have I prepared questions for my appointment?","Could I discuss emotional well-being with my provider?","Do I know whom to contact about persistent symptoms?"]),
-        ("🌿 After 6 weeks", "Continuing care", "Recovery may take longer than six weeks. Persistent pain, mood concerns, pelvic-floor symptoms or other problems deserve professional attention.", ["Do I know where to seek ongoing care?","Have I discussed persistent symptoms with a provider?","Do I know how to arrange continuing care?"])
-    ]
-    st.button("📅 Plan a postnatal follow-up →",use_container_width=True,on_click=go,args=("📅 CareCalendar",))
-    st.markdown("#### Your recovery journey")
-    for label,title,_,_ in stages:
-        st.markdown(f'<div class="timeline"><b>{label}</b> · {title}</div>',unsafe_allow_html=True)
-    selected = st.selectbox("Choose a stage to explore",[s[0] for s in stages])
-    stage = next(s for s in stages if s[0]==selected)
-    st.subheader(f"{stage[0]} · {stage[1]}")
-    st.write(stage[2])
-    st.markdown("#### Prepare for your next care contact")
-    st.caption("Optional on-screen reminders only. Checking a box does not mean you are medically well.")
-    for i,q in enumerate(stage[3]):
-        st.checkbox(q,key=f"v4_stage_{selected}_{i}")
-    with st.expander("Questions I can ask at my next appointment"):
-        st.write("Ask about your recovery, new or ongoing symptoms, recommended checks, feeding support, emotional well-being, and when to return for follow-up. Discuss concerns directly with your care team.")
-    st.error("**Get urgent medical help:** Heavy bleeding, chest pain, difficulty breathing, seizures, severe headache or vision changes, fainting, fever with severe illness, or thoughts of harming yourself or your baby require immediate professional assessment. Do not wait for an app response.")
-
-    st.markdown("#### Practical support after going home")
-    with st.expander("Create a support circle"):
-        st.write("Identify one person who can help with meals or chores, someone who can accompany you to appointments, and a healthcare contact for questions. You can write these down privately outside the app.")
-    with st.expander("Care for baby and care for mother"):
-        st.write("Newborn care is important, and so is the mother's recovery. Ask about maternal follow-up, feeding support, sleep, emotional changes and concerns about pain or healing.")
-    with st.expander("If you missed a follow-up"):
-        st.write("Contact your maternity team to arrange the next appropriate appointment. Seek urgent assessment for warning signs rather than waiting for a routine visit.")
-    st.button("🌼 Take a gentle wellness break",key="mama_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
 
 elif page == "💗 Postpartum recovery":
     st.markdown('<div class="section-head">💗 Postpartum recovery</div>',unsafe_allow_html=True)
