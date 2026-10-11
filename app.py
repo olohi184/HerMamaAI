@@ -78,11 +78,42 @@ h1,h2,h3 {color:#382441;}
 .feature{background:linear-gradient(145deg,#fffaff,#f9edf7)!important;border:1px solid #e9d1e8!important;}
 @media(max-width:650px){.hero{padding:25px 14px 28px!important}.hero-emblem{width:165px;height:118px}.hero-emblem .hero-logo{width:165px!important}.hero-brand h1{font-size:clamp(2.6rem,12vw,3.5rem)!important}.hero-pills{gap:6px}.hero-pills span{font-size:.68rem;padding:6px 9px}}
 
+
+/* V6 visual redesign inspired by approved reference, with working Streamlit controls */
+[data-testid="stAppViewContainer"]{background:radial-gradient(circle at 8% 8%,#eac7f0 0%,transparent 37%),radial-gradient(circle at 93% 17%,#f6c4e2 0%,transparent 36%),linear-gradient(165deg,#fff6fc 0%,#f8efff 56%,#fff0f8 100%)!important;}
+.block-container{max-width:1380px!important;padding-top:1rem!important;}
+.hero-v6{position:relative;overflow:hidden;border-radius:28px 28px 50px 50px;background:radial-gradient(ellipse at 44% 36%,#fff5fd 0%,#f5d7f0 36%,transparent 70%),linear-gradient(120deg,#d69ad9 0%,#f8d3e7 46%,#cb83bc 100%);padding:22px 38px 48px;box-shadow:0 20px 48px rgba(106,44,115,.15);color:#431452;}
+.hero-v6:before{content:"";position:absolute;bottom:-70px;left:-8%;width:120%;height:135px;background:rgba(137,48,148,.17);border-radius:50% 50% 0 0;transform:rotate(-2deg);}
+.hero-v6:after{content:"";position:absolute;bottom:-100px;left:-5%;width:115%;height:140px;background:#fff6fc;border-radius:50% 50% 0 0;transform:rotate(2deg);}
+.hero-top{display:flex;justify-content:space-between;align-items:center;gap:16px;background:rgba(255,255,255,.78);border:1px solid #fff;border-radius:40px;padding:12px 24px;box-shadow:0 6px 18px rgba(86,31,101,.08);}
+.brand-small{font-family:'Playfair Display',serif;font-size:1.4rem;color:#44145d}.brand-small span,.hero-identity h1 span{color:#d22a91}.top-label{font-size:.69rem;font-weight:800;letter-spacing:.13em;color:#703e80;}
+.hero-main{display:grid;grid-template-columns:1fr 1.7fr 2.5fr;align-items:center;gap:18px;position:relative;z-index:1;min-height:285px;}
+.hero-left{font-family:'Playfair Display',serif;font-size:clamp(1.15rem,2.2vw,1.9rem);line-height:1.48;color:#542269;}
+.hero-art{display:flex;justify-content:center;align-items:center;height:255px;overflow:hidden;}
+.hero-art img{width:min(310px,100%);height:auto;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(83,28,90,.13));}
+.hero-identity{text-align:center}.hero-identity h1{font-family:'Playfair Display',serif;font-size:clamp(3.2rem,6.3vw,6.1rem);font-weight:700;letter-spacing:-.045em;color:#441057;line-height:1.1;margin:0;white-space:nowrap;}
+.hero-rule{height:3px;width:80%;margin:10px auto;background:linear-gradient(90deg,transparent,#c72b90,transparent);}
+.hero-identity h2{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1rem,2vw,1.7rem);font-weight:600;color:#4b1a64;margin:10px 0;}
+.hero-identity p{font-size:.92rem;color:#613e6b;margin:12px auto;max-width:470px;}
+.hero-capabilities{display:flex;position:relative;z-index:2;justify-content:center;gap:12px;flex-wrap:wrap;margin:0 auto;}
+.hero-capabilities span{background:rgba(255,255,255,.56);border:1px solid rgba(255,255,255,.75);padding:11px 16px;border-radius:30px;color:#5a2370;font-size:.74rem;font-weight:800;letter-spacing:.03em;}
+.feature{min-height:185px!important;background:linear-gradient(140deg,#fff7fc,#f8e9f7)!important;border:1px solid #f0d4ea!important;box-shadow:0 10px 26px rgba(94,42,108,.09)!important;}
+[data-testid="stButton"] button{border-radius:25px!important;}
+[data-testid="stAlert"]{border-radius:18px!important;}
+@media(max-width:850px){.hero-main{grid-template-columns:1fr 1.3fr;min-height:0;padding:18px 0}.hero-left{display:none}.hero-art{height:210px}.hero-art img{width:220px}.hero-identity h1{font-size:clamp(2.7rem,6vw,4.3rem)}.hero-v6{padding:16px 18px 42px}.top-label{display:none}}
+@media(max-width:560px){.hero-main{display:flex;flex-direction:column;gap:0}.hero-art{height:175px}.hero-art img{width:190px}.hero-identity h1{font-size:clamp(2.6rem,11vw,3.5rem)}.hero-identity p{font-size:.86rem}.hero-capabilities{gap:6px}.hero-capabilities span{font-size:.61rem;padding:8px 10px}.brand-small{font-size:1.15rem}.hero-v6{border-radius:22px 22px 38px 38px}.hero-top{padding:9px 16px}}
+
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown('''<div class="hero"><div class="eyebrow">WECHIMAI · MATERNAL WELLNESS INNOVATION</div><div class="hero-brand"><div class="hero-emblem"><img class="hero-logo" src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="Mother and baby emblem"></div><h1>HerMamaAI</h1><div class="hero-tagline">Every Mother Deserves Continued Care.</div></div><p>Your trusted space for pregnancy education, postpartum recovery and compassionate support beyond birth.</p><div class="hero-pills"><span>♡ Pregnancy Support</span><span>♡ MamaCare Continuity</span><span>▦ CareCalendar</span></div></div>''', unsafe_allow_html=True)
-st.caption("VERSION 5.1 · EDUCATIONAL PROTOTYPE · DESIGNED IN ABUJA, NIGERIA")
+st.markdown('''<div class="hero-v6">
+<div class="hero-top"><div class="brand-small">💗 <b>HerMama<span>AI</span></b></div><div class="top-label">WECHIMAI · MATERNAL WELLNESS INNOVATION</div></div>
+<div class="hero-main"><div class="hero-left"><i>Empowering<br>Mothers,<br>Healthier<br>Generations.</i></div>
+<div class="hero-art"><img src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="HerMamaAI mother and child artwork"></div>
+<div class="hero-identity"><h1>HerMama<span>AI</span></h1><div class="hero-rule"></div><h2>Every Mother Deserves Continued Care.</h2><p>Care, knowledge and reassurance through pregnancy, recovery and beyond.</p></div></div>
+<div class="hero-capabilities"><span>♡ &nbsp; PREGNANCY SUPPORT</span><span>♡ &nbsp; MAMACARE CONTINUITY</span><span>▦ &nbsp; CARE CALENDAR</span><span>✿ &nbsp; EMOTIONAL WELLNESS</span></div>
+<div class="hero-wave"></div></div>''', unsafe_allow_html=True)
+st.caption("VERSION 6 · EDUCATIONAL PROTOTYPE · DESIGNED IN ABUJA, NIGERIA")
 
 st.warning("**Important safety notice:** HerMamaAI is an educational prototype, not a clinician, diagnosis tool, medical device or emergency service. Content has not been clinically reviewed. For serious symptoms, seek immediate in-person medical care.")
 
