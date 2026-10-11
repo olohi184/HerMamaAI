@@ -338,6 +338,10 @@ elif page == "🌼 Calm Corner":
     .mama-jar-stage {min-height:145px;padding:22px;border-radius:25px;background:linear-gradient(135deg,#e9f9f1,#f7e9ff);border:1px solid #d4e8dc;text-align:center}
     .mama-jar-stage .jar-icon {font-size:3rem;animation:mamaFloat 5s ease-in-out infinite}
     .mama-jar-stage .jar-notes {color:#5d3e69;font-size:1.05rem;line-height:1.9}
+    .mama-word-tiles {display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(7px,2vw,18px);padding:22px 12px;border-radius:24px;background:linear-gradient(135deg,#fff9e9,#fff0f8);border:1px solid #f1d4a9}
+    .mama-letter-tile {display:inline-flex;align-items:center;justify-content:center;min-width:clamp(48px,10vw,78px);height:clamp(58px,12vw,88px);padding:8px;border-radius:18px;background:#fff;color:#793674;font-size:clamp(1.7rem,4vw,2.6rem);font-weight:800;box-shadow:0 6px 18px rgba(112,54,110,.13);border:1px solid #f0d5e6}
+    .mama-word-celebrate {margin:12px 0;padding:18px;border-radius:20px;background:linear-gradient(115deg,#f7e8ff,#fff1f5,#eaf9f0);border:1px solid #ebc9e4;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;color:#63346c}
+    .mama-word-flowers {font-size:2rem;animation:mamaBloom .55s ease-out both}
     .mama-word-stage {border:1px solid #f1d4a9;border-radius:24px;background:linear-gradient(135deg,#fff9e9,#fff0f8);text-align:center;padding:28px 12px;font-size:2.5rem;font-weight:800;letter-spacing:10px;color:#803c79}
     @media(prefers-reduced-motion:reduce){.mama-garden-stage .mama-flowers,.mama-scene-stage .scene-icon,.mama-jar-stage .jar-icon{animation:none!important}}
     </style>""",unsafe_allow_html=True)
@@ -430,27 +434,41 @@ elif page == "🌼 Calm Corner":
         st.divider()
     if st.session_state.calm_activity == 3:
         st.markdown("### 🔤 Game 4: Mama Word Garden")
-        st.write("Unscramble a gentle word. You can reveal the answer whenever you wish.")
+        st.write("Arrange the letters into a gentle word. Take your time, or reveal the answer whenever you wish.")
         puzzles = [("ERAC", "CARE", "Care for yourself, too."), ("TSER", "REST", "Rest is valuable."), ("EPOH", "HOPE", "Small hopeful moments matter."), ("MOLBO", "BLOOM", "Grow at your own pace.")]
         if "word_index" not in st.session_state:
             st.session_state.word_index = 0
         scrambled, answer, encouragement = puzzles[st.session_state.word_index % len(puzzles)]
-        st.markdown('<div class="mama-word-stage">'+escape(scrambled)+'</div>', unsafe_allow_html=True)
+        tiles = "".join('<span class="mama-letter-tile">'+escape(letter)+'</span>' for letter in scrambled)
+        st.markdown('<div class="mama-word-tiles" aria-label="Scrambled letters: '+escape(" ".join(scrambled))+'">'+tiles+'</div>', unsafe_allow_html=True)
         guess = st.text_input("Your answer", key=f"word_guess_{st.session_state.word_index}", max_chars=20, placeholder="Type the word here")
         w1, w2, w3 = st.columns(3)
         with w1:
-            if st.button("Check word", key="word_check", use_container_width=True):
-                if guess.strip().upper().replace(" ", "") == answer:
-                    st.success(encouragement)
-                else:
-                    st.info("Not quite — feel free to try again or reveal the word.")
+            check_clicked = st.button("Check word", key="word_check", use_container_width=True)
         with w2:
-            if st.button("Reveal word", key="word_reveal", use_container_width=True):
-                st.info(f"{answer} — {encouragement}")
+            reveal_clicked = st.button("Reveal word", key="word_reveal", use_container_width=True)
         with w3:
-            if st.button("Next word →", key="word_next", use_container_width=True):
-                st.session_state.word_index += 1
-                st.rerun()
+            next_clicked = st.button("Next word →", key="word_next", use_container_width=True)
+        if next_clicked:
+            st.session_state.word_index += 1
+            st.session_state.pop("word_feedback", None)
+            st.rerun()
+        if check_clicked:
+            if guess.strip().upper().replace(" ", "") == answer:
+                st.session_state.word_feedback = ("correct", encouragement)
+            else:
+                st.session_state.word_feedback = ("hint", "A gentle hint: the word begins with "+answer[0]+". You can try again or reveal the answer.")
+        if reveal_clicked:
+            st.session_state.word_feedback = ("reveal", answer+" — "+encouragement)
+        feedback = st.session_state.get("word_feedback")
+        if feedback:
+            kind, message = feedback
+            if kind == "correct":
+                st.markdown('<div class="mama-word-celebrate" role="status"><span class="mama-word-flowers">🌸 🌷 🌼 🦋</span><strong>Beautifully done!</strong><span>'+escape(message)+'</span></div>', unsafe_allow_html=True)
+            elif kind == "reveal":
+                st.info(message)
+            else:
+                st.info(message)
 
         st.divider()
     if st.session_state.calm_activity == 4:
