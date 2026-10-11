@@ -1,8 +1,10 @@
 import streamlit as st
+from datetime import date, datetime, time, timedelta
+from html import escape
 
 st.set_page_config(page_title="HerMamaAI | Your motherhood companion", page_icon="💜", layout="wide", initial_sidebar_state="collapsed")
 
-PAGES = ["🏡 Home", "🤰 Pregnancy care", "💞 MamaCare journey", "💗 Postpartum recovery", "🌷 Emotional wellness", "🏥 Find care", "📖 Learning hub"]
+PAGES = ["🏡 Home", "📅 CareCalendar", "🤰 Pregnancy care", "💞 MamaCare journey", "💗 Postpartum recovery", "🌷 Emotional wellness", "🏥 Find care", "📖 Learning hub"]
 if "page" not in st.session_state:
     st.session_state.page = PAGES[0]
 
@@ -41,7 +43,7 @@ h1,h2,h3 {color:#382441;}
 """, unsafe_allow_html=True)
 
 st.markdown('''<div class="hero"><div class="eyebrow">WECHIMAI · MATERNAL WELLNESS INNOVATION</div><h1>💜 HerMamaAI</h1><p>A caring companion for pregnancy, recovery and the journey beyond birth. Explore helpful education at your own pace.</p></div>''', unsafe_allow_html=True)
-st.caption("VERSION 4 · EDUCATIONAL PROTOTYPE · DESIGNED IN ABUJA, NIGERIA")
+st.caption("VERSION 4.1 · EDUCATIONAL PROTOTYPE · DESIGNED IN ABUJA, NIGERIA")
 
 st.warning("**Important safety notice:** HerMamaAI is an educational prototype, not a clinician, diagnosis tool, medical device or emergency service. Content has not been clinically reviewed. For serious symptoms, seek immediate in-person medical care.")
 
@@ -54,6 +56,8 @@ if page == "🏡 Home":
     st.markdown('<p class="lead">Support should not end at delivery. Find a topic that matters to you today, with a special focus on the weeks after leaving hospital.</p>', unsafe_allow_html=True)
     st.markdown('<div class="soft"><b>💞 Featured: MamaCare Continuity</b><br>Explore four stages of recovery after childbirth, prepare questions for your maternity team, and learn which warning signs need urgent attention.</div>', unsafe_allow_html=True)
     st.button("Explore the MamaCare journey →", type="primary", use_container_width=True, on_click=go, args=("💞 MamaCare journey",))
+    st.markdown('<div class="soft"><b>📅 New: CareCalendar</b><br>Plan appointments you agree with your care team, and explore educational milestones separately.</div>', unsafe_allow_html=True)
+    st.button("Open CareCalendar →",use_container_width=True,on_click=go,args=("📅 CareCalendar",))
     c1,c2 = st.columns(2)
     with c1:
         card("Pregnancy care","🤰","Antenatal appointments, practical questions and signs that need prompt medical assessment.")
@@ -66,9 +70,61 @@ if page == "🏡 Home":
         card("Find care","🏥","Prepare to contact your maternity team and know when routine care is not enough.")
         st.button("Open care guidance →",use_container_width=True,on_click=go,args=("🏥 Find care",))
 
+elif page == "📅 CareCalendar":
+    st.markdown('<div class="section-head">📅 My CareCalendar</div>',unsafe_allow_html=True)
+    st.markdown('<p class="lead">A simple place to organize antenatal and postnatal visits, and explore topics to discuss with your maternity team.</p>',unsafe_allow_html=True)
+    st.info("**Two different things:** Your appointments are dates you enter from your care plan. Suggested milestones below are educational topics only — not booked appointments or a personalized medical schedule.")
+    st.caption("Privacy: entries are held in this app session only. They are not saved to a database or sent to a clinic. Avoid entering personal medical information or identifying clinic details on a shared device.")
+    if "care_appointments" not in st.session_state:
+        st.session_state.care_appointments = []
+    with st.form("carecalendar_add",clear_on_submit=True):
+        st.markdown("#### Add an appointment")
+        kind = st.selectbox("Visit type",["Antenatal visit","Postnatal follow-up","Other maternity appointment"])
+        a,b = st.columns(2)
+        with a:
+            ap_date = st.date_input("Appointment date",value=date.today(),min_value=date.today())
+        with b:
+            ap_time = st.time_input("Appointment time",value=time(10,0),step=1800)
+        note = st.text_input("Optional short label",placeholder="e.g. Routine check-up",max_chars=70)
+        submitted = st.form_submit_button("Add to my calendar",type="primary",use_container_width=True)
+        if submitted:
+            st.session_state.care_appointments.append({"kind":kind,"date":ap_date,"time":ap_time,"note":note.strip()})
+            st.success("Added to this session's calendar. This does not book a clinic visit.")
+    st.markdown("#### My planned appointments")
+    items = sorted(enumerate(st.session_state.care_appointments),key=lambda x:(x[1]["date"],x[1]["time"]))
+    if not items:
+        st.caption("No appointments entered yet. Add a visit above to begin.")
+    for original_index, ap in items:
+        st.markdown(f'<div class="timeline"><b>📍 {escape(ap["date"].strftime("%a %d %b %Y"))} · {escape(ap["time"].strftime("%I:%M %p"))}</b><br>{escape(ap["kind"])}{(" · " + escape(ap["note"])) if ap["note"] else ""}</div>',unsafe_allow_html=True)
+        c1,c2=st.columns([3,1])
+        with c1:
+            start=datetime.combine(ap["date"],ap["time"])
+            end=start+timedelta(hours=1)
+            def ics_safe(value):
+                return str(value).replace("\\","\\\\").replace(";","\\;").replace(",","\\,").replace("\n","\\n")
+            title=ics_safe("HerMamaAI: "+ap["kind"]+(" - "+ap["note"] if ap["note"] else ""))
+            ics="\r\n".join(["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//WechimAI//HerMamaAI//EN","BEGIN:VEVENT","UID:hermamaai-"+str(original_index)+"-"+start.strftime("%Y%m%dT%H%M%S")+"@local","DTSTAMP:"+datetime.utcnow().strftime("%Y%m%dT%H%M%SZ"),"DTSTART:"+start.strftime("%Y%m%dT%H%M%S"),"DTEND:"+end.strftime("%Y%m%dT%H%M%S"),"SUMMARY:"+title,"DESCRIPTION:Personal planning reminder only. Confirm timing with your maternity team. Time is local to your calendar.","END:VEVENT","END:VCALENDAR",""])
+            st.download_button("⬇️ Add to phone calendar (.ics)",data=ics,file_name="hermamaai-appointment.ics",mime="text/calendar",key=f"ics_{original_index}",use_container_width=True)
+        with c2:
+            if st.button("Remove",key=f"remove_{original_index}",use_container_width=True):
+                st.session_state.care_appointments.pop(original_index)
+                st.rerun()
+    st.markdown("#### Educational antenatal milestones")
+    st.caption("These are discussion prompts, not dates or a substitute for local antenatal guidance. Your maternity team determines your individual care schedule.")
+    with st.expander("Early pregnancy · Establishing antenatal care",expanded=True):
+        st.write("Discuss when to begin antenatal care, recommended screening, nutrition and supplements, medicines, and whom to call for urgent concerns.")
+    with st.expander("Middle pregnancy · Ongoing monitoring"):
+        st.write("Ask about the recommended timing of check-ups, scans and tests, your baby's development, and any symptoms that concern you.")
+    with st.expander("Later pregnancy · Preparing for birth"):
+        st.write("Discuss your birth preferences, delivery location, transport plan, emergency contacts and postpartum follow-up arrangements.")
+    with st.expander("After delivery · Continuing postnatal care"):
+        st.write("Ask your maternity team when to return after discharge, what recovery symptoms need assessment, and how to obtain feeding and emotional support.")
+    st.error("**Urgent symptoms?** Heavy bleeding, seizures, chest pain, difficulty breathing, severe headache or visual changes, fainting, or thoughts of harming yourself or your baby need immediate professional help. Do not wait for a calendar reminder.")
+
 elif page == "🤰 Pregnancy care":
     st.markdown('<div class="section-head">🤰 Pregnancy care</div>',unsafe_allow_html=True)
     st.markdown('<p class="lead">Regular antenatal visits help your maternity team monitor your health and your baby’s development. Ask which appointments, tests and vaccinations are appropriate for you.</p>',unsafe_allow_html=True)
+    st.button("📅 Plan an antenatal visit in CareCalendar →",use_container_width=True,on_click=go,args=("📅 CareCalendar",))
     st.subheader("Questions for your maternity team")
     for i,q in enumerate(["When should I attend my next antenatal visit?","Which symptoms mean I should seek urgent help?","Which medicines or supplements are appropriate for me?","What is my birth and emergency transport plan?"]):
         st.checkbox(q,key=f"preg_{i}")
@@ -84,6 +140,7 @@ elif page == "💞 MamaCare journey":
         ("🌷 Weeks 4–6", "Recovery and well-being", "Discuss continuing physical recovery, feeding, sleep, emotional health, contraception where relevant, and any symptoms affecting everyday life.", ["Have I prepared questions for my appointment?","Could I discuss emotional well-being with my provider?","Do I know whom to contact about persistent symptoms?"]),
         ("🌿 After 6 weeks", "Continuing care", "Recovery may take longer than six weeks. Persistent pain, mood concerns, pelvic-floor symptoms or other problems deserve professional attention.", ["Do I know where to seek ongoing care?","Have I discussed persistent symptoms with a provider?","Do I know how to arrange continuing care?"])
     ]
+    st.button("📅 Plan a postnatal follow-up →",use_container_width=True,on_click=go,args=("📅 CareCalendar",))
     st.markdown("#### Your recovery journey")
     for label,title,_,_ in stages:
         st.markdown(f'<div class="timeline"><b>{label}</b> · {title}</div>',unsafe_allow_html=True)
@@ -138,4 +195,4 @@ else:
         st.write("Heavy bleeding, chest pain, difficulty breathing, seizures, severe headache or vision changes, fainting, severe illness with fever, or thoughts of harming yourself or your baby need urgent professional attention.")
     st.caption("Educational content requires clinical review before a real-world health pilot.")
 
-st.markdown('<div class="footer"><b>HerMamaAI · Version 4</b> — Developed by WechimAI Integrated Engineering & ICT Ltd · Abuja, Nigeria.<br>Educational demonstration only. No accounts or identifiable health records are collected by this prototype. Checkboxes are temporary on-screen planning aids, not clinical screening. Independent clinical review, safeguarding, accessibility testing and privacy assessment are required before real-world pilot use.</div>',unsafe_allow_html=True)
+st.markdown('<div class="footer"><b>HerMamaAI · Version 4.1</b> — Developed by WechimAI Integrated Engineering & ICT Ltd · Abuja, Nigeria.<br>Educational demonstration only. No accounts or health records are collected by this prototype. Appointment entries and checkboxes are temporary session-only planning aids, not booking or clinical screening. Independent clinical review, safeguarding, accessibility testing and privacy assessment are required before real-world pilot use.</div>',unsafe_allow_html=True)
