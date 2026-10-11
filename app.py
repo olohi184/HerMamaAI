@@ -143,6 +143,31 @@ h1,h2,h3 {color:#382441;}
 @media(max-width:850px){.hm-hero{grid-template-columns:1fr 2fr;padding:26px 20px 45px}.hm-quote{display:none}.hm-mother{font-size:6rem}.hm-center h1{font-size:3.5rem}}
 @media(max-width:570px){.hm-nav{justify-content:center}.hm-nav-note{display:none}.hm-hero{display:flex;flex-direction:column-reverse;gap:0;padding:20px 13px 40px;min-height:0}.hm-mother{font-size:5rem}.hm-center h1{font-size:3.1rem}.hm-center h2{font-size:1.15rem}.hm-emblem{width:105px;max-height:90px}.hm-ribbon{gap:10px}.hm-ribbon span{font-size:.7rem}}
 
+
+/* V8 clean, editorial hero — replacesst.markdown('''<div class="hm-subbrand"><b>HerMama<span>AI</span></b><small>WECHIMAI · MATERNAL WELLNESS INNOVATION</small></div>
+<div class="hm-hero">
+<div class="hm-copy"><div class="hm-eyebrow">YOUR MATERNAL WELLNESS COMPANION</div><h1>HerMama<span>AI</span></h1><h2>Every Mother Deserves Continued Care.</h2><p>Thoughtful pregnancy guidance, postpartum recovery resources and ongoing support — all in one welcoming space.</p></div>
+<div class="hm-art"><img src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="HerMamaAI mother and baby illustration"></div>
+</div>''',unsafe_allow_html=True)
+st.caption("EDUCATIONAL PROTOTYPE · CREATED BY WECHIMAI · ABUJA, NIGERIA")
+
+# Prominent, functioning navigation — retains all original pages and their features.
+nav_labels = ["🏡 Home","🤰 Pregnancy care","💞 MamaCare journey","💗 Postpartum recovery","📅 CareCalendar","🌷 Emotional wellness","🏥 Find care","📖 Learning hub"]
+nav_cols = st.columns(4)
+for i, destination in enumerate(nav_labels):
+    with nav_cols[i % 4]:
+        st.button(destination, key=f"nav_v8_{i}", use_container_width=True, on_click=go, args=(destination,))
+page = st.session_state.page
+
+st.warning("**Important safety notice:** HerMamaAI is an educational prototype, not a clinician, diagnosis tool, medical device or emergency service. Content has not been clinically reviewed. For serious symptoms, seek immediate in-person medical care.")
+
+p-shadow(0 18px 22px #6a28782e)}
+.hm-subbrand{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:14px;padding:10px 16px}
+.hm-subbrand b{font:700 1.3rem 'Playfair Display',serif;color:#51196d}.hm-subbrand b span{color:#d52b92}.hm-subbrand small{color:#885487;font-size:.75rem;letter-spacing:.1em;font-weight:800}
+[data-testid="stButton"] button[kind="secondary"]{background:#fffafd!important;border:1px solid #ebcde6!important;color:#6b287c!important;min-height:45px}
+[data-testid="stButton"] button:hover{border-color:#ca69ac!important;color:#a02d86!important}
+@media(max-width:750px){.hm-hero{grid-template-columns:1fr!important;padding:28px 22px 40px!important;gap:0!important;text-align:center}.hm-copy h1{font-size:3.5rem!important}.hm-copy p{margin:auto}.hm-art{min-height:160px}.hm-art img{width:210px}.hm-subbrand small{display:none}}
+
 </style>
 """, unsafe_allow_html=True)
 
