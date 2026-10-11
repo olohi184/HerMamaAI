@@ -217,21 +217,9 @@ elif page == "🌷 Emotional wellness":
     st.button("🌼 Open the Calm Corner",key="wellness_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
     
 elif page == "🏥 Find care":
-    st.markdown('<div class="section-head">🏥 Find appropriate care</div>',unsafe_allow_html=True)
-    st.markdown('<p class="lead">Contact your maternity facility, a qualified healthcare professional or local emergency services. HerMamaAI does not yet offer a verified clinic directory, appointment booking or emergency dispatch.</p>',unsafe_allow_html=True)
-    st.subheader("Before contacting a healthcare provider")
-    for i,q in enumerate(["How long has it been since delivery, or how far along is the pregnancy?","What concerns or symptoms should I describe, and when did they start?","Do I have relevant discharge instructions or medication information?","How can I reach the facility safely?"]):
-        st.checkbox(q,key=f"care_{i}")
-    st.warning("For severe symptoms, do not wait for a routine appointment. Seek emergency assessment immediately.")
+    from find_care import render_find_care
+    render_find_care()
 
-    st.markdown("#### Finding the right kind of support")
-    with st.expander("Routine antenatal and postnatal care"):
-        st.write("Start with the maternity clinic or qualified provider responsible for your care. Confirm opening hours, location, referral requirements and appointment arrangements directly with the facility.")
-    with st.expander("Emotional and mental-health support"):
-        st.write("Ask your maternity team for a qualified mental-health professional or referral service. Seek emergency care immediately if there is danger of harm, severe confusion or unusual perceptions.")
-    with st.expander("Questions before choosing a facility"):
-        st.write("Is the provider qualified? Does the facility offer maternity and postnatal services? How are emergencies handled? How can you contact the facility after hours?")
-    
 elif page == "🌼 Calm Corner":
     st.markdown('<div class="section-head">🌼 Motherhood Calm Corner</div>',unsafe_allow_html=True)
     st.markdown('<p class="lead">A gentle, optional pause for mothers and mothers-to-be. Play at your own pace, or simply rest. No scores, competition, or personal information required.</p>',unsafe_allow_html=True)
