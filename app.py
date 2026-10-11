@@ -267,148 +267,166 @@ elif page == "🌼 Calm Corner":
     st.markdown('<div class="section-head">🌼 Motherhood Calm Corner</div>',unsafe_allow_html=True)
     st.markdown('<p class="lead">A gentle, optional pause for mothers and mothers-to-be. Play at your own pace, or simply rest. No scores, competition, or personal information required.</p>',unsafe_allow_html=True)
     st.info("These are general relaxation activities, not treatment for anxiety, depression or physical symptoms. Stop any activity that feels uncomfortable. If you feel unwell or have urgent symptoms, seek professional medical care.")
-    st.markdown("### 🌸 Game 1: Grow your garden")
-    st.write("Tap **Plant a flower** to create a little garden. There is no timer and no wrong move.")
-    if "garden_count" not in st.session_state:
-        st.session_state.garden_count = 0
-    flowers = ["🌷","🌸","🌻","🌼","🪻","🌺"]
-    st.markdown('<div class="garden-bed">'+(" ".join(flowers[i % len(flowers)] for i in range(st.session_state.garden_count)) if st.session_state.garden_count else "🌱 Your peaceful garden begins here.")+'</div>',unsafe_allow_html=True)
-    g1,g2=st.columns(2)
-    with g1:
-        if st.button("🌷 Plant a flower",key="plant_flower",use_container_width=True):
-            st.session_state.garden_count=min(24,st.session_state.garden_count+1)
-            st.rerun()
-    with g2:
-        if st.button("↺ Start a new garden",key="reset_garden",use_container_width=True):
-            st.session_state.garden_count=0
-            st.rerun()
-    if st.session_state.garden_count>=24:
-        st.success("Your garden is blooming! You can enjoy it or start again.")
-    st.markdown("### ☁️ Game 2: Choose a gentle moment")
-    moments = {
-        "🌤️ A peaceful morning":"Imagine a quiet morning, a comfortable chair and a warm cup of something you enjoy.",
-        "🌿 A garden breeze":"Picture leaves moving softly in a garden. Notice the colors and shapes around you.",
-        "🌊 A calm shoreline":"Imagine gentle waves rolling in and out. Rest your attention on the scene without forcing your breathing.",
-        "🌙 A quiet evening":"Imagine soft evening light and a safe, restful space. Allow yourself a moment without a task to complete."
-    }
-    scene=st.radio("Pick a relaxing scene",list(moments),horizontal=True,key="calm_scene")
-    st.markdown(f'<div class="calm-scene">{escape(moments[scene])}</div>',unsafe_allow_html=True)
-    st.markdown("""<style>
-    div.st-key-memory_0 button, div.st-key-memory_1 button, div.st-key-memory_2 button,
-    div.st-key-memory_3 button, div.st-key-memory_4 button, div.st-key-memory_5 button {
-      min-height: 94px !important;
-      background: linear-gradient(145deg,#f2e5ff,#ffe8f4) !important;
-      border: 2px solid #c58bd3 !important;
-      border-radius: 20px !important;
-      box-shadow: 0 5px 14px rgba(99,40,112,.12) !important;
-    }
-    div.st-key-memory_0 button p, div.st-key-memory_1 button p, div.st-key-memory_2 button p,
-    div.st-key-memory_3 button p, div.st-key-memory_4 button p, div.st-key-memory_5 button p {
-      color: #64236f !important; font-size: 2.2rem !important; font-weight: 800 !important;
-    }
-    div.st-key-memory_0 button:hover, div.st-key-memory_1 button:hover, div.st-key-memory_2 button:hover,
-    div.st-key-memory_3 button:hover, div.st-key-memory_4 button:hover, div.st-key-memory_5 button:hover {
-      border-color: #a833a0 !important; background: #f4d6f2 !important;
-    }
-    </style>""", unsafe_allow_html=True)
-    st.divider()
-    st.markdown("### 🦋 Game 3: Memory Garden")
-    st.write("Find the three matching pairs. Turn over two cards at a time, with no clock or score.")
-    if "memory_cards" not in st.session_state:
-        st.session_state.memory_cards = ["🌷", "🦋", "💗", "🌷", "💗", "🦋"]
-        st.session_state.memory_open = []
-        st.session_state.memory_found = []
-    cards = st.session_state.memory_cards
-    for row_start in (0, 3):
+    st.subheader("Choose a gentle activity")
+    choices = ["🌸 Grow your garden", "☁️ Gentle moments", "🦋 Memory Garden", "🔤 Mama Word Garden", "🫙 Gratitude Jar", "🎨 Colour & Bloom"]
+    if "calm_activity" not in st.session_state:
+        st.session_state.calm_activity = 0
+    for start in (0, 3):
         cols = st.columns(3)
         for offset, col in enumerate(cols):
-            idx = row_start + offset
-            matched = idx in st.session_state.memory_found
-            flipped = idx in st.session_state.memory_open
-            label = cards[idx] if (matched or flipped) else "❔"
+            index = start + offset
             with col:
-                if st.button(label, key=f"memory_{idx}", use_container_width=True, disabled=matched or flipped or len(st.session_state.memory_open)>=2):
-                    st.session_state.memory_open.append(idx)
+                if st.button(choices[index], key=f"calm_choice_{index}", use_container_width=True):
+                    st.session_state.calm_activity = index
                     st.rerun()
-    if len(st.session_state.memory_open) == 2:
-        first, second = st.session_state.memory_open
-        if cards[first] == cards[second]:
-            st.session_state.memory_found.extend([first, second])
+    if st.session_state.calm_activity == 0:
+        st.markdown("### 🌸 Game 1: Grow your garden")
+        st.write("Tap **Plant a flower** to create a little garden. There is no timer and no wrong move.")
+        if "garden_count" not in st.session_state:
+            st.session_state.garden_count = 0
+        flowers = ["🌷","🌸","🌻","🌼","🪻","🌺"]
+        st.markdown('<div class="garden-bed">'+(" ".join(flowers[i % len(flowers)] for i in range(st.session_state.garden_count)) if st.session_state.garden_count else "🌱 Your peaceful garden begins here.")+'</div>',unsafe_allow_html=True)
+        g1,g2=st.columns(2)
+        with g1:
+            if st.button("🌷 Plant a flower",key="plant_flower",use_container_width=True):
+                st.session_state.garden_count=min(24,st.session_state.garden_count+1)
+                st.rerun()
+        with g2:
+            if st.button("↺ Start a new garden",key="reset_garden",use_container_width=True):
+                st.session_state.garden_count=0
+                st.rerun()
+        if st.session_state.garden_count>=24:
+            st.success("Your garden is blooming! You can enjoy it or start again.")
+    if st.session_state.calm_activity == 1:
+        st.markdown("### ☁️ Game 2: Choose a gentle moment")
+        moments = {
+            "🌤️ A peaceful morning":"Imagine a quiet morning, a comfortable chair and a warm cup of something you enjoy.",
+            "🌿 A garden breeze":"Picture leaves moving softly in a garden. Notice the colors and shapes around you.",
+            "🌊 A calm shoreline":"Imagine gentle waves rolling in and out. Rest your attention on the scene without forcing your breathing.",
+            "🌙 A quiet evening":"Imagine soft evening light and a safe, restful space. Allow yourself a moment without a task to complete."
+        }
+        scene=st.radio("Pick a relaxing scene",list(moments),horizontal=True,key="calm_scene")
+        st.markdown(f'<div class="calm-scene">{escape(moments[scene])}</div>',unsafe_allow_html=True)
+        st.markdown("""<style>
+        div.st-key-memory_0 button, div.st-key-memory_1 button, div.st-key-memory_2 button,
+        div.st-key-memory_3 button, div.st-key-memory_4 button, div.st-key-memory_5 button {
+          min-height: 94px !important;
+          background: linear-gradient(145deg,#f2e5ff,#ffe8f4) !important;
+          border: 2px solid #c58bd3 !important;
+          border-radius: 20px !important;
+          box-shadow: 0 5px 14px rgba(99,40,112,.12) !important;
+        }
+        div.st-key-memory_0 button p, div.st-key-memory_1 button p, div.st-key-memory_2 button p,
+        div.st-key-memory_3 button p, div.st-key-memory_4 button p, div.st-key-memory_5 button p {
+          color: #64236f !important; font-size: 2.2rem !important; font-weight: 800 !important;
+        }
+        div.st-key-memory_0 button:hover, div.st-key-memory_1 button:hover, div.st-key-memory_2 button:hover,
+        div.st-key-memory_3 button:hover, div.st-key-memory_4 button:hover, div.st-key-memory_5 button:hover {
+          border-color: #a833a0 !important; background: #f4d6f2 !important;
+        }
+        </style>""", unsafe_allow_html=True)
+        st.divider()
+    if st.session_state.calm_activity == 2:
+        st.markdown("### 🦋 Game 3: Memory Garden")
+        st.write("Find the three matching pairs. Turn over two cards at a time, with no clock or score.")
+        if "memory_cards" not in st.session_state:
+            st.session_state.memory_cards = ["🌷", "🦋", "💗", "🌷", "💗", "🦋"]
             st.session_state.memory_open = []
-            st.rerun()
-        else:
-            st.info("Two different pictures. Take another look, then try again.")
-            if st.button("🌿 Turn cards back", key="memory_flip_back", use_container_width=True):
+            st.session_state.memory_found = []
+        cards = st.session_state.memory_cards
+        for row_start in (0, 3):
+            cols = st.columns(3)
+            for offset, col in enumerate(cols):
+                idx = row_start + offset
+                matched = idx in st.session_state.memory_found
+                flipped = idx in st.session_state.memory_open
+                label = cards[idx] if (matched or flipped) else "❔"
+                with col:
+                    if st.button(label, key=f"memory_{idx}", use_container_width=True, disabled=matched or flipped or len(st.session_state.memory_open)>=2):
+                        st.session_state.memory_open.append(idx)
+                        st.rerun()
+        if len(st.session_state.memory_open) == 2:
+            first, second = st.session_state.memory_open
+            if cards[first] == cards[second]:
+                st.session_state.memory_found.extend([first, second])
                 st.session_state.memory_open = []
                 st.rerun()
-    if len(st.session_state.memory_found) == 6:
-        st.success("Your Memory Garden is complete. Beautifully done!")
-    if st.button("↺ Play Memory Garden again", key="memory_reset", use_container_width=True):
-        st.session_state.memory_open = []
-        st.session_state.memory_found = []
-        st.rerun()
-
-    st.divider()
-    st.markdown("### 🔤 Game 4: Mama Word Garden")
-    st.write("Unscramble a gentle word. You can reveal the answer whenever you wish.")
-    puzzles = [("ERAC", "CARE", "Care for yourself, too."), ("TSER", "REST", "Rest is valuable."), ("EPOH", "HOPE", "Small hopeful moments matter."), ("MOLBO", "BLOOM", "Grow at your own pace.")]
-    if "word_index" not in st.session_state:
-        st.session_state.word_index = 0
-    scrambled, answer, encouragement = puzzles[st.session_state.word_index % len(puzzles)]
-    st.markdown(f'<div class="garden-bed" style="min-height:80px">{escape(scrambled)}</div>', unsafe_allow_html=True)
-    guess = st.text_input("Your answer", key=f"word_guess_{st.session_state.word_index}", max_chars=20, placeholder="Type the word here")
-    w1, w2, w3 = st.columns(3)
-    with w1:
-        if st.button("Check word", key="word_check", use_container_width=True):
-            if guess.strip().upper().replace(" ", "") == answer:
-                st.success(encouragement)
             else:
-                st.info("Not quite — feel free to try again or reveal the word.")
-    with w2:
-        if st.button("Reveal word", key="word_reveal", use_container_width=True):
-            st.info(f"{answer} — {encouragement}")
-    with w3:
-        if st.button("Next word →", key="word_next", use_container_width=True):
-            st.session_state.word_index += 1
+                st.info("Two different pictures. Take another look, then try again.")
+                if st.button("🌿 Turn cards back", key="memory_flip_back", use_container_width=True):
+                    st.session_state.memory_open = []
+                    st.rerun()
+        if len(st.session_state.memory_found) == 6:
+            st.success("Your Memory Garden is complete. Beautifully done!")
+        if st.button("↺ Play Memory Garden again", key="memory_reset", use_container_width=True):
+            st.session_state.memory_open = []
+            st.session_state.memory_found = []
             st.rerun()
 
-    st.divider()
-    st.markdown("### 🫙 Game 5: Gratitude Jar")
-    st.write("Collect kind thoughts in your jar. No journal, account or personal details needed.")
-    affirmations = ["🌸 A small moment of peace", "💜 Kindness toward myself", "🌿 A chance to rest", "☀️ A fresh beginning", "🦋 Support when I need it"]
-    if "jar_notes" not in st.session_state:
-        st.session_state.jar_notes = []
-    chosen_note = st.selectbox("Choose a thought to keep", affirmations, key="jar_choice")
-    j1, j2 = st.columns(2)
-    with j1:
-        if st.button("💗 Add to my jar", key="jar_add", use_container_width=True):
-            if chosen_note not in st.session_state.jar_notes:
-                st.session_state.jar_notes.append(chosen_note)
-            st.rerun()
-    with j2:
-        if st.button("↺ Empty my jar", key="jar_clear", use_container_width=True):
+        st.divider()
+    if st.session_state.calm_activity == 3:
+        st.markdown("### 🔤 Game 4: Mama Word Garden")
+        st.write("Unscramble a gentle word. You can reveal the answer whenever you wish.")
+        puzzles = [("ERAC", "CARE", "Care for yourself, too."), ("TSER", "REST", "Rest is valuable."), ("EPOH", "HOPE", "Small hopeful moments matter."), ("MOLBO", "BLOOM", "Grow at your own pace.")]
+        if "word_index" not in st.session_state:
+            st.session_state.word_index = 0
+        scrambled, answer, encouragement = puzzles[st.session_state.word_index % len(puzzles)]
+        st.markdown(f'<div class="garden-bed" style="min-height:80px">{escape(scrambled)}</div>', unsafe_allow_html=True)
+        guess = st.text_input("Your answer", key=f"word_guess_{st.session_state.word_index}", max_chars=20, placeholder="Type the word here")
+        w1, w2, w3 = st.columns(3)
+        with w1:
+            if st.button("Check word", key="word_check", use_container_width=True):
+                if guess.strip().upper().replace(" ", "") == answer:
+                    st.success(encouragement)
+                else:
+                    st.info("Not quite — feel free to try again or reveal the word.")
+        with w2:
+            if st.button("Reveal word", key="word_reveal", use_container_width=True):
+                st.info(f"{answer} — {encouragement}")
+        with w3:
+            if st.button("Next word →", key="word_next", use_container_width=True):
+                st.session_state.word_index += 1
+                st.rerun()
+
+        st.divider()
+    if st.session_state.calm_activity == 4:
+        st.markdown("### 🫙 Game 5: Gratitude Jar")
+        st.write("Collect kind thoughts in your jar. No journal, account or personal details needed.")
+        affirmations = ["🌸 A small moment of peace", "💜 Kindness toward myself", "🌿 A chance to rest", "☀️ A fresh beginning", "🦋 Support when I need it"]
+        if "jar_notes" not in st.session_state:
             st.session_state.jar_notes = []
-            st.rerun()
-    st.markdown('<div class="garden-bed" style="font-size:1.15rem">'+("<br>".join(escape(n) for n in st.session_state.jar_notes) if st.session_state.jar_notes else "🫙 Your jar is ready for kind thoughts.")+'</div>', unsafe_allow_html=True)
+        chosen_note = st.selectbox("Choose a thought to keep", affirmations, key="jar_choice")
+        j1, j2 = st.columns(2)
+        with j1:
+            if st.button("💗 Add to my jar", key="jar_add", use_container_width=True):
+                if chosen_note not in st.session_state.jar_notes:
+                    st.session_state.jar_notes.append(chosen_note)
+                st.rerun()
+        with j2:
+            if st.button("↺ Empty my jar", key="jar_clear", use_container_width=True):
+                st.session_state.jar_notes = []
+                st.rerun()
+        st.markdown('<div class="garden-bed" style="font-size:1.15rem">'+("<br>".join(escape(n) for n in st.session_state.jar_notes) if st.session_state.jar_notes else "🫙 Your jar is ready for kind thoughts.")+'</div>', unsafe_allow_html=True)
 
-    st.divider()
-    st.markdown("### 🎨 Game 6: Colour & Bloom")
-    st.write("Design a bouquet by choosing flowers in your favourite colours.")
-    bloom_choices = {"Pink blossom 🌸":"🌸", "Purple flower 🪻":"🪻", "Yellow sunflower 🌻":"🌻", "Red hibiscus 🌺":"🌺", "White daisy 🌼":"🌼"}
-    if "bouquet" not in st.session_state:
-        st.session_state.bouquet = []
-    bloom_name = st.selectbox("Pick a flower", list(bloom_choices), key="bouquet_choice")
-    b1, b2 = st.columns(2)
-    with b1:
-        if st.button("🌷 Add to bouquet", key="bouquet_add", use_container_width=True):
-            st.session_state.bouquet = (st.session_state.bouquet + [bloom_choices[bloom_name]])[-18:]
-            st.rerun()
-    with b2:
-        if st.button("↺ New bouquet", key="bouquet_reset", use_container_width=True):
+        st.divider()
+    if st.session_state.calm_activity == 5:
+        st.markdown("### 🎨 Game 6: Colour & Bloom")
+        st.write("Design a bouquet by choosing flowers in your favourite colours.")
+        bloom_choices = {"Pink blossom 🌸":"🌸", "Purple flower 🪻":"🪻", "Yellow sunflower 🌻":"🌻", "Red hibiscus 🌺":"🌺", "White daisy 🌼":"🌼"}
+        if "bouquet" not in st.session_state:
             st.session_state.bouquet = []
-            st.rerun()
-    st.markdown('<div class="garden-bed">'+(" ".join(st.session_state.bouquet) if st.session_state.bouquet else "💐 Your bouquet begins here.")+'</div>', unsafe_allow_html=True)
-    st.caption("All game choices are temporary for this app session and are not saved as personal records.")
+        bloom_name = st.selectbox("Pick a flower", list(bloom_choices), key="bouquet_choice")
+        b1, b2 = st.columns(2)
+        with b1:
+            if st.button("🌷 Add to bouquet", key="bouquet_add", use_container_width=True):
+                st.session_state.bouquet = (st.session_state.bouquet + [bloom_choices[bloom_name]])[-18:]
+                st.rerun()
+        with b2:
+            if st.button("↺ New bouquet", key="bouquet_reset", use_container_width=True):
+                st.session_state.bouquet = []
+                st.rerun()
+        st.markdown('<div class="garden-bed">'+(" ".join(st.session_state.bouquet) if st.session_state.bouquet else "💐 Your bouquet begins here.")+'</div>', unsafe_allow_html=True)
+        st.caption("All game choices are temporary for this app session and are not saved as personal records.")
     st.markdown("### 💗 A kind reminder")
     st.write("You deserve support, rest and care. Taking a small break is enough for now.")
     st.button("Return to Emotional Wellness →",key="calm_return",use_container_width=True,on_click=go,args=("🌷 Emotional wellness",))
