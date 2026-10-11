@@ -119,15 +119,40 @@ h1,h2,h3 {color:#382441;}
 .clean-hero .hero-identity p{font-size:.99rem!important;margin:12px auto 0!important;}
 @media(max-width:700px){.clean-hero{padding:20px 17px 32px!important}.clean-hero .hero-main{display:flex!important;flex-direction:column!important;gap:4px!important}.clean-hero .hero-art{height:155px!important}.clean-hero .hero-art img{width:185px!important}.clean-hero .hero-identity h1{font-size:clamp(2.8rem,10vw,4.2rem)!important}.clean-hero .top-label{font-size:.6rem!important;letter-spacing:.1em!important}}
 
+
+/* V7: polished maternal wellness landing page */
+[data-testid="stAppViewContainer"]{background:linear-gradient(160deg,#fff4fb 0%,#f8f0ff 48%,#fff8f9 100%)!important}
+.block-container{max-width:1420px!important;padding-top:.65rem!important}
+.hm-nav{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;background:rgba(255,255,255,.92);border:1px solid #f3d8ef;border-radius:24px;padding:15px 24px;box-shadow:0 12px 28px #71357512;margin-bottom:12px}
+.hm-wordmark{font-family:'Playfair Display',serif;color:#4c176c;font-size:1.65rem;font-weight:700}.hm-wordmark span{color:#d52a94}
+.hm-nav-note{color:#6b3a80;font-size:.79rem;font-weight:700;letter-spacing:.04em}
+.hm-hero{position:relative;overflow:hidden;min-height:345px;border-radius:32px;background:radial-gradient(circle at 68% 18%,#fff9fc 0%,transparent 48%),linear-gradient(125deg,#ecc5f2 0%,#f9d9ed 52%,#dca4db 100%);display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:12px;align-items:center;padding:36px 35px 56px;box-shadow:0 20px 42px #71357521}
+.hm-hero:after{content:"";position:absolute;bottom:-68px;left:-5%;width:110%;height:105px;background:#fff8fe;border-radius:50% 50% 0 0}
+.hm-quote{font:italic 1.75rem/1.4 'Playfair Display',serif;color:#602879;z-index:1}
+.hm-center{text-align:center;z-index:1}.hm-center h1{font:700 clamp(3.2rem,6vw,6rem)/1.08 'Playfair Display',serif;color:#57146c;margin:0}.hm-center h1 span{color:#d52b92}
+.hm-center h2{font:italic 1.45rem/1.35 'Playfair Display',serif;color:#53216b;margin:12px 0}
+.hm-center p{font-size:.96rem;color:#64446d}
+.hm-emblem{display:block;width:150px;max-height:130px;object-fit:cover;object-position:top;margin:10px auto 0;filter:drop-shadow(0 8px 12px #692c7020)}
+.hm-mother{font-size:clamp(5rem,12vw,10rem);text-align:center;filter:drop-shadow(0 15px 25px #783a7430);z-index:1;line-height:1.2}
+.hm-ribbon{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;padding:17px;margin-top:-22px;position:relative;z-index:2;background:#ffffffbd;border-radius:25px;box-shadow:0 8px 24px #753b7520}
+.hm-ribbon span{font-weight:800;font-size:.83rem;color:#682c7b}
+.hm-card{border-radius:25px;padding:23px;min-height:175px;border:1px solid #f3d3eb;box-shadow:0 12px 25px #6e357512;margin:8px 0}
+.hm-card h3{margin:10px 0;color:#521c6b;font-size:1.2rem}.hm-card p{color:#624e69;line-height:1.6}
+.hm-pink{background:linear-gradient(140deg,#fff4fa,#ffe2f0)}.hm-lilac{background:linear-gradient(140deg,#f8f1ff,#e9ddff)}.hm-peach{background:linear-gradient(140deg,#fff9f0,#ffead0)}.hm-mint{background:linear-gradient(140deg,#effff9,#d9f8ed)}
+.hm-icon{font-size:2.5rem}
+@media(max-width:850px){.hm-hero{grid-template-columns:1fr 2fr;padding:26px 20px 45px}.hm-quote{display:none}.hm-mother{font-size:6rem}.hm-center h1{font-size:3.5rem}}
+@media(max-width:570px){.hm-nav{justify-content:center}.hm-nav-note{display:none}.hm-hero{display:flex;flex-direction:column-reverse;gap:0;padding:20px 13px 40px;min-height:0}.hm-mother{font-size:5rem}.hm-center h1{font-size:3.1rem}.hm-center h2{font-size:1.15rem}.hm-emblem{width:105px;max-height:90px}.hm-ribbon{gap:10px}.hm-ribbon span{font-size:.7rem}}
+
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown('''<div class="hero-v6 clean-hero">
-<div class="hero-top"><div class="top-label">WECHIMAI · MATERNAL WELLNESS INNOVATION</div></div>
-<div class="hero-main"><div class="hero-art"><img src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="Mother embracing baby"></div>
-<div class="hero-identity"><h1>HerMama<span>AI</span></h1><div class="hero-rule"></div><h2>Every Mother Deserves Continued Care.</h2><p>Pregnancy guidance, postpartum recovery and support beyond birth.</p></div></div>
-</div>''', unsafe_allow_html=True)
-st.caption("VERSION 6.1 · EDUCATIONAL PROTOTYPE · DESIGNED IN ABUJA, NIGERIA")
+st.markdown('''<div class="hm-nav"><div class="hm-wordmark">HerMama<span>AI</span></div><div class="hm-nav-note">WECHIMAI · MATERNAL WELLNESS INNOVATION</div></div>
+<div class="hm-hero">
+<div class="hm-quote">Empowering<br>Mothers,<br>Healthier<br>Generations.</div>
+<div class="hm-center"><h1>HerMama<span>AI</span></h1><h2>Every Mother Deserves Continued Care.</h2><p>Care and knowledge through pregnancy, recovery and beyond.</p><img class="hm-emblem" src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="HerMamaAI mother and baby emblem"></div>
+<div class="hm-mother" aria-label="Expectant mother illustration">🤰🏽</div>
+</div><div class="hm-ribbon"><span>🤰 Pregnancy support</span><span>💞 MamaCare continuity</span><span>📅 Care calendar</span><span>🌷 Emotional wellness</span></div>''',unsafe_allow_html=True)
+st.caption("VERSION 7 · EDUCATIONAL PROTOTYPE · DESIGNED IN ABUJA, NIGERIA")
 
 st.warning("**Important safety notice:** HerMamaAI is an educational prototype, not a clinician, diagnosis tool, medical device or emergency service. Content has not been clinically reviewed. For serious symptoms, seek immediate in-person medical care.")
 
@@ -136,23 +161,20 @@ st.selectbox("Explore HerMamaAI", PAGES, key="page")
 page = st.session_state.page
 
 if page == "🏡 Home":
-    st.markdown('<div class="section-head">Welcome to your motherhood space</div>', unsafe_allow_html=True)
-    st.markdown('<p class="lead">Support should not end at delivery. Find a topic that matters to you today, with a special focus on the weeks after leaving hospital.</p>', unsafe_allow_html=True)
-    st.markdown('<div class="soft"><b>💞 Featured: MamaCare Continuity</b><br>Explore four stages of recovery after childbirth, prepare questions for your maternity team, and learn which warning signs need urgent attention.</div>', unsafe_allow_html=True)
-    st.button("Explore the MamaCare journey →", type="primary", use_container_width=True, on_click=go, args=("💞 MamaCare journey",))
-    st.markdown('<div class="soft"><b>📅 New: CareCalendar</b><br>Plan appointments you agree with your care team, and explore educational milestones separately.</div>', unsafe_allow_html=True)
-    st.button("Open CareCalendar →",use_container_width=True,on_click=go,args=("📅 CareCalendar",))
-    c1,c2 = st.columns(2)
-    with c1:
-        card("Pregnancy care","🤰","Antenatal appointments, practical questions and signs that need prompt medical assessment.")
-        st.button("Open pregnancy care →",use_container_width=True,on_click=go,args=("🤰 Pregnancy care",))
-        card("Emotional wellness","🌷","Gentle support, conversations and knowing when to seek professional help.")
-        st.button("Open emotional wellness →",use_container_width=True,on_click=go,args=("🌷 Emotional wellness",))
-    with c2:
-        card("Postpartum recovery","💗","Understand recovery after delivery and why follow-up matters beyond discharge.")
-        st.button("Open postpartum recovery →",use_container_width=True,on_click=go,args=("💗 Postpartum recovery",))
-        card("Find care","🏥","Prepare to contact your maternity team and know when routine care is not enough.")
-        st.button("Open care guidance →",use_container_width=True,on_click=go,args=("🏥 Find care",))
+    st.markdown('<div class="section-head" style="text-align:center">Welcome to HerMamaAI</div>',unsafe_allow_html=True)
+    st.markdown('<p class="lead" style="text-align:center">Practical information and compassionate support for every stage of motherhood.</p>',unsafe_allow_html=True)
+    c1,c2,c3,c4=st.columns(4)
+    features=[
+        (c1,"hm-pink","🤰","Pregnancy Support","Explore antenatal care, preparation and important warning signs.","Explore Pregnancy","🤰 Pregnancy care"),
+        (c2,"hm-lilac","💞","MamaCare Continuity","Explore postpartum recovery and ongoing support after birth.","Explore Postpartum","💞 MamaCare journey"),
+        (c3,"hm-peach","📅","Care Calendar","Plan antenatal and postnatal visits with your personal calendar.","Open Calendar","📅 CareCalendar"),
+        (c4,"hm-mint","🌷","Emotional Wellness","Learn about self-care, emotional changes and seeking help.","Explore Wellness","🌷 Emotional wellness")
+    ]
+    for col,tone,icon,title,body,action,target in features:
+        with col:
+            st.markdown(f'<div class="hm-card {tone}"><div class="hm-icon">{icon}</div><h3>{title}</h3><p>{body}</p></div>',unsafe_allow_html=True)
+            st.button(action+" →",key="home_"+target,use_container_width=True,on_click=go,args=(target,))
+    st.markdown('<div class="soft"><b>Care continues after childbirth.</b> Learn when to contact your maternity team and how to prepare for follow-up care.</div>',unsafe_allow_html=True)
 
 elif page == "📅 CareCalendar":
     st.markdown('<div class="section-head">📅 My CareCalendar</div>',unsafe_allow_html=True)
