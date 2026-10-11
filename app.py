@@ -339,9 +339,12 @@ elif page == "🌼 Calm Corner":
     .mama-jar-stage .jar-icon {font-size:3rem;animation:mamaFloat 5s ease-in-out infinite}
     .mama-jar-stage .jar-notes {color:#5d3e69;font-size:1.05rem;line-height:1.9}
     .mama-memory-intro {text-align:center;color:#78437c;font-size:1.08rem;font-weight:650;padding:12px 8px;margin:8px 0 15px;border-radius:18px;background:linear-gradient(100deg,#fff2f9,#f0f9f2)}
-    div[class*="st-key-memory_"] button {min-height:112px!important;max-width:210px!important;margin:0 auto!important;border-radius:22px!important;border:2px solid #e6b8e7!important;background:linear-gradient(140deg,#fff7fc,#f0e5ff)!important;box-shadow:0 6px 16px rgba(106,52,127,.11)!important;font-size:3.2rem!important;color:#873d96!important;transition:transform .18s ease,background .18s ease,box-shadow .18s ease!important}
+    div[class*="st-key-memory_"] button {min-height:112px!important;width:100%!important;max-width:none!important;border-radius:22px!important;border:2px solid #e6b8e7!important;background:linear-gradient(140deg,#fff7fc,#f0e5ff)!important;box-shadow:0 6px 16px rgba(106,52,127,.11)!important;font-size:2.7rem!important;color:#873d96!important;transition:transform .18s ease,background .18s ease,box-shadow .18s ease!important}
     div[class*="st-key-memory_"] button:hover:not(:disabled) {transform:translateY(-3px);background:linear-gradient(140deg,#ffeaf6,#e6d7ff)!important;box-shadow:0 10px 22px rgba(106,52,127,.18)!important}
     div[class*="st-key-memory_"] button:disabled {opacity:1!important}
+    div[class*="st-key-memory_"] button p {font-size:clamp(1.9rem,3vw,2.7rem)!important;line-height:1.25!important} 
+    div.st-key-memory_reset button, div.st-key-memory_flip_back button {width:100%!important;max-width:none!important;min-height:52px!important;font-size:1rem!important} 
+    div.st-key-memory_reset button p, div.st-key-memory_flip_back button p {font-size:1rem!important} 
     .mama-memory-finish {display:flex;flex-direction:column;align-items:center;gap:10px;padding:24px 15px;margin-top:18px;text-align:center;background:linear-gradient(120deg,#fff0f8,#e8f9ed,#f1e8ff);border:1px solid #e7c5e4;border-radius:24px;color:#673870}
     .mama-memory-flowers {font-size:2.4rem;animation:mamaBloom .6s ease-out both}
     @media(max-width:640px){div[class*="st-key-memory_"] button{min-height:80px!important;font-size:1.7rem!important;border-radius:16px!important}}
