@@ -293,6 +293,24 @@ elif page == "🌼 Calm Corner":
     }
     scene=st.radio("Pick a relaxing scene",list(moments),horizontal=True,key="calm_scene")
     st.markdown(f'<div class="calm-scene">{escape(moments[scene])}</div>',unsafe_allow_html=True)
+    st.markdown("""<style>
+    div.st-key-memory_0 button, div.st-key-memory_1 button, div.st-key-memory_2 button,
+    div.st-key-memory_3 button, div.st-key-memory_4 button, div.st-key-memory_5 button {
+      min-height: 94px !important;
+      background: linear-gradient(145deg,#f2e5ff,#ffe8f4) !important;
+      border: 2px solid #c58bd3 !important;
+      border-radius: 20px !important;
+      box-shadow: 0 5px 14px rgba(99,40,112,.12) !important;
+    }
+    div.st-key-memory_0 button p, div.st-key-memory_1 button p, div.st-key-memory_2 button p,
+    div.st-key-memory_3 button p, div.st-key-memory_4 button p, div.st-key-memory_5 button p {
+      color: #64236f !important; font-size: 2.2rem !important; font-weight: 800 !important;
+    }
+    div.st-key-memory_0 button:hover, div.st-key-memory_1 button:hover, div.st-key-memory_2 button:hover,
+    div.st-key-memory_3 button:hover, div.st-key-memory_4 button:hover, div.st-key-memory_5 button:hover {
+      border-color: #a833a0 !important; background: #f4d6f2 !important;
+    }
+    </style>""", unsafe_allow_html=True)
     st.divider()
     st.markdown("### 🦋 Game 3: Memory Garden")
     st.write("Find the three matching pairs. Turn over two cards at a time, with no clock or score.")
