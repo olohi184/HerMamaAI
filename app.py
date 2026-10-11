@@ -326,13 +326,29 @@ elif page == "🌼 Calm Corner":
                     st.session_state.calm_activity = index
                     st.rerun()
     st.divider()
+    st.markdown("""<style>
+    @keyframes mamaBloom { from {opacity:0;transform:translateY(9px) scale(.9)} to {opacity:1;transform:translateY(0) scale(1)} }
+    @keyframes mamaFloat { 0%,100% {transform:translateY(0)} 50% {transform:translateY(-5px)} }
+    .mama-garden-stage { min-height:175px; padding:25px 18px 20px; border-radius:25px; border:1px solid #e9c8df; background:linear-gradient(180deg,#fff0f8 0%,#f8efff 70%,#e5f5e9 70%,#d3efd8 100%); text-align:center; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:14px; overflow:hidden; }
+    .mama-garden-stage .mama-flowers {font-size:2.7rem; line-height:1.8; letter-spacing:5px; animation:mamaBloom .45s ease-out both; overflow-wrap:anywhere}
+    .mama-garden-stage .mama-empty {font-size:1.12rem;color:#6b4771;line-height:1.6}
+    .mama-scene-stage {border:1px solid #d7d0ee;border-radius:25px;min-height:170px;padding:24px;background:linear-gradient(125deg,#edf7ff,#fff1f8,#f2edff);text-align:center}
+    .mama-scene-stage .scene-icon {font-size:3.5rem;animation:mamaFloat 5s ease-in-out infinite}
+    .mama-scene-stage .scene-text {max-width:700px;margin:12px auto 0;color:#544760;font-size:1.08rem;line-height:1.6}
+    .mama-jar-stage {min-height:145px;padding:22px;border-radius:25px;background:linear-gradient(135deg,#e9f9f1,#f7e9ff);border:1px solid #d4e8dc;text-align:center}
+    .mama-jar-stage .jar-icon {font-size:3rem;animation:mamaFloat 5s ease-in-out infinite}
+    .mama-jar-stage .jar-notes {color:#5d3e69;font-size:1.05rem;line-height:1.9}
+    .mama-word-stage {border:1px solid #f1d4a9;border-radius:24px;background:linear-gradient(135deg,#fff9e9,#fff0f8);text-align:center;padding:28px 12px;font-size:2.5rem;font-weight:800;letter-spacing:10px;color:#803c79}
+    @media(prefers-reduced-motion:reduce){.mama-garden-stage .mama-flowers,.mama-scene-stage .scene-icon,.mama-jar-stage .jar-icon{animation:none!important}}
+    </style>""",unsafe_allow_html=True)
     if st.session_state.calm_activity == 0:
         st.markdown("### 🌸 Game 1: Grow your garden")
         st.write("Tap **Plant a flower** to create a little garden. There is no timer and no wrong move.")
         if "garden_count" not in st.session_state:
             st.session_state.garden_count = 0
         flowers = ["🌷","🌸","🌻","🌼","🪻","🌺"]
-        st.markdown('<div class="garden-bed">'+(" ".join(flowers[i % len(flowers)] for i in range(st.session_state.garden_count)) if st.session_state.garden_count else "🌱 Your peaceful garden begins here.")+'</div>',unsafe_allow_html=True)
+        garden_content = '<div class="mama-flowers">' + " ".join(flowers[i % len(flowers)] for i in range(st.session_state.garden_count)) + '</div>' if st.session_state.garden_count else '<div class="mama-empty">🌱 Your peaceful garden begins here.<br>Plant a flower and watch it bloom.</div>'
+        st.markdown('<div class="mama-garden-stage">'+garden_content+'</div>',unsafe_allow_html=True)
         g1,g2=st.columns(2)
         with g1:
             if st.button("🌷 Plant a flower",key="plant_flower",use_container_width=True):
@@ -353,7 +369,8 @@ elif page == "🌼 Calm Corner":
             "🌙 A quiet evening":"Imagine soft evening light and a safe, restful space. Allow yourself a moment without a task to complete."
         }
         scene=st.radio("Pick a relaxing scene",list(moments),horizontal=True,key="calm_scene")
-        st.markdown(f'<div class="calm-scene">{escape(moments[scene])}</div>',unsafe_allow_html=True)
+        scene_icons = {"🌤️ A peaceful morning":"🌤️","🌿 A garden breeze":"🌿","🌊 A calm shoreline":"🌊","🌙 A quiet evening":"🌙"}
+        st.markdown('<div class="mama-scene-stage"><div class="scene-icon">'+scene_icons[scene]+'</div><div class="scene-text">'+escape(moments[scene])+'</div></div>',unsafe_allow_html=True)
         st.markdown("""<style>
         div.st-key-memory_0 button, div.st-key-memory_1 button, div.st-key-memory_2 button,
         div.st-key-memory_3 button, div.st-key-memory_4 button, div.st-key-memory_5 button {
@@ -418,7 +435,7 @@ elif page == "🌼 Calm Corner":
         if "word_index" not in st.session_state:
             st.session_state.word_index = 0
         scrambled, answer, encouragement = puzzles[st.session_state.word_index % len(puzzles)]
-        st.markdown(f'<div class="garden-bed" style="min-height:80px">{escape(scrambled)}</div>', unsafe_allow_html=True)
+        st.markdown('<div class="mama-word-stage">'+escape(scrambled)+'</div>', unsafe_allow_html=True)
         guess = st.text_input("Your answer", key=f"word_guess_{st.session_state.word_index}", max_chars=20, placeholder="Type the word here")
         w1, w2, w3 = st.columns(3)
         with w1:
@@ -453,7 +470,8 @@ elif page == "🌼 Calm Corner":
             if st.button("↺ Empty my jar", key="jar_clear", use_container_width=True):
                 st.session_state.jar_notes = []
                 st.rerun()
-        st.markdown('<div class="garden-bed" style="font-size:1.15rem">'+("<br>".join(escape(n) for n in st.session_state.jar_notes) if st.session_state.jar_notes else "🫙 Your jar is ready for kind thoughts.")+'</div>', unsafe_allow_html=True)
+        jar_contents = "<div class='jar-notes'>"+"<br>".join(escape(n) for n in st.session_state.jar_notes)+"</div>" if st.session_state.jar_notes else "<div class='jar-notes'>Your jar is ready for kind thoughts.</div>"
+        st.markdown('<div class="mama-jar-stage"><div class="jar-icon">🫙</div>'+jar_contents+'</div>', unsafe_allow_html=True)
 
         st.divider()
     if st.session_state.calm_activity == 5:
@@ -472,7 +490,8 @@ elif page == "🌼 Calm Corner":
             if st.button("↺ New bouquet", key="bouquet_reset", use_container_width=True):
                 st.session_state.bouquet = []
                 st.rerun()
-        st.markdown('<div class="garden-bed">'+(" ".join(st.session_state.bouquet) if st.session_state.bouquet else "💐 Your bouquet begins here.")+'</div>', unsafe_allow_html=True)
+        bouquet_content = '<div class="mama-flowers">'+" ".join(st.session_state.bouquet)+'</div>' if st.session_state.bouquet else '<div class="mama-empty">💐 Your bouquet begins here.<br>Choose a flower to create something lovely.</div>'
+        st.markdown('<div class="mama-garden-stage">'+bouquet_content+'</div>', unsafe_allow_html=True)
         st.caption("All game choices are temporary for this app session and are not saved as personal records.")
     st.markdown("### 💗 A kind reminder")
     st.write("You deserve support, rest and care. Taking a small break is enough for now.")
