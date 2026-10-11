@@ -50,16 +50,22 @@ h1,h2,h3{color:#43145e}
 [data-testid="stButton"] button[kind="primary"]{background:#cc288d!important;color:white!important}
 [data-testid="stAlert"]{border-radius:17px!important}
 @media(max-width:720px){.block-container{padding-left:.8rem!important;padding-right:.8rem!important}.hm-hero{padding:25px 20px 45px}.hm-hero-grid{grid-template-columns:1fr;text-align:center}.hm-copy h1{font-size:clamp(2.8rem,11vw,4.8rem)}.hm-copy p{margin:auto}.hm-art{min-height:150px}.hm-art img{width:180px;max-height:180px}.hm-eyebrow{font-size:.62rem}.hm-card{min-height:0}}
+
+/* Refined brand-first hero: the logo already contains the HerMamaAI wordmark. */
+.hm-hero-refined{min-height:0!important;display:flex;flex-direction:column;align-items:center;text-align:center;padding:24px 24px 55px!important}
+.hm-hero-refined .hm-eyebrow{margin:0 0 10px;font-size:.72rem}
+.hm-logo-focus{position:relative;z-index:1;display:flex;justify-content:center;width:100%}
+.hm-logo-focus img{width:min(440px,88%);height:auto;max-height:360px;object-fit:contain;filter:drop-shadow(0 12px 20px #5b226a20)}
+.hm-single-message{position:relative;z-index:1;font-size:1.07rem;font-weight:600;line-height:1.55;color:#58276d;margin:8px auto 0;max-width:650px}
+@media(max-width:720px){.hm-hero-refined{padding:22px 12px 48px!important}.hm-logo-focus img{width:min(340px,96%)}.hm-single-message{font-size:.95rem}}
 </style>
 """,unsafe_allow_html=True)
 
-st.markdown("""<section class="hm-hero"><div class="hm-hero-grid">
-<div class="hm-copy"><div class="hm-eyebrow">WECHIMAI · MATERNAL WELLNESS INNOVATION</div>
-<h1>HerMama<span>AI</span></h1><h2>Every Mother Deserves Continued Care.</h2>
-<p>A caring companion for pregnancy, recovery and the journey beyond birth.</p>
-<div class="hm-kicker">Healthy Mothers. Brighter Generations.</div></div>
-<div class="hm-art"><img src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="Illustration of a mother embracing her baby"></div>
-</div></section>""",unsafe_allow_html=True)
+st.markdown("""<section class="hm-hero hm-hero-refined">
+<div class="hm-eyebrow">WECHIMAI · MATERNAL WELLNESS INNOVATION</div>
+<div class="hm-logo-focus"><img src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="HerMamaAI mother and baby brand logo"></div>
+<p class="hm-single-message">Compassionate guidance for pregnancy, postpartum recovery and beyond.</p>
+</section>""",unsafe_allow_html=True)
 
 st.caption("EDUCATIONAL PROTOTYPE · DEVELOPED BY WECHIMAI · ABUJA, NIGERIA")
 st.warning("**Important safety notice:** HerMamaAI is an educational prototype, not a clinician, diagnosis tool, medical device or emergency service. Content has not been clinically reviewed. For serious symptoms, seek immediate in-person medical care.")
