@@ -2,187 +2,74 @@ import streamlit as st
 from datetime import date, datetime, time, timedelta
 from html import escape
 
-st.set_page_config(page_title="HerMamaAI | Your motherhood companion", page_icon="💜", layout="wide", initial_sidebar_state="collapsed")
-
+st.set_page_config(page_title="HerMamaAI | Maternal Wellness", page_icon="💗", layout="wide", initial_sidebar_state="collapsed")
 PAGES = ["🏡 Home", "📅 CareCalendar", "🤰 Pregnancy care", "💞 MamaCare journey", "💗 Postpartum recovery", "🌷 Emotional wellness", "🏥 Find care", "📖 Learning hub"]
 if "page" not in st.session_state:
     st.session_state.page = PAGES[0]
-
 def go(page):
     st.session_state.page = page
-
 def card(title, icon, body):
     st.markdown(f'<div class="feature"><span class="feature-icon">{icon}</span><h3>{title}</h3><p>{body}</p></div>', unsafe_allow_html=True)
 
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
-html, body, [class*="css"], [data-testid="stApp"] {font-family:'DM Sans',sans-serif;}
-[data-testid="stAppViewContainer"] {background:linear-gradient(180deg,#fff9fc 0%,#fffdfd 52%,#faf7ff 100%);}
-.block-container {max-width:1100px;padding-top:1.2rem;padding-bottom:2rem;}
-h1,h2,h3 {color:#382441;}
-.hero {background:linear-gradient(120deg,#59337d 0%,#a34f95 55%,#e28ba9 100%);border-radius:26px;padding:38px 42px;color:#fff;box-shadow:0 14px 38px rgba(91,44,106,.16);margin:0 0 18px;}
-.hero .eyebrow {font-size:.74rem;letter-spacing:.15em;font-weight:800;text-transform:uppercase;color:#ffedf7;}
-.hero h1 {font-family:'Playfair Display',serif;color:#fff;font-size:clamp(2.4rem,5vw,4rem);line-height:1.18;margin:12px 0;}
-.hero-brand {display:flex;align-items:center;gap:22px;margin:18px 0 16px;}
-.hero-logo {width:120px;height:120px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 5px 12px rgba(40,10,50,.16));}
-.hero-brand h1 {margin:0 0 5px;overflow-wrap:anywhere;}
-.hero-tagline {font-weight:700;font-size:clamp(.9rem,1.7vw,1.1rem);color:#fff1f9;letter-spacing:.01em;}
-.hero p {font-size:1.05rem;line-height:1.65;color:#fff5fc;max-width:680px;margin:0;}
-.feature {background:#fff;border:1px solid #eedeea;border-radius:22px;padding:22px;min-height:190px;box-shadow:0 7px 22px rgba(90,43,92,.055);margin:8px 0 12px;}
-.feature-icon {font-size:2rem;}
-.feature h3 {font-size:1.15rem;margin:12px 0 8px;}
-.feature p {font-size:.94rem;line-height:1.65;color:#685d6c;margin:0;}
-.section-head {font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3vw,2.15rem);font-weight:700;color:#3f2a4b;margin:20px 0 10px;}
-.lead {font-size:1.05rem;color:#615467;line-height:1.7;margin-bottom:14px;}
-.soft {background:#f5edf8;border:1px solid #eadcf2;border-radius:17px;padding:20px 23px;margin:15px 0;color:#493654;line-height:1.65;}
-.timeline {background:white;border:1px solid #eedeea;border-left:5px solid #b565a1;border-radius:16px;padding:18px 22px;margin:10px 0;}
-.timeline b {color:#573464;}
-.footer {border-top:1px solid #e8dbe8;margin-top:32px;padding:20px 0;color:#736b78;font-size:.83rem;line-height:1.7;}
-[data-testid="stButton"] button {border-radius:13px;min-height:43px;font-weight:700;border-color:#ead9e8;}
-[data-testid="stButton"] button[kind="primary"] {background:#763e88;border-color:#763e88;}
-[data-testid="stSelectbox"] {max-width:580px;}
-@media(max-width:650px){.block-container{padding:1rem .85rem 2rem}.hero{padding:28px 23px;border-radius:20px}.feature{min-height:0;padding:19px}.hero h1{font-size:2.3rem}.hero-brand{gap:12px}.hero-logo{width:82px;height:82px}}
-
-/* HerMamaAI V5: centered identity and welcoming layered palette */
-[data-testid="stAppViewContainer"] {background:radial-gradient(ellipse at 8% 8%,#f5e4f5 0%,transparent 43%),radial-gradient(ellipse at 92% 55%,#ffe5ee 0%,transparent 40%),linear-gradient(155deg,#fff5fa 0%,#f5efff 55%,#fff3f5 100%)!important;}
-.block-container {max-width:1120px!important;}
-.hero {text-align:center!important;background:linear-gradient(135deg,#50276e 0%,#88438b 48%,#d879a6 100%)!important;border:1px solid rgba(255,255,255,.28);padding:42px 30px 46px!important;box-shadow:0 22px 52px rgba(95,43,106,.22)!important;}
-.hero .eyebrow {font-size:.76rem!important;letter-spacing:.19em!important;}
-.hero-brand {display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;gap:5px!important;margin:18px auto 18px!important;}
-.hero-logo {width:min(260px,56vw)!important;height:auto!important;max-height:230px!important;object-fit:contain!important;filter:drop-shadow(0 10px 15px rgba(48,12,52,.22))!important;}
-.hero-brand h1 {font-size:clamp(3rem,7vw,5.4rem)!important;line-height:1.08!important;margin:0!important;text-align:center!important;overflow-wrap:normal!important;}
-.hero-tagline {font-size:clamp(1rem,2.1vw,1.3rem)!important;font-weight:800!important;letter-spacing:.025em!important;margin-top:8px!important;}
-.hero p {margin:15px auto 0!important;max-width:710px!important;text-align:center!important;font-size:1.07rem!important;}
-.feature {background:linear-gradient(145deg,rgba(255,255,255,.97),rgba(252,240,250,.96))!important;border:1px solid #e9cfe8!important;box-shadow:0 12px 28px rgba(94,45,104,.10)!important;transition:transform .2s ease,box-shadow .2s ease;}
-.feature:hover {transform:translateY(-3px);box-shadow:0 18px 34px rgba(94,45,104,.14)!important;}
-.soft {background:linear-gradient(115deg,#f8eafa,#fbe9f1)!important;border-color:#ebd4ed!important;box-shadow:0 8px 20px rgba(103,52,103,.06);}
-.timeline {background:#fff9fe!important;box-shadow:0 6px 17px rgba(103,52,103,.06);}
-[data-testid="stSelectbox"] [data-baseweb="select"] > div {background:#fff8fd!important;border:1px solid #e6cbe5!important;border-radius:14px!important;}
-[data-testid="stButton"] button {background:#fff8fd;border-color:#e9d0e8!important;}
-[data-testid="stButton"] button[kind="primary"] {background:linear-gradient(90deg,#713d89,#b35b9d)!important;color:white!important;}
-@media(max-width:650px){.hero{padding:28px 16px 34px!important}.hero-logo{width:min(205px,62vw)!important;max-height:190px!important}.hero-brand h1{font-size:clamp(2.5rem,11vw,3.6rem)!important}.hero p{font-size:.96rem!important}.hero .eyebrow{font-size:.64rem!important;letter-spacing:.1em!important}}
-
-
-/* V5.1 refined approved-inspired layout */
-.hero{padding:30px 26px 34px!important;border-radius:28px!important;background:linear-gradient(120deg,#572a76 0%,#82418b 46%,#d87da7 100%)!important;}
-.hero-brand{margin:8px auto 12px!important;gap:3px!important;}
-.hero-emblem{width:205px;height:144px;overflow:hidden;margin:0 auto 5px;display:flex;align-items:flex-start;justify-content:center;}
-.hero-emblem .hero-logo{display:block;width:205px!important;height:auto!important;max-height:none!important;object-fit:initial!important;filter:drop-shadow(0 7px 13px rgba(45,12,57,.19))!important;}
-.hero-brand h1{font-family:'Playfair Display',serif!important;font-size:clamp(3.2rem,7vw,5.1rem)!important;font-weight:700!important;line-height:1.06!important;margin:2px 0 5px!important;color:#fff!important;}
-.hero-tagline{font-size:clamp(1.05rem,2.2vw,1.4rem)!important;font-weight:800!important;color:#fff!important;margin-top:7px!important;}
-.hero p{font-size:1rem!important;max-width:630px!important;margin:14px auto!important;line-height:1.6!important;}
-.hero-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-top:18px;}
-.hero-pills span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.32);border-radius:30px;padding:7px 14px;color:white;font-weight:700;font-size:.78rem;}
-[data-testid="stAppViewContainer"]{background:linear-gradient(145deg,#fff5fa 0%,#f7eafa 48%,#fff1f4 100%)!important;}
-.feature{background:linear-gradient(145deg,#fffaff,#f9edf7)!important;border:1px solid #e9d1e8!important;}
-@media(max-width:650px){.hero{padding:25px 14px 28px!important}.hero-emblem{width:165px;height:118px}.hero-emblem .hero-logo{width:165px!important}.hero-brand h1{font-size:clamp(2.6rem,12vw,3.5rem)!important}.hero-pills{gap:6px}.hero-pills span{font-size:.68rem;padding:6px 9px}}
-
-
-/* V6 visual redesign inspired by approved reference, with working Streamlit controls */
-[data-testid="stAppViewContainer"]{background:radial-gradient(circle at 8% 8%,#eac7f0 0%,transparent 37%),radial-gradient(circle at 93% 17%,#f6c4e2 0%,transparent 36%),linear-gradient(165deg,#fff6fc 0%,#f8efff 56%,#fff0f8 100%)!important;}
-.block-container{max-width:1380px!important;padding-top:1rem!important;}
-.hero-v6{position:relative;overflow:hidden;border-radius:28px 28px 50px 50px;background:radial-gradient(ellipse at 44% 36%,#fff5fd 0%,#f5d7f0 36%,transparent 70%),linear-gradient(120deg,#d69ad9 0%,#f8d3e7 46%,#cb83bc 100%);padding:22px 38px 48px;box-shadow:0 20px 48px rgba(106,44,115,.15);color:#431452;}
-.hero-v6:before{content:"";position:absolute;bottom:-70px;left:-8%;width:120%;height:135px;background:rgba(137,48,148,.17);border-radius:50% 50% 0 0;transform:rotate(-2deg);}
-.hero-v6:after{content:"";position:absolute;bottom:-100px;left:-5%;width:115%;height:140px;background:#fff6fc;border-radius:50% 50% 0 0;transform:rotate(2deg);}
-.hero-top{display:flex;justify-content:space-between;align-items:center;gap:16px;background:rgba(255,255,255,.78);border:1px solid #fff;border-radius:40px;padding:12px 24px;box-shadow:0 6px 18px rgba(86,31,101,.08);}
-.brand-small{font-family:'Playfair Display',serif;font-size:1.4rem;color:#44145d}.brand-small span,.hero-identity h1 span{color:#d22a91}.top-label{font-size:.69rem;font-weight:800;letter-spacing:.13em;color:#703e80;}
-.hero-main{display:grid;grid-template-columns:1fr 1.7fr 2.5fr;align-items:center;gap:18px;position:relative;z-index:1;min-height:285px;}
-.hero-left{font-family:'Playfair Display',serif;font-size:clamp(1.15rem,2.2vw,1.9rem);line-height:1.48;color:#542269;}
-.hero-art{display:flex;justify-content:center;align-items:center;height:255px;overflow:hidden;}
-.hero-art img{width:min(310px,100%);height:auto;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(83,28,90,.13));}
-.hero-identity{text-align:center}.hero-identity h1{font-family:'Playfair Display',serif;font-size:clamp(3.2rem,6.3vw,6.1rem);font-weight:700;letter-spacing:-.045em;color:#441057;line-height:1.1;margin:0;white-space:nowrap;}
-.hero-rule{height:3px;width:80%;margin:10px auto;background:linear-gradient(90deg,transparent,#c72b90,transparent);}
-.hero-identity h2{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1rem,2vw,1.7rem);font-weight:600;color:#4b1a64;margin:10px 0;}
-.hero-identity p{font-size:.92rem;color:#613e6b;margin:12px auto;max-width:470px;}
-.hero-capabilities{display:flex;position:relative;z-index:2;justify-content:center;gap:12px;flex-wrap:wrap;margin:0 auto;}
-.hero-capabilities span{background:rgba(255,255,255,.56);border:1px solid rgba(255,255,255,.75);padding:11px 16px;border-radius:30px;color:#5a2370;font-size:.74rem;font-weight:800;letter-spacing:.03em;}
-.feature{min-height:185px!important;background:linear-gradient(140deg,#fff7fc,#f8e9f7)!important;border:1px solid #f0d4ea!important;box-shadow:0 10px 26px rgba(94,42,108,.09)!important;}
-[data-testid="stButton"] button{border-radius:25px!important;}
-[data-testid="stAlert"]{border-radius:18px!important;}
-@media(max-width:850px){.hero-main{grid-template-columns:1fr 1.3fr;min-height:0;padding:18px 0}.hero-left{display:none}.hero-art{height:210px}.hero-art img{width:220px}.hero-identity h1{font-size:clamp(2.7rem,6vw,4.3rem)}.hero-v6{padding:16px 18px 42px}.top-label{display:none}}
-@media(max-width:560px){.hero-main{display:flex;flex-direction:column;gap:0}.hero-art{height:175px}.hero-art img{width:190px}.hero-identity h1{font-size:clamp(2.6rem,11vw,3.5rem)}.hero-identity p{font-size:.86rem}.hero-capabilities{gap:6px}.hero-capabilities span{font-size:.61rem;padding:8px 10px}.brand-small{font-size:1.15rem}.hero-v6{border-radius:22px 22px 38px 38px}.hero-top{padding:9px 16px}}
-
-
-/* V6.1 less repetition and a calmer visual hierarchy */
-.clean-hero{padding:24px 46px 38px!important;border-radius:26px!important;background:linear-gradient(120deg,#f4d8ee,#f9e6f4 46%,#e8b6d9)!important;}
-.clean-hero:before{height:75px!important;bottom:-48px!important;opacity:.45!important;}
-.clean-hero:after{height:75px!important;bottom:-55px!important;}
-.clean-hero .hero-top{justify-content:center!important;background:transparent!important;box-shadow:none!important;border:0!important;padding:0!important;}
-.clean-hero .top-label{display:block!important;font-size:.73rem!important;letter-spacing:.16em!important;}
-.clean-hero .hero-main{display:grid!important;grid-template-columns:minmax(190px, .9fr) minmax(0, 2fr)!important;gap:34px!important;min-height:245px!important;max-width:1050px;margin:0 auto!important;}
-.clean-hero .hero-art{height:220px!important;overflow:hidden!important;align-items:flex-start!important;}
-.clean-hero .hero-art img{width:260px!important;max-width:100%!important;transform:translateY(-1px);filter:drop-shadow(0 8px 16px rgba(86,40,92,.13))!important;}
-.clean-hero .hero-identity h1{font-size:clamp(3.4rem,6.5vw,6rem)!important;letter-spacing:-.035em!important;color:#4b185d!important;}
-.clean-hero .hero-identity h1 span{color:#ca2689!important;}
-.clean-hero .hero-identity h2{font-size:clamp(1.05rem,1.9vw,1.6rem)!important;margin:10px 0!important;}
-.clean-hero .hero-identity p{font-size:.99rem!important;margin:12px auto 0!important;}
-@media(max-width:700px){.clean-hero{padding:20px 17px 32px!important}.clean-hero .hero-main{display:flex!important;flex-direction:column!important;gap:4px!important}.clean-hero .hero-art{height:155px!important}.clean-hero .hero-art img{width:185px!important}.clean-hero .hero-identity h1{font-size:clamp(2.8rem,10vw,4.2rem)!important}.clean-hero .top-label{font-size:.6rem!important;letter-spacing:.1em!important}}
-
-
-/* V7: polished maternal wellness landing page */
-[data-testid="stAppViewContainer"]{background:linear-gradient(160deg,#fff4fb 0%,#f8f0ff 48%,#fff8f9 100%)!important}
-.block-container{max-width:1420px!important;padding-top:.65rem!important}
-.hm-nav{display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;background:rgba(255,255,255,.92);border:1px solid #f3d8ef;border-radius:24px;padding:15px 24px;box-shadow:0 12px 28px #71357512;margin-bottom:12px}
-.hm-wordmark{font-family:'Playfair Display',serif;color:#4c176c;font-size:1.65rem;font-weight:700}.hm-wordmark span{color:#d52a94}
-.hm-nav-note{color:#6b3a80;font-size:.79rem;font-weight:700;letter-spacing:.04em}
-.hm-hero{position:relative;overflow:hidden;min-height:345px;border-radius:32px;background:radial-gradient(circle at 68% 18%,#fff9fc 0%,transparent 48%),linear-gradient(125deg,#ecc5f2 0%,#f9d9ed 52%,#dca4db 100%);display:grid;grid-template-columns:1fr 1.5fr 1fr;gap:12px;align-items:center;padding:36px 35px 56px;box-shadow:0 20px 42px #71357521}
-.hm-hero:after{content:"";position:absolute;bottom:-68px;left:-5%;width:110%;height:105px;background:#fff8fe;border-radius:50% 50% 0 0}
-.hm-quote{font:italic 1.75rem/1.4 'Playfair Display',serif;color:#602879;z-index:1}
-.hm-center{text-align:center;z-index:1}.hm-center h1{font:700 clamp(3.2rem,6vw,6rem)/1.08 'Playfair Display',serif;color:#57146c;margin:0}.hm-center h1 span{color:#d52b92}
-.hm-center h2{font:italic 1.45rem/1.35 'Playfair Display',serif;color:#53216b;margin:12px 0}
-.hm-center p{font-size:.96rem;color:#64446d}
-.hm-emblem{display:block;width:150px;max-height:130px;object-fit:cover;object-position:top;margin:10px auto 0;filter:drop-shadow(0 8px 12px #692c7020)}
-.hm-mother{font-size:clamp(5rem,12vw,10rem);text-align:center;filter:drop-shadow(0 15px 25px #783a7430);z-index:1;line-height:1.2}
-.hm-ribbon{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;padding:17px;margin-top:-22px;position:relative;z-index:2;background:#ffffffbd;border-radius:25px;box-shadow:0 8px 24px #753b7520}
-.hm-ribbon span{font-weight:800;font-size:.83rem;color:#682c7b}
-.hm-card{border-radius:25px;padding:23px;min-height:175px;border:1px solid #f3d3eb;box-shadow:0 12px 25px #6e357512;margin:8px 0}
-.hm-card h3{margin:10px 0;color:#521c6b;font-size:1.2rem}.hm-card p{color:#624e69;line-height:1.6}
-.hm-pink{background:linear-gradient(140deg,#fff4fa,#ffe2f0)}.hm-lilac{background:linear-gradient(140deg,#f8f1ff,#e9ddff)}.hm-peach{background:linear-gradient(140deg,#fff9f0,#ffead0)}.hm-mint{background:linear-gradient(140deg,#effff9,#d9f8ed)}
-.hm-icon{font-size:2.5rem}
-@media(max-width:850px){.hm-hero{grid-template-columns:1fr 2fr;padding:26px 20px 45px}.hm-quote{display:none}.hm-mother{font-size:6rem}.hm-center h1{font-size:3.5rem}}
-@media(max-width:570px){.hm-nav{justify-content:center}.hm-nav-note{display:none}.hm-hero{display:flex;flex-direction:column-reverse;gap:0;padding:20px 13px 40px;min-height:0}.hm-mother{font-size:5rem}.hm-center h1{font-size:3.1rem}.hm-center h2{font-size:1.15rem}.hm-emblem{width:105px;max-height:90px}.hm-ribbon{gap:10px}.hm-ribbon span{font-size:.7rem}}
-
-
-/* V8 clean, editorial hero — replacesst.markdown('''<div class="hm-subbrand"><b>HerMama<span>AI</span></b><small>WECHIMAI · MATERNAL WELLNESS INNOVATION</small></div>
-<div class="hm-hero">
-<div class="hm-copy"><div class="hm-eyebrow">YOUR MATERNAL WELLNESS COMPANION</div><h1>HerMama<span>AI</span></h1><h2>Every Mother Deserves Continued Care.</h2><p>Thoughtful pregnancy guidance, postpartum recovery resources and ongoing support — all in one welcoming space.</p></div>
-<div class="hm-art"><img src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="HerMamaAI mother and baby illustration"></div>
-</div>''',unsafe_allow_html=True)
-st.caption("EDUCATIONAL PROTOTYPE · CREATED BY WECHIMAI · ABUJA, NIGERIA")
-
-# Prominent, functioning navigation — retains all original pages and their features.
-nav_labels = ["🏡 Home","🤰 Pregnancy care","💞 MamaCare journey","💗 Postpartum recovery","📅 CareCalendar","🌷 Emotional wellness","🏥 Find care","📖 Learning hub"]
-nav_cols = st.columns(4)
-for i, destination in enumerate(nav_labels):
-    with nav_cols[i % 4]:
-        st.button(destination, key=f"nav_v8_{i}", use_container_width=True, on_click=go, args=(destination,))
-page = st.session_state.page
-
-st.warning("**Important safety notice:** HerMamaAI is an educational prototype, not a clinician, diagnosis tool, medical device or emergency service. Content has not been clinically reviewed. For serious symptoms, seek immediate in-person medical care.")
-
-p-shadow(0 18px 22px #6a28782e)}
-.hm-subbrand{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:14px;padding:10px 16px}
-.hm-subbrand b{font:700 1.3rem 'Playfair Display',serif;color:#51196d}.hm-subbrand b span{color:#d52b92}.hm-subbrand small{color:#885487;font-size:.75rem;letter-spacing:.1em;font-weight:800}
-[data-testid="stButton"] button[kind="secondary"]{background:#fffafd!important;border:1px solid #ebcde6!important;color:#6b287c!important;min-height:45px}
-[data-testid="stButton"] button:hover{border-color:#ca69ac!important;color:#a02d86!important}
-@media(max-width:750px){.hm-hero{grid-template-columns:1fr!important;padding:28px 22px 40px!important;gap:0!important;text-align:center}.hm-copy h1{font-size:3.5rem!important}.hm-copy p{margin:auto}.hm-art{min-height:160px}.hm-art img{width:210px}.hm-subbrand small{display:none}}
-
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+html,body,[data-testid="stApp"]{font-family:'DM Sans',sans-serif}
+[data-testid="stAppViewContainer"]{background:radial-gradient(circle at 8% 12%,#f0d5f8,transparent 35%),radial-gradient(circle at 94% 15%,#ffd9ed,transparent 35%),linear-gradient(170deg,#fff7fc,#f9f0ff 65%,#fff8f8)}
+.block-container{max-width:1440px!important;padding-top:.6rem!important;padding-bottom:3rem!important}
+h1,h2,h3{color:#43145e}
+.hm-hero{position:relative;overflow:hidden;border-radius:30px;padding:32px 5% 48px;min-height:360px;background:radial-gradient(ellipse at 55% 30%,#fff8fc 0%,#ffecf5 37%,transparent 72%),linear-gradient(115deg,#edc5f1,#fbe2f0 55%,#e6b3dd);box-shadow:0 20px 45px #65317a22;border:1px solid #f6d9ee}
+.hm-hero:after{content:"";position:absolute;left:-5%;bottom:-72px;width:110%;height:120px;background:#fff8fd;border-radius:50% 50% 0 0}
+.hm-hero-grid{display:grid;grid-template-columns:1.3fr 1fr;align-items:center;gap:2%;position:relative;z-index:1}
+.hm-copy h1{font:700 clamp(3.8rem,8vw,7.5rem)/1.04 'Playfair Display',serif;letter-spacing:-.055em;color:#43105f;margin:0 0 9px;white-space:nowrap}
+.hm-copy h1 span{color:#d72a94}
+.hm-copy h2{font:italic 600 clamp(1.1rem,2.3vw,1.9rem)/1.3 'Playfair Display',serif;color:#56216d;margin:8px 0 16px}
+.hm-copy p{font-size:1.05rem;line-height:1.6;color:#5c416a;max-width:560px}
+.hm-art{display:flex;justify-content:center;align-items:center;min-height:265px}
+.hm-art img{width:min(310px,85%);max-height:300px;object-fit:contain;filter:drop-shadow(0 14px 22px #75397c35)}
+.hm-eyebrow{font-size:.75rem;letter-spacing:.17em;font-weight:800;color:#9b3a83;margin-bottom:18px}
+.hm-kicker{font:italic 600 1.35rem 'Playfair Display',serif;color:#6a2a80}
+.hm-card{border-radius:24px;padding:23px;min-height:190px;border:1px solid #f0d7eb;box-shadow:0 12px 25px #6e357515;margin:8px 0}
+.hm-card h3{margin:12px 0;color:#521c6b;font-size:1.18rem}
+.hm-card p{color:#624e69;line-height:1.6}
+.hm-pink{background:linear-gradient(140deg,#fff5fa,#ffe1f0)}
+.hm-lilac{background:linear-gradient(140deg,#f9f1ff,#e9ddff)}
+.hm-peach{background:linear-gradient(140deg,#fffaf1,#ffebd4)}
+.hm-mint{background:linear-gradient(140deg,#effff9,#d9f8ed)}
+.hm-icon{font-size:2.3rem}
+.section-head{font:700 clamp(1.65rem,3vw,2.25rem) 'Playfair Display',serif;color:#482456;margin:24px 0 12px}
+.lead{color:#67576c;line-height:1.7;font-size:1.02rem}
+.feature{background:#fff9fd;border:1px solid #edd9e9;border-radius:20px;padding:20px;margin:10px 0}
+.feature-icon{font-size:2rem}.feature h3{font-size:1.1rem;margin:8px 0}.feature p{color:#685a6d}
+.soft{background:#f8eefa;border:1px solid #edd9f0;border-radius:18px;padding:20px 23px;margin:18px 0;color:#533c5d}
+.timeline{background:#fffafd;border:1px solid #ecdce9;border-left:5px solid #b565a1;border-radius:16px;padding:18px 22px;margin:10px 0}
+.timeline b{color:#573464}
+.footer{border-top:1px solid #eadce8;margin-top:30px;padding:20px 0;color:#76697b;font-size:.85rem}
+[data-testid="stButton"] button{border-radius:22px!important;min-height:46px!important;font-weight:700!important;border:1px solid #e8c9e6!important;background:#fff9fd!important;color:#67287e!important}
+[data-testid="stButton"] button:hover{border-color:#d52b92!important;color:#bc268b!important}
+[data-testid="stButton"] button[kind="primary"]{background:#cc288d!important;color:white!important}
+[data-testid="stAlert"]{border-radius:17px!important}
+@media(max-width:720px){.block-container{padding-left:.8rem!important;padding-right:.8rem!important}.hm-hero{padding:25px 20px 45px}.hm-hero-grid{grid-template-columns:1fr;text-align:center}.hm-copy h1{font-size:clamp(2.8rem,11vw,4.8rem)}.hm-copy p{margin:auto}.hm-art{min-height:150px}.hm-art img{width:180px;max-height:180px}.hm-eyebrow{font-size:.62rem}.hm-card{min-height:0}}
 </style>
-""", unsafe_allow_html=True)
+""",unsafe_allow_html=True)
 
-st.markdown('''<div class="hm-nav"><div class="hm-wordmark">HerMama<span>AI</span></div><div class="hm-nav-note">WECHIMAI · MATERNAL WELLNESS INNOVATION</div></div>
-<div class="hm-hero">
-<div class="hm-quote">Empowering<br>Mothers,<br>Healthier<br>Generations.</div>
-<div class="hm-center"><h1>HerMama<span>AI</span></h1><h2>Every Mother Deserves Continued Care.</h2><p>Care and knowledge through pregnancy, recovery and beyond.</p><img class="hm-emblem" src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="HerMamaAI mother and baby emblem"></div>
-<div class="hm-mother" aria-label="Expectant mother illustration">🤰🏽</div>
-</div><div class="hm-ribbon"><span>🤰 Pregnancy support</span><span>💞 MamaCare continuity</span><span>📅 Care calendar</span><span>🌷 Emotional wellness</span></div>''',unsafe_allow_html=True)
-st.caption("VERSION 7 · EDUCATIONAL PROTOTYPE · DESIGNED IN ABUJA, NIGERIA")
+st.markdown("""<section class="hm-hero"><div class="hm-hero-grid">
+<div class="hm-copy"><div class="hm-eyebrow">WECHIMAI · MATERNAL WELLNESS INNOVATION</div>
+<h1>HerMama<span>AI</span></h1><h2>Every Mother Deserves Continued Care.</h2>
+<p>A caring companion for pregnancy, recovery and the journey beyond birth.</p>
+<div class="hm-kicker">Healthy Mothers. Brighter Generations.</div></div>
+<div class="hm-art"><img src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="Illustration of a mother embracing her baby"></div>
+</div></section>""",unsafe_allow_html=True)
 
+st.caption("EDUCATIONAL PROTOTYPE · DEVELOPED BY WECHIMAI · ABUJA, NIGERIA")
 st.warning("**Important safety notice:** HerMamaAI is an educational prototype, not a clinician, diagnosis tool, medical device or emergency service. Content has not been clinically reviewed. For serious symptoms, seek immediate in-person medical care.")
 
-# A single dropdown is easier to use on narrow phones than a seven-item horizontal radio group.
-st.selectbox("Explore HerMamaAI", PAGES, key="page")
+# Real, accessible navigation controls, rather than non-interactive text inside a banner image.
+nav = ["🏡 Home","🤰 Pregnancy care","💞 MamaCare journey","💗 Postpartum recovery","📅 CareCalendar","🌷 Emotional wellness","🏥 Find care","📖 Learning hub"]
+nav_cols = st.columns(4)
+for i, destination in enumerate(nav):
+    with nav_cols[i % 4]:
+        st.button(destination,key=f"nav_new_{i}",use_container_width=True,on_click=go,args=(destination,))
 page = st.session_state.page
 
 if page == "🏡 Home":
