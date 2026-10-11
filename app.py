@@ -416,8 +416,50 @@ elif page == "🌼 Calm Corner":
             "🌙 A quiet evening":"Imagine soft evening light and a safe, restful space. Allow yourself a moment without a task to complete."
         }
         scene=st.radio("Pick a relaxing scene",list(moments),horizontal=True,key="calm_scene")
-        scene_icons = {"🌤️ A peaceful morning":"🌤️","🌿 A garden breeze":"🌿","🌊 A calm shoreline":"🌊","🌙 A quiet evening":"🌙"}
-        st.markdown('<div class="mama-scene-stage"><div class="scene-icon">'+scene_icons[scene]+'</div><div class="scene-text">'+escape(moments[scene])+'</div></div>',unsafe_allow_html=True)
+        scene_key = {
+            "🌤️ A peaceful morning": "morning",
+            "🌿 A garden breeze": "garden",
+            "🌊 A calm shoreline": "shore",
+            "🌙 A quiet evening": "evening"
+        }[scene]
+        scene_art = {
+            "morning": '<div class="hm-sun"></div><div class="hm-cloud">☁️</div><div class="hm-hills"></div><div class="hm-art-detail">🌼 🌷 🌻</div>',
+            "garden": '<div class="hm-sun"></div><div class="hm-cloud">☁️</div><div class="hm-hills"></div><div class="hm-art-detail">🌿 🌸 🦋 🌷 🌿</div>',
+            "shore": '<div class="hm-sun"></div><div class="hm-cloud">☁️</div><div class="hm-water"></div><div class="hm-art-detail">🐚 🌊 🐚</div>',
+            "evening": '<div class="hm-moon">🌙</div><div class="hm-stars">✦　✧　✦　✧</div><div class="hm-hills"></div><div class="hm-art-detail">🌿 ✨ 🌷</div>'
+        }
+        st.markdown("""<style>
+        .hm-moment{position:relative;isolation:isolate;overflow:hidden;border-radius:28px;
+          border:1px solid #e5c8e9;min-height:330px;margin:14px 0 10px;
+          box-shadow:0 14px 32px #693d7420}
+        .hm-moment.morning{background:linear-gradient(180deg,#fff1d6,#ffe7df 60%,#e6f5df)}
+        .hm-moment.garden{background:linear-gradient(180deg,#f3e5ff,#e9f9ee 65%,#c7e6c9)}
+        .hm-moment.shore{background:linear-gradient(180deg,#d9f1ff,#eaf8ff 60%,#b4e4eb)}
+        .hm-moment.evening{background:linear-gradient(180deg,#403264,#8d6d9d 72%,#b9a4c8)}
+        .hm-sun{position:absolute;top:34px;right:15%;height:75px;width:75px;border-radius:50%;
+          background:#fff1b4;box-shadow:0 0 45px 15px #fff0b88a}
+        .hm-cloud{position:absolute;top:42px;left:13%;font-size:3rem;opacity:.82;animation:hmDrift 9s ease-in-out infinite}
+        .hm-hills{position:absolute;bottom:-80px;left:-10%;width:120%;height:170px;
+          border-radius:50% 50% 0 0;background:linear-gradient(#add9b1,#7cbb9b)}
+        .hm-water{position:absolute;bottom:0;left:0;width:100%;height:40%;
+          background:repeating-linear-gradient(175deg,#9dd9e6,#b8e9ee 16px,#d0f4f6 24px)}
+        .hm-moon{position:absolute;top:25px;right:17%;font-size:4.5rem}
+        .hm-stars{position:absolute;top:36px;left:13%;font-size:2rem;color:#fff5d6;letter-spacing:20px}
+        .hm-art-detail{position:absolute;bottom:54px;left:0;right:0;text-align:center;
+          font-size:clamp(2.5rem,5vw,4.3rem);letter-spacing:12px;animation:hmSway 5s ease-in-out infinite}
+        .hm-moment-message{position:relative;z-index:2;margin:190px auto 18px;padding:15px 22px;
+          width:min(88%,720px);background:#fffffff0;color:#573766;border-radius:18px;
+          text-align:center;line-height:1.6;font-size:1.04rem;box-shadow:0 6px 24px #48335119}
+        .hm-moment.evening .hm-moment-message{background:#fff9f4ed}
+        @keyframes hmDrift{0%,100%{transform:translateX(0)}50%{transform:translateX(22px)}}
+        @keyframes hmSway{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+        @media(max-width:640px){.hm-moment{min-height:310px}.hm-moment-message{margin-top:182px}
+          .hm-art-detail{letter-spacing:2px;font-size:2.3rem}}
+        @media(prefers-reduced-motion:reduce){.hm-cloud,.hm-art-detail{animation:none!important}}
+        </style>""",unsafe_allow_html=True)
+        st.markdown('<div class="hm-moment '+scene_key+'" aria-label="Peaceful '+scene_key+
+                    ' landscape"><div>'+scene_art[scene_key]+'</div><div class="hm-moment-message">'+
+                    escape(moments[scene])+'</div></div>',unsafe_allow_html=True)
         st.markdown("""<style>
         div.st-key-memory_0 button, div.st-key-memory_1 button, div.st-key-memory_2 button,
         div.st-key-memory_3 button, div.st-key-memory_4 button, div.st-key-memory_5 button {
