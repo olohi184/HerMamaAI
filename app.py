@@ -293,6 +293,104 @@ elif page == "🌼 Calm Corner":
     }
     scene=st.radio("Pick a relaxing scene",list(moments),horizontal=True,key="calm_scene")
     st.markdown(f'<div class="calm-scene">{escape(moments[scene])}</div>',unsafe_allow_html=True)
+    st.divider()
+    st.markdown("### 🦋 Game 3: Memory Garden")
+    st.write("Find the three matching pairs. Turn over two cards at a time, with no clock or score.")
+    if "memory_cards" not in st.session_state:
+        st.session_state.memory_cards = ["🌷", "🦋", "💗", "🌷", "💗", "🦋"]
+        st.session_state.memory_open = []
+        st.session_state.memory_found = []
+    cards = st.session_state.memory_cards
+    for row_start in (0, 3):
+        cols = st.columns(3)
+        for offset, col in enumerate(cols):
+            idx = row_start + offset
+            matched = idx in st.session_state.memory_found
+            flipped = idx in st.session_state.memory_open
+            label = cards[idx] if (matched or flipped) else "❔"
+            with col:
+                if st.button(label, key=f"memory_{idx}", use_container_width=True, disabled=matched or flipped or len(st.session_state.memory_open)>=2):
+                    st.session_state.memory_open.append(idx)
+                    st.rerun()
+    if len(st.session_state.memory_open) == 2:
+        first, second = st.session_state.memory_open
+        if cards[first] == cards[second]:
+            st.session_state.memory_found.extend([first, second])
+            st.session_state.memory_open = []
+            st.rerun()
+        else:
+            st.info("Two different pictures. Take another look, then try again.")
+            if st.button("🌿 Turn cards back", key="memory_flip_back", use_container_width=True):
+                st.session_state.memory_open = []
+                st.rerun()
+    if len(st.session_state.memory_found) == 6:
+        st.success("Your Memory Garden is complete. Beautifully done!")
+    if st.button("↺ Play Memory Garden again", key="memory_reset", use_container_width=True):
+        st.session_state.memory_open = []
+        st.session_state.memory_found = []
+        st.rerun()
+
+    st.divider()
+    st.markdown("### 🔤 Game 4: Mama Word Garden")
+    st.write("Unscramble a gentle word. You can reveal the answer whenever you wish.")
+    puzzles = [("ERAC", "CARE", "Care for yourself, too."), ("TSER", "REST", "Rest is valuable."), ("EPOH", "HOPE", "Small hopeful moments matter."), ("MOLBO", "BLOOM", "Grow at your own pace.")]
+    if "word_index" not in st.session_state:
+        st.session_state.word_index = 0
+    scrambled, answer, encouragement = puzzles[st.session_state.word_index % len(puzzles)]
+    st.markdown(f'<div class="garden-bed" style="min-height:80px">{escape(scrambled)}</div>', unsafe_allow_html=True)
+    guess = st.text_input("Your answer", key=f"word_guess_{st.session_state.word_index}", max_chars=20, placeholder="Type the word here")
+    w1, w2, w3 = st.columns(3)
+    with w1:
+        if st.button("Check word", key="word_check", use_container_width=True):
+            if guess.strip().upper().replace(" ", "") == answer:
+                st.success(encouragement)
+            else:
+                st.info("Not quite — feel free to try again or reveal the word.")
+    with w2:
+        if st.button("Reveal word", key="word_reveal", use_container_width=True):
+            st.info(f"{answer} — {encouragement}")
+    with w3:
+        if st.button("Next word →", key="word_next", use_container_width=True):
+            st.session_state.word_index += 1
+            st.rerun()
+
+    st.divider()
+    st.markdown("### 🫙 Game 5: Gratitude Jar")
+    st.write("Collect kind thoughts in your jar. No journal, account or personal details needed.")
+    affirmations = ["🌸 A small moment of peace", "💜 Kindness toward myself", "🌿 A chance to rest", "☀️ A fresh beginning", "🦋 Support when I need it"]
+    if "jar_notes" not in st.session_state:
+        st.session_state.jar_notes = []
+    chosen_note = st.selectbox("Choose a thought to keep", affirmations, key="jar_choice")
+    j1, j2 = st.columns(2)
+    with j1:
+        if st.button("💗 Add to my jar", key="jar_add", use_container_width=True):
+            if chosen_note not in st.session_state.jar_notes:
+                st.session_state.jar_notes.append(chosen_note)
+            st.rerun()
+    with j2:
+        if st.button("↺ Empty my jar", key="jar_clear", use_container_width=True):
+            st.session_state.jar_notes = []
+            st.rerun()
+    st.markdown('<div class="garden-bed" style="font-size:1.15rem">'+("<br>".join(escape(n) for n in st.session_state.jar_notes) if st.session_state.jar_notes else "🫙 Your jar is ready for kind thoughts.")+'</div>', unsafe_allow_html=True)
+
+    st.divider()
+    st.markdown("### 🎨 Game 6: Colour & Bloom")
+    st.write("Design a bouquet by choosing flowers in your favourite colours.")
+    bloom_choices = {"Pink blossom 🌸":"🌸", "Purple flower 🪻":"🪻", "Yellow sunflower 🌻":"🌻", "Red hibiscus 🌺":"🌺", "White daisy 🌼":"🌼"}
+    if "bouquet" not in st.session_state:
+        st.session_state.bouquet = []
+    bloom_name = st.selectbox("Pick a flower", list(bloom_choices), key="bouquet_choice")
+    b1, b2 = st.columns(2)
+    with b1:
+        if st.button("🌷 Add to bouquet", key="bouquet_add", use_container_width=True):
+            st.session_state.bouquet = (st.session_state.bouquet + [bloom_choices[bloom_name]])[-18:]
+            st.rerun()
+    with b2:
+        if st.button("↺ New bouquet", key="bouquet_reset", use_container_width=True):
+            st.session_state.bouquet = []
+            st.rerun()
+    st.markdown('<div class="garden-bed">'+(" ".join(st.session_state.bouquet) if st.session_state.bouquet else "💐 Your bouquet begins here.")+'</div>', unsafe_allow_html=True)
+    st.caption("All game choices are temporary for this app session and are not saved as personal records.")
     st.markdown("### 💗 A kind reminder")
     st.write("You deserve support, rest and care. Taking a small break is enough for now.")
     st.button("Return to Emotional Wellness →",key="calm_return",use_container_width=True,on_click=go,args=("🌷 Emotional wellness",))
