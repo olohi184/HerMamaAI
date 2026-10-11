@@ -339,9 +339,9 @@ elif page == "🌼 Calm Corner":
     .mama-jar-stage .jar-icon {font-size:3rem;animation:mamaFloat 5s ease-in-out infinite}
     .mama-jar-stage .jar-notes {color:#5d3e69;font-size:1.05rem;line-height:1.9}
     .mama-memory-intro {text-align:center;color:#78437c;font-size:1.08rem;font-weight:650;padding:12px 8px;margin:8px 0 15px;border-radius:18px;background:linear-gradient(100deg,#fff2f9,#f0f9f2)}
-    div[class*="st-key-memory_"] button {min-height:112px!important;border-radius:22px!important;border:2px solid #e6b8e7!important;background:linear-gradient(140deg,#fff7fc,#f0e5ff)!important;box-shadow:0 6px 16px rgba(106,52,127,.11)!important;font-size:2.4rem!important;color:#873d96!important;transition:transform .18s ease,background .18s ease,box-shadow .18s ease!important}
+    div[class*="st-key-memory_"] button {min-height:112px!important;max-width:210px!important;margin:0 auto!important;border-radius:22px!important;border:2px solid #e6b8e7!important;background:linear-gradient(140deg,#fff7fc,#f0e5ff)!important;box-shadow:0 6px 16px rgba(106,52,127,.11)!important;font-size:3.2rem!important;color:#873d96!important;transition:transform .18s ease,background .18s ease,box-shadow .18s ease!important}
     div[class*="st-key-memory_"] button:hover:not(:disabled) {transform:translateY(-3px);background:linear-gradient(140deg,#ffeaf6,#e6d7ff)!important;box-shadow:0 10px 22px rgba(106,52,127,.18)!important}
-    div[class*="st-key-memory_"] button:disabled {opacity:1!important;background:linear-gradient(140deg,#e6f8e9,#f3e9ff)!important;border-color:#b8dfc2!important}
+    div[class*="st-key-memory_"] button:disabled {opacity:1!important}
     .mama-memory-finish {display:flex;flex-direction:column;align-items:center;gap:10px;padding:24px 15px;margin-top:18px;text-align:center;background:linear-gradient(120deg,#fff0f8,#e8f9ed,#f1e8ff);border:1px solid #e7c5e4;border-radius:24px;color:#673870}
     .mama-memory-flowers {font-size:2.4rem;animation:mamaBloom .6s ease-out both}
     @media(max-width:640px){div[class*="st-key-memory_"] button{min-height:80px!important;font-size:1.7rem!important;border-radius:16px!important}}
@@ -419,7 +419,10 @@ elif page == "🌼 Calm Corner":
                 idx = row_start + offset
                 matched = idx in st.session_state.memory_found
                 flipped = idx in st.session_state.memory_open
-                label = ("🌸 " + cards[idx] + " ✓") if matched else (cards[idx] if flipped else "🌿")
+                label = (cards[idx] + " ✓") if matched else (cards[idx] if flipped else "🌿")
+                state_style = ("background:linear-gradient(145deg,#e4f8e8,#d4f0de)!important;border-color:#77c997!important;" if matched else ("background:linear-gradient(145deg,#ffe3f2,#f9d9f5)!important;border-color:#d788c9!important;" if flipped else ""))
+                if state_style:
+                    st.markdown(f'<style>div.st-key-memory_{idx} button {{{state_style}}}</style>', unsafe_allow_html=True)
                 with col:
                     if st.button(label, key=f"memory_{idx}", use_container_width=True, disabled=matched or flipped or len(st.session_state.memory_open)>=2, help=("Matched garden pair" if matched else "Turn over garden card")):
                         st.session_state.memory_open.append(idx)
