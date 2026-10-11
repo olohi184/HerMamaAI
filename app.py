@@ -43,11 +43,31 @@ h1,h2,h3 {color:#382441;}
 [data-testid="stButton"] button[kind="primary"] {background:#763e88;border-color:#763e88;}
 [data-testid="stSelectbox"] {max-width:580px;}
 @media(max-width:650px){.block-container{padding:1rem .85rem 2rem}.hero{padding:28px 23px;border-radius:20px}.feature{min-height:0;padding:19px}.hero h1{font-size:2.3rem}.hero-brand{gap:12px}.hero-logo{width:82px;height:82px}}
+
+/* HerMamaAI V5: centered identity and welcoming layered palette */
+[data-testid="stAppViewContainer"] {background:radial-gradient(ellipse at 8% 8%,#f5e4f5 0%,transparent 43%),radial-gradient(ellipse at 92% 55%,#ffe5ee 0%,transparent 40%),linear-gradient(155deg,#fff5fa 0%,#f5efff 55%,#fff3f5 100%)!important;}
+.block-container {max-width:1120px!important;}
+.hero {text-align:center!important;background:linear-gradient(135deg,#50276e 0%,#88438b 48%,#d879a6 100%)!important;border:1px solid rgba(255,255,255,.28);padding:42px 30px 46px!important;box-shadow:0 22px 52px rgba(95,43,106,.22)!important;}
+.hero .eyebrow {font-size:.76rem!important;letter-spacing:.19em!important;}
+.hero-brand {display:flex!important;flex-direction:column!important;justify-content:center!important;align-items:center!important;gap:5px!important;margin:18px auto 18px!important;}
+.hero-logo {width:min(260px,56vw)!important;height:auto!important;max-height:230px!important;object-fit:contain!important;filter:drop-shadow(0 10px 15px rgba(48,12,52,.22))!important;}
+.hero-brand h1 {font-size:clamp(3rem,7vw,5.4rem)!important;line-height:1.08!important;margin:0!important;text-align:center!important;overflow-wrap:normal!important;}
+.hero-tagline {font-size:clamp(1rem,2.1vw,1.3rem)!important;font-weight:800!important;letter-spacing:.025em!important;margin-top:8px!important;}
+.hero p {margin:15px auto 0!important;max-width:710px!important;text-align:center!important;font-size:1.07rem!important;}
+.feature {background:linear-gradient(145deg,rgba(255,255,255,.97),rgba(252,240,250,.96))!important;border:1px solid #e9cfe8!important;box-shadow:0 12px 28px rgba(94,45,104,.10)!important;transition:transform .2s ease,box-shadow .2s ease;}
+.feature:hover {transform:translateY(-3px);box-shadow:0 18px 34px rgba(94,45,104,.14)!important;}
+.soft {background:linear-gradient(115deg,#f8eafa,#fbe9f1)!important;border-color:#ebd4ed!important;box-shadow:0 8px 20px rgba(103,52,103,.06);}
+.timeline {background:#fff9fe!important;box-shadow:0 6px 17px rgba(103,52,103,.06);}
+[data-testid="stSelectbox"] [data-baseweb="select"] > div {background:#fff8fd!important;border:1px solid #e6cbe5!important;border-radius:14px!important;}
+[data-testid="stButton"] button {background:#fff8fd;border-color:#e9d0e8!important;}
+[data-testid="stButton"] button[kind="primary"] {background:linear-gradient(90deg,#713d89,#b35b9d)!important;color:white!important;}
+@media(max-width:650px){.hero{padding:28px 16px 34px!important}.hero-logo{width:min(205px,62vw)!important;max-height:190px!important}.hero-brand h1{font-size:clamp(2.5rem,11vw,3.6rem)!important}.hero p{font-size:.96rem!important}.hero .eyebrow{font-size:.64rem!important;letter-spacing:.1em!important}}
+
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown('''<div class="hero"><div class="eyebrow">WECHIMAI · MATERNAL WELLNESS INNOVATION</div><div class="hero-brand"><img class="hero-logo" src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="HerMamaAI mother and baby emblem"><div><h1>HerMamaAI</h1><div class="hero-tagline">Every Mother Deserves Continued Care.</div></div></div><p>A caring companion for pregnancy, recovery and the journey beyond birth. Explore helpful education at your own pace.</p></div>''', unsafe_allow_html=True)
-st.caption("VERSION 4.1 · EDUCATIONAL PROTOTYPE · DESIGNED IN ABUJA, NIGERIA")
+st.markdown('''<div class="hero"><div class="eyebrow">WECHIMAI · MATERNAL WELLNESS INNOVATION</div><div class="hero-brand"><img class="hero-logo" src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="HerMamaAI mother and baby emblem"><h1>HerMamaAI</h1><div class="hero-tagline">Every Mother Deserves Continued Care.</div></div><p>A caring companion for pregnancy, recovery and the journey beyond birth.<br>Compassionate education and support at your own pace.</p></div>''', unsafe_allow_html=True)
+st.caption("VERSION 5 · EDUCATIONAL PROTOTYPE · DESIGNED IN ABUJA, NIGERIA")
 
 st.warning("**Important safety notice:** HerMamaAI is an educational prototype, not a clinician, diagnosis tool, medical device or emergency service. Content has not been clinically reviewed. For serious symptoms, seek immediate in-person medical care.")
 
@@ -199,4 +219,4 @@ else:
         st.write("Heavy bleeding, chest pain, difficulty breathing, seizures, severe headache or vision changes, fainting, severe illness with fever, or thoughts of harming yourself or your baby need urgent professional attention.")
     st.caption("Educational content requires clinical review before a real-world health pilot.")
 
-st.markdown('<div class="footer"><b>HerMamaAI · Version 4.1</b> — Developed by WechimAI Integrated Engineering & ICT Ltd · Abuja, Nigeria.<br>Educational demonstration only. No accounts or health records are collected by this prototype. Appointment entries and checkboxes are temporary session-only planning aids, not booking or clinical screening. Independent clinical review, safeguarding, accessibility testing and privacy assessment are required before real-world pilot use.</div>',unsafe_allow_html=True)
+st.markdown('<div class="footer"><b>HerMamaAI · Version 5</b> — Developed by WechimAI Integrated Engineering & ICT Ltd · Abuja, Nigeria.<br>Educational demonstration only. No accounts or health records are collected by this prototype. Appointment entries and checkboxes are temporary session-only planning aids, not booking or clinical screening. Independent clinical review, safeguarding, accessibility testing and privacy assessment are required before real-world pilot use.</div>',unsafe_allow_html=True)
