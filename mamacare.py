@@ -21,8 +21,13 @@ def render_mamacare(go=None):
     st.markdown("## 🌷 MamaCare Continuity")
     st.write("Care does not end at childbirth. Explore supportive postpartum information and prepare for follow-up with your maternity team.")
     st.warning("Educational prototype only — not a diagnosis, clinical assessment or emergency service. This content has not yet undergone clinical review.")
-    journey, checkin, signs, followup = st.tabs(["🌼 Recovery journey", "💗 Gentle check-in", "🚨 Warning signs", "📅 Follow-up care"])
-    with journey:
+    st.markdown("### Your postpartum care journey")
+    st.caption("Choose what you need today. These are educational tools, not clinical monitoring.")
+    options = ["🌼 Recovery guidance", "💗 Gentle check-in", "🚨 Warning signs", "📅 Follow-up planning"]
+    section = st.radio("Explore your care", options, horizontal=True, key="mc_section", label_visibility="collapsed")
+    st.divider()
+    if section == options[0]:
+    if section == options[0]:
         phase = st.selectbox("Choose a recovery stage", list(STAGES), key="mamacare_phase")
         title, guidance = STAGES[phase]
         st.subheader(title)
@@ -30,7 +35,7 @@ def render_mamacare(go=None):
         st.caption("These stages are educational, not a prescribed follow-up schedule. Every recovery is different.")
         if go is not None:
             st.button("🌼 Visit Calm Corner →", key="mc_calm", on_click=go, args=("🌼 Calm Corner",), use_container_width=True)
-    with checkin:
+    elif section == options[1]:
         st.subheader("How are you feeling today?")
         st.caption("Optional self-reflection only. Answers remain in the current Streamlit session and are not sent to a healthcare professional.")
         physical = st.radio("Physical recovery", ["Comfortable today", "Some concerns", "I need medical help"], index=None, key="mc_physical")
@@ -44,13 +49,13 @@ def render_mamacare(go=None):
             st.info("Consider asking someone you trust for one specific practical task today.")
         if physical or mood or support:
             st.write("You deserve care, rest and support.")
-    with signs:
+    elif section == options[2]:
         st.subheader("Postpartum warning signs")
         for item in DANGER:
             st.markdown("- " + item)
         st.error("If any of these occur, go to the nearest emergency department or contact local emergency services immediately. Do not wait for an app response.")
         st.caption("This list is not exhaustive. Seek care for any concerning symptoms.")
-    with followup:
+    elif section == options[3]:
         st.subheader("My follow-up checklist")
         st.write("Use your maternity team's own follow-up instructions and appointment schedule.")
         tasks = [
