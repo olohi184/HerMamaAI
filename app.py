@@ -338,6 +338,14 @@ elif page == "🌼 Calm Corner":
     .mama-jar-stage {min-height:145px;padding:22px;border-radius:25px;background:linear-gradient(135deg,#e9f9f1,#f7e9ff);border:1px solid #d4e8dc;text-align:center}
     .mama-jar-stage .jar-icon {font-size:3rem;animation:mamaFloat 5s ease-in-out infinite}
     .mama-jar-stage .jar-notes {color:#5d3e69;font-size:1.05rem;line-height:1.9}
+    .mama-memory-intro {text-align:center;color:#78437c;font-size:1.08rem;font-weight:650;padding:12px 8px;margin:8px 0 15px;border-radius:18px;background:linear-gradient(100deg,#fff2f9,#f0f9f2)}
+    div[class*="st-key-memory_"] button {min-height:112px!important;border-radius:22px!important;border:2px solid #e6b8e7!important;background:linear-gradient(140deg,#fff7fc,#f0e5ff)!important;box-shadow:0 6px 16px rgba(106,52,127,.11)!important;font-size:2.4rem!important;color:#873d96!important;transition:transform .18s ease,background .18s ease,box-shadow .18s ease!important}
+    div[class*="st-key-memory_"] button:hover:not(:disabled) {transform:translateY(-3px);background:linear-gradient(140deg,#ffeaf6,#e6d7ff)!important;box-shadow:0 10px 22px rgba(106,52,127,.18)!important}
+    div[class*="st-key-memory_"] button:disabled {opacity:1!important;background:linear-gradient(140deg,#e6f8e9,#f3e9ff)!important;border-color:#b8dfc2!important}
+    .mama-memory-finish {display:flex;flex-direction:column;align-items:center;gap:10px;padding:24px 15px;margin-top:18px;text-align:center;background:linear-gradient(120deg,#fff0f8,#e8f9ed,#f1e8ff);border:1px solid #e7c5e4;border-radius:24px;color:#673870}
+    .mama-memory-flowers {font-size:2.4rem;animation:mamaBloom .6s ease-out both}
+    @media(max-width:640px){div[class*="st-key-memory_"] button{min-height:80px!important;font-size:1.7rem!important;border-radius:16px!important}}
+    @media(prefers-reduced-motion:reduce){div[class*="st-key-memory_"] button{transition:none!important}div[class*="st-key-memory_"] button:hover:not(:disabled){transform:none}.mama-memory-flowers{animation:none!important}}
     .mama-word-tiles {display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(7px,2vw,18px);padding:22px 12px;border-radius:24px;background:linear-gradient(135deg,#fff9e9,#fff0f8);border:1px solid #f1d4a9}
     .mama-letter-tile {display:inline-flex;align-items:center;justify-content:center;min-width:clamp(48px,10vw,78px);height:clamp(58px,12vw,88px);padding:8px;border-radius:18px;background:#fff;color:#793674;font-size:clamp(1.7rem,4vw,2.6rem);font-weight:800;box-shadow:0 6px 18px rgba(112,54,110,.13);border:1px solid #f0d5e6}
     .mama-word-celebrate {margin:12px 0;padding:18px;border-radius:20px;background:linear-gradient(115deg,#f7e8ff,#fff1f5,#eaf9f0);border:1px solid #ebc9e4;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;color:#63346c}
@@ -395,22 +403,25 @@ elif page == "🌼 Calm Corner":
         </style>""", unsafe_allow_html=True)
         st.divider()
     if st.session_state.calm_activity == 2:
+        import random
         st.markdown("### 🦋 Game 3: Memory Garden")
-        st.write("Find the three matching pairs. Turn over two cards at a time, with no clock or score.")
+        st.write("Discover three matching pairs of cheerful garden pictures. No clock, no score — just a peaceful moment.")
         if "memory_cards" not in st.session_state:
             st.session_state.memory_cards = ["🌷", "🦋", "💗", "🌷", "💗", "🦋"]
+            random.shuffle(st.session_state.memory_cards)
             st.session_state.memory_open = []
             st.session_state.memory_found = []
         cards = st.session_state.memory_cards
+        st.markdown('<div class="mama-memory-intro">🌸 &nbsp; A little garden of surprises &nbsp; 🌿</div>', unsafe_allow_html=True)
         for row_start in (0, 3):
             cols = st.columns(3)
             for offset, col in enumerate(cols):
                 idx = row_start + offset
                 matched = idx in st.session_state.memory_found
                 flipped = idx in st.session_state.memory_open
-                label = cards[idx] if (matched or flipped) else "❔"
+                label = ("🌸 " + cards[idx] + " ✓") if matched else (cards[idx] if flipped else "🌿")
                 with col:
-                    if st.button(label, key=f"memory_{idx}", use_container_width=True, disabled=matched or flipped or len(st.session_state.memory_open)>=2):
+                    if st.button(label, key=f"memory_{idx}", use_container_width=True, disabled=matched or flipped or len(st.session_state.memory_open)>=2, help=("Matched garden pair" if matched else "Turn over garden card")):
                         st.session_state.memory_open.append(idx)
                         st.rerun()
         if len(st.session_state.memory_open) == 2:
@@ -420,13 +431,15 @@ elif page == "🌼 Calm Corner":
                 st.session_state.memory_open = []
                 st.rerun()
             else:
-                st.info("Two different pictures. Take another look, then try again.")
+                st.info("These pictures are different. Enjoy another look, then turn them back when you're ready.")
                 if st.button("🌿 Turn cards back", key="memory_flip_back", use_container_width=True):
                     st.session_state.memory_open = []
                     st.rerun()
         if len(st.session_state.memory_found) == 6:
-            st.success("Your Memory Garden is complete. Beautifully done!")
+            st.markdown('<div class="mama-memory-finish" role="status"><div class="mama-memory-flowers">🌸 🦋 🌷 💗 🌼</div><strong>Your Memory Garden is blooming!</strong><span>All three pairs found. Beautifully done — enjoy this little moment.</span></div>', unsafe_allow_html=True)
         if st.button("↺ Play Memory Garden again", key="memory_reset", use_container_width=True):
+            st.session_state.memory_cards = ["🌷", "🦋", "💗", "🌷", "💗", "🦋"]
+            random.shuffle(st.session_state.memory_cards)
             st.session_state.memory_open = []
             st.session_state.memory_found = []
             st.rerun()
