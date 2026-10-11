@@ -62,12 +62,12 @@ h1,h2,h3{color:#43145e}
 """,unsafe_allow_html=True)
 
 st.markdown("""<section class="hm-hero hm-hero-refined">
-<div class="hm-eyebrow">WECHIMAI · MATERNAL WELLNESS INNOVATION</div>
+
 <div class="hm-logo-focus"><img src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="HerMamaAI mother and baby brand logo"></div>
 <p class="hm-single-message">Compassionate guidance for pregnancy, postpartum recovery and beyond.</p>
 </section>""",unsafe_allow_html=True)
 
-st.caption("EDUCATIONAL PROTOTYPE · DEVELOPED BY WECHIMAI · ABUJA, NIGERIA")
+st.caption("EDUCATIONAL PROTOTYPE · ABUJA, NIGERIA")
 st.warning("**Important safety notice:** HerMamaAI is an educational prototype, not a clinician, diagnosis tool, medical device or emergency service. Content has not been clinically reviewed. For serious symptoms, seek immediate in-person medical care.")
 
 # Real, accessible navigation controls, rather than non-interactive text inside a banner image.
