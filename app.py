@@ -447,19 +447,19 @@ elif page == "🌼 Calm Corner":
         .hm-stars{position:absolute;top:36px;left:13%;font-size:2rem;color:#fff5d6;letter-spacing:20px}
         .hm-art-detail{position:absolute;bottom:54px;left:0;right:0;text-align:center;
           font-size:clamp(2.5rem,5vw,4.3rem);letter-spacing:12px;animation:hmSway 5s ease-in-out infinite}
-        .hm-moment-message{position:relative;z-index:2;margin:190px auto 18px;padding:15px 22px;
+        .hm-moment-message{position:relative;z-index:2;margin:14px auto 18px;padding:15px 22px;
           width:min(88%,720px);background:#fffffff0;color:#573766;border-radius:18px;
           text-align:center;line-height:1.6;font-size:1.04rem;box-shadow:0 6px 24px #48335119}
         .hm-moment.evening .hm-moment-message{background:#fff9f4ed}
         @keyframes hmDrift{0%,100%{transform:translateX(0)}50%{transform:translateX(22px)}}
         @keyframes hmSway{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-        @media(max-width:640px){.hm-moment{min-height:310px}.hm-moment-message{margin-top:182px}
+        @media(max-width:640px){.hm-moment{min-height:310px}.hm-moment-message{margin-top:14px}
           .hm-art-detail{letter-spacing:2px;font-size:2.3rem}}
         @media(prefers-reduced-motion:reduce){.hm-cloud,.hm-art-detail{animation:none!important}}
         </style>""",unsafe_allow_html=True)
         st.markdown('<div class="hm-moment '+scene_key+'" aria-label="Peaceful '+scene_key+
-                    ' landscape"><div>'+scene_art[scene_key]+'</div><div class="hm-moment-message">'+
-                    escape(moments[scene])+'</div></div>',unsafe_allow_html=True)
+                    ' landscape">'+scene_art[scene_key]+'</div><div class="hm-moment-message" role="note">'+
+                    escape(moments[scene])+'</div>',unsafe_allow_html=True)
         st.markdown("""<style>
         div.st-key-memory_0 button, div.st-key-memory_1 button, div.st-key-memory_2 button,
         div.st-key-memory_3 button, div.st-key-memory_4 button, div.st-key-memory_5 button {
