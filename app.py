@@ -268,17 +268,64 @@ elif page == "🌼 Calm Corner":
     st.markdown('<p class="lead">A gentle, optional pause for mothers and mothers-to-be. Play at your own pace, or simply rest. No scores, competition, or personal information required.</p>',unsafe_allow_html=True)
     st.info("These are general relaxation activities, not treatment for anxiety, depression or physical symptoms. Stop any activity that feels uncomfortable. If you feel unwell or have urgent symptoms, seek professional medical care.")
     st.subheader("Choose a gentle activity")
-    choices = ["🌸 Grow your garden", "☁️ Gentle moments", "🦋 Memory Garden", "🔤 Mama Word Garden", "🫙 Gratitude Jar", "🎨 Colour & Bloom"]
+    st.caption("Pick a peaceful moment just for you. No pressure, no scores.")
+    activities = [
+        ("🌸", "Grow your garden", "Plant flowers and watch your little garden bloom.", "#fff0f7", "#a91470"),
+        ("☁️", "Gentle moments", "Find a calm scene and enjoy a quiet pause.", "#eef5ff", "#385e9b"),
+        ("🦋", "Memory Garden", "Match cheerful pictures at your own pace.", "#f2edff", "#7140a5"),
+        ("🔤", "Mama Word Garden", "Unscramble gentle, encouraging words.", "#fff5e9", "#95601e"),
+        ("🫙", "Gratitude Jar", "Collect small moments worth remembering.", "#edf9f3", "#237b62"),
+        ("🎨", "Colour & Bloom", "Create a colourful bouquet of flowers.", "#fff0f2", "#a94465"),
+    ]
     if "calm_activity" not in st.session_state:
         st.session_state.calm_activity = 0
+    st.markdown("""<style>
+    div[class*="st-key-calm_choice_"] button {
+        min-height: 58px !important;
+        border-radius: 0 0 18px 18px !important;
+        border: 1px solid #e8cde8 !important;
+        background: #ffffffcc !important;
+        color: #682c73 !important;
+        font-weight: 700 !important;
+        box-shadow: 0 8px 18px #6330730c !important;
+    }
+    div[class*="st-key-calm_choice_"] button:hover {
+        border-color: #bc70c4 !important;
+        background: #f9eafb !important;
+    }
+    .calm-activity-card {
+        padding: 22px 16px 14px;
+        border: 1px solid #e8cde8;
+        border-radius: 18px 18px 0 0;
+        min-height: 168px;
+        text-align: center;
+        box-shadow: 0 8px 18px #6330730c;
+    }
+    .calm-activity-card.selected { border: 2px solid #a94eb5; box-shadow: 0 8px 24px #a94eb52b; }
+    .calm-activity-icon { font-size: 2.4rem; margin-bottom: 4px; }
+    .calm-activity-title { font-size: 1.12rem; font-weight: 750; margin-bottom: 7px; }
+    .calm-activity-desc { font-size: .92rem; line-height: 1.4; color: #61576b; }
+    .calm-selected { font-size: .76rem; font-weight: 700; color: #842b8b; margin-top: 7px; }
+    </style>""", unsafe_allow_html=True)
     for start in (0, 3):
-        cols = st.columns(3)
+        cols = st.columns(3, gap="medium")
         for offset, col in enumerate(cols):
             index = start + offset
+            symbol, name, description, background, accent = activities[index]
+            active = st.session_state.calm_activity == index
             with col:
-                if st.button(choices[index], key=f"calm_choice_{index}", use_container_width=True):
+                st.markdown(
+                    '<div class="calm-activity-card'+(' selected' if active else '')+'" style="background:'+background+'">'
+                    '<div class="calm-activity-icon">'+symbol+'</div>'
+                    '<div class="calm-activity-title" style="color:'+accent+'">'+name+'</div>'
+                    '<div class="calm-activity-desc">'+description+'</div>'
+                    + ('<div class="calm-selected">● Currently selected</div>' if active else '') + '</div>',
+                    unsafe_allow_html=True
+                )
+                if st.button("Playing now ✓" if active else "Explore activity →", key=f"calm_choice_{index}", use_container_width=True):
                     st.session_state.calm_activity = index
                     st.rerun()
+    st.divider()
     if st.session_state.calm_activity == 0:
         st.markdown("### 🌸 Game 1: Grow your garden")
         st.write("Tap **Plant a flower** to create a little garden. There is no timer and no wrong move.")
