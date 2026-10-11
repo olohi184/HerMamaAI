@@ -27,7 +27,6 @@ def render_mamacare(go=None):
     section = st.radio("Explore your care", options, horizontal=True, key="mc_section", label_visibility="collapsed")
     st.divider()
     if section == options[0]:
-    if section == options[0]:
         phase = st.selectbox("Choose a recovery stage", list(STAGES), key="mamacare_phase")
         title, guidance = STAGES[phase]
         st.subheader(title)
