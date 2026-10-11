@@ -86,7 +86,9 @@ def render_find_care():
                 st.write(details["service"])
                 st.link_button("🏥 View maternity-service evidence ↗", details["service_url"], use_container_width=True)
                 if details.get("contact"):
-                    st.write("Published hospital contact (not independently tested): " + details["contact"])\n                    if details.get("contact_note"):\n                        st.caption(details["contact_note"])
+                    st.write("Published hospital contact (not independently tested): " + details["contact"])
+                    if details.get("contact_note"):
+                        st.caption(details["contact_note"])
                     st.link_button("☎️ View published contact source ↗", details["contact_url"], use_container_width=True)
             else:
                 st.caption("Hospital-specific maternity services and contact details awaiting review")
