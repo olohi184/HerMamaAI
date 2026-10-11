@@ -362,8 +362,40 @@ elif page == "🌼 Calm Corner":
         if "garden_count" not in st.session_state:
             st.session_state.garden_count = 0
         flowers = ["🌷","🌸","🌻","🌼","🪻","🌺"]
-        garden_content = '<div class="mama-flowers">' + " ".join(flowers[i % len(flowers)] for i in range(st.session_state.garden_count)) + '</div>' if st.session_state.garden_count else '<div class="mama-empty">🌱 Your peaceful garden begins here.<br>Plant a flower and watch it bloom.</div>'
-        st.markdown('<div class="mama-garden-stage">'+garden_content+'</div>',unsafe_allow_html=True)
+        st.markdown("""<style>
+        .hm-garden {position:relative;overflow:hidden;min-height:285px;border-radius:28px;
+          background:linear-gradient(180deg,#f9e8ff 0%,#fff0f6 42%,#e2f7ee 76%,#c4e7c3 100%);
+          border:1px solid #eac5e5;box-shadow:0 12px 30px rgba(114,54,112,.09)}
+        .hm-garden-sun{position:absolute;top:20px;right:11%;width:67px;height:67px;border-radius:50%;
+          background:#fff5c5;box-shadow:0 0 45px 16px #fff6d9a8}
+        .hm-garden-hill{position:absolute;bottom:-42px;left:-8%;width:116%;height:115px;
+          background:linear-gradient(180deg,#a7d9a9,#77bd96);border-radius:50% 50% 0 0}
+        .hm-garden-hill.two{bottom:-69px;left:30%;background:#8ccaa3;height:125px}
+        .hm-garden-cloud{position:absolute;top:26px;left:9%;font-size:2.5rem;opacity:.8}
+        .hm-garden-butterfly{position:absolute;top:70px;right:25%;font-size:2.1rem;animation:hmFloat 5s ease-in-out infinite}
+        .hm-garden-flowerbed{position:relative;z-index:2;display:flex;justify-content:center;align-items:end;
+          flex-wrap:wrap;gap:10px 16px;padding:115px 20px 28px;min-height:285px}
+        .hm-garden-flower{font-size:clamp(2.3rem,5vw,3.5rem);line-height:1.25;display:inline-block;
+          filter:drop-shadow(0 7px 5px #456a4d30);animation:hmBloom .65s cubic-bezier(.2,1.3,.4,1) both}
+        .hm-garden-empty{position:relative;z-index:2;align-self:center;text-align:center;
+          background:#ffffffc9;border-radius:20px;padding:16px 22px;color:#64376a;font-weight:600}
+        .hm-garden-caption{text-align:center;color:#76416e;font-size:.94rem;margin:10px 0 18px}
+        @keyframes hmBloom{from{transform:scale(.25) translateY(20px);opacity:.1}to{transform:scale(1) translateY(0);opacity:1}}
+        @keyframes hmFloat{0%,100%{transform:translate(0,0) rotate(-8deg)}50%{transform:translate(-16px,-12px) rotate(8deg)}}
+        @media(max-width:640px){.hm-garden{min-height:235px}.hm-garden-flowerbed{min-height:235px;padding:100px 14px 22px;gap:7px}}
+        @media(prefers-reduced-motion:reduce){.hm-garden-flower,.hm-garden-butterfly{animation:none!important}}
+        </style>""",unsafe_allow_html=True)
+        planted = st.session_state.garden_count
+        blooms = "".join('<span class="hm-garden-flower" aria-label="flower">'+flowers[i % len(flowers)]+'</span>' for i in range(planted))
+        if not blooms:
+            blooms = '<div class="hm-garden-empty">🌱 Your peaceful garden begins here.<br>Plant a flower and watch it bloom.</div>'
+        garden_html = ('<div class="hm-garden" role="img" aria-label="A peaceful illustrated garden with '
+                       +str(planted)+' planted flowers"><div class="hm-garden-sun"></div>'
+                       '<div class="hm-garden-cloud">☁️</div><div class="hm-garden-butterfly">🦋</div>'
+                       '<div class="hm-garden-hill"></div><div class="hm-garden-hill two"></div>'
+                       '<div class="hm-garden-flowerbed">'+blooms+'</div></div>')
+        st.markdown(garden_html,unsafe_allow_html=True)
+        st.markdown('<p class="hm-garden-caption">A little space to grow, at your own pace. 🌿</p>',unsafe_allow_html=True)
         g1,g2=st.columns(2)
         with g1:
             if st.button("🌷 Plant a flower",key="plant_flower",use_container_width=True):
