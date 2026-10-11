@@ -24,6 +24,10 @@ h1,h2,h3 {color:#382441;}
 .hero {background:linear-gradient(120deg,#59337d 0%,#a34f95 55%,#e28ba9 100%);border-radius:26px;padding:38px 42px;color:#fff;box-shadow:0 14px 38px rgba(91,44,106,.16);margin:0 0 18px;}
 .hero .eyebrow {font-size:.74rem;letter-spacing:.15em;font-weight:800;text-transform:uppercase;color:#ffedf7;}
 .hero h1 {font-family:'Playfair Display',serif;color:#fff;font-size:clamp(2.4rem,5vw,4rem);line-height:1.18;margin:12px 0;}
+.hero-brand {display:flex;align-items:center;gap:22px;margin:18px 0 16px;}
+.hero-logo {width:120px;height:120px;object-fit:contain;flex-shrink:0;filter:drop-shadow(0 5px 12px rgba(40,10,50,.16));}
+.hero-brand h1 {margin:0 0 5px;overflow-wrap:anywhere;}
+.hero-tagline {font-weight:700;font-size:clamp(.9rem,1.7vw,1.1rem);color:#fff1f9;letter-spacing:.01em;}
 .hero p {font-size:1.05rem;line-height:1.65;color:#fff5fc;max-width:680px;margin:0;}
 .feature {background:#fff;border:1px solid #eedeea;border-radius:22px;padding:22px;min-height:190px;box-shadow:0 7px 22px rgba(90,43,92,.055);margin:8px 0 12px;}
 .feature-icon {font-size:2rem;}
@@ -38,11 +42,11 @@ h1,h2,h3 {color:#382441;}
 [data-testid="stButton"] button {border-radius:13px;min-height:43px;font-weight:700;border-color:#ead9e8;}
 [data-testid="stButton"] button[kind="primary"] {background:#763e88;border-color:#763e88;}
 [data-testid="stSelectbox"] {max-width:580px;}
-@media(max-width:650px){.block-container{padding:1rem .85rem 2rem}.hero{padding:28px 23px;border-radius:20px}.feature{min-height:0;padding:19px}.hero h1{font-size:2.5rem}}
+@media(max-width:650px){.block-container{padding:1rem .85rem 2rem}.hero{padding:28px 23px;border-radius:20px}.feature{min-height:0;padding:19px}.hero h1{font-size:2.3rem}.hero-brand{gap:12px}.hero-logo{width:82px;height:82px}}
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown('''<div class="hero"><div class="eyebrow">WECHIMAI · MATERNAL WELLNESS INNOVATION</div><h1>💜 HerMamaAI</h1><p>A caring companion for pregnancy, recovery and the journey beyond birth. Explore helpful education at your own pace.</p></div>''', unsafe_allow_html=True)
+st.markdown('''<div class="hero"><div class="eyebrow">WECHIMAI · MATERNAL WELLNESS INNOVATION</div><div class="hero-brand"><img class="hero-logo" src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="HerMamaAI mother and baby emblem"><div><h1>HerMamaAI</h1><div class="hero-tagline">Every Mother Deserves Continued Care.</div></div></div><p>A caring companion for pregnancy, recovery and the journey beyond birth. Explore helpful education at your own pace.</p></div>''', unsafe_allow_html=True)
 st.caption("VERSION 4.1 · EDUCATIONAL PROTOTYPE · DESIGNED IN ABUJA, NIGERIA")
 
 st.warning("**Important safety notice:** HerMamaAI is an educational prototype, not a clinician, diagnosis tool, medical device or emergency service. Content has not been clinically reviewed. For serious symptoms, seek immediate in-person medical care.")
