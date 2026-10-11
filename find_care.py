@@ -43,6 +43,13 @@ HOSPITALS = [("FCT","Abuja","National Hospital Abuja"),
 # Official website findings are published information, not live phone verification.
 # Only display institution contact details sourced from the institution itself.
 OFFICIAL_DETAILS = {
+    "University of Port Harcourt Teaching Hospital": {
+        "service": "Antenatal and newborn care listed on the hospital website; Obstetrics & Gynaecology specialists documented by the University of Port Harcourt. Specific clinic hours and capacity not confirmed.",
+        "service_url": "https://www.upth.gov.ng/",
+        "contact": "+234 701 020 7377 (general); +234 818 269 2056 (published emergency contact)",
+        "contact_url": "https://www.upth.gov.ng/",
+        "contact_note": "Numbers published on hospital website; not independently called or confirmed. Published general 24-hour operation does not verify 24-hour maternity-specific availability.",
+    },
     "National Hospital Abuja": {
         "service": "Obstetrics & Gynaecology services, including antenatal and high-risk pregnancy care, documented in a UK government healthcare report",
         "service_url": "https://assets.publishing.service.gov.uk/media/69524646f828b4d60df505f6/NGA_CIN_Medical_and_healthcare.pdf",
