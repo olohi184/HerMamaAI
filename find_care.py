@@ -43,6 +43,10 @@ HOSPITALS = [("FCT","Abuja","National Hospital Abuja"),
 # Official website findings are published information, not live phone verification.
 # Only display institution contact details sourced from the institution itself.
 OFFICIAL_DETAILS = {
+    "University College Hospital": {
+        "service": "UCH's published Service Charter documents Obstetrics & Gynaecology services, antenatal clinics, booking clinics and postnatal care. Current schedules, staffing and service capacity require direct confirmation.",
+        "service_url": "https://uch-ibadan.org.ng/wp-content/uploads/2025/04/SERVICE-CHARTER-HAND-BOOK-pdf-final_083057.pdf",
+    },
     "University of Port Harcourt Teaching Hospital": {
         "service": "Antenatal and newborn care listed on the hospital website; Obstetrics & Gynaecology specialists documented by the University of Port Harcourt. Specific clinic hours and capacity not confirmed.",
         "service_url": "https://www.upth.gov.ng/",
