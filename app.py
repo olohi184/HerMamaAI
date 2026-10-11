@@ -3,7 +3,7 @@ from datetime import date, datetime, time, timedelta
 from html import escape
 
 st.set_page_config(page_title="HerMamaAI | Maternal Wellness", page_icon="💗", layout="wide", initial_sidebar_state="collapsed")
-PAGES = ["🏡 Home", "📅 CareCalendar", "🤰 Pregnancy care", "💞 MamaCare journey", "💗 Postpartum recovery", "🌷 Emotional wellness", "🏥 Find care", "📖 Learning hub"]
+PAGES = ["🏡 Home", "📅 CareCalendar", "🤰 Pregnancy care", "💞 MamaCare journey", "💗 Postpartum recovery", "🌷 Emotional wellness", "🏥 Find care", "📖 Learning hub", "🌼 Calm Corner"]
 if "page" not in st.session_state:
     st.session_state.page = PAGES[0]
 def go(page):
@@ -58,7 +58,7 @@ h1,h2,h3{color:#43145e}
 .hm-logo-focus img{width:min(440px,88%);height:auto;max-height:360px;object-fit:contain;filter:drop-shadow(0 12px 20px #5b226a20)}
 .hm-single-message{position:relative;z-index:1;font-size:1.07rem;font-weight:600;line-height:1.55;color:#58276d;margin:8px auto 0;max-width:650px}
 @media(max-width:720px){.hm-hero-refined{padding:22px 12px 48px!important}.hm-logo-focus img{width:min(340px,96%)}.hm-single-message{font-size:.95rem}}
-</style>
+.garden-bed{min-height:125px;border-radius:22px;background:linear-gradient(135deg,#fff0f9,#f0e4ff);border:1px solid #edd2ec;padding:25px;font-size:2rem;line-height:1.9;text-align:center;color:#683479}.calm-scene{border-radius:20px;padding:28px;background:linear-gradient(120deg,#e8fbf2,#f8f0ff);border:1px solid #d8ebdf;font-size:1.1rem;line-height:1.8;color:#4f4960;margin:15px 0}</style>
 """,unsafe_allow_html=True)
 
 st.markdown("""<section class="hm-hero hm-hero-refined">
@@ -71,10 +71,10 @@ st.caption("EDUCATIONAL PROTOTYPE · DEVELOPED BY WECHIMAI · ABUJA, NIGERIA")
 st.warning("**Important safety notice:** HerMamaAI is an educational prototype, not a clinician, diagnosis tool, medical device or emergency service. Content has not been clinically reviewed. For serious symptoms, seek immediate in-person medical care.")
 
 # Real, accessible navigation controls, rather than non-interactive text inside a banner image.
-nav = ["🏡 Home","🤰 Pregnancy care","💞 MamaCare journey","💗 Postpartum recovery","📅 CareCalendar","🌷 Emotional wellness","🏥 Find care","📖 Learning hub"]
-nav_cols = st.columns(4)
+nav = ["🏡 Home","🤰 Pregnancy care","💞 MamaCare journey","💗 Postpartum recovery","📅 CareCalendar","🌷 Emotional wellness","🏥 Find care","📖 Learning hub","🌼 Calm Corner"]
+nav_cols = st.columns(3)
 for i, destination in enumerate(nav):
-    with nav_cols[i % 4]:
+    with nav_cols[i % 3]:
         st.button(destination,key=f"nav_new_{i}",use_container_width=True,on_click=go,args=(destination,))
 page = st.session_state.page
 
@@ -93,6 +93,7 @@ if page == "🏡 Home":
             st.markdown(f'<div class="hm-card {tone}"><div class="hm-icon">{icon}</div><h3>{title}</h3><p>{body}</p></div>',unsafe_allow_html=True)
             st.button(action+" →",key="home_"+target,use_container_width=True,on_click=go,args=(target,))
     st.markdown('<div class="soft"><b>Care continues after childbirth.</b> Learn when to contact your maternity team and how to prepare for follow-up care.</div>',unsafe_allow_html=True)
+    st.button("🌼 Visit the Motherhood Calm Corner →", key="home_calm", use_container_width=True, on_click=go, args=("🌼 Calm Corner",))
 
 elif page == "📅 CareCalendar":
     st.markdown('<div class="section-head">📅 My CareCalendar</div>',unsafe_allow_html=True)
@@ -145,6 +146,12 @@ elif page == "📅 CareCalendar":
         st.write("Ask your maternity team when to return after discharge, what recovery symptoms need assessment, and how to obtain feeding and emotional support.")
     st.error("**Urgent symptoms?** Heavy bleeding, seizures, chest pain, difficulty breathing, severe headache or visual changes, fainting, or thoughts of harming yourself or your baby need immediate professional help. Do not wait for a calendar reminder.")
 
+    st.markdown("#### Make your calendar work for you")
+    with st.expander("How to add a reminder to your phone"):
+        st.write("Enter the appointment date and time given by your maternity team, select Add to my calendar, then use the .ics download button. Open the downloaded file in your phone's calendar and confirm that the event appears. HerMamaAI does not send automatic reminders.")
+    with st.expander("What to prepare before a visit"):
+        st.write("Bring any maternity notes you have, a list of medicines or supplements, questions you want answered, and any instructions your maternity team has given you. Ask a trusted person to help with transport if needed.")
+
 elif page == "🤰 Pregnancy care":
     st.markdown('<div class="section-head">🤰 Pregnancy care</div>',unsafe_allow_html=True)
     st.markdown('<p class="lead">Regular antenatal visits help your maternity team monitor your health and your baby’s development. Ask which appointments, tests and vaccinations are appropriate for you.</p>',unsafe_allow_html=True)
@@ -154,6 +161,18 @@ elif page == "🤰 Pregnancy care":
         st.checkbox(q,key=f"preg_{i}")
     st.error("Seek urgent medical assessment for vaginal bleeding, severe abdominal pain, severe headache or vision changes, seizures, chest pain or trouble breathing.")
 
+    st.markdown("#### Pregnancy learning topics")
+    with st.expander("Nutrition, rest and everyday well-being"):
+        st.write("Ask your maternity team about a varied diet, food safety, hydration, recommended supplements, activity, rest and any individual restrictions. Avoid starting or stopping medicines or supplements based on app content.")
+    with st.expander("Understanding antenatal checks"):
+        st.write("Antenatal visits may include blood pressure measurement, laboratory tests, screening, fetal growth monitoring and discussion of symptoms. What is appropriate depends on your stage of pregnancy, medical history and local guidance.")
+    with st.expander("Preparing for delivery"):
+        st.write("Discuss where you plan to give birth, how you will travel there, whom to contact, what to pack and who can support you. Review emergency arrangements with your maternity team.")
+    with st.expander("Questions about baby's movement"):
+        st.write("Ask your maternity team what movements to expect and what to do if movement decreases or changes. Seek prompt professional assessment for concerns about reduced movement; do not wait for an app or a scheduled visit.")
+    st.markdown("#### A small step today")
+    st.checkbox("I have written down a question to ask at my next antenatal visit.",key="preg_extra")
+    
 elif page == "💞 MamaCare journey":
     st.markdown('<div class="section-head">💞 MamaCare Continuity</div>',unsafe_allow_html=True)
     st.markdown('<p class="lead"><b>Care should not stop when a mother leaves the hospital.</b> Explore each recovery stage and prepare for conversations with your healthcare team.</p>',unsafe_allow_html=True)
@@ -180,6 +199,15 @@ elif page == "💞 MamaCare journey":
         st.write("Ask about your recovery, new or ongoing symptoms, recommended checks, feeding support, emotional well-being, and when to return for follow-up. Discuss concerns directly with your care team.")
     st.error("**Get urgent medical help:** Heavy bleeding, chest pain, difficulty breathing, seizures, severe headache or vision changes, fainting, fever with severe illness, or thoughts of harming yourself or your baby require immediate professional assessment. Do not wait for an app response.")
 
+    st.markdown("#### Practical support after going home")
+    with st.expander("Create a support circle"):
+        st.write("Identify one person who can help with meals or chores, someone who can accompany you to appointments, and a healthcare contact for questions. You can write these down privately outside the app.")
+    with st.expander("Care for baby and care for mother"):
+        st.write("Newborn care is important, and so is the mother's recovery. Ask about maternal follow-up, feeding support, sleep, emotional changes and concerns about pain or healing.")
+    with st.expander("If you missed a follow-up"):
+        st.write("Contact your maternity team to arrange the next appropriate appointment. Seek urgent assessment for warning signs rather than waiting for a routine visit.")
+    st.button("🌼 Take a gentle wellness break",key="mama_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
+
 elif page == "💗 Postpartum recovery":
     st.markdown('<div class="section-head">💗 Postpartum recovery</div>',unsafe_allow_html=True)
     st.markdown('<p class="lead">Recovery continues beyond discharge, and serious complications can arise even after an uncomplicated birth. Keep your recommended postnatal appointments.</p>',unsafe_allow_html=True)
@@ -192,6 +220,16 @@ elif page == "💗 Postpartum recovery":
     st.button("Explore MamaCare Continuity →",type="primary",use_container_width=True,on_click=go,args=("💞 MamaCare journey",))
     st.error("**Urgent warning signs:** Heavy bleeding, chest pain, trouble breathing, seizures, severe headache or vision changes, fainting, fever with severe illness, or thoughts of harming yourself or your baby. Seek emergency medical care immediately.")
 
+    st.markdown("#### More postpartum recovery topics")
+    with st.expander("Healing and comfort"):
+        st.write("Recovery varies after vaginal birth and caesarean birth. Ask your clinician about pain control, incision or perineal care, expected bleeding, safe activity and when to seek assessment for changes.")
+    with st.expander("Feeding support without judgment"):
+        st.write("Whether breastfeeding, formula feeding or combining approaches, seek individualized guidance from qualified professionals if feeding is painful, difficult or worrying. Your well-being matters too.")
+    with st.expander("Sleep, fatigue and asking for practical help"):
+        st.write("Rest can be difficult with a newborn. Consider asking trusted people for help with household tasks and discuss severe or persistent exhaustion with your care team.")
+    with st.expander("Mood and relationships after birth"):
+        st.write("Emotional changes can affect parents and relationships. Talk openly with someone you trust and contact a qualified professional if distress persists, intensifies or interferes with daily life.")
+    
 elif page == "🌷 Emotional wellness":
     st.markdown('<div class="section-head">🌷 Emotional wellness</div>',unsafe_allow_html=True)
     st.markdown('<p class="lead">Pregnancy and new motherhood can bring many emotions. You deserve support and space to talk about how you feel.</p>',unsafe_allow_html=True)
@@ -200,6 +238,15 @@ elif page == "🌷 Emotional wellness":
     st.write("• Tell someone you trust how you are feeling.\n\n• Ask for practical help with meals, chores or childcare.\n\n• Discuss mood and sleep concerns at a postnatal appointment.")
     st.error("If you may harm yourself or someone else, or experience severe confusion or unusual perceptions, seek emergency medical help immediately and ask a trusted person to stay with you.")
 
+    st.markdown("#### Emotional wellness toolkit")
+    with st.expander("Check in with yourself"):
+        st.write("You might gently ask: What do I need today? Have I eaten and rested as much as I can? Is there someone I can talk to? These prompts are not a mental-health assessment.")
+    with st.expander("Simple connection ideas"):
+        st.write("Consider sending a short message to a trusted friend, asking someone to sit with you, or sharing a specific task you need help with.")
+    with st.expander("When to seek professional support"):
+        st.write("Persistent sadness, intense anxiety, hopelessness, inability to function, or distressing thoughts deserve prompt assessment by a qualified healthcare professional. Emergency symptoms need immediate help.")
+    st.button("🌼 Open the Calm Corner",key="wellness_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
+    
 elif page == "🏥 Find care":
     st.markdown('<div class="section-head">🏥 Find appropriate care</div>',unsafe_allow_html=True)
     st.markdown('<p class="lead">Contact your maternity facility, a qualified healthcare professional or local emergency services. HerMamaAI does not yet offer a verified clinic directory, appointment booking or emergency dispatch.</p>',unsafe_allow_html=True)
@@ -207,6 +254,48 @@ elif page == "🏥 Find care":
     for i,q in enumerate(["How long has it been since delivery, or how far along is the pregnancy?","What concerns or symptoms should I describe, and when did they start?","Do I have relevant discharge instructions or medication information?","How can I reach the facility safely?"]):
         st.checkbox(q,key=f"care_{i}")
     st.warning("For severe symptoms, do not wait for a routine appointment. Seek emergency assessment immediately.")
+
+    st.markdown("#### Finding the right kind of support")
+    with st.expander("Routine antenatal and postnatal care"):
+        st.write("Start with the maternity clinic or qualified provider responsible for your care. Confirm opening hours, location, referral requirements and appointment arrangements directly with the facility.")
+    with st.expander("Emotional and mental-health support"):
+        st.write("Ask your maternity team for a qualified mental-health professional or referral service. Seek emergency care immediately if there is danger of harm, severe confusion or unusual perceptions.")
+    with st.expander("Questions before choosing a facility"):
+        st.write("Is the provider qualified? Does the facility offer maternity and postnatal services? How are emergencies handled? How can you contact the facility after hours?")
+    
+elif page == "🌼 Calm Corner":
+    st.markdown('<div class="section-head">🌼 Motherhood Calm Corner</div>',unsafe_allow_html=True)
+    st.markdown('<p class="lead">A gentle, optional pause for mothers and mothers-to-be. Play at your own pace, or simply rest. No scores, competition, or personal information required.</p>',unsafe_allow_html=True)
+    st.info("These are general relaxation activities, not treatment for anxiety, depression or physical symptoms. Stop any activity that feels uncomfortable. If you feel unwell or have urgent symptoms, seek professional medical care.")
+    st.markdown("### 🌸 Game 1: Grow your garden")
+    st.write("Tap **Plant a flower** to create a little garden. There is no timer and no wrong move.")
+    if "garden_count" not in st.session_state:
+        st.session_state.garden_count = 0
+    flowers = ["🌷","🌸","🌻","🌼","🪻","🌺"]
+    st.markdown('<div class="garden-bed">'+(" ".join(flowers[i % len(flowers)] for i in range(st.session_state.garden_count)) if st.session_state.garden_count else "🌱 Your peaceful garden begins here.")+'</div>',unsafe_allow_html=True)
+    g1,g2=st.columns(2)
+    with g1:
+        if st.button("🌷 Plant a flower",key="plant_flower",use_container_width=True):
+            st.session_state.garden_count=min(24,st.session_state.garden_count+1)
+            st.rerun()
+    with g2:
+        if st.button("↺ Start a new garden",key="reset_garden",use_container_width=True):
+            st.session_state.garden_count=0
+            st.rerun()
+    if st.session_state.garden_count>=24:
+        st.success("Your garden is blooming! You can enjoy it or start again.")
+    st.markdown("### ☁️ Game 2: Choose a gentle moment")
+    moments = {
+        "🌤️ A peaceful morning":"Imagine a quiet morning, a comfortable chair and a warm cup of something you enjoy.",
+        "🌿 A garden breeze":"Picture leaves moving softly in a garden. Notice the colors and shapes around you.",
+        "🌊 A calm shoreline":"Imagine gentle waves rolling in and out. Rest your attention on the scene without forcing your breathing.",
+        "🌙 A quiet evening":"Imagine soft evening light and a safe, restful space. Allow yourself a moment without a task to complete."
+    }
+    scene=st.radio("Pick a relaxing scene",list(moments),horizontal=True,key="calm_scene")
+    st.markdown(f'<div class="calm-scene">{escape(moments[scene])}</div>',unsafe_allow_html=True)
+    st.markdown("### 💗 A kind reminder")
+    st.write("You deserve support, rest and care. Taking a small break is enough for now.")
+    st.button("Return to Emotional Wellness →",key="calm_return",use_container_width=True,on_click=go,args=("🌷 Emotional wellness",))
 
 else:
     st.markdown('<div class="section-head">📖 Learning hub</div>',unsafe_allow_html=True)
@@ -217,6 +306,15 @@ else:
         st.write("Bring your discharge notes if available, a medication list, and questions about symptoms, feeding, recovery and your next follow-up.")
     with st.expander("When to seek emergency help"):
         st.write("Heavy bleeding, chest pain, difficulty breathing, seizures, severe headache or vision changes, fainting, severe illness with fever, or thoughts of harming yourself or your baby need urgent professional attention.")
+    with st.expander("Pregnancy: planning questions"):
+        st.write("Discuss antenatal visits, recommended screening, medicines, nutrition, baby's movement, delivery plans and emergency transport with your maternity team.")
+    with st.expander("Postpartum: the weeks after birth"):
+        st.write("Discuss healing, feeding, sleep, blood pressure checks where indicated, emotional health and continued follow-up. Recovery may continue beyond six weeks.")
+    with st.expander("Emotional well-being and seeking help"):
+        st.write("A trusted person and a qualified healthcare professional can help with persistent or worsening emotional distress. Severe confusion or thoughts of harm need emergency care.")
+    with st.expander("Using HerMamaAI safely"):
+        st.write("HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice.")
+    st.button("🌼 Try the Calm Corner",key="learning_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
     st.caption("Educational content requires clinical review before a real-world health pilot.")
 
-st.markdown('<div class="footer"><b>HerMamaAI · Version 5.1</b> — Developed by WechimAI Integrated Engineering & ICT Ltd · Abuja, Nigeria.<br>Educational demonstration only. No accounts or health records are collected by this prototype. Appointment entries and checkboxes are temporary session-only planning aids, not booking or clinical screening. Independent clinical review, safeguarding, accessibility testing and privacy assessment are required before real-world pilot use.</div>',unsafe_allow_html=True)
+st.markdown('<div class="footer"><b>HerMamaAI · Version 5.2</b> — Developed by WechimAI Integrated Engineering & ICT Ltd · Abuja, Nigeria.<br>Educational demonstration only. No accounts or health records are collected by this prototype. Appointment entries and checkboxes are temporary session-only planning aids, not booking or clinical screening. Independent clinical review, safeguarding, accessibility testing and privacy assessment are required before real-world pilot use.</div>',unsafe_allow_html=True)
