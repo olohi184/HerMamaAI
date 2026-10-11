@@ -63,11 +63,26 @@ h1,h2,h3 {color:#382441;}
 [data-testid="stButton"] button[kind="primary"] {background:linear-gradient(90deg,#713d89,#b35b9d)!important;color:white!important;}
 @media(max-width:650px){.hero{padding:28px 16px 34px!important}.hero-logo{width:min(205px,62vw)!important;max-height:190px!important}.hero-brand h1{font-size:clamp(2.5rem,11vw,3.6rem)!important}.hero p{font-size:.96rem!important}.hero .eyebrow{font-size:.64rem!important;letter-spacing:.1em!important}}
 
+
+/* V5.1 refined approved-inspired layout */
+.hero{padding:30px 26px 34px!important;border-radius:28px!important;background:linear-gradient(120deg,#572a76 0%,#82418b 46%,#d87da7 100%)!important;}
+.hero-brand{margin:8px auto 12px!important;gap:3px!important;}
+.hero-emblem{width:205px;height:144px;overflow:hidden;margin:0 auto 5px;display:flex;align-items:flex-start;justify-content:center;}
+.hero-emblem .hero-logo{display:block;width:205px!important;height:auto!important;max-height:none!important;object-fit:initial!important;filter:drop-shadow(0 7px 13px rgba(45,12,57,.19))!important;}
+.hero-brand h1{font-family:'Playfair Display',serif!important;font-size:clamp(3.2rem,7vw,5.1rem)!important;font-weight:700!important;line-height:1.06!important;margin:2px 0 5px!important;color:#fff!important;}
+.hero-tagline{font-size:clamp(1.05rem,2.2vw,1.4rem)!important;font-weight:800!important;color:#fff!important;margin-top:7px!important;}
+.hero p{font-size:1rem!important;max-width:630px!important;margin:14px auto!important;line-height:1.6!important;}
+.hero-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:9px;margin-top:18px;}
+.hero-pills span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.32);border-radius:30px;padding:7px 14px;color:white;font-weight:700;font-size:.78rem;}
+[data-testid="stAppViewContainer"]{background:linear-gradient(145deg,#fff5fa 0%,#f7eafa 48%,#fff1f4 100%)!important;}
+.feature{background:linear-gradient(145deg,#fffaff,#f9edf7)!important;border:1px solid #e9d1e8!important;}
+@media(max-width:650px){.hero{padding:25px 14px 28px!important}.hero-emblem{width:165px;height:118px}.hero-emblem .hero-logo{width:165px!important}.hero-brand h1{font-size:clamp(2.6rem,12vw,3.5rem)!important}.hero-pills{gap:6px}.hero-pills span{font-size:.68rem;padding:6px 9px}}
+
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown('''<div class="hero"><div class="eyebrow">WECHIMAI · MATERNAL WELLNESS INNOVATION</div><div class="hero-brand"><img class="hero-logo" src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="HerMamaAI mother and baby emblem"><h1>HerMamaAI</h1><div class="hero-tagline">Every Mother Deserves Continued Care.</div></div><p>A caring companion for pregnancy, recovery and the journey beyond birth.<br>Compassionate education and support at your own pace.</p></div>''', unsafe_allow_html=True)
-st.caption("VERSION 5 · EDUCATIONAL PROTOTYPE · DESIGNED IN ABUJA, NIGERIA")
+st.markdown('''<div class="hero"><div class="eyebrow">WECHIMAI · MATERNAL WELLNESS INNOVATION</div><div class="hero-brand"><div class="hero-emblem"><img class="hero-logo" src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="Mother and baby emblem"></div><h1>HerMamaAI</h1><div class="hero-tagline">Every Mother Deserves Continued Care.</div></div><p>Your trusted space for pregnancy education, postpartum recovery and compassionate support beyond birth.</p><div class="hero-pills"><span>♡ Pregnancy Support</span><span>♡ MamaCare Continuity</span><span>▦ CareCalendar</span></div></div>''', unsafe_allow_html=True)
+st.caption("VERSION 5.1 · EDUCATIONAL PROTOTYPE · DESIGNED IN ABUJA, NIGERIA")
 
 st.warning("**Important safety notice:** HerMamaAI is an educational prototype, not a clinician, diagnosis tool, medical device or emergency service. Content has not been clinically reviewed. For serious symptoms, seek immediate in-person medical care.")
 
@@ -219,4 +234,4 @@ else:
         st.write("Heavy bleeding, chest pain, difficulty breathing, seizures, severe headache or vision changes, fainting, severe illness with fever, or thoughts of harming yourself or your baby need urgent professional attention.")
     st.caption("Educational content requires clinical review before a real-world health pilot.")
 
-st.markdown('<div class="footer"><b>HerMamaAI · Version 5</b> — Developed by WechimAI Integrated Engineering & ICT Ltd · Abuja, Nigeria.<br>Educational demonstration only. No accounts or health records are collected by this prototype. Appointment entries and checkboxes are temporary session-only planning aids, not booking or clinical screening. Independent clinical review, safeguarding, accessibility testing and privacy assessment are required before real-world pilot use.</div>',unsafe_allow_html=True)
+st.markdown('<div class="footer"><b>HerMamaAI · Version 5.1</b> — Developed by WechimAI Integrated Engineering & ICT Ltd · Abuja, Nigeria.<br>Educational demonstration only. No accounts or health records are collected by this prototype. Appointment entries and checkboxes are temporary session-only planning aids, not booking or clinical screening. Independent clinical review, safeguarding, accessibility testing and privacy assessment are required before real-world pilot use.</div>',unsafe_allow_html=True)
