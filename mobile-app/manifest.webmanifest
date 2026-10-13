@@ -10,8 +10,14 @@
   "theme_color": "#61206e",
   "icons": [
     {
-      "src": "../HerMamaAI%20Mother%20and%20Baby%20Emblem.png",
-      "sizes": "any",
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     }
