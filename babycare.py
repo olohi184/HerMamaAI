@@ -58,8 +58,58 @@ def render_babycare():
     st.markdown("## 👶 BabyCare — Immunization Tracker")
     st.info("**Educational planning prototype.** This is not an official Nigerian immunization card, vaccine recommendation, medical record or clinic booking. Confirm the current NPHCDA schedule, individual vaccines, catch-up doses and timing with a qualified immunization provider.")
     st.warning("Do not delay medical care because of this app. For a missed dose, ask a healthcare professional for an individual catch-up plan; do not restart or change a vaccine series based on this calendar.")
-    st.caption("No accounts or database: dates and entries are held only in this browser session. Download what you need before closing the app. Avoid entering full names or other identifying information.")
-    dob = st.date_input("Baby's date of birth (for planning)", value=date.today(), min_value=date(2015,1,1), max_value=date.today(), key="babycare_dob")
+    st.caption("No accounts or database. Use fictional profiles and sample records only. Information is temporary and may disappear when this session ends.")
+    st.markdown("### 👪 Demo family profiles")
+    st.caption("Fictional aliases only. These profiles are temporary, not authenticated accounts. Do not enter real children's health information.")
+    if "babycare_families" not in st.session_state:
+        st.session_state.babycare_families = {}
+    families = st.session_state.babycare_families
+    with st.expander("Add a demo parent and baby", expanded=not bool(families)):
+        with st.form("babycare_new_family", clear_on_submit=True):
+            parent_alias = st.text_input("Fictional parent alias", placeholder="Demo Parent A")
+            baby_alias = st.text_input("Fictional baby alias", placeholder="Baby A")
+            birth = st.date_input("Demo baby's birth date", value=date.today(), min_value=date(2015,1,1), max_value=date.today())
+            add_family = st.form_submit_button("Add demo profile")
+        if add_family:
+            if parent_alias.strip() and baby_alias.strip():
+                import uuid
+                parent_id_new = next((k for k,v in families.items() if v["alias"].casefold() == parent_alias.strip().casefold()), None)
+                if parent_id_new is None:
+                    parent_id_new = uuid.uuid4().hex
+                    families[parent_id_new] = {"alias": parent_alias.strip(), "babies": {}}
+                baby_id_new = uuid.uuid4().hex
+                families[parent_id_new]["babies"][baby_id_new] = {"alias": baby_alias.strip(), "dob": birth.isoformat(), "records": []}
+                st.session_state.babycare_active_parent = parent_id_new
+                st.session_state.babycare_active_baby = baby_id_new
+                st.rerun()
+            else:
+                st.error("Provide both fictional aliases.")
+    if not families:
+        st.info("Add a fictional family to start the demonstration.")
+        return
+    parent_ids = list(families)
+    parent_default = st.session_state.get("babycare_active_parent")
+    if parent_default not in families:
+        parent_default = parent_ids[0]
+    parent_id = st.selectbox("Demo parent", parent_ids, index=parent_ids.index(parent_default), format_func=lambda k: families[k]["alias"])
+    st.session_state.babycare_active_parent = parent_id
+    babies = families[parent_id]["babies"]
+    baby_ids = list(babies)
+    baby_default = st.session_state.get("babycare_active_baby")
+    if baby_default not in babies:
+        baby_default = baby_ids[0]
+    baby_id = st.selectbox("Demo baby", baby_ids, index=baby_ids.index(baby_default), format_func=lambda k: babies[k]["alias"])
+    st.session_state.babycare_active_baby = baby_id
+    baby = babies[baby_id]
+    a, b = st.columns(2)
+    a.metric("Demo parent profiles", len(families))
+    b.metric("Demo baby profiles", sum(len(p["babies"]) for p in families.values()))
+    st.caption("Counts reflect only fictional profiles in this session, not real users.")
+    if st.button("Clear all demo profiles and entries"):
+        st.session_state.babycare_families = {}
+        st.rerun()
+    dob = date.fromisoformat(baby["dob"])
+    st.write("**Selected demo baby's birth date:** " + dob.strftime("%d %b %Y"))
     st.markdown("### 🔎 What might my baby need at this age?")
     st.caption("Demonstration only: this shows published routine visit examples, not personalized vaccine eligibility or a catch-up schedule.")
     age_choice = st.selectbox("Choose a routine visit age", list(VISITS.keys()), key="babycare_age_guide")
@@ -82,8 +132,7 @@ def render_babycare():
             st.write(meaning)
     st.markdown("### Parent-entered immunization record")
     st.caption("For your own reference only. Entries are not verified by a clinician and do not replace a child's official immunization card.")
-    if "babycare_records" not in st.session_state:
-        st.session_state.babycare_records = []
+    records = baby["records"]
     with st.form("babycare_record_form", clear_on_submit=True):
         vaccine = st.selectbox("Select vaccine from the clinic card", ["Choose a vaccine"] + list(VACCINES.keys()) + ["Other"])
         other_vaccine = st.text_input("If Other, type the vaccine name", max_chars=100) if vaccine == "Other" else ""
@@ -96,12 +145,11 @@ def render_babycare():
         if selected == "Choose a vaccine" or not selected.strip():
             st.error("Enter the vaccine or dose from the clinic card.")
         else:
-            st.session_state.babycare_records.append({"Vaccine / dose": selected + (" — " + dose.strip() if dose.strip() else ""), "Date administered": administered.isoformat(), "Clinic (optional)": clinic.strip(), "Status": "Parent-reported; not clinically verified"})
+            records.append({"Vaccine / dose": selected + (" — " + dose.strip() if dose.strip() else ""), "Date administered": administered.isoformat(), "Clinic (optional)": clinic.strip(), "Status": "Parent-reported; not clinically verified"})
             st.success("Saved temporarily in this session.")
     st.markdown("### 📊 My saved vaccination entries")
-    st.metric("Number of parent-entered vaccination records", len(st.session_state.babycare_records))
+    st.metric("Vaccination records for selected baby", len(baby["records"]))
     st.caption("Counts vaccination entries saved in this session, not distinct parents, babies, or verified vaccinations. One parent may enter several doses.")
-    records = st.session_state.babycare_records
     if records:
         st.dataframe(records, use_container_width=True, hide_index=True)
         output = io.StringIO()
@@ -110,7 +158,7 @@ def render_babycare():
         writer.writerows(records)
         st.download_button("⬇️ Download parent-reported record (CSV)", output.getvalue(), file_name="hermamaai_parent_reported_immunizations.csv", mime="text/csv")
         if st.button("Clear all temporary immunization entries"):
-            st.session_state.babycare_records = []
+            baby["records"] = []
             st.rerun()
     else:
         st.caption("No immunization entries recorded in this session.")
