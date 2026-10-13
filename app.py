@@ -4,7 +4,7 @@ from datetime import date, datetime, time, timedelta
 from html import escape
 
 st.set_page_config(page_title="HerMamaAI | Maternal Wellness", page_icon="💗", layout="wide", initial_sidebar_state="collapsed")
-PAGES = ["🏡 Home", "📅 CareCalendar", "🤰 Pregnancy care", "💞 MamaCare journey", "💗 Postpartum recovery", "🌷 Emotional wellness", "🏥 Find care", "📖 Learning hub", "🌼 Calm Corner"]
+PAGES = ["🏡 Home", "👶 BabyCare", "📅 CareCalendar", "🤰 Pregnancy care", "💞 MamaCare journey", "💗 Postpartum recovery", "🌷 Emotional wellness", "🏥 Find care", "📖 Learning hub", "🌼 Calm Corner"]
 if "page" not in st.session_state:
     st.session_state.page = PAGES[0]
 def go(page):
@@ -72,7 +72,7 @@ st.caption("EDUCATIONAL PROTOTYPE · ABUJA, NIGERIA")
 st.warning("**Important safety notice:** HerMamaAI is an educational prototype, not a clinician, diagnosis tool, medical device or emergency service. Content has not been clinically reviewed. For serious symptoms, seek immediate in-person medical care.")
 
 # Real, accessible navigation controls, rather than non-interactive text inside a banner image.
-nav = ["🏡 Home","🤰 Pregnancy care","💞 MamaCare journey","💗 Postpartum recovery","📅 CareCalendar","🌷 Emotional wellness","🏥 Find care","📖 Learning hub","🌼 Calm Corner"]
+nav = ["🏡 Home","👶 BabyCare","🤰 Pregnancy care","💞 MamaCare journey","💗 Postpartum recovery","📅 CareCalendar","🌷 Emotional wellness","🏥 Find care","📖 Learning hub","🌼 Calm Corner"]
 nav_cols = st.columns(3)
 for i, destination in enumerate(nav):
     with nav_cols[i % 3]:
@@ -216,6 +216,10 @@ elif page == "🌷 Emotional wellness":
         st.write("Persistent sadness, intense anxiety, hopelessness, inability to function, or distressing thoughts deserve prompt assessment by a qualified healthcare professional. Emergency symptoms need immediate help.")
     st.button("🌼 Open the Calm Corner",key="wellness_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
     
+elif page == "👶 BabyCare":
+    from babycare import render_babycare
+    render_babycare()
+
 elif page == "🏥 Find care":
     from find_care import render_find_care
     render_find_care()
