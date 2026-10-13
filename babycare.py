@@ -60,10 +60,11 @@ def render_babycare():
     st.warning("Do not delay medical care because of this app. For a missed dose, ask a healthcare professional for an individual catch-up plan; do not restart or change a vaccine series based on this calendar.")
     st.caption("No accounts or database: dates and entries are held only in this browser session. Download what you need before closing the app. Avoid entering full names or other identifying information.")
     dob = st.date_input("Baby's date of birth (for planning)", value=date.today(), min_value=date(2015,1,1), max_value=date.today(), key="babycare_dob")
-    st.markdown("### Vaccines explained for first-time mothers")
-    for name, meaning in VACCINES.items():
-        with st.expander(name):
-            st.write(meaning)
+    st.markdown("### 🔎 What might my baby need at this age?")
+    st.caption("Demonstration only: this shows published routine visit examples, not personalized vaccine eligibility or a catch-up schedule.")
+    age_choice = st.selectbox("Choose a routine visit age", list(VISITS.keys()), key="babycare_age_guide")
+    st.info("**" + age_choice + ":** Ask your immunization clinic about " + VISITS[age_choice] + ".")
+    st.caption("Some vaccines, including malaria vaccines, are introduced by location. Your clinic card and local health team determine what is actually due.")
     st.markdown("### Indicative visit milestones and vaccines to discuss")
     st.caption("These are common age milestones, NOT a complete or individually verified list of vaccines due. National schedules and eligibility can change.")
     for label, amount, unit in MILESTONES:
@@ -74,15 +75,11 @@ def render_babycare():
         st.caption("Ask the clinic about: " + VISITS.get(label, "") + ". Confirm exact eligibility, doses and local availability.")
         with b:
             st.download_button("Add reminder", _ics(due, label), file_name=f"babycare_{label.replace(' ', '_')}.ics", mime="text/calendar", key=f"babycare_ics_{amount}_{unit}")
-    st.markdown("### 🔎 What might my baby need at this age?")
-    st.caption("Demonstration only: this shows published routine visit examples, not personalized vaccine eligibility or a catch-up schedule.")
-    age_choice = st.selectbox("Choose a routine visit age", list(VISITS.keys()), key="babycare_age_guide")
-    st.info("**" + age_choice + ":** Ask your immunization clinic about " + VISITS[age_choice] + ".")
-    st.caption("Some vaccines, including malaria vaccines, are introduced by location. Your clinic card and local health team determine what is actually due.")
-    st.markdown("### My vaccination progress (demonstration)")
-    st.caption("This counts parent-entered records, not verified or completed immunization coverage.")
-    entered_count = len(st.session_state.get("babycare_records", []))
-    st.metric("Parent-reported entries this session", entered_count)
+    st.markdown("### 📚 Understand the vaccines")
+    st.caption("Tap a vaccine name to learn what it helps protect against.")
+    for name, meaning in VACCINES.items():
+        with st.expander(name):
+            st.write(meaning)
     st.markdown("### Parent-entered immunization record")
     st.caption("For your own reference only. Entries are not verified by a clinician and do not replace a child's official immunization card.")
     if "babycare_records" not in st.session_state:
@@ -101,6 +98,9 @@ def render_babycare():
         else:
             st.session_state.babycare_records.append({"Vaccine / dose": selected + (" — " + dose.strip() if dose.strip() else ""), "Date administered": administered.isoformat(), "Clinic (optional)": clinic.strip(), "Status": "Parent-reported; not clinically verified"})
             st.success("Saved temporarily in this session.")
+    st.markdown("### 📊 My saved vaccination entries")
+    st.metric("Number of parent-entered vaccination records", len(st.session_state.babycare_records))
+    st.caption("Counts vaccination entries saved in this session, not distinct parents, babies, or verified vaccinations. One parent may enter several doses.")
     records = st.session_state.babycare_records
     if records:
         st.dataframe(records, use_container_width=True, hide_index=True)
