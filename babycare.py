@@ -147,8 +147,8 @@ def render_babycare():
         st.dataframe(baby["planned_visits"], use_container_width=True, hide_index=True)
         for i, visit in enumerate(baby["planned_visits"]):
             st.download_button("📅 Download reminder: " + visit["Visit"] + " (" + visit["Planned date"] + ")", _ics(date.fromisoformat(visit["Planned date"]), visit["Visit"]), file_name="babycare_planned_visit_" + str(i+1) + ".ics", mime="text/calendar", key="babycare_planned_ics_" + str(i))
-    st.markdown("### Parent-entered immunization record")
-    st.caption("For your own reference only. Entries are not verified by a clinician and do not replace a child's official immunization card.")
+    st.markdown("### ✅ Record a vaccine already received")
+    st.caption("Only enter vaccinations already given, as shown on the clinic card. For future appointments, use Plan a future vaccination visit above. Entries are parent-reported, not clinically verified.")
     records = baby["records"]
     with st.form("babycare_record_form", clear_on_submit=True):
         vaccine = st.selectbox("Select vaccine from the clinic card", ["Choose a vaccine"] + list(VACCINES.keys()) + ["Other"])
@@ -160,13 +160,17 @@ def render_babycare():
     if submitted:
         selected = other_vaccine.strip() if vaccine == "Other" else vaccine
         if selected == "Choose a vaccine" or not selected.strip():
-            st.error("Enter the vaccine or dose from the clinic card.")
+            st.error("Select the vaccine or dose from the clinic card.")
+        elif administered < dob:
+            st.error("The vaccination date cannot be earlier than the selected baby\'s birth date.")
+        elif selected == "Vitamin A (not a vaccine)":
+            st.error("Vitamin A is a supplement, not a vaccine. This form records vaccinations only.")
         else:
             records.append({"Vaccine / dose": selected + (" — " + dose.strip() if dose.strip() else ""), "Date administered": administered.isoformat(), "Clinic (optional)": clinic.strip(), "Status": "Parent-reported; not clinically verified"})
             st.success("Saved temporarily in this session.")
     st.markdown("### 📊 My saved vaccination entries")
     st.metric("Vaccination records for selected baby", len(baby["records"]))
-    st.caption("Counts vaccination entries saved in this session, not distinct parents, babies, or verified vaccinations. One parent may enter several doses.")
+    st.caption("Counts vaccination entries saved for this selected demo baby only. It is not a count of parents, babies or clinically verified vaccinations.")
     if records:
         st.dataframe(records, use_container_width=True, hide_index=True)
         output = io.StringIO()
