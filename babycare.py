@@ -74,6 +74,15 @@ def render_babycare():
         st.caption("Ask the clinic about: " + VISITS.get(label, "") + ". Confirm exact eligibility, doses and local availability.")
         with b:
             st.download_button("Add reminder", _ics(due, label), file_name=f"babycare_{label.replace(' ', '_')}.ics", mime="text/calendar", key=f"babycare_ics_{amount}_{unit}")
+    st.markdown("### 🔎 What might my baby need at this age?")
+    st.caption("Demonstration only: this shows published routine visit examples, not personalized vaccine eligibility or a catch-up schedule.")
+    age_choice = st.selectbox("Choose a routine visit age", list(VISITS.keys()), key="babycare_age_guide")
+    st.info("**" + age_choice + ":** Ask your immunization clinic about " + VISITS[age_choice] + ".")
+    st.caption("Some vaccines, including malaria vaccines, are introduced by location. Your clinic card and local health team determine what is actually due.")
+    st.markdown("### My vaccination progress (demonstration)")
+    st.caption("This counts parent-entered records, not verified or completed immunization coverage.")
+    entered_count = len(st.session_state.get("babycare_records", []))
+    st.metric("Parent-reported entries this session", entered_count)
     st.markdown("### Parent-entered immunization record")
     st.caption("For your own reference only. Entries are not verified by a clinician and do not replace a child's official immunization card.")
     if "babycare_records" not in st.session_state:
