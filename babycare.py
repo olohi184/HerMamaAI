@@ -130,6 +130,23 @@ def render_babycare():
     for name, meaning in VACCINES.items():
         with st.expander(name):
             st.write(meaning)
+    st.markdown("### 📅 Plan a future vaccination visit")
+    st.caption("A planned visit is NOT a vaccine already administered. Confirm appointment date and vaccines with the clinic.")
+    if "planned_visits" not in baby:
+        baby["planned_visits"] = []
+    with st.form("babycare_plan_visit", clear_on_submit=True):
+        planned_age = st.selectbox("Routine visit milestone", list(VISITS.keys()))
+        suggested = next(_milestone_date(dob, amount, unit) for label, amount, unit in MILESTONES if label == planned_age)
+        planned_date = st.date_input("Planned clinic visit date (future dates allowed)", value=max(date.today(), suggested), min_value=dob, max_value=date.today() + timedelta(days=3650))
+        planned_clinic = st.text_input("Demo clinic (optional)", max_chars=100)
+        plan_submit = st.form_submit_button("Save planned visit")
+    if plan_submit:
+        baby["planned_visits"].append({"Visit": planned_age, "Planned date": planned_date.isoformat(), "Clinic": planned_clinic.strip(), "Status": "Planned only — not administered"})
+        st.success("Future visit saved to this demo baby's session.")
+    if baby["planned_visits"]:
+        st.dataframe(baby["planned_visits"], use_container_width=True, hide_index=True)
+        for i, visit in enumerate(baby["planned_visits"]):
+            st.download_button("📅 Download reminder: " + visit["Visit"] + " (" + visit["Planned date"] + ")", _ics(date.fromisoformat(visit["Planned date"]), visit["Visit"]), file_name="babycare_planned_visit_" + str(i+1) + ".ics", mime="text/calendar", key="babycare_planned_ics_" + str(i))
     st.markdown("### Parent-entered immunization record")
     st.caption("For your own reference only. Entries are not verified by a clinician and do not replace a child's official immunization card.")
     records = baby["records"]
