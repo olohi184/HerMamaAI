@@ -68,7 +68,8 @@ st.markdown("""<section class="hm-hero hm-hero-refined">
 <p class="hm-single-message">Compassionate guidance for pregnancy, postpartum recovery and beyond.</p>
 </section>""",unsafe_allow_html=True)
 
-st.caption("EDUCATIONAL PROTOTYPE · ABUJA, NIGERIA")
+st.caption("FUNCTIONAL RESEARCH & INNOVATION PROTOTYPE · ABUJA, NIGERIA")
+st.markdown("**HerMamaAI** is a maternal and child wellness demonstration platform supporting pregnancy education, postpartum wellbeing, emotional wellness, healthcare navigation and childhood immunization planning. **Currently in demonstration and evaluation; not clinically validated.**")
 st.warning("**Important safety notice:** HerMamaAI is an educational prototype, not a clinician, diagnosis tool, medical device or emergency service. Content has not been clinically reviewed. For serious symptoms, seek immediate in-person medical care.")
 
 # Real, accessible navigation controls, rather than non-interactive text inside a banner image.
@@ -82,6 +83,7 @@ page = st.session_state.page
 if page == "🏡 Home":
     st.markdown('<div class="section-head" style="text-align:center">Welcome to HerMamaAI</div>',unsafe_allow_html=True)
     st.markdown('<p class="lead" style="text-align:center">Practical information and compassionate support for every stage of motherhood.</p>',unsafe_allow_html=True)
+    st.info("**Functional Research & Innovation Prototype** — HerMamaAI demonstrates educational maternal and child wellness support. Features are under evaluation and are not a substitute for qualified medical care.")
     c1,c2,c3,c4=st.columns(4)
     features=[
         (c1,"hm-pink","🤰","Pregnancy Support","Explore antenatal care, preparation and important warning signs.","Explore Pregnancy","🤰 Pregnancy care"),
@@ -589,4 +591,4 @@ else:
     st.button("🌼 Try the Calm Corner",key="learning_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
     st.caption("Educational content requires clinical review before a real-world health pilot.")
 
-st.markdown('<div class="footer"><b>HerMamaAI · Version 5.2</b> — Developed by WechimAI Integrated Engineering & ICT Ltd · Abuja, Nigeria.<br>Educational demonstration only. No accounts or health records are collected by this prototype. Appointment entries and checkboxes are temporary session-only planning aids, not booking or clinical screening. Independent clinical review, safeguarding, accessibility testing and privacy assessment are required before real-world pilot use.</div>',unsafe_allow_html=True)
+st.markdown('<div class="footer"><b>HerMamaAI · Functional Research &amp; Innovation Prototype · Version 5.2</b> — Developed by WechimAI Integrated Engineering &amp; ICT Ltd · Abuja, Nigeria.<br>Educational demonstration and evaluation only; not clinically validated, a medical device, a diagnosis tool or an emergency service. BabyCare family profiles, vaccination entries and planned visits are temporary session-only demonstration data, not securely retained medical records. Do not enter real personal or child health information. Independent clinical review, safeguarding, accessibility testing, privacy assessment and secure account infrastructure are required before a real-world pilot.</div>',unsafe_allow_html=True)
