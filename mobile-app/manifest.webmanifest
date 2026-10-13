@@ -1,0 +1,19 @@
+{
+  "name": "HerMamaAI — Maternal & Child Wellness",
+  "short_name": "HerMamaAI",
+  "description": "Maternal and child wellness research and innovation prototype. Educational demonstration only.",
+  "id": "./",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fff7fd",
+  "theme_color": "#61206e",
+  "icons": [
+    {
+      "src": "../HerMamaAI%20Mother%20and%20Baby%20Emblem.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
