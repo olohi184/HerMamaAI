@@ -59,7 +59,19 @@ h1,h2,h3{color:#43145e}
 .hm-logo-focus img{width:min(440px,88%);height:auto;max-height:360px;object-fit:contain;filter:drop-shadow(0 12px 20px #5b226a20)}
 .hm-single-message{position:relative;z-index:1;font-size:1.07rem;font-weight:600;line-height:1.55;color:#58276d;margin:8px auto 0;max-width:650px}
 @media(max-width:720px){.hm-hero-refined{padding:22px 12px 48px!important}.hm-logo-focus img{width:min(340px,96%)}.hm-single-message{font-size:.95rem}}
-.garden-bed{min-height:125px;border-radius:22px;background:linear-gradient(135deg,#fff0f9,#f0e4ff);border:1px solid #edd2ec;padding:25px;font-size:2rem;line-height:1.9;text-align:center;color:#683479}.calm-scene{border-radius:20px;padding:28px;background:linear-gradient(120deg,#e8fbf2,#f8f0ff);border:1px solid #d8ebdf;font-size:1.1rem;line-height:1.8;color:#4f4960;margin:15px 0}</style>
+.garden-bed{min-height:125px;border-radius:22px;background:linear-gradient(135deg,#fff0f9,#f0e4ff);border:1px solid #edd2ec;padding:25px;font-size:2rem;line-height:1.9;text-align:center;color:#683479}.calm-scene{border-radius:20px;padding:28px;background:linear-gradient(120deg,#e8fbf2,#f8f0ff);border:1px solid #d8ebdf;font-size:1.1rem;line-height:1.8;color:#4f4960;margin:15px 0}
+/* Mobile usability: legible controls, compact navigation and scrollable records. */
+@media (max-width: 720px) {
+  .block-container {max-width:100%!important;padding: .65rem .85rem 2.5rem!important}
+  [data-testid="stButton"] button {min-height:48px!important;font-size:.92rem!important;white-space:normal!important;line-height:1.3!important;padding:.55rem .6rem!important}
+  [data-testid="stTextInput"] input,[data-testid="stDateInput"] input,[data-testid="stSelectbox"] [data-baseweb="select"] {font-size:16px!important;min-height:44px}
+  [data-testid="stDataFrame"] {max-width:100%!important;overflow-x:auto!important}
+  [data-testid="stAlert"] {font-size:.92rem!important}
+  .section-head {font-size:1.65rem!important}
+  .hm-card {padding:16px!important;min-height:0!important}
+  .footer {font-size:.8rem!important;line-height:1.6!important}
+}
+</style>
 """,unsafe_allow_html=True)
 
 st.markdown("""<section class="hm-hero hm-hero-refined">
@@ -74,10 +86,13 @@ st.warning("**Important safety notice:** HerMamaAI is an educational prototype, 
 
 # Real, accessible navigation controls, rather than non-interactive text inside a banner image.
 nav = ["🏡 Home","👶 BabyCare","🤰 Pregnancy care","💞 MamaCare journey","💗 Postpartum recovery","📅 CareCalendar","🌷 Emotional wellness","🏥 Find care","📖 Learning hub","🌼 Calm Corner"]
-nav_cols = st.columns(3)
-for i, destination in enumerate(nav):
-    with nav_cols[i % 3]:
-        st.button(destination,key=f"nav_new_{i}",use_container_width=True,on_click=go,args=(destination,))
+# A compact navigation selector avoids a long grid of buttons on mobile.
+st.selectbox("Explore HerMamaAI", nav, index=nav.index(st.session_state.page) if st.session_state.page in nav else 0, key="hm_mobile_nav", on_change=lambda: go(st.session_state.hm_mobile_nav))
+with st.expander("Show all sections", expanded=False):
+    nav_cols = st.columns(2)
+    for i, destination in enumerate(nav):
+        with nav_cols[i % 2]:
+            st.button(destination,key=f"nav_new_{i}",use_container_width=True,on_click=go,args=(destination,))
 page = st.session_state.page
 
 if page == "🏡 Home":
