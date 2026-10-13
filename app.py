@@ -4,6 +4,8 @@ from datetime import date, datetime, time, timedelta
 from html import escape
 
 st.set_page_config(page_title="HerMamaAI | Maternal Wellness", page_icon="💗", layout="wide", initial_sidebar_state="collapsed")
+# Reduce Streamlit developer controls; Cloud-managed Fork/GitHub links may remain.
+st.set_option("client.toolbarMode", "minimal")
 PAGES = ["🏡 Home", "👶 BabyCare", "📅 CareCalendar", "🤰 Pregnancy care", "💞 MamaCare journey", "💗 Postpartum recovery", "🌷 Emotional wellness", "🏥 Find care", "📖 Learning hub", "🌼 Calm Corner"]
 if "page" not in st.session_state:
     st.session_state.page = PAGES[0]
