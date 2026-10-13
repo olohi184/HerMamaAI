@@ -82,6 +82,15 @@ h1,h2,h3{color:#43145e}
  .lead {font-size:.92rem!important;line-height:1.45!important}
  [data-testid="stVerticalBlock"] {gap:.55rem}
 }
+
+/* Homepage touch targets and mobile spacing; keep safety disclosures accessible. */
+@media(max-width:720px){
+  [data-testid="stButton"] button {min-height:42px!important;padding:.35rem .35rem!important;font-size:.88rem!important;border-radius:14px!important}
+  .hm-hero-refined {padding:6px 10px 15px!important}
+  .hm-logo-focus img {width:min(190px,62vw)!important;max-height:160px!important}
+  .hm-single-message {font-size:.78rem!important}
+  [data-testid="stExpander"] summary {padding:.65rem!important}
+}
 </style>
 """,unsafe_allow_html=True)
 
@@ -121,17 +130,6 @@ if page == "🏡 Home":
     st.markdown('<p class="lead" style="text-align:center">Support from pregnancy through postpartum and baby care.</p>', unsafe_allow_html=True)
     with st.expander("About this research prototype"):
         st.write("HerMamaAI demonstrates pregnancy education, postpartum wellbeing, emotional wellness, healthcare navigation and childhood immunization planning. It is in demonstration and evaluation and has not been clinically validated.")
-    c1,c2,c3,c4=st.columns(4)
-    features=[
-        (c1,"hm-pink","🤰","Pregnancy Support","Explore antenatal care, preparation and important warning signs.","Explore Pregnancy","🤰 Pregnancy care"),
-        (c2,"hm-lilac","💞","MamaCare Continuity","Explore postpartum recovery and ongoing support after birth.","Explore Postpartum","💞 MamaCare journey"),
-        (c3,"hm-peach","📅","Care Calendar","Plan antenatal and postnatal visits with your personal calendar.","Open Calendar","📅 CareCalendar"),
-        (c4,"hm-mint","🌷","Emotional Wellness","Learn about self-care, emotional changes and seeking help.","Explore Wellness","🌷 Emotional wellness")
-    ]
-    for col,tone,icon,title,body,action,target in features:
-        with col:
-            st.markdown(f'<div class="hm-card {tone}"><div class="hm-icon">{icon}</div><h3>{title}</h3><p>{body}</p></div>',unsafe_allow_html=True)
-            st.button(action+" →",key="home_"+target,use_container_width=True,on_click=go,args=(target,))
     st.markdown('<div class="soft"><b>Care continues after childbirth.</b> Learn when to contact your maternity team and how to prepare for follow-up care.</div>',unsafe_allow_html=True)
     st.button("🌼 Visit the Motherhood Calm Corner →", key="home_calm", use_container_width=True, on_click=go, args=("🌼 Calm Corner",))
 
