@@ -71,34 +71,56 @@ h1,h2,h3{color:#43145e}
   .hm-card {padding:16px!important;min-height:0!important}
   .footer {font-size:.8rem!important;line-height:1.6!important}
 }
+
+/* Compact mobile-first home header and unobtrusive Streamlit chrome. */
+@media (max-width:720px) {
+ .hm-hero-refined {padding:8px 10px 20px!important;border-radius:18px!important;min-height:0!important}
+ .hm-hero-refined:after {display:none!important}
+ .hm-logo-focus img {width:min(215px,70vw)!important;max-height:185px!important;object-fit:contain!important}
+ .hm-single-message {font-size:.82rem!important;line-height:1.35!important;margin:0 auto!important}
+ .section-head {margin:12px 0 6px!important}
+ .lead {font-size:.92rem!important;line-height:1.45!important}
+ [data-testid="stVerticalBlock"] {gap:.55rem}
+}
 </style>
 """,unsafe_allow_html=True)
 
-st.markdown("""<section class="hm-hero hm-hero-refined">
+# Compact brand header is shown only on the homepage, leaving feature pages room to breathe.
+if st.session_state.page == "🏡 Home":
+    st.markdown("""<section class="hm-hero hm-hero-refined">
+    <div class="hm-logo-focus"><img src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="HerMamaAI mother and baby brand logo"></div>
+    <p class="hm-single-message">Compassionate guidance for pregnancy, postpartum recovery and beyond.</p>
+    </section>""", unsafe_allow_html=True)
+    st.caption("FUNCTIONAL RESEARCH & INNOVATION PROTOTYPE · ABUJA, NIGERIA")
 
-<div class="hm-logo-focus"><img src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="HerMamaAI mother and baby brand logo"></div>
-<p class="hm-single-message">Compassionate guidance for pregnancy, postpartum recovery and beyond.</p>
-</section>""",unsafe_allow_html=True)
-
-st.caption("FUNCTIONAL RESEARCH & INNOVATION PROTOTYPE · ABUJA, NIGERIA")
-st.markdown("**HerMamaAI** is a maternal and child wellness demonstration platform supporting pregnancy education, postpartum wellbeing, emotional wellness, healthcare navigation and childhood immunization planning. **Currently in demonstration and evaluation; not clinically validated.**")
-st.warning("**Important safety notice:** HerMamaAI is an educational prototype, not a clinician, diagnosis tool, medical device or emergency service. Content has not been clinically reviewed. For serious symptoms, seek immediate in-person medical care.")
-
-# Real, accessible navigation controls, rather than non-interactive text inside a banner image.
+# Navigation stays near the top so key services are easy to reach on Android.
 nav = ["🏡 Home","👶 BabyCare","🤰 Pregnancy care","💞 MamaCare journey","💗 Postpartum recovery","📅 CareCalendar","🌷 Emotional wellness","🏥 Find care","📖 Learning hub","🌼 Calm Corner"]
-# A compact navigation selector avoids a long grid of buttons on mobile.
-st.selectbox("Explore HerMamaAI", nav, index=nav.index(st.session_state.page) if st.session_state.page in nav else 0, key="hm_mobile_nav", on_change=lambda: go(st.session_state.hm_mobile_nav))
-with st.expander("Show all sections", expanded=False):
-    nav_cols = st.columns(2)
-    for i, destination in enumerate(nav):
-        with nav_cols[i % 2]:
-            st.button(destination,key=f"nav_new_{i}",use_container_width=True,on_click=go,args=(destination,))
+if st.session_state.page == "🏡 Home":
+    st.markdown("#### Explore care and support")
+    quick = [
+        ("🤰 Pregnancy", "🤰 Pregnancy care"),
+        ("💞 MamaCare", "💞 MamaCare journey"),
+        ("👶 BabyCare", "👶 BabyCare"),
+        ("📅 Calendar", "📅 CareCalendar"),
+        ("🏥 Find Care", "🏥 Find care"),
+        ("🌷 Wellness", "🌷 Emotional wellness"),
+    ]
+    for offset in range(0, len(quick), 2):
+        cols = st.columns(2)
+        for col, (label, target) in zip(cols, quick[offset:offset + 2]):
+            with col:
+                st.button(label, key="quick_" + target, use_container_width=True, on_click=go, args=(target,))
+st.selectbox("Explore all HerMamaAI sections", nav, index=nav.index(st.session_state.page) if st.session_state.page in nav else 0, key="hm_mobile_nav", on_change=lambda: go(st.session_state.hm_mobile_nav))
+with st.expander("Important safety information", expanded=False):
+    st.warning("HerMamaAI is an educational research prototype. Content has not been clinically reviewed. It is not a clinician, diagnosis tool, medical device or emergency service. For serious symptoms, seek immediate in-person medical care.")
+st.caption("Educational demonstration only · Not a substitute for professional medical care.")
 page = st.session_state.page
 
 if page == "🏡 Home":
-    st.markdown('<div class="section-head" style="text-align:center">Welcome to HerMamaAI</div>',unsafe_allow_html=True)
-    st.markdown('<p class="lead" style="text-align:center">Practical information and compassionate support for every stage of motherhood.</p>',unsafe_allow_html=True)
-    st.info("**Functional Research & Innovation Prototype** — HerMamaAI demonstrates educational maternal and child wellness support. Features are under evaluation and are not a substitute for qualified medical care.")
+    st.markdown('<div class="section-head" style="text-align:center">Welcome to HerMamaAI</div>', unsafe_allow_html=True)
+    st.markdown('<p class="lead" style="text-align:center">Support from pregnancy through postpartum and baby care.</p>', unsafe_allow_html=True)
+    with st.expander("About this research prototype"):
+        st.write("HerMamaAI demonstrates pregnancy education, postpartum wellbeing, emotional wellness, healthcare navigation and childhood immunization planning. It is in demonstration and evaluation and has not been clinically validated.")
     c1,c2,c3,c4=st.columns(4)
     features=[
         (c1,"hm-pink","🤰","Pregnancy Support","Explore antenatal care, preparation and important warning signs.","Explore Pregnancy","🤰 Pregnancy care"),
