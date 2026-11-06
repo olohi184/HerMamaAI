@@ -1,12 +1,13 @@
 import streamlit as st
 from mamacare import render_mamacare
+from adaptivecare import render_adaptivecare
 from datetime import date, datetime, time, timedelta
 from html import escape
 
 st.set_page_config(page_title="HerMamaAI | Maternal Wellness", page_icon="💗", layout="wide", initial_sidebar_state="collapsed")
 # Reduce Streamlit developer controls; Cloud-managed Fork/GitHub links may remain.
 st.set_option("client.toolbarMode", "minimal")
-PAGES = ["🏡 Home", "👶 BabyCare", "📅 CareCalendar", "🤰 Pregnancy care", "💞 MamaCare journey", "💗 Postpartum recovery", "🌷 Emotional wellness", "🏥 Find care", "📖 Learning hub", "🌼 Calm Corner"]
+PAGES = ["🏡 Home", "👶 BabyCare", "📅 CareCalendar", "🤰 Pregnancy care", "💞 MamaCare journey", "💗 Postpartum recovery", "🌷 Emotional wellness", "🏥 Find care", "📖 Learning hub", "🌼 Calm Corner", "🌱 AdaptiveCare"]
 if "page" not in st.session_state:
     st.session_state.page = PAGES[0]
 def go(page):
@@ -115,6 +116,7 @@ if st.session_state.page == "🏡 Home":
         ("📅 Calendar", "📅 CareCalendar"),
         ("🏥 Find Care", "🏥 Find care"),
         ("🌷 Wellness", "🌷 Emotional wellness"),
+        ("🌱 AdaptiveCare", "🌱 AdaptiveCare"),
     ]
     for offset in range(0, len(quick), 2):
         cols = st.columns(2)
@@ -126,6 +128,8 @@ with st.expander("Important safety information", expanded=False):
     st.warning("HerMamaAI is an educational research prototype. Content has not been clinically reviewed. It is not a clinician, diagnosis tool, medical device or emergency service. For serious symptoms, seek immediate in-person medical care.")
 st.caption("Educational demonstration only · Not a substitute for professional medical care.")
 page = st.session_state.page
+if page == "🌱 AdaptiveCare":
+    render_adaptivecare()
 
 if page == "🏡 Home":
     st.markdown('<div class="section-head" style="text-align:center">Welcome to HerMamaAI</div>', unsafe_allow_html=True)
