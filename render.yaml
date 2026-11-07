@@ -1,0 +1,16 @@
+# HerMamaAI always-on hosting configuration (deployment is NOT automatic until connected to Render).
+# Choose a paid compute plan to prevent inactivity sleeping.
+services:
+  - type: web
+    name: hermamaai
+    runtime: python
+    region: frankfurt
+    plan: 0.5c-512mb
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.address 0.0.0.0 --server.port $PORT --server.headless true
+    healthCheckPath: /_stcore/health
+    autoDeployTrigger: commit
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
