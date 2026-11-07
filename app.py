@@ -4,7 +4,7 @@ from adaptivecare import render_adaptivecare
 from datetime import date, datetime, time, timedelta
 from html import escape
 
-st.set_page_config(page_title="HerMamaAI | Maternal Wellness", page_icon="💗", layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="HerMamaAI | Maternal Wellness", page_icon="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png", layout="wide", initial_sidebar_state="collapsed")
 # Reduce Streamlit developer controls; Cloud-managed Fork/GitHub links may remain.
 st.set_option("client.toolbarMode", "minimal")
 PAGES = ["🏡 Home", "👶 BabyCare", "📅 CareCalendar", "🤰 Pregnancy care", "💞 MamaCare journey", "💗 Postpartum recovery", "🌷 Emotional wellness", "🏥 Find care", "📖 Learning hub", "🌼 Calm Corner", "🌱 AdaptiveCare"]
