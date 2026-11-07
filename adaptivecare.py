@@ -11,6 +11,8 @@ def render_adaptivecare():
     if "adaptivecare_v2_log" not in st.session_state:
         st.session_state.adaptivecare_v2_log = []
     log = st.session_state.adaptivecare_v2_log
+    if st.session_state.pop("ac_saved_notice", False):
+        st.success("Check-in saved. Suggestions have been refreshed using the latest session record.")
     stage = st.selectbox("Wellness context", STAGES, key="ac_stage")
     goal = st.selectbox("Choose one wellness goal", list(GOALS), key="ac_goal")
     capacity = st.select_slider("How much energy do you have for a small step today?", options=CAPACITIES, value="Moderate", key="ac_capacity")
@@ -43,7 +45,8 @@ def render_adaptivecare():
             log.append({"date": date.today().isoformat(), "context": stage,
                         "goal": goal, "energy": capacity, "restart": setback,
                         "completed": bool(completed)})
-            st.success("Check-in saved in this session only.")
+            st.session_state.ac_saved_notice = True
+            st.rerun()
 
     st.subheader("Wellness check-in dashboard")
     summary = progress_summary(log)
