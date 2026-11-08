@@ -1,6 +1,7 @@
 import streamlit as st
 from mamacare import render_mamacare
 from adaptivecare import render_adaptivecare
+from localization.language_manager import choose_language, localized_navigation
 from datetime import date, datetime, time, timedelta
 from html import escape
 
@@ -137,6 +138,9 @@ if st.session_state.page == "🏡 Home":
     st.caption("FUNCTIONAL RESEARCH & INNOVATION PROTOTYPE · ABUJA, NIGERIA")
 
 # Navigation stays near the top so key services are easy to reach on Android.
+choose_language()
+if st.session_state.hm_language != "en":
+    st.info("Language preview: navigation labels are draft translations. Maternal health guidance remains in English until reviewed.")
 nav = ["🏡 Home","👶 BabyCare","🤰 Pregnancy care","💞 MamaCare journey","💗 Postpartum recovery","📅 CareCalendar","🌷 Emotional wellness","🏥 Find care","📖 Learning hub","🌼 Calm Corner"]
 if st.session_state.page == "🏡 Home":
     st.markdown("#### Explore care and support")
@@ -154,7 +158,7 @@ if st.session_state.page == "🏡 Home":
         for col, (label, target) in zip(cols, quick[offset:offset + 2]):
             with col:
                 st.button(label, key="quick_" + target, use_container_width=True, on_click=go, args=(target,))
-st.selectbox("Explore all HerMamaAI sections", nav, index=nav.index(st.session_state.page) if st.session_state.page in nav else 0, key="hm_mobile_nav", on_change=lambda: go(st.session_state.hm_mobile_nav))
+st.selectbox("Explore all HerMamaAI sections", nav, index=nav.index(st.session_state.page) if st.session_state.page in nav else 0, format_func=localized_navigation, key="hm_mobile_nav", on_change=lambda: go(st.session_state.hm_mobile_nav))
 with st.expander("Important safety information", expanded=False):
     st.warning("HerMamaAI is an educational research prototype. Content has not been clinically reviewed. It is not a clinician, diagnosis tool, medical device or emergency service. For serious symptoms, seek immediate in-person medical care.")
 st.caption("Educational demonstration only · Not a substitute for professional medical care.")
