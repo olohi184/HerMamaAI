@@ -20,7 +20,7 @@ try {
   if (!doc.querySelector('link[rel="manifest"][data-hermamaai]')) {
     const link = doc.createElement('link');
     link.rel = 'manifest';
-    link.href = '/app/static/manifest.json';
+    link.href = '/app/static/manifest.json?brand=official-20261108';
     link.setAttribute('data-hermamaai', 'true');
     doc.head.appendChild(link);
   }
