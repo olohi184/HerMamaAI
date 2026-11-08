@@ -5,6 +5,34 @@ from datetime import date, datetime, time, timedelta
 from html import escape
 
 st.set_page_config(page_title="HerMamaAI | Maternal Wellness", page_icon="HerMamaAI Mother and Baby Emblem.png", layout="wide", initial_sidebar_state="collapsed")
+# Attach the HerMamaAI install manifest to the top-level document.
+# Streamlit does not expose a native page-manifest configuration option.
+# This trusted, zero-height component only inserts a manifest link and theme color;
+# it does not register a service worker or cache sensitive maternal-health data.
+import streamlit.components.v1 as components
+components.html("""
+<script>
+try {
+  const doc = window.parent.document;
+  if (!doc.querySelector('link[rel="manifest"][data-hermamaai]')) {
+    const link = doc.createElement('link');
+    link.rel = 'manifest';
+    link.href = '/app/static/manifest.json';
+    link.setAttribute('data-hermamaai', 'true');
+    doc.head.appendChild(link);
+  }
+  if (!doc.querySelector('meta[name="theme-color"][data-hermamaai]')) {
+    const meta = doc.createElement('meta');
+    meta.name = 'theme-color';
+    meta.content = '#8c287e';
+    meta.setAttribute('data-hermamaai', 'true');
+    doc.head.appendChild(meta);
+  }
+} catch (_) {
+  // In browsers that restrict iframe parent access, the main app stays functional.
+}
+</script>
+""", height=0)
 # Reduce Streamlit developer controls; Cloud-managed Fork/GitHub links may remain.
 st.set_option("client.toolbarMode", "minimal")
 PAGES = ["🏡 Home", "👶 BabyCare", "📅 CareCalendar", "🤰 Pregnancy care", "💞 MamaCare journey", "💗 Postpartum recovery", "🌷 Emotional wellness", "🏥 Find care", "📖 Learning hub", "🌼 Calm Corner", "🌱 AdaptiveCare"]
