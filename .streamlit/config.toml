@@ -1,2 +1,13 @@
 [server]
 enableStaticServing = true
+
+# HerMamaAI uses a pale pink/lilac background. Pin the Streamlit widget
+# theme to light mode so Android system dark mode cannot produce near-white
+# labels on the app's light backgrounds.
+[theme]
+base = "light"
+primaryColor = "#962975"
+backgroundColor = "#fff7fc"
+secondaryBackgroundColor = "#f8eefa"
+textColor = "#351b42"
+font = "sans serif"
