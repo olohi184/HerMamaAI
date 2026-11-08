@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512"><rect width="512" height="512" rx="120" fill="#fff3fa"/><circle cx="256" cy="256" r="208" fill="#f2cfec"/><path d="M144 351c-15-38-13-94 3-133 23-56 68-95 126-93 64 2 110 45 117 107 5 51-17 95-55 121" fill="none" stroke="#772477" stroke-width="34" stroke-linecap="round"/><circle cx="217" cy="235" r="40" fill="#b34d9b"/><circle cx="305" cy="276" r="31" fill="#e06ba9"/><path d="M146 370c27-61 74-92 129-88 44 3 84 31 102 75" fill="none" stroke="#c3398c" stroke-width="37" stroke-linecap="round"/><path d="M195 353c25 36 70 55 111 36" fill="none" stroke="#772477" stroke-width="24" stroke-linecap="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="HerMamaAI mother and baby">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a939a1"/><stop offset=".52" stop-color="#692474"/><stop offset="1" stop-color="#3f155a"/></linearGradient><linearGradient id="heart" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f776bf"/><stop offset="1" stop-color="#d63186"/></linearGradient></defs>
+<rect x="3" y="3" width="506" height="506" rx="112" fill="url(#bg)"/>
+<!-- Stylized mother embracing baby: purpose-drawn vector icon for small mobile screens. -->
+<path d="M120 335 C89 258 115 162 172 114 C212 81 274 73 319 102 C264 97 224 123 195 157 C172 186 161 224 158 259 C166 208 200 165 245 149 C272 139 296 137 321 142 C290 155 270 177 259 204 C244 239 253 270 277 291 C231 295 204 319 196 355 C190 386 203 409 229 430 C178 420 141 389 120 335Z" fill="#fffafc"/>
+<path d="M177 286 C187 271 201 260 220 257 C236 257 249 260 262 269 C245 275 230 288 224 302 C211 300 194 294 177 286Z" fill="#ffffff"/>
+<path d="M249 219 C263 233 282 240 303 238 C285 255 266 263 247 256 C235 249 234 235 249 219Z" fill="#581b65"/>
+<path d="M297 283 C329 246 371 255 386 282 C411 327 373 382 319 425 C297 445 277 455 260 466 C201 431 160 405 135 362 C175 389 215 409 258 429 C307 399 356 348 353 314 C351 289 327 273 297 283Z" fill="url(#heart)"/>
+<path d="M225 347 C228 311 250 283 285 276 C320 270 349 287 352 316 C354 349 324 371 289 374 C265 376 244 367 225 347Z" fill="#ffebf8"/>
+<path d="M263 328 C267 317 277 312 289 315 C298 318 302 325 302 333" stroke="#762577" stroke-width="8" fill="none" stroke-linecap="round"/>
+<path d="M217 347 C239 382 263 392 292 382" fill="none" stroke="#fff6fd" stroke-width="12" stroke-linecap="round"/>
+</svg>
