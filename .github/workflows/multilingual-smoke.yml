@@ -1,0 +1,23 @@
+name: Multilingual interface smoke tests
+on:
+  push:
+    branches: [feature/multilingual-adaptivecare]
+  pull_request:
+    paths:
+      - 'app.py'
+      - 'locales/**'
+      - 'localization/**'
+      - 'tests/test_localization.py'
+      - '.github/workflows/multilingual-smoke.yml'
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check Python syntax
+        run: python -m py_compile app.py localization/language_manager.py
+      - name: Check localization catalogues and integration
+        run: python -m unittest discover -s tests -p 'test_localization.py' -v
