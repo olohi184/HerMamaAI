@@ -4,6 +4,9 @@ from adaptivecare import render_adaptivecare
 from datetime import date, datetime, time, timedelta
 from html import escape
 
+from mobile_branding import ensure_official_mobile_icons
+ensure_official_mobile_icons()
+
 st.set_page_config(page_title="HerMamaAI | Maternal Wellness", page_icon="HerMamaAI Mother and Baby Emblem.png", layout="wide", initial_sidebar_state="collapsed")
 # Attach the HerMamaAI install manifest to the top-level document.
 # Streamlit does not expose a native page-manifest configuration option.
