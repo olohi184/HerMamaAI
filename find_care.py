@@ -80,39 +80,39 @@ def render_find_care():
     st.markdown(f'<p class="lead">{escape(t("find.intro"))}</p>', unsafe_allow_html=True)
     st.error("**Emergency warning:** Heavy bleeding, chest pain, trouble breathing, seizures, severe headache or visual changes, fainting, or thoughts of harming yourself or your baby need immediate in-person emergency assessment. Go to the nearest appropriate emergency department or contact local emergency services. Do not wait for this app.")
     st.warning("**Important:** Being listed by the Federal Ministry of Health does not mean HerMamaAI has verified maternity services, opening hours, emergency capacity, precise map location or current operations. **None of these hospitals is claimed as a HerMamaAI partner.** Confirm details with the facility before a non-urgent visit.")
-    st.caption("Only phone numbers supported by published hospital information or a hospital-management notice are shown; they have not been independently tested. HerMamaAI does not request your live location or store your medical information here.")
+    st.caption(ui("Only phone numbers supported by published hospital information or a hospital-management notice are shown; they have not been independently tested. HerMamaAI does not request your live location or store your medical information here."))
     phase_two_states = ["Rivers", "Oyo", "Kano", "Kaduna", "Enugu", "Edo", "Anambra"]
-    st.markdown("**Phase 2 expansion — explore teaching hospitals in seven additional states**")
-    st.caption("These are existing directory listings, not newly verified maternity providers. Hospital-specific maternity services, contacts and operating capacity remain unconfirmed unless evidence is shown on a hospital card.")
+    st.markdown("**" + ui("Phase 2 expansion — explore teaching hospitals in seven additional states") + "**")
+    st.caption(ui("These are existing directory listings, not newly verified maternity providers. Hospital-specific maternity services, contacts and operating capacity remain unconfirmed unless evidence is shown on a hospital card."))
     phase_two_choice = st.selectbox(ui("Quickly explore a Phase 2 state"), ["Choose a state below"] + phase_two_states, format_func=display_option, key="findcare_phase2_quick")
     regions = ["All listed states and FCT"] + sorted({item[0] for item in HOSPITALS})
-    selected_region = st.selectbox(ui("Select state or FCT"), regions, index=regions.index(phase_two_choice) if phase_two_choice in regions else regions.index("FCT"), key="findcare_region")
+    selected_region = st.selectbox(ui("Select state or FCT"), regions, format_func=display_option, index=regions.index(phase_two_choice) if phase_two_choice in regions else regions.index("FCT"), key="findcare_region")
     region_results = [item for item in HOSPITALS if selected_region == regions[0] or item[0] == selected_region]
     cities = ["All listed cities"] + sorted({item[1] for item in region_results})
-    selected_city = st.selectbox(ui("Select city"), cities, key="findcare_city")
+    selected_city = st.selectbox(ui("Select city"), cities, format_func=display_option, key="findcare_city")
     results = [item for item in region_results if selected_city == cities[0] or item[1] == selected_city]
-    st.caption(f"Showing {len(results)} government-listed institution(s). Not an exhaustive list of Nigerian hospitals.")
+    st.caption(ui("Showing {count} government-listed institution(s). Not an exhaustive list of Nigerian hospitals.").format(count=len(results)))
     for region, city, name in results:
         with st.container(border=True):
             st.markdown(f"#### 🏥 {name}")
             st.write(f"📍 {city}, {region}, Nigeria")
-            st.caption("Institution listed in government directory · Service availability unverified · No partnership claimed")
+            st.caption(ui("Institution listed in government directory · Service availability unverified · No partnership claimed"))
             details = OFFICIAL_DETAILS.get(name)
             if details:
-                st.success("Published maternity-service evidence available · Current clinic hours and capacity NOT confirmed")
+                st.success(ui("Published maternity-service evidence available · Current clinic hours and capacity NOT confirmed"))
                 st.write(details["service"])
-                st.link_button("🏥 View maternity-service evidence ↗", details["service_url"], use_container_width=True)
+                st.link_button(ui("🏥 View maternity-service evidence ↗"), details["service_url"], use_container_width=True)
                 if details.get("contact"):
-                    st.write("Published hospital contact (not independently tested): " + details["contact"])
+                    st.write(ui("Published hospital contact (not independently tested): ") + details["contact"])
                     if details.get("contact_note"):
                         st.caption(details["contact_note"])
-                    st.link_button("☎️ View published contact source ↗", details["contact_url"], use_container_width=True)
+                    st.link_button(ui("☎️ View published contact source ↗"), details["contact_url"], use_container_width=True)
             else:
-                st.caption("Hospital-specific maternity services and contact details awaiting review")
+                st.caption(ui("Hospital-specific maternity services and contact details awaiting review"))
 
             query = quote(f"{name}, {city}, {region}, Nigeria", safe="")
-            st.link_button("🗺️ Search on Google Maps / Directions ↗", f"https://www.google.com/maps/search/?api=1&query={query}", use_container_width=True)
-            st.link_button("📖 View government source ↗", SOURCE_URL, use_container_width=True)
+            st.link_button(ui("🗺️ Search on Google Maps / Directions ↗"), f"https://www.google.com/maps/search/?api=1&query={query}", use_container_width=True)
+            st.link_button(ui("📖 View government source ↗"), SOURCE_URL, use_container_width=True)
     st.info("**City not listed?** This starter directory covers the cities represented by the ministry's teaching-hospital list, not every Nigerian city or maternity facility. Contact your local primary healthcare centre or state health authority for other options. In an emergency, use the nearest appropriate emergency service instead of travelling to a distant listed hospital.")
     with st.expander(ui("Questions to ask a facility before a routine visit")):
         st.markdown("- Do you currently provide antenatal and postnatal care?\n- Are the relevant services available on the day I plan to visit?\n- Do I need a referral or appointment?\n- What are the emergency and after-hours arrangements?\n- Can you confirm the correct entrance and address?")
