@@ -310,5 +310,7 @@
   "ui.Postnatal care helps qualified professionals identify complications, support recovery and address emotional or feeding concerns. Follow the schedule your healthcare team recommends.": "Kulawar bayan haihuwa na taimaka wa ƙwararrun ma'aikatan lafiya su gano matsaloli, su tallafa wa murmurewa da magance damuwar zuciya ko shayarwa. Bi jadawalin da ƙungiyar lafiyarki ta ba da shawara.",
   "ui.Bring your discharge notes if available, a medication list, and questions about symptoms, feeding, recovery and your next follow-up.": "Ki kawo takardun sallama idan akwai, jerin magunguna da tambayoyi game da alamomi, shayarwa, murmurewa da ziyara ta gaba.",
   "ui.Discuss healing, feeding, sleep, blood pressure checks where indicated, emotional health and continued follow-up. Recovery may continue beyond six weeks.": "Tattauna warkewa, shayarwa, barci, auna hawan jini idan an buƙata, lafiyar zuciya da ci gaba da ziyara. Murmurewa na iya wuce mako shida.",
-  "ui.Educational content requires clinical review before a real-world health pilot.": "Abubuwan ilimi na buƙatar duba na ƙwararrun lafiya kafin gwaji a zahiri."
+  "ui.Educational content requires clinical review before a real-world health pilot.": "Abubuwan ilimi na buƙatar duba na ƙwararrun lafiya kafin gwaji a zahiri.",
+  "ui.Demo parent profiles": "Bayanan iyayen gwaji",
+  "ui.Demo baby profiles": "Bayanan jariran gwaji"
 }
