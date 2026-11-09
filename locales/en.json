@@ -407,5 +407,8 @@
   "ui.Seek urgent medical assessment for vaginal bleeding, severe abdominal pain, severe headache or vision changes, seizures, chest pain or trouble breathing.": "Seek urgent medical assessment for vaginal bleeding, severe abdominal pain, severe headache or vision changes, seizures, chest pain or trouble breathing.",
   "ui.**Urgent warning signs:** Heavy bleeding, chest pain, trouble breathing, seizures, severe headache or vision changes, fainting, fever with severe illness, or thoughts of harming yourself or your baby. Seek emergency medical care immediately.": "**Urgent warning signs:** Heavy bleeding, chest pain, trouble breathing, seizures, severe headache or vision changes, fainting, fever with severe illness, or thoughts of harming yourself or your baby. Seek emergency medical care immediately.",
   "ui.💗 Postpartum recovery": "💗 Postpartum recovery",
-  "ui.English reference:": "English reference:"
+  "ui.English reference:": "English reference:",
+  "safety.mamacare_physical": "Contact your maternity care team promptly. For severe or sudden symptoms, seek emergency care now.",
+  "safety.mamacare_emotional": "Contact a qualified healthcare professional and someone you trust. If you may harm yourself or your baby, seek emergency help now and do not stay alone.",
+  "safety.english_reference": "English reference:"
 }
