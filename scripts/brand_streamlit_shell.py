@@ -5,7 +5,7 @@ Streamlit web assets are modified; no HerMamaAI application data is touched.
 """
 from pathlib import Path
 import re
-import shutil
+from PIL import Image, ImageOps
 
 import streamlit
 
@@ -20,9 +20,14 @@ if not LOGO.is_file() or not HTML.is_file():
 
 # Streamlit's initial page normally links to ./favicon.png before app.py runs.
 # Replacing the packaged favicon handles Safari's first document load.
-shutil.copyfile(LOGO, ICON)
+with Image.open(LOGO) as source:
+    source = source.convert("RGBA")
+    square = Image.new("RGBA", (64, 64), "#fff2fa")
+    fitted = ImageOps.contain(source, (60, 60), Image.Resampling.LANCZOS)
+    square.alpha_composite(fitted, ((64 - fitted.width) // 2, (64 - fitted.height) // 2))
+    square.save(ICON, format="PNG")
 html = HTML.read_text(encoding="utf-8")
-icon_link = '<link rel="icon" type="image/png" href="./favicon.png?v=hermamaai-20261109" />'
+icon_link = '<link rel="icon" type="image/png" href="./favicon.png?v=hermamaai-tab-20261109b" />'
 html, count = re.subn(
     r"""<link\s+[^>]*rel=["'](?:shortcut\s+)?icon["'][^>]*>""",
     icon_link,
