@@ -376,5 +376,7 @@
   "ui.↺ New bouquet": "↺ Sabon tarin furanni",
   "ui.Your bouquet begins here.": "Tarin furanninki ya fara a nan.",
   "ui.Choose a flower to create something lovely.": "Zaɓi fure don ƙirƙirar abu mai kyau.",
-  "ui.💗 A kind reminder": "💗 Tunatarwa mai daɗi"
+  "ui.💗 A kind reminder": "💗 Tunatarwa mai daɗi",
+  "safety.emergency_translation_notice": "Ana nuna bayanan gaggawa da Turanci yayin da fassarar jagorar lafiya ke jiran tantancewar ƙwararru. Idan kina da alamomi masu tsanani, nemi taimakon likita kai tsaye nan da nan; kada ki jira amsar manhaja.",
+  "safety.review_status": "Wannan manhajar gwaji ta ilimi ba ta yin ganewar cuta, ba ta bayar da taimakon gaggawa ko shawarar likita ta musamman. Duba manhajar da ƙwararren lafiya ya yi ba ya tabbatar da ingancin waɗannan fassarorin gwaji."
 }
