@@ -389,5 +389,9 @@
   "ui.What are the emergency and after-hours arrangements?": "Kí ni ètò pajawiri àti iṣẹ́ lẹ́yìn wákàtí iṣẹ́?",
   "ui.Can you confirm the correct entrance and address?": "Ṣé ẹ lè jẹ́rìí ẹnu-ọ̀nà àti àdírẹ́sì tó tọ́?",
   "ui.Optional self-reflection only. Answers remain in the current Streamlit session and are not sent to a healthcare professional.": "Ìrònú nípa ara rẹ jẹ́ àṣàyàn nìkan. Àwọn ìdáhùn wà nínú ìgbà ìlò Streamlit yìí, a kò rán wọn sí amọ̀ṣẹ́dunjú ìlera.",
-  "ui.This list is not exhaustive. Seek care for any concerning symptoms.": "Àtòjọ yìí kò pé. Wá ìtọ́jú fún àmì àìsàn èyíkéyìí tó ń yọ ọ́ lẹ́nu."
+  "ui.This list is not exhaustive. Seek care for any concerning symptoms.": "Àtòjọ yìí kò pé. Wá ìtọ́jú fún àmì àìsàn èyíkéyìí tó ń yọ ọ́ lẹ́nu.",
+  "ui.Demo privacy: check-ins exist only in this Streamlit session; they are not synced across visits or sent to healthcare providers. Do not enter personal or medical information.": "Ìpamọ́ àpẹẹrẹ: àkọsílẹ̀ ìṣàyẹ̀wò ara ẹni wà nínú ìgbà ìlò Streamlit yìí nìkan; a kò so wọ́n pọ̀ láàárín ìbẹ̀wò tàbí rán sí àwọn amọ̀ṣẹ́dunjú ìlera. Má tẹ ìsọfúnni ara ẹni tàbí ìlera sí i.",
+  "ui.Personal wellness planning and check-in controls are hidden when you request health assistance.": "A ń fi ètò àlàáfíà ara ẹni àti àwọn ìṣàkóso ìṣàyẹ̀wò ara ẹni pamọ́ nígbà tí o bá béèrè ìrànlọ́wọ́ ìlera.",
+  "ui.This version intentionally stores no medical history, names, symptoms, or location. There are no automatic notifications or provider integrations. For early pilot use, clinical, privacy, security and accessibility reviews are still required.": "Ẹ̀yà yìí kò fi ìtàn ìlera, orúkọ, àmì àìsàn tàbí ibi tí ènìyàn wà pamọ́. Kò sí ìkìlọ̀ aládàáṣe tàbí ìsopọ̀ pẹ̀lú olùpèsè ìtọ́jú. A ṣì nílò àyẹ̀wò ìlera, ìpamọ́, ààbò àti ìrọ̀rùn lílò ṣáájú ìdánwò àkọ́kọ́.",
+  "ui.🌱 AdaptiveCare": "🌱 AdaptiveCare"
 }
