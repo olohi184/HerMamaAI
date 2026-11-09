@@ -1,7 +1,7 @@
 """Streamlit AdaptiveCare v2 interface: rule-based, educational, session-only."""
 from datetime import date
 import streamlit as st
-from localization.language_manager import t
+from localization.language_manager import t, display_option
 from adaptive_engine import GOALS, STAGES, CAPACITIES, CONCERNS, build_plan, progress_summary
 
 def render_adaptivecare():
@@ -14,11 +14,11 @@ def render_adaptivecare():
     log = st.session_state.adaptivecare_v2_log
     if st.session_state.pop("ac_saved_notice", False):
         st.success("Check-in saved. Suggestions have been refreshed using the latest session record.")
-    stage = st.selectbox(t("ac.context"), STAGES, key="ac_stage")
-    goal = st.selectbox(t("ac.goal"), list(GOALS), key="ac_goal")
-    capacity = st.select_slider(t("ac.energy"), options=CAPACITIES, value="Moderate", key="ac_capacity")
+    stage = st.selectbox(t("ac.context"), STAGES, format_func=display_option, key="ac_stage")
+    goal = st.selectbox(t("ac.goal"), list(GOALS), format_func=display_option, key="ac_goal")
+    capacity = st.select_slider(t("ac.energy"), options=CAPACITIES, format_func=display_option, value="Moderate", key="ac_capacity")
     setback = st.checkbox(t("ac.restart"), key="ac_setback")
-    concern = st.selectbox(t("ac.concern"), CONCERNS, key="ac_concern")
+    concern = st.selectbox(t("ac.concern"), CONCERNS, format_func=display_option, key="ac_concern")
     previous = next((row["completed"] for row in reversed(log) if row.get("goal") == goal), None)
     plan = build_plan(stage, goal, capacity, setback, concern, previous)
     if plan.urgency != "none":
