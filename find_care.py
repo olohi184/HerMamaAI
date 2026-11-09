@@ -1,7 +1,8 @@
 """Educational Find Care directory: source-based Nigerian teaching hospitals."""
 from urllib.parse import quote
 import streamlit as st
-from localization.language_manager import ui, display_option
+from html import escape
+from localization.language_manager import ui, display_option, t
 
 SOURCE_URL = "https://health.gov.ng/teaching-hospitals/"
 # State, city and institution name transcribed from the Federal Ministry of Health
@@ -76,7 +77,7 @@ OFFICIAL_DETAILS = {
 
 def render_find_care():
     st.markdown('<div class="section-head">🏥 ' + ui("Find Care Across Nigeria") + '</div>', unsafe_allow_html=True)
-    st.markdown('<p class="lead">Explore a starter directory of government-listed teaching hospitals in Abuja and other Nigerian cities. This is a planning aid, not a clinical referral or booking service.</p>', unsafe_allow_html=True)
+    st.markdown(f'<p class="lead">{escape(t("find.intro"))}</p>', unsafe_allow_html=True)
     st.error("**Emergency warning:** Heavy bleeding, chest pain, trouble breathing, seizures, severe headache or visual changes, fainting, or thoughts of harming yourself or your baby need immediate in-person emergency assessment. Go to the nearest appropriate emergency department or contact local emergency services. Do not wait for this app.")
     st.warning("**Important:** Being listed by the Federal Ministry of Health does not mean HerMamaAI has verified maternity services, opening hours, emergency capacity, precise map location or current operations. **None of these hospitals is claimed as a HerMamaAI partner.** Confirm details with the facility before a non-urgent visit.")
     st.caption("Only phone numbers supported by published hospital information or a hospital-management notice are shown; they have not been independently tested. HerMamaAI does not request your live location or store your medical information here.")
