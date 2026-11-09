@@ -244,5 +244,22 @@
   "ui.Discuss where you plan to give birth, how you will travel there, whom to contact, what to pack and who can support you. Review emergency arrangements with your maternity team.": "Discuss where you plan to give birth, how you will travel there, whom to contact, what to pack and who can support you. Review emergency arrangements with your maternity team.",
   "ui.Recovery varies after vaginal birth and caesarean birth. Ask your clinician about pain control, incision or perineal care, expected bleeding, safe activity and when to seek assessment for changes.": "Recovery varies after vaginal birth and caesarean birth. Ask your clinician about pain control, incision or perineal care, expected bleeding, safe activity and when to seek assessment for changes.",
   "ui.Discuss antenatal visits, recommended screening, medicines, nutrition, baby's movement, delivery plans and emergency transport with your maternity team.": "Discuss antenatal visits, recommended screening, medicines, nutrition, baby's movement, delivery plans and emergency transport with your maternity team.",
-  "ui.HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice.": "HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice."
+  "ui.HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice.": "HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice.",
+  "ui.Protects against severe tuberculosis.": "Protects against severe tuberculosis.",
+  "ui.Oral drops protecting against polio.": "Oral drops protecting against polio.",
+  "ui.Injection protecting against polio.": "Injection protecting against polio.",
+  "ui.Protects against hepatitis B and related liver disease.": "Protects against hepatitis B and related liver disease.",
+  "ui.Protects against diphtheria, tetanus, whooping cough, hepatitis B and Hib.": "Protects against diphtheria, tetanus, whooping cough, hepatitis B and Hib.",
+  "ui.Protects against serious pneumococcal infections including some pneumonia and meningitis.": "Protects against serious pneumococcal infections including some pneumonia and meningitis.",
+  "ui.Protects against severe rotavirus diarrhoea.": "Protects against severe rotavirus diarrhoea.",
+  "ui.Protects against measles; MR also protects against rubella.": "Protects against measles; MR also protects against rubella.",
+  "ui.Protects against yellow fever.": "Protects against yellow fever.",
+  "ui.Protects against some meningococcal infections.": "Protects against some meningococcal infections.",
+  "ui.Helps reduce malaria illness; local rollout varies.": "Helps reduce malaria illness; local rollout varies.",
+  "ui.Supplement supporting vision and immunity.": "Supplement supporting vision and immunity.",
+  "ui.Tap a vaccine name to learn what it helps protect against.": "Tap a vaccine name to learn what it helps protect against.",
+  "ui.📚 Understand the vaccines": "📚 Understand the vaccines",
+  "ui.📅 Plan a future vaccination visit": "📅 Plan a future vaccination visit",
+  "ui.✅ Record a vaccine already received": "✅ Record a vaccine already received",
+  "ui.📊 My saved vaccination entries": "📊 My saved vaccination entries"
 }
