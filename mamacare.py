@@ -31,7 +31,7 @@ def render_mamacare(go=None):
         phase = st.selectbox(ui("Choose a recovery stage"), list(STAGES), format_func=display_option, key="mamacare_phase")
         title, guidance = STAGES[phase]
         st.subheader(ui(title))
-        st.write(guidance)
+        st.write(ui(guidance))
         st.caption(ui("These stages are educational, not a prescribed follow-up schedule. Every recovery is different."))
         if go is not None:
             st.button(ui("🌼 Visit Calm Corner →"), key="mc_calm", on_click=go, args=("🌼 Calm Corner",), use_container_width=True)
@@ -46,9 +46,9 @@ def render_mamacare(go=None):
         if mood == "I need support":
             st.warning("Contact a qualified healthcare professional and someone you trust. If you may harm yourself or your baby, seek emergency help now and do not stay alone.")
         if support == "I could use more help":
-            st.info("Consider asking someone you trust for one specific practical task today.")
+            st.info(ui("Consider asking someone you trust for one specific practical task today."))
         if physical or mood or support:
-            st.write("You deserve care, rest and support.")
+            st.write(ui("You deserve care, rest and support."))
     elif section == options[2]:
         st.subheader(ui("Postpartum warning signs"))
         for item in DANGER:
