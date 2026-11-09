@@ -19,10 +19,10 @@ DANGER = [
 ]
 
 def render_mamacare(go=None):
-    st.markdown("## 🌷 MamaCare Continuity")
+    st.markdown("## " + ui("🌷 MamaCare Continuity"))
     st.write("Care does not end at childbirth. Explore supportive postpartum information and prepare for follow-up with your maternity team.")
     st.warning("Educational prototype only — not a diagnosis, clinical assessment or emergency service. This content has not yet undergone clinical review.")
-    st.markdown("### Your postpartum care journey")
+    st.markdown("### " + ui("Your postpartum care journey"))
     st.caption("Choose what you need today. These are educational tools, not clinical monitoring.")
     options = ["🌼 Recovery guidance", "💗 Gentle check-in", "🚨 Warning signs", "📅 Follow-up planning"]
     section = st.radio(ui("Explore your care"), options, format_func=display_option, horizontal=True, key="mc_section", label_visibility="collapsed")
