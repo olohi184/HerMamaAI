@@ -284,16 +284,16 @@ elif page == "🤰 Pregnancy care":
     st.error("Seek urgent medical assessment for vaginal bleeding, severe abdominal pain, severe headache or vision changes, seizures, chest pain or trouble breathing.")
 
     st.markdown("#### " + ui("Pregnancy learning topics"))
-    with st.expander("Nutrition, rest and everyday well-being"):
-        st.write("Ask your maternity team about a varied diet, food safety, hydration, recommended supplements, activity, rest and any individual restrictions. Avoid starting or stopping medicines or supplements based on app content.")
-    with st.expander("Understanding antenatal checks"):
+    with st.expander(ui("Nutrition, rest and everyday well-being")):
+        st.write(ui("Ask your maternity team about a varied diet, food safety, hydration, recommended supplements, activity, rest and any individual restrictions. Avoid starting or stopping medicines or supplements based on app content."))
+    with st.expander(ui("Understanding antenatal checks")):
         st.write(ui("Antenatal visits may include blood pressure measurement, laboratory tests, screening, fetal growth monitoring and discussion of symptoms. What is appropriate depends on your stage of pregnancy, medical history and local guidance."))
-    with st.expander("Preparing for delivery"):
+    with st.expander(ui("Preparing for delivery")):
         st.write(ui("Discuss where you plan to give birth, how you will travel there, whom to contact, what to pack and who can support you. Review emergency arrangements with your maternity team."))
-    with st.expander("Questions about baby's movement"):
+    with st.expander(ui("Questions about baby's movement")):
         st.write("Ask your maternity team what movements to expect and what to do if movement decreases or changes. Seek prompt professional assessment for concerns about reduced movement; do not wait for an app or a scheduled visit.")
     st.markdown("#### " + ui("A small step today"))
-    st.checkbox("I have written down a question to ask at my next antenatal visit.",key="preg_extra")
+    st.checkbox(ui("I have written down a question to ask at my next antenatal visit."),key="preg_extra")
     
 elif page == "💞 MamaCare journey":
     render_mamacare(go)
@@ -301,23 +301,23 @@ elif page == "💞 MamaCare journey":
 elif page == "💗 Postpartum recovery":
     st.markdown('<div class="section-head">💗 Postpartum recovery</div>',unsafe_allow_html=True)
     st.markdown(f'<p class="lead">{escape(t("post.intro"))}</p>',unsafe_allow_html=True)
-    with st.expander("The first days after birth",expanded=True):
+    with st.expander(ui("The first days after birth"),expanded=True):
         st.write("Ask your team about bleeding, pain, feeding, wound care, blood pressure checks where indicated, sleep, and when to return for follow-up.")
-    with st.expander("Weeks 2–6: stay connected"):
+    with st.expander(ui("Weeks 2–6: stay connected")):
         st.write("Do not dismiss new or worsening symptoms. Contact your maternity facility if you miss an appointment or are concerned about recovery.")
-    with st.expander("Beyond six weeks"):
+    with st.expander(ui("Beyond six weeks")):
         st.write("Persistent pain, mood changes, bladder or pelvic-floor symptoms, feeding concerns or other ongoing difficulties deserve professional assessment.")
     st.button(ui("Explore MamaCare Continuity →"),type="primary",use_container_width=True,on_click=go,args=("💞 MamaCare journey",))
     st.error("**Urgent warning signs:** Heavy bleeding, chest pain, trouble breathing, seizures, severe headache or vision changes, fainting, fever with severe illness, or thoughts of harming yourself or your baby. Seek emergency medical care immediately.")
 
-    st.markdown("#### More postpartum recovery topics")
-    with st.expander("Healing and comfort"):
+    st.markdown("#### " + ui("More postpartum recovery topics"))
+    with st.expander(ui("Healing and comfort")):
         st.write(ui("Recovery varies after vaginal birth and caesarean birth. Ask your clinician about pain control, incision or perineal care, expected bleeding, safe activity and when to seek assessment for changes."))
-    with st.expander("Feeding support without judgment"):
+    with st.expander(ui("Feeding support without judgment")):
         st.write("Whether breastfeeding, formula feeding or combining approaches, seek individualized guidance from qualified professionals if feeding is painful, difficult or worrying. Your well-being matters too.")
-    with st.expander("Sleep, fatigue and asking for practical help"):
-        st.write("Rest can be difficult with a newborn. Consider asking trusted people for help with household tasks and discuss severe or persistent exhaustion with your care team.")
-    with st.expander("Mood and relationships after birth"):
+    with st.expander(ui("Sleep, fatigue and asking for practical help")):
+        st.write(ui("Rest can be difficult with a newborn. Consider asking trusted people for help with household tasks and discuss severe or persistent exhaustion with your care team."))
+    with st.expander(ui("Mood and relationships after birth")):
         st.write("Emotional changes can affect parents and relationships. Talk openly with someone you trust and contact a qualified professional if distress persists, intensifies or interferes with daily life.")
     
 elif page == "🌷 Emotional wellness":
@@ -329,11 +329,11 @@ elif page == "🌷 Emotional wellness":
     st.error("If you may harm yourself or someone else, or experience severe confusion or unusual perceptions, seek emergency medical help immediately and ask a trusted person to stay with you.")
 
     st.markdown("#### " + ui("Emotional wellness toolkit"))
-    with st.expander("Check in with yourself"):
+    with st.expander(ui("Check in with yourself")):
         st.write("You might gently ask: What do I need today? Have I eaten and rested as much as I can? Is there someone I can talk to? These prompts are not a mental-health assessment.")
-    with st.expander("Simple connection ideas"):
-        st.write("Consider sending a short message to a trusted friend, asking someone to sit with you, or sharing a specific task you need help with.")
-    with st.expander("When to seek professional support"):
+    with st.expander(ui("Simple connection ideas")):
+        st.write(ui("Consider sending a short message to a trusted friend, asking someone to sit with you, or sharing a specific task you need help with."))
+    with st.expander(ui("When to seek professional support")):
         st.write("Persistent sadness, intense anxiety, hopelessness, inability to function, or distressing thoughts deserve prompt assessment by a qualified healthcare professional. Emergency symptoms need immediate help.")
     st.button(ui("🌼 Open the Calm Corner"),key="wellness_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
     
