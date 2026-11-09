@@ -6,7 +6,7 @@ from adaptive_engine import GOALS, STAGES, CAPACITIES, CONCERNS, build_plan, pro
 
 def render_adaptivecare():
     st.title("🌱 AdaptiveCare")
-    st.caption("Experimental, rule-based maternal wellness habit support • Educational demonstration")
+    st.caption(t("ac.intro"))
     st.warning("Not clinically reviewed or validated. Not a medical device, diagnosis, symptom checker, triage tool or emergency service. For urgent or severe symptoms, seek immediate in-person medical care.")
     st.info("Demo privacy: check-ins exist only in this Streamlit session; they are not synced across visits or sent to healthcare providers. Do not enter personal or medical information.")
     if "adaptivecare_v2_log" not in st.session_state:
