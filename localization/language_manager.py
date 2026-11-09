@@ -29,17 +29,21 @@ def choose_language():
 # Phase 1: Keep health instructions and safety-critical guidance in English
 # until qualified linguistic and healthcare review is completed.
 CLINICAL_PREFIXES = ("preg.", "post.", "baby.", "mama.", "well.", "learn.", "safety.")
-CLINICAL_UI_TERMS = (
-    "bleeding", "seizure", "fainting", "chest pain", "breathing",
-    "headache", "vision changes", "fever", "infection", "emergency",
-    "urgent", "warning signs", "medical", "clinical", "diagnos",
-    "maternity", "healthcare", "health care", "hospital", "doctor",
-    "midwife", "nurse", "symptom", "postpartum", "pregnancy",
-    "prenatal", "postnatal", "breastfeed", "feeding", "contraception",
-    "vaccin", "immuniz", "medication", "pain", "wound", "harm",
-    "seek care", "seek help", "contact your", "care team",
-    "discharge", "recovery", "follow-up", "newborn", "baby's health",
-)
+# Only explicitly approved non-medical interface labels are translated in Phase 1.
+# Everything else defaults to the English source, including new text added later.
+SAFE_UI_LABELS = frozenset({
+    "Explore your care", "Your postpartum care journey",
+    "Choose what you need today. These are educational tools, not clinical monitoring.",
+    "How are you feeling today?", "Physical recovery", "Emotional well-being",
+    "Support around you", "Doing okay", "Having a difficult day",
+    "I have support", "I could use more help", "Comfortable today",
+    "Some concerns", "I need support", "🌼 Recovery guidance",
+    "💗 Gentle check-in", "📅 Follow-up planning",
+    "🌼 Visit Calm Corner →", "🌼 Calm Corner",
+    "🌷 MamaCare Continuity", "🏡 Home", "📖 Learning hub",
+    "🌷 Emotional wellness", "💞 MamaCare journey",
+    "My follow-up checklist", "Choose a recovery stage",
+})
 
 
 def t(key):
@@ -55,7 +59,7 @@ def localized_navigation(page):
 
 def ui(source):
     """Localize interface labels, retaining English for medical guidance."""
-    if any(term in source.lower() for term in CLINICAL_UI_TERMS):
+    if source not in SAFE_UI_LABELS:
         return source
     return label("ui." + source) if "ui." + source in _load(st.session_state.get("hm_language", "en")) else source
 
