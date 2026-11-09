@@ -126,12 +126,12 @@ def render_babycare():
         st.caption("Ask the clinic about: " + VISITS.get(label, "") + ". Confirm exact eligibility, doses and local availability.")
         with b:
             st.download_button("Add reminder", _ics(due, label), file_name=f"babycare_{label.replace(' ', '_')}.ics", mime="text/calendar", key=f"babycare_ics_{amount}_{unit}")
-    st.markdown("### 📚 Understand the vaccines")
-    st.caption("Tap a vaccine name to learn what it helps protect against.")
+    st.markdown("### " + ui("📚 Understand the vaccines"))
+    st.caption(ui("Tap a vaccine name to learn what it helps protect against."))
     for name, meaning in VACCINES.items():
         with st.expander(name):
-            st.write(meaning)
-    st.markdown("### 📅 Plan a future vaccination visit")
+            st.write(ui(meaning))
+    st.markdown("### " + ui("📅 Plan a future vaccination visit"))
     st.caption("A planned visit is NOT a vaccine already administered. Confirm appointment date and vaccines with the clinic.")
     if "planned_visits" not in baby:
         baby["planned_visits"] = []
@@ -148,7 +148,7 @@ def render_babycare():
         st.dataframe(baby["planned_visits"], use_container_width=True, hide_index=True)
         for i, visit in enumerate(baby["planned_visits"]):
             st.download_button("📅 Download reminder: " + visit["Visit"] + " (" + visit["Planned date"] + ")", _ics(date.fromisoformat(visit["Planned date"]), visit["Visit"]), file_name="babycare_planned_visit_" + str(i+1) + ".ics", mime="text/calendar", key="babycare_planned_ics_" + str(i))
-    st.markdown("### ✅ Record a vaccine already received")
+    st.markdown("### " + ui("✅ Record a vaccine already received"))
     st.caption("Only enter vaccinations already given, as shown on the clinic card. For future appointments, use Plan a future vaccination visit above. Entries are parent-reported, not clinically verified.")
     records = baby["records"]
     with st.form("babycare_record_form", clear_on_submit=True):
@@ -169,7 +169,7 @@ def render_babycare():
         else:
             records.append({"Vaccine / dose": selected + (" — " + dose.strip() if dose.strip() else ""), ui("Date administered"): administered.isoformat(), "Clinic (optional)": clinic.strip(), "Status": "Parent-reported; not clinically verified"})
             st.success("Saved temporarily in this session.")
-    st.markdown("### 📊 My saved vaccination entries")
+    st.markdown("### " + ui("📊 My saved vaccination entries"))
     st.metric("Vaccination records for selected baby", len(baby["records"]))
     st.caption("Counts vaccination entries saved for this selected demo baby only. It is not a count of parents, babies or clinically verified vaccinations.")
     if records:
