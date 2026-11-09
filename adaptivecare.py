@@ -18,10 +18,10 @@ def localize_reason(reason):
     return ui(reason)
 
 def render_adaptivecare():
-    st.title("🌱 AdaptiveCare")
+    st.title(ui("🌱 AdaptiveCare"))
     st.caption(t("ac.intro"))
     st.warning("Not clinically reviewed or validated. Not a medical device, diagnosis, symptom checker, triage tool or emergency service. For urgent or severe symptoms, seek immediate in-person medical care.")
-    st.info("Demo privacy: check-ins exist only in this Streamlit session; they are not synced across visits or sent to healthcare providers. Do not enter personal or medical information.")
+    st.info(ui("Demo privacy: check-ins exist only in this Streamlit session; they are not synced across visits or sent to healthcare providers. Do not enter personal or medical information."))
     if "adaptivecare_v2_log" not in st.session_state:
         st.session_state.adaptivecare_v2_log = []
     log = st.session_state.adaptivecare_v2_log
@@ -39,7 +39,7 @@ def render_adaptivecare():
             st.error(plan.support)
         else:
             st.warning(plan.support)
-        st.caption("Personal wellness planning and check-in controls are hidden when you request health assistance.")
+        st.caption(ui("Personal wellness planning and check-in controls are hidden when you request health assistance."))
         return
 
     st.subheader(t("ac.steps"))
@@ -74,4 +74,4 @@ def render_adaptivecare():
         if st.button(t("ac.clear"), key="ac_clear"):
             st.session_state.adaptivecare_v2_log = []
             st.rerun()
-    st.caption("This version intentionally stores no medical history, names, symptoms, or location. There are no automatic notifications or provider integrations. For early pilot use, clinical, privacy, security and accessibility reviews are still required.")
+    st.caption(ui("This version intentionally stores no medical history, names, symptoms, or location. There are no automatic notifications or provider integrations. For early pilot use, clinical, privacy, security and accessibility reviews are still required."))
