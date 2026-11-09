@@ -1,4 +1,4 @@
-"""Non-clinical interface localization for HerMamaAI Phase 1."""
+"""Draft UI localization; clinical instructions stay in source English pending review."""
 import json
 from pathlib import Path
 import streamlit as st
@@ -32,3 +32,16 @@ def t(key):
 
 def localized_navigation(page):
     return label("nav." + page)
+
+
+def ui(source):
+    """Translate non-clinical UI text without changing stored internal values.
+
+    The English source is always used if a translation is missing.
+    """
+    return label("ui." + source) if "ui." + source in _load(st.session_state.get("hm_language", "en")) else source
+
+
+def display_option(value):
+    """Render localized select/radio options while retaining stable English IDs."""
+    return ui(value)
