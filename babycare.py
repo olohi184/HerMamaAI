@@ -3,7 +3,7 @@ import csv
 import io
 from datetime import date, datetime, timedelta
 import streamlit as st
-from localization.language_manager import ui, display_option
+from localization.language_manager import ui, display_option, t
 
 # Visit milestones only. NOT a complete vaccine or catch-up schedule.
 MILESTONES = [
@@ -59,7 +59,7 @@ def render_babycare():
     st.markdown("## 👶 BabyCare — Immunization Tracker")
     st.info("**Educational planning prototype.** This is not an official Nigerian immunization card, vaccine recommendation, medical record or clinic booking. Confirm the current NPHCDA schedule, individual vaccines, catch-up doses and timing with a qualified immunization provider.")
     st.warning("Do not delay medical care because of this app. For a missed dose, ask a healthcare professional for an individual catch-up plan; do not restart or change a vaccine series based on this calendar.")
-    st.caption("No accounts or database. Use fictional profiles and sample records only. Information is temporary and may disappear when this session ends.")
+    st.caption(t("baby.intro"))
     st.markdown("### 👪 Demo family profiles")
     st.caption("Fictional aliases only. These profiles are temporary, not authenticated accounts. Do not enter real children's health information.")
     if "babycare_families" not in st.session_state:
