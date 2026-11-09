@@ -31,23 +31,42 @@ try {
     link.setAttribute('data-hermamaai', 'true');
     doc.head.appendChild(link);
   }
-  // Provide explicit icons for Safari tabs and iOS Add to Home Screen.
-  // Keep Streamlit's own favicon link aligned with the official brand.
-  const iconUrl = '/app/static/hermamaai-original-brand-192.png?v=6';
-  for (const rel of ['icon', 'shortcut icon', 'apple-touch-icon']) {
-    let link = doc.querySelector('link[rel="' + rel + '"][data-hermamaai]');
-    if (!link) {
-      link = doc.createElement('link');
-      link.rel = rel;
+  // Keep one canonical favicon and re-apply it if Streamlit updates the head.
+  // Safari can otherwise retain an older Streamlit icon after a rerender.
+  const iconUrl = '/app/static/hermamaai-original-brand-192.png?favicon=20261109';
+  const syncBrandIcons = () => {
+    const head = doc.head;
+    const branded = head.querySelector('link[rel="icon"][data-hermamaai="true"]');
+    const conflicting = [...head.querySelectorAll('link[rel~="icon"]')]
+      .filter(link => link !== branded && link.rel !== 'apple-touch-icon');
+    conflicting.forEach(link => link.remove());
+    if (!branded) {
+      const link = doc.createElement('link');
+      link.rel = 'icon';
+      link.type = 'image/png';
+      link.sizes = '192x192';
+      link.href = iconUrl;
       link.setAttribute('data-hermamaai', 'true');
-      doc.head.appendChild(link);
+      head.appendChild(link);
+    } else if (branded.getAttribute('href') !== iconUrl) {
+      branded.href = iconUrl;
     }
-    link.href = iconUrl;
-    link.type = 'image/png';
-    if (rel === 'apple-touch-icon') link.sizes = '192x192';
-  }
-  for (const link of doc.querySelectorAll('link[rel="icon"]:not([data-hermamaai]), link[rel="shortcut icon"]:not([data-hermamaai])')) {
-    link.remove();
+    // Preserve the existing iOS home-screen icon independently.
+    let apple = head.querySelector('link[rel="apple-touch-icon"][data-hermamaai="true"]');
+    if (!apple) {
+      apple = doc.createElement('link');
+      apple.rel = 'apple-touch-icon';
+      apple.sizes = '192x192';
+      apple.href = iconUrl;
+      apple.setAttribute('data-hermamaai', 'true');
+      head.appendChild(apple);
+    }
+  };
+  syncBrandIcons();
+  if (!window.parent.__hermamaaiFaviconObserver) {
+    const observer = new MutationObserver(() => syncBrandIcons());
+    observer.observe(doc.head, {childList: true});
+    window.parent.__hermamaaiFaviconObserver = observer;
   }
   if (!doc.querySelector('meta[name="theme-color"][data-hermamaai]')) {
     const meta = doc.createElement('meta');
