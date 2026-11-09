@@ -18,3 +18,5 @@ jobs:
         run: python -m compileall -q app.py mamacare.py adaptivecare.py adaptive_engine.py babycare.py find_care.py localization scripts
       - name: Check translation key coverage and placeholders
         run: python scripts/audit_localization.py
+      - name: Test language switching and safety disclosures
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
