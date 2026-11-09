@@ -14,6 +14,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Print Python and workspace diagnostics
+        run: |
+          python --version
+          pwd
+          ls -la
+          ls -la locales tests scripts
       - name: Check Python syntax
         run: python -m compileall -q app.py mamacare.py adaptivecare.py adaptive_engine.py babycare.py find_care.py localization scripts
       - name: Check translation key coverage and placeholders
