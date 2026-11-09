@@ -407,5 +407,8 @@
   "ui.Seek urgent medical assessment for vaginal bleeding, severe abdominal pain, severe headache or vision changes, seizures, chest pain or trouble breathing.": "Nemi kulawar likita cikin gaggawa idan kina zubar jini ta farji, kina da matsanancin ciwon ciki, matsanancin ciwon kai ko sauyin gani, farfaɗiya, ciwon ƙirji ko wahalar numfashi.",
   "ui.**Urgent warning signs:** Heavy bleeding, chest pain, trouble breathing, seizures, severe headache or vision changes, fainting, fever with severe illness, or thoughts of harming yourself or your baby. Seek emergency medical care immediately.": "**Alamomin gaggawa:** Zubar jini mai yawa, ciwon ƙirji, wahalar numfashi, farfaɗiya, matsanancin ciwon kai ko sauyin gani, suma, zazzaɓi tare da rashin lafiya mai tsanani, ko tunanin cutar da kanki ko jaririnki. Nemi kulawar likita ta gaggawa nan take.",
   "ui.💗 Postpartum recovery": "💗 Kulawar bayan haihuwa",
-  "ui.English reference:": "Asalin saƙo a Turanci:"
+  "ui.English reference:": "Asalin saƙo a Turanci:",
+  "safety.mamacare_physical": "Tuntuɓi ƙungiyar masu kula da lafiyar haihuwarki da wuri. Idan alamomin sun yi tsanani ko sun bayyana kwatsam, nemi kulawar gaggawa yanzu.",
+  "safety.mamacare_emotional": "Tuntuɓi ƙwararren ma'aikacin lafiya da wani wanda kika amince da shi. Idan kina tunanin cutar da kanki ko jaririnki, nemi taimakon gaggawa yanzu, kuma kada ki kasance ke kaɗai.",
+  "safety.english_reference": "Asalin saƙo a Turanci:"
 }
