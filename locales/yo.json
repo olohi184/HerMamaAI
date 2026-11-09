@@ -244,5 +244,22 @@
   "ui.Discuss where you plan to give birth, how you will travel there, whom to contact, what to pack and who can support you. Review emergency arrangements with your maternity team.": "Jíròrò ibi tí o fẹ́ bí ọmọ, bí o ṣe máa dé ibẹ̀, ẹni tí o máa pè, ohun tí o máa kó àti ẹni tí yóò ràn ọ́ lọ́wọ́. Ṣàyẹ̀wò ètò pajawiri pẹ̀lú ẹgbẹ́ ìtọ́jú rẹ.",
   "ui.Recovery varies after vaginal birth and caesarean birth. Ask your clinician about pain control, incision or perineal care, expected bleeding, safe activity and when to seek assessment for changes.": "Ìmúpadàbọ̀ yàtọ̀ lẹ́yìn ìbímọ nípasẹ̀ abẹ́ tàbí ìṣẹ́ abẹ. Béèrè lọ́wọ́ oníṣègùn nípa ìdínkù ìrora, ìtọ́jú ọgbẹ́, ẹ̀jẹ̀ tí a lè retí, iṣẹ́ tó ní ààbò àti ìgbà láti wá àyẹ̀wò.",
   "ui.Discuss antenatal visits, recommended screening, medicines, nutrition, baby's movement, delivery plans and emergency transport with your maternity team.": "Jíròrò ìbẹ̀wò oyún, àyẹ̀wò tí a dábàá, oògùn, oúnjẹ, ìṣípò ọmọ, ètò ìbímọ àti ọkọ̀ pajawiri pẹ̀lú ẹgbẹ́ ìtọ́jú rẹ.",
-  "ui.HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice.": "HerMamaAI jẹ́ àpẹẹrẹ fún ẹ̀kọ́ gbogbogbò àti ètò ara ẹni. Kì í ṣe àyẹ̀wò àìsàn, àbójútó àmì àìsàn, fífi ìpàdé ránṣẹ́ sí ilé ìwòsàn tàbí rọ́pò ìmọ̀ràn oníṣègùn."
+  "ui.HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice.": "HerMamaAI jẹ́ àpẹẹrẹ fún ẹ̀kọ́ gbogbogbò àti ètò ara ẹni. Kì í ṣe àyẹ̀wò àìsàn, àbójútó àmì àìsàn, fífi ìpàdé ránṣẹ́ sí ilé ìwòsàn tàbí rọ́pò ìmọ̀ràn oníṣègùn.",
+  "ui.Protects against severe tuberculosis.": "Ó ń ṣèrànwọ́ láti dáàbò bo ara lọ́wọ́ ikọ́ ẹ̀gbẹ tó le.",
+  "ui.Oral drops protecting against polio.": "Oògùn ẹnu tó ń dáàbò bo ara lọ́wọ́ roparose.",
+  "ui.Injection protecting against polio.": "Abẹ́rẹ́ tó ń dáàbò bo ara lọ́wọ́ roparose.",
+  "ui.Protects against hepatitis B and related liver disease.": "Ó ń dáàbò bo ara lọ́wọ́ hepatitis B àti àrùn ẹ̀dọ̀ tó jọmọ́ rẹ.",
+  "ui.Protects against diphtheria, tetanus, whooping cough, hepatitis B and Hib.": "Ó ń dáàbò bo ara lọ́wọ́ diphtheria, tetanus, ikọ́ gbigbóná, hepatitis B àti Hib.",
+  "ui.Protects against serious pneumococcal infections including some pneumonia and meningitis.": "Ó ń dáàbò bo ara lọ́wọ́ àkóràn pneumococcal tó le, pẹ̀lú àwọn irú pneumonia àti meningitis.",
+  "ui.Protects against severe rotavirus diarrhoea.": "Ó ń dáàbò bo ara lọ́wọ́ ìgbẹ́ gbuuru rotavirus tó le.",
+  "ui.Protects against measles; MR also protects against rubella.": "Ó ń dáàbò bo ara lọ́wọ́ measles; MR tún ń dáàbò bo ara lọ́wọ́ rubella.",
+  "ui.Protects against yellow fever.": "Ó ń dáàbò bo ara lọ́wọ́ yellow fever.",
+  "ui.Protects against some meningococcal infections.": "Ó ń dáàbò bo ara lọ́wọ́ àwọn àkóràn meningococcal kan.",
+  "ui.Helps reduce malaria illness; local rollout varies.": "Ó ń ṣèrànwọ́ láti dín àìsàn ibà kù; ìpèsè rẹ yàtọ̀ ní agbègbè.",
+  "ui.Supplement supporting vision and immunity.": "Àfikún oúnjẹ tó ń ṣèrànwọ́ fún ìríran àti ààbò ara.",
+  "ui.Tap a vaccine name to learn what it helps protect against.": "Tẹ orúkọ àjẹsára láti mọ ohun tí ó ń dáàbò bo ara lọ́wọ́.",
+  "ui.📚 Understand the vaccines": "📚 Mọ̀ nípa àwọn àjẹsára",
+  "ui.📅 Plan a future vaccination visit": "📅 Ṣètò ìbẹ̀wò àjẹsára ọjọ́ iwájú",
+  "ui.✅ Record a vaccine already received": "✅ Ṣàkọsílẹ̀ àjẹsára tí a ti gba",
+  "ui.📊 My saved vaccination entries": "📊 Àkọsílẹ̀ àjẹsára tí mo fipamọ́"
 }
