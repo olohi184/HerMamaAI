@@ -27,7 +27,7 @@ with Image.open(LOGO) as source:
     square.alpha_composite(fitted, ((64 - fitted.width) // 2, (64 - fitted.height) // 2))
     square.save(ICON, format="PNG")
 html = HTML.read_text(encoding="utf-8")
-icon_link = '<link rel="icon" type="image/png" href="./favicon.png?v=hermamaai-tab-20261109b" />'
+icon_link = '<link rel="icon" type="image/png" href="./favicon.png?v=hermamaai-tab-20261109c" />'
 html, count = re.subn(
     r"""<link\s+[^>]*rel=["'](?:shortcut\s+)?icon["'][^>]*>""",
     icon_link,
@@ -40,5 +40,38 @@ if not count:
     if "</head>" not in html:
         raise SystemExit("Branding failed: Streamlit index.html has no </head>")
     html = html.replace("</head>", f"  {icon_link}\n</head>", 1)
+# Streamlit may rewrite the favicon after its frontend initializes.
+# Install this guard in the *top-level* HTML, not in a Streamlit component iframe.
+# Preserve the initial branded favicon and restore it if Streamlit changes it.
+guard = """<script data-hermamaai-tab-icon>
+(() => {
+  const href = '/favicon.png?v=hermamaai-tab-20261109c';
+  let syncing = false;
+  function apply() {
+    if (syncing) return;
+    syncing = true;
+    try {
+      let primary = document.head.querySelector('link[data-hermamaai-tab-icon]');
+      if (!primary) {
+        primary = document.createElement('link');
+        primary.setAttribute('data-hermamaai-tab-icon', 'true');
+        document.head.appendChild(primary);
+      }
+      if (primary.rel !== 'icon') primary.rel = 'icon';
+      if (primary.type !== 'image/png') primary.type = 'image/png';
+      if (primary.getAttribute('href') !== href) primary.setAttribute('href', href);
+      document.head.querySelectorAll('link[rel~="icon"]').forEach(link => {
+        if (link !== primary) link.remove();
+      });
+    } finally { syncing = false; }
+  }
+  apply();
+  const observer = new MutationObserver(() => apply());
+  observer.observe(document.head, {childList: true, subtree: true, attributes: true,
+    attributeFilter: ['href', 'rel']});
+})();
+</script>"""
+if 'data-hermamaai-tab-icon' not in html:
+    html = html.replace('</head>', guard + '\\n</head>', 1)
 HTML.write_text(html, encoding="utf-8")
 print(f"HerMamaAI initial favicon installed: {ICON}; HTML links updated: {count}")
