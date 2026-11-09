@@ -218,5 +218,12 @@
   "ui.Check-in saved. Suggestions have been refreshed using the latest session record.": "Echekwara ndekọ. Emelitere aro site na ndekọ ọhụrụ.",
   "ui.You selected {goal} as your wellness goal.": "Ị họọrọ {goal} dịka ebumnuche ọdịmma gị.",
   "ui.You selected {capacity} energy.": "Ị họọrọ ume {capacity}.",
-  "ui.The context is {stage}; this does not change clinical advice or imply stage-specific medical recommendations.": "Ọnọdụ bụ {stage}; nke a anaghị agbanwe ndụmọdụ ahụike ma ọ bụ nye ndụmọdụ ọgwụgwọ pụrụ iche."
+  "ui.The context is {stage}; this does not change clinical advice or imply stage-specific medical recommendations.": "Ọnọdụ bụ {stage}; nke a anaghị agbanwe ndụmọdụ ahụike ma ọ bụ nye ndụmọdụ ọgwụgwọ pụrụ iche.",
+  "ui.Review your discharge instructions, arrange your recommended postnatal contact, and ask for support with rest, food, feeding and recovery.": "Gụọ ntuziaka e nyere gị mgbe ị hapụrụ ụlọ ọgwụ, hazie nleta mgbe ọmụmụ nwa a tụrụ aro, ma rịọ enyemaka maka izu ike, nri, inye nwa nri na mgbake.",
+  "ui.Discuss fever, worsening pain, wound concerns, feeding difficulties or other symptoms with a qualified healthcare professional.": "Gwa onye ọkachamara ahụike banyere ahụ ọkụ, mgbu na-akawanye njọ, nsogbu ọnya, nsogbu inye nwa nri ma ọ bụ mgbaàmà ndị ọzọ.",
+  "ui.Serious complications can develop after leaving hospital. Seek assessment for new or worsening symptoms. Emotional well-being deserves attention too.": "Nsogbu siri ike nwere ike ịmalite mgbe ị hapụrụ ụlọ ọgwụ. Chọọ nyocha maka mgbaàmà ọhụrụ ma ọ bụ nke na-akawanye njọ. Ọdịmma uche dịkwa mkpa.",
+  "ui.Ask about healing, mood, sleep, contraception if relevant, feeding and any ongoing symptoms. Follow your own maternity team's schedule.": "Jụọ maka mgbake, mmetụta uche, ụra, igbochi afọ ime ma ọ bụrụ na ọ dị mkpa, inye nwa nri na mgbaàmà ndị na-aga n'ihu. Soro oge ndị otu nlekọta nne gị.",
+  "ui.Postpartum concerns can continue or begin after six weeks. Seek care whenever needed; do not wait for an appointment.": "Nsogbu mgbe ọmụmụ nwa nwere ike ịga n'ihu ma ọ bụ malite mgbe izu isii gafere. Chọọ nlekọta mgbe ọ bụla ọ dị mkpa; echela ruo oge nleta.",
+  "ui.Consider asking someone you trust for one specific practical task today.": "Tụlee ịrịọ onye ị tụkwasịrị obi ka o nyere gị aka n'otu ọrụ taa.",
+  "ui.You deserve care, rest and support.": "I kwesịrị nlekọta, izu ike na nkwado."
 }
