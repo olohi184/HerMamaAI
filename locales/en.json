@@ -225,5 +225,19 @@
   "ui.Ask about healing, mood, sleep, contraception if relevant, feeding and any ongoing symptoms. Follow your own maternity team's schedule.": "Ask about healing, mood, sleep, contraception if relevant, feeding and any ongoing symptoms. Follow your own maternity team's schedule.",
   "ui.Postpartum concerns can continue or begin after six weeks. Seek care whenever needed; do not wait for an appointment.": "Postpartum concerns can continue or begin after six weeks. Seek care whenever needed; do not wait for an appointment.",
   "ui.Consider asking someone you trust for one specific practical task today.": "Consider asking someone you trust for one specific practical task today.",
-  "ui.You deserve care, rest and support.": "You deserve care, rest and support."
+  "ui.You deserve care, rest and support.": "You deserve care, rest and support.",
+  "ui.All listed states and FCT": "All listed states and FCT",
+  "ui.All listed cities": "All listed cities",
+  "ui.Phase 2 expansion — explore teaching hospitals in seven additional states": "Phase 2 expansion — explore teaching hospitals in seven additional states",
+  "ui.These are existing directory listings, not newly verified maternity providers. Hospital-specific maternity services, contacts and operating capacity remain unconfirmed unless evidence is shown on a hospital card.": "These are existing directory listings, not newly verified maternity providers. Hospital-specific maternity services, contacts and operating capacity remain unconfirmed unless evidence is shown on a hospital card.",
+  "ui.Institution listed in government directory · Service availability unverified · No partnership claimed": "Institution listed in government directory · Service availability unverified · No partnership claimed",
+  "ui.Published maternity-service evidence available · Current clinic hours and capacity NOT confirmed": "Published maternity-service evidence available · Current clinic hours and capacity NOT confirmed",
+  "ui.Hospital-specific maternity services and contact details awaiting review": "Hospital-specific maternity services and contact details awaiting review",
+  "ui.🏥 View maternity-service evidence ↗": "🏥 View maternity-service evidence ↗",
+  "ui.☎️ View published contact source ↗": "☎️ View published contact source ↗",
+  "ui.🗺️ Search on Google Maps / Directions ↗": "🗺️ Search on Google Maps / Directions ↗",
+  "ui.📖 View government source ↗": "📖 View government source ↗",
+  "ui.Published hospital contact (not independently tested): ": "Published hospital contact (not independently tested): ",
+  "ui.Showing {count} government-listed institution(s). Not an exhaustive list of Nigerian hospitals.": "Showing {count} government-listed institution(s). Not an exhaustive list of Nigerian hospitals.",
+  "ui.Only phone numbers supported by published hospital information or a hospital-management notice are shown; they have not been independently tested. HerMamaAI does not request your live location or store your medical information here.": "Only phone numbers supported by published hospital information or a hospital-management notice are shown; they have not been independently tested. HerMamaAI does not request your live location or store your medical information here."
 }
