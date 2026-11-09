@@ -26,19 +26,37 @@ def choose_language():
         help=label("language.help")
     )
 
+# Phase 1: Keep health instructions and safety-critical guidance in English
+# until qualified linguistic and healthcare review is completed.
+CLINICAL_PREFIXES = ("preg.", "post.", "baby.", "mama.", "well.", "learn.", "safety.")
+CLINICAL_UI_TERMS = (
+    "bleeding", "seizure", "fainting", "chest pain", "breathing",
+    "headache", "vision changes", "fever", "infection", "emergency",
+    "urgent", "warning signs", "medical", "clinical", "diagnos",
+    "maternity", "healthcare", "health care", "hospital", "doctor",
+    "midwife", "nurse", "symptom", "postpartum", "pregnancy",
+    "prenatal", "postnatal", "breastfeed", "feeding", "contraception",
+    "vaccin", "immuniz", "medication", "pain", "wound", "harm",
+    "seek care", "seek help", "contact your", "care team",
+    "discharge", "recovery", "follow-up", "newborn", "baby's health",
+)
+
+
 def t(key):
-    """Translate a content key, falling back to reviewed English source."""
+    """Phase 1: preserve English medical content pending qualified review."""
+    if key.startswith(CLINICAL_PREFIXES):
+        return label(key, "en")
     return label(key)
+
 
 def localized_navigation(page):
     return label("nav." + page)
 
 
 def ui(source):
-    """Translate non-clinical UI text without changing stored internal values.
-
-    The English source is always used if a translation is missing.
-    """
+    """Localize interface labels, retaining English for medical guidance."""
+    if any(term in source.lower() for term in CLINICAL_UI_TERMS):
+        return source
     return label("ui." + source) if "ui." + source in _load(st.session_state.get("hm_language", "en")) else source
 
 
