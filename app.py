@@ -276,7 +276,7 @@ elif page == "📅 CareCalendar":
 
 elif page == "🤰 Pregnancy care":
     st.markdown('<div class="section-head">🤰 Pregnancy care</div>',unsafe_allow_html=True)
-    st.markdown('<p class="lead">Regular antenatal visits help your maternity team monitor your health and your baby’s development. Ask which appointments, tests and vaccinations are appropriate for you.</p>',unsafe_allow_html=True)
+    st.markdown(f'<p class="lead">{escape(t("preg.intro"))}</p>',unsafe_allow_html=True)
     st.button("📅 Plan an antenatal visit in CareCalendar →",use_container_width=True,on_click=go,args=("📅 CareCalendar",))
     st.subheader(ui("Questions for your maternity team"))
     for i,q in enumerate(["When should I attend my next antenatal visit?","Which symptoms mean I should seek urgent help?","Which medicines or supplements are appropriate for me?","What is my birth and emergency transport plan?"]):
@@ -300,7 +300,7 @@ elif page == "💞 MamaCare journey":
 
 elif page == "💗 Postpartum recovery":
     st.markdown('<div class="section-head">💗 Postpartum recovery</div>',unsafe_allow_html=True)
-    st.markdown('<p class="lead">Recovery continues beyond discharge, and serious complications can arise even after an uncomplicated birth. Keep your recommended postnatal appointments.</p>',unsafe_allow_html=True)
+    st.markdown(f'<p class="lead">{escape(t("post.intro"))}</p>',unsafe_allow_html=True)
     with st.expander("The first days after birth",expanded=True):
         st.write("Ask your team about bleeding, pain, feeding, wound care, blood pressure checks where indicated, sleep, and when to return for follow-up.")
     with st.expander("Weeks 2–6: stay connected"):
@@ -322,7 +322,7 @@ elif page == "💗 Postpartum recovery":
     
 elif page == "🌷 Emotional wellness":
     st.markdown('<div class="section-head">🌷 Emotional wellness</div>',unsafe_allow_html=True)
-    st.markdown('<p class="lead">Pregnancy and new motherhood can bring many emotions. You deserve support and space to talk about how you feel.</p>',unsafe_allow_html=True)
+    st.markdown(f'<p class="lead">{escape(t("well.intro"))}</p>',unsafe_allow_html=True)
     card("You can ask for help","💬","If sadness, anxiety, hopelessness or overwhelm persists, worsens, or affects daily life, speak with a qualified healthcare professional.")
     st.subheader(ui("Gentle ways to reach out"))
     st.write("• Tell someone you trust how you are feeling.\n\n• Ask for practical help with meals, chores or childcare.\n\n• Discuss mood and sleep concerns at a postnatal appointment.")
@@ -347,7 +347,7 @@ elif page == "🏥 Find care":
 
 elif page == "🌼 Calm Corner":
     st.markdown('<div class="section-head">🌼 Motherhood Calm Corner</div>',unsafe_allow_html=True)
-    st.markdown('<p class="lead">A gentle, optional pause for mothers and mothers-to-be. Play at your own pace, or simply rest. No scores, competition, or personal information required.</p>',unsafe_allow_html=True)
+    st.markdown(f'<p class="lead">{escape(t("calm.intro"))}</p>',unsafe_allow_html=True)
     st.info("These are general relaxation activities, not treatment for anxiety, depression or physical symptoms. Stop any activity that feels uncomfortable. If you feel unwell or have urgent symptoms, seek professional medical care.")
     st.subheader(ui("Choose a gentle activity"))
     st.caption("Pick a peaceful moment just for you. No pressure, no scores.")
@@ -692,7 +692,7 @@ elif page == "🌼 Calm Corner":
 
 else:
     st.markdown('<div class="section-head">📖 Learning hub</div>',unsafe_allow_html=True)
-    st.markdown('<p class="lead">A simple collection of topics to discuss with qualified maternity professionals.</p>',unsafe_allow_html=True)
+    st.markdown(f'<p class="lead">{escape(t("learn.intro"))}</p>',unsafe_allow_html=True)
     with st.expander("Why postnatal visits matter",expanded=True):
         st.write("Postnatal care helps qualified professionals identify complications, support recovery and address emotional or feeding concerns. Follow the schedule your healthcare team recommends.")
     with st.expander("What to bring to an appointment"):
