@@ -277,7 +277,7 @@ elif page == "📅 CareCalendar":
 elif page == "🤰 Pregnancy care":
     st.markdown('<div class="section-head">🤰 Pregnancy care</div>',unsafe_allow_html=True)
     st.markdown(f'<p class="lead">{escape(t("preg.intro"))}</p>',unsafe_allow_html=True)
-    st.button("📅 Plan an antenatal visit in CareCalendar →",use_container_width=True,on_click=go,args=("📅 CareCalendar",))
+    st.button(ui("📅 Plan an antenatal visit in CareCalendar →"),use_container_width=True,on_click=go,args=("📅 CareCalendar",))
     st.subheader(ui("Questions for your maternity team"))
     for i,q in enumerate(["When should I attend my next antenatal visit?","Which symptoms mean I should seek urgent help?","Which medicines or supplements are appropriate for me?","What is my birth and emergency transport plan?"]):
         st.checkbox(q,key=f"preg_{i}")
@@ -307,7 +307,7 @@ elif page == "💗 Postpartum recovery":
         st.write("Do not dismiss new or worsening symptoms. Contact your maternity facility if you miss an appointment or are concerned about recovery.")
     with st.expander("Beyond six weeks"):
         st.write("Persistent pain, mood changes, bladder or pelvic-floor symptoms, feeding concerns or other ongoing difficulties deserve professional assessment.")
-    st.button("Explore MamaCare Continuity →",type="primary",use_container_width=True,on_click=go,args=("💞 MamaCare journey",))
+    st.button(ui("Explore MamaCare Continuity →"),type="primary",use_container_width=True,on_click=go,args=("💞 MamaCare journey",))
     st.error("**Urgent warning signs:** Heavy bleeding, chest pain, trouble breathing, seizures, severe headache or vision changes, fainting, fever with severe illness, or thoughts of harming yourself or your baby. Seek emergency medical care immediately.")
 
     st.markdown("#### More postpartum recovery topics")
@@ -335,7 +335,7 @@ elif page == "🌷 Emotional wellness":
         st.write("Consider sending a short message to a trusted friend, asking someone to sit with you, or sharing a specific task you need help with.")
     with st.expander("When to seek professional support"):
         st.write("Persistent sadness, intense anxiety, hopelessness, inability to function, or distressing thoughts deserve prompt assessment by a qualified healthcare professional. Emergency symptoms need immediate help.")
-    st.button("🌼 Open the Calm Corner",key="wellness_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
+    st.button(ui("🌼 Open the Calm Corner"),key="wellness_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
     
 elif page == "👶 BabyCare":
     from babycare import render_babycare
@@ -439,8 +439,8 @@ elif page == "🌼 Calm Corner":
     @media(prefers-reduced-motion:reduce){.mama-garden-stage .mama-flowers,.mama-scene-stage .scene-icon,.mama-jar-stage .jar-icon{animation:none!important}}
     </style>""",unsafe_allow_html=True)
     if st.session_state.calm_activity == 0:
-        st.markdown("### 🌸 Game 1: Grow your garden")
-        st.write("Tap **Plant a flower** to create a little garden. There is no timer and no wrong move.")
+        st.markdown("### " + ui("🌸 Game 1: Grow your garden"))
+        st.write(ui("Tap **Plant a flower** to create a little garden. There is no timer and no wrong move."))
         if "garden_count" not in st.session_state:
             st.session_state.garden_count = 0
         flowers = ["🌷","🌸","🌻","🌼","🪻","🌺"]
@@ -480,17 +480,17 @@ elif page == "🌼 Calm Corner":
         st.markdown('<p class="hm-garden-caption">A little space to grow, at your own pace. 🌿</p>',unsafe_allow_html=True)
         g1,g2=st.columns(2)
         with g1:
-            if st.button("🌷 Plant a flower",key="plant_flower",use_container_width=True):
+            if st.button(ui("🌷 Plant a flower"),key="plant_flower",use_container_width=True):
                 st.session_state.garden_count=min(24,st.session_state.garden_count+1)
                 st.rerun()
         with g2:
-            if st.button("↺ Start a new garden",key="reset_garden",use_container_width=True):
+            if st.button(ui("↺ Start a new garden"),key="reset_garden",use_container_width=True):
                 st.session_state.garden_count=0
                 st.rerun()
         if st.session_state.garden_count>=24:
             st.success("Your garden is blooming! You can enjoy it or start again.")
     if st.session_state.calm_activity == 1:
-        st.markdown("### ☁️ Game 2: Choose a gentle moment")
+        st.markdown("### " + ui("☁️ Game 2: Choose a gentle moment"))
         moments = {
             "🌤️ A peaceful morning":"Imagine a quiet morning, a comfortable chair and a warm cup of something you enjoy.",
             "🌿 A garden breeze":"Picture leaves moving softly in a garden. Notice the colors and shapes around you.",
@@ -563,7 +563,7 @@ elif page == "🌼 Calm Corner":
         st.divider()
     if st.session_state.calm_activity == 2:
         import random
-        st.markdown("### 🦋 Game 3: Memory Garden")
+        st.markdown("### " + ui("🦋 Game 3: Memory Garden"))
         st.write("Discover three matching pairs of cheerful garden pictures. No clock, no score — just a peaceful moment.")
         if "memory_cards" not in st.session_state:
             st.session_state.memory_cards = ["🌷", "🦋", "💗", "🌷", "💗", "🦋"]
@@ -599,7 +599,7 @@ elif page == "🌼 Calm Corner":
                     st.rerun()
         if len(st.session_state.memory_found) == 6:
             st.markdown('<div class="mama-memory-finish" role="status"><div class="mama-memory-flowers">🌸 🦋 🌷 💗 🌼</div><strong>Your Memory Garden is blooming!</strong><span>All three pairs found. Beautifully done — enjoy this little moment.</span></div>', unsafe_allow_html=True)
-        if st.button("↺ Play Memory Garden again", key="memory_reset", use_container_width=True):
+        if st.button(ui("↺ Play Memory Garden again"), key="memory_reset", use_container_width=True):
             st.session_state.memory_cards = ["🌷", "🦋", "💗", "🌷", "💗", "🦋"]
             random.shuffle(st.session_state.memory_cards)
             st.session_state.memory_open = []
@@ -608,7 +608,7 @@ elif page == "🌼 Calm Corner":
 
         st.divider()
     if st.session_state.calm_activity == 3:
-        st.markdown("### 🔤 Game 4: Mama Word Garden")
+        st.markdown("### " + ui("🔤 Game 4: Mama Word Garden"))
         st.write("Arrange the letters into a gentle word. Take your time, or reveal the answer whenever you wish.")
         puzzles = [("ERAC", "CARE", "Care for yourself, too."), ("TSER", "REST", "Rest is valuable."), ("EPOH", "HOPE", "Small hopeful moments matter."), ("MOLBO", "BLOOM", "Grow at your own pace.")]
         if "word_index" not in st.session_state:
@@ -619,11 +619,11 @@ elif page == "🌼 Calm Corner":
         guess = st.text_input("Your answer", key=f"word_guess_{st.session_state.word_index}", max_chars=20, placeholder="Type the word here")
         w1, w2, w3 = st.columns(3)
         with w1:
-            check_clicked = st.button("Check word", key="word_check", use_container_width=True)
+            check_clicked = st.button(ui("Check word"), key="word_check", use_container_width=True)
         with w2:
-            reveal_clicked = st.button("Reveal word", key="word_reveal", use_container_width=True)
+            reveal_clicked = st.button(ui("Reveal word"), key="word_reveal", use_container_width=True)
         with w3:
-            next_clicked = st.button("Next word →", key="word_next", use_container_width=True)
+            next_clicked = st.button(ui("Next word →"), key="word_next", use_container_width=True)
         if next_clicked:
             st.session_state.word_index += 1
             st.session_state.pop("word_feedback", None)
@@ -647,7 +647,7 @@ elif page == "🌼 Calm Corner":
 
         st.divider()
     if st.session_state.calm_activity == 4:
-        st.markdown("### 🫙 Game 5: Gratitude Jar")
+        st.markdown("### " + ui("🫙 Game 5: Gratitude Jar"))
         st.write("Collect kind thoughts in your jar. No journal, account or personal details needed.")
         affirmations = ["🌸 A small moment of peace", "💜 Kindness toward myself", "🌿 A chance to rest", "☀️ A fresh beginning", "🦋 Support when I need it"]
         if "jar_notes" not in st.session_state:
@@ -655,12 +655,12 @@ elif page == "🌼 Calm Corner":
         chosen_note = st.selectbox("Choose a thought to keep", affirmations, key="jar_choice")
         j1, j2 = st.columns(2)
         with j1:
-            if st.button("💗 Add to my jar", key="jar_add", use_container_width=True):
+            if st.button(ui("💗 Add to my jar"), key="jar_add", use_container_width=True):
                 if chosen_note not in st.session_state.jar_notes:
                     st.session_state.jar_notes.append(chosen_note)
                 st.rerun()
         with j2:
-            if st.button("↺ Empty my jar", key="jar_clear", use_container_width=True):
+            if st.button(ui("↺ Empty my jar"), key="jar_clear", use_container_width=True):
                 st.session_state.jar_notes = []
                 st.rerun()
         jar_contents = "<div class='jar-notes'>"+"<br>".join(escape(n) for n in st.session_state.jar_notes)+"</div>" if st.session_state.jar_notes else "<div class='jar-notes'>Your jar is ready for kind thoughts.</div>"
@@ -668,7 +668,7 @@ elif page == "🌼 Calm Corner":
 
         st.divider()
     if st.session_state.calm_activity == 5:
-        st.markdown("### 🎨 Game 6: Colour & Bloom")
+        st.markdown("### " + ui("🎨 Game 6: Colour & Bloom"))
         st.write("Design a bouquet by choosing flowers in your favourite colours.")
         bloom_choices = {"Pink blossom 🌸":"🌸", "Purple flower 🪻":"🪻", "Yellow sunflower 🌻":"🌻", "Red hibiscus 🌺":"🌺", "White daisy 🌼":"🌼"}
         if "bouquet" not in st.session_state:
@@ -687,7 +687,7 @@ elif page == "🌼 Calm Corner":
         st.markdown('<div class="mama-garden-stage">'+bouquet_content+'</div>', unsafe_allow_html=True)
         st.caption("All game choices are temporary for this app session and are not saved as personal records.")
     st.markdown("### 💗 A kind reminder")
-    st.write("You deserve support, rest and care. Taking a small break is enough for now.")
+    st.write(ui("You deserve support, rest and care. Taking a small break is enough for now."))
     st.button("Return to Emotional Wellness →",key="calm_return",use_container_width=True,on_click=go,args=("🌷 Emotional wellness",))
 
 else:
@@ -707,7 +707,7 @@ else:
         st.write("A trusted person and a qualified healthcare professional can help with persistent or worsening emotional distress. Severe confusion or thoughts of harm need emergency care.")
     with st.expander("Using HerMamaAI safely"):
         st.write("HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice.")
-    st.button("🌼 Try the Calm Corner",key="learning_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
+    st.button(ui("🌼 Try the Calm Corner"),key="learning_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
     st.caption("Educational content requires clinical review before a real-world health pilot.")
 
 st.markdown('<div class="footer"><b>HerMamaAI · Functional Research &amp; Innovation Prototype · Version 5.2</b> — Developed by WechimAI Integrated Engineering &amp; ICT Ltd · Abuja, Nigeria.<br>Educational demonstration and evaluation only; not clinically validated, a medical device, a diagnosis tool or an emergency service. BabyCare family profiles, vaccination entries and planned visits are temporary session-only demonstration data, not securely retained medical records. Do not enter real personal or child health information. Independent clinical review, safeguarding, accessibility testing, privacy assessment and secure account infrastructure are required before a real-world pilot.</div>',unsafe_allow_html=True)
