@@ -1,6 +1,6 @@
 """Educational postpartum continuity module for HerMamaAI. No database storage."""
 import streamlit as st
-from localization.language_manager import ui, display_option, t, label
+from localization.language_manager import ui, display_option, t
 
 STAGES = {
     "Days 1–7": ("Early recovery", "Review your discharge instructions, arrange your recommended postnatal contact, and ask for support with rest, food, feeding and recovery."),
@@ -21,7 +21,7 @@ DANGER = [
 def render_mamacare(go=None):
     st.markdown("## " + ui("🌷 MamaCare Continuity"))
     st.write(t("mama.intro"))
-    st.warning("Educational prototype only — not a diagnosis, clinical assessment or emergency service. This content has not yet undergone clinical review.")
+    st.warning("Educational support only — not a diagnosis, clinical assessment or emergency service. New translations and changes require separate professional review before clinical use.")
     st.markdown("### " + ui("Your postpartum care journey"))
     st.caption(ui("Choose what you need today. These are educational tools, not clinical monitoring."))
     options = ["🌼 Recovery guidance", "💗 Gentle check-in", "🚨 Warning signs", "📅 Follow-up planning"]
@@ -43,12 +43,8 @@ def render_mamacare(go=None):
         support = st.radio(ui("Support around you"), ["I have support", "I could use more help"], format_func=display_option, index=None, key="mc_support")
         if physical == "I need medical help":
             st.warning(t("safety.mamacare_physical"))
-            if st.session_state.get("hm_language", "en") != "en":
-                st.caption(f'{t("safety.english_reference")} {label("safety.mamacare_physical", "en")}')
         if mood == "I need support":
             st.warning(t("safety.mamacare_emotional"))
-            if st.session_state.get("hm_language", "en") != "en":
-                st.caption(f'{t("safety.english_reference")} {label("safety.mamacare_emotional", "en")}')
         if support == "I could use more help":
             st.info(ui("Consider asking someone you trust for one specific practical task today."))
         if physical or mood or support:
