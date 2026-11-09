@@ -389,5 +389,9 @@
   "ui.What are the emergency and after-hours arrangements?": "Kedu usoro mberede na mgbe oge ọrụ gachara?",
   "ui.Can you confirm the correct entrance and address?": "Ị nwere ike ikwenye ụzọ mbata na adreesị ziri ezi?",
   "ui.Optional self-reflection only. Answers remain in the current Streamlit session and are not sent to a healthcare professional.": "Ntụgharị uche onwe gị bụ nhọrọ naanị. Azịza na-anọ n'oge Streamlit a, a naghị ezigara ndị ọkachamara ahụike ha.",
-  "ui.This list is not exhaustive. Seek care for any concerning symptoms.": "Ndepụta a ezughị oke. Chọọ nlekọta maka mgbaàmà ọ bụla na-enye gị nsogbu."
+  "ui.This list is not exhaustive. Seek care for any concerning symptoms.": "Ndepụta a ezughị oke. Chọọ nlekọta maka mgbaàmà ọ bụla na-enye gị nsogbu.",
+  "ui.Demo privacy: check-ins exist only in this Streamlit session; they are not synced across visits or sent to healthcare providers. Do not enter personal or medical information.": "Nzuzo nnwale: ndekọ nlele onwe gị dị naanị n'oge Streamlit a; a naghị ejikọta ha n'etiti nleta ma ọ bụ zigara ndị ọrụ ahụike. Etinyela ozi nkeonwe ma ọ bụ nke ahụike.",
+  "ui.Personal wellness planning and check-in controls are hidden when you request health assistance.": "A na-ezo atụmatụ ọdịmma nkeonwe na njikwa nlele onwe gị mgbe ị rịọrọ enyemaka ahụike.",
+  "ui.This version intentionally stores no medical history, names, symptoms, or location. There are no automatic notifications or provider integrations. For early pilot use, clinical, privacy, security and accessibility reviews are still required.": "Ụdị a anaghị echekwa akụkọ ahụike, aha, mgbaàmà ma ọ bụ ebe mmadụ nọ. Enweghị ọkwa akpaaka ma ọ bụ njikọ ndị na-enye nlekọta. A ka chọrọ nyocha ahụike, nzuzo, nchekwa na nnweta tupu nnwale mbụ.",
+  "ui.🌱 AdaptiveCare": "🌱 AdaptiveCare"
 }
