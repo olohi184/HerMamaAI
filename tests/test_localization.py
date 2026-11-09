@@ -32,10 +32,16 @@ class LocalizationTests(unittest.TestCase):
         self.assertIn("on_change=lambda: go(st.session_state.hm_mobile_nav)", app)
         self.assertIn("choose_language()", app)
 
-    def test_no_clinical_translation_catalogue_yet(self):
+    def test_content_localization_and_safety_notices(self):
+        required = ("safety.emergency_translation_notice", "safety.review_status",
+                    "ui.Demo parent profiles", "ui.Demo baby profiles")
+        english = json.loads((ROOT / "locales" / "en.json").read_text(encoding="utf-8"))
         for language in LANGUAGES:
-            catalogue = json.loads((ROOT / "locales" / f"{language}.json").read_text(encoding="utf-8"))
-            self.assertTrue(all(key.startswith("nav.") or key == "notice" for key in catalogue))
+            with self.subTest(language=language):
+                catalogue = json.loads((ROOT / "locales" / f"{language}.json").read_text(encoding="utf-8"))
+                self.assertEqual(set(catalogue), set(english))
+                for key in required:
+                    self.assertTrue(catalogue.get(key), f"{language}: missing {key}")
 
 if __name__ == "__main__":
     unittest.main()
