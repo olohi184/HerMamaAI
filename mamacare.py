@@ -1,6 +1,6 @@
 """Educational postpartum continuity module for HerMamaAI. No database storage."""
 import streamlit as st
-from localization.language_manager import ui, display_option, t
+from localization.language_manager import ui, display_option, t, label
 
 STAGES = {
     "Days 1–7": ("Early recovery", "Review your discharge instructions, arrange your recommended postnatal contact, and ask for support with rest, food, feeding and recovery."),
@@ -44,11 +44,11 @@ def render_mamacare(go=None):
         if physical == "I need medical help":
             st.warning(t("safety.mamacare_physical"))
             if st.session_state.get("hm_language", "en") != "en":
-                st.caption(f'{t("safety.english_reference")} {english}')
+                st.caption(f'{t("safety.english_reference")} {label("safety.mamacare_physical", "en")}')
         if mood == "I need support":
             st.warning(t("safety.mamacare_emotional"))
             if st.session_state.get("hm_language", "en") != "en":
-                st.caption(f'{t("safety.english_reference")} {english}')
+                st.caption(f'{t("safety.english_reference")} {label("safety.mamacare_emotional", "en")}')
         if support == "I could use more help":
             st.info(ui("Consider asking someone you trust for one specific practical task today."))
         if physical or mood or support:
