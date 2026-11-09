@@ -1,6 +1,7 @@
 """Educational Find Care directory: source-based Nigerian teaching hospitals."""
 from urllib.parse import quote
 import streamlit as st
+from localization.language_manager import ui, display_option
 
 SOURCE_URL = "https://health.gov.ng/teaching-hospitals/"
 # State, city and institution name transcribed from the Federal Ministry of Health
@@ -74,7 +75,7 @@ OFFICIAL_DETAILS = {
 }
 
 def render_find_care():
-    st.markdown('<div class="section-head">🏥 Find Care Across Nigeria</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-head">🏥 ' + ui("Find Care Across Nigeria") + '</div>', unsafe_allow_html=True)
     st.markdown('<p class="lead">Explore a starter directory of government-listed teaching hospitals in Abuja and other Nigerian cities. This is a planning aid, not a clinical referral or booking service.</p>', unsafe_allow_html=True)
     st.error("**Emergency warning:** Heavy bleeding, chest pain, trouble breathing, seizures, severe headache or visual changes, fainting, or thoughts of harming yourself or your baby need immediate in-person emergency assessment. Go to the nearest appropriate emergency department or contact local emergency services. Do not wait for this app.")
     st.warning("**Important:** Being listed by the Federal Ministry of Health does not mean HerMamaAI has verified maternity services, opening hours, emergency capacity, precise map location or current operations. **None of these hospitals is claimed as a HerMamaAI partner.** Confirm details with the facility before a non-urgent visit.")
@@ -82,12 +83,12 @@ def render_find_care():
     phase_two_states = ["Rivers", "Oyo", "Kano", "Kaduna", "Enugu", "Edo", "Anambra"]
     st.markdown("**Phase 2 expansion — explore teaching hospitals in seven additional states**")
     st.caption("These are existing directory listings, not newly verified maternity providers. Hospital-specific maternity services, contacts and operating capacity remain unconfirmed unless evidence is shown on a hospital card.")
-    phase_two_choice = st.selectbox("Quickly explore a Phase 2 state", ["Choose a state below"] + phase_two_states, key="findcare_phase2_quick")
+    phase_two_choice = st.selectbox(ui("Quickly explore a Phase 2 state"), ["Choose a state below"] + phase_two_states, format_func=display_option, key="findcare_phase2_quick")
     regions = ["All listed states and FCT"] + sorted({item[0] for item in HOSPITALS})
-    selected_region = st.selectbox("Select state or FCT", regions, index=regions.index(phase_two_choice) if phase_two_choice in regions else regions.index("FCT"), key="findcare_region")
+    selected_region = st.selectbox(ui("Select state or FCT"), regions, index=regions.index(phase_two_choice) if phase_two_choice in regions else regions.index("FCT"), key="findcare_region")
     region_results = [item for item in HOSPITALS if selected_region == regions[0] or item[0] == selected_region]
     cities = ["All listed cities"] + sorted({item[1] for item in region_results})
-    selected_city = st.selectbox("Select city", cities, key="findcare_city")
+    selected_city = st.selectbox(ui("Select city"), cities, key="findcare_city")
     results = [item for item in region_results if selected_city == cities[0] or item[1] == selected_city]
     st.caption(f"Showing {len(results)} government-listed institution(s). Not an exhaustive list of Nigerian hospitals.")
     for region, city, name in results:
@@ -112,6 +113,6 @@ def render_find_care():
             st.link_button("🗺️ Search on Google Maps / Directions ↗", f"https://www.google.com/maps/search/?api=1&query={query}", use_container_width=True)
             st.link_button("📖 View government source ↗", SOURCE_URL, use_container_width=True)
     st.info("**City not listed?** This starter directory covers the cities represented by the ministry's teaching-hospital list, not every Nigerian city or maternity facility. Contact your local primary healthcare centre or state health authority for other options. In an emergency, use the nearest appropriate emergency service instead of travelling to a distant listed hospital.")
-    with st.expander("Questions to ask a facility before a routine visit"):
+    with st.expander(ui("Questions to ask a facility before a routine visit")):
         st.markdown("- Do you currently provide antenatal and postnatal care?\n- Are the relevant services available on the day I plan to visit?\n- Do I need a referral or appointment?\n- What are the emergency and after-hours arrangements?\n- Can you confirm the correct entrance and address?")
     st.caption("Source: Federal Ministry of Health and Social Welfare, Teaching Hospitals directory. Directory needs periodic rechecking, independent service verification and clinical review before real-world pilot use.")
