@@ -335,5 +335,19 @@
   "ui.Privacy: entries are held in this app session only. They are not saved to a database or sent to a clinic. Avoid entering personal medical information or identifying clinic details on a shared device.": "Nzuzo: a na-edobe ndekọ naanị n'oge ngwa a. A naghị echekwa ha na nchekwa data ma ọ bụ zigara ụlọ ọgwụ. Etinyela ozi ahụike nkeonwe ma ọ bụ nkọwa ụlọ ọgwụ na ngwaọrụ a na-ekekọrịta.",
   "ui.Enter the appointment date and time given by your maternity team, select Add to my calendar, then use the .ics download button. Open the downloaded file in your phone's calendar and confirm that the event appears. The exported event requests a reminder 1 day before the appointment; whether an alert appears depends on your phone calendar app and notification settings. HerMamaAI itself does not send notifications. For appointments less than 1 day away, set a suitable reminder manually in your calendar.": "Tinye ụbọchị na oge ndị otu nlekọta nne gị nyere, họrọ itinye na kalenda, wee budata faịlụ .ics. Mepee faịlụ ahụ na kalenda ekwentị gị ma hụ na mmemme ahụ pụtara. Faịlụ ahụ na-arịọ ncheta otu ụbọchị tupu nleta; ngosi ya dabere na ntọala ekwentị gị. HerMamaAI n'onwe ya anaghị ezipu ọkwa. Maka nleta dị n'ime otu ụbọchị, hazie ncheta n'onwe gị.",
   "ui.Bring any maternity notes you have, a list of medicines or supplements, questions you want answered, and any instructions your maternity team has given you. Ask a trusted person to help with transport if needed.": "Weta akwụkwọ nlekọta nne ị nwere, ndepụta ọgwụ ma ọ bụ ihe mgbakwunye, ajụjụ ị chọrọ azịza na ntuziaka ndị otu nlekọta nne gị. Rịọ onye ị tụkwasịrị obi enyemaka njem ma ọ bụrụ na ọ dị mkpa.",
-  "ui.All game choices are temporary for this app session and are not saved as personal records.": "Nhọrọ egwuregwu niile bụ naanị maka oge ngwa a, a naghị echekwa ha dịka ndekọ nkeonwe."
+  "ui.All game choices are temporary for this app session and are not saved as personal records.": "Nhọrọ egwuregwu niile bụ naanị maka oge ngwa a, a naghị echekwa ha dịka ndekọ nkeonwe.",
+  "ui.🌼 Motherhood Calm Corner": "🌼 Ebe izu ike nne",
+  "ui.Playing now ✓": "A na-egwu ugbu a ✓",
+  "ui.Explore activity →": "Chọpụta mmemme →",
+  "ui.A little space to grow, at your own pace. 🌿": "Obere ebe ị ga-eto nwayọọ nwayọọ. 🌿",
+  "ui.Discover three matching pairs of cheerful garden pictures. No clock, no score — just a peaceful moment.": "Chọta ụzọ atọ nke foto ubi yiri ibe ha. Enweghị elekere ma ọ bụ akara — naanị oge izu ike.",
+  "ui.🌸 A little garden of surprises 🌿": "🌸 Obere ubi ihe ịtụnanya 🌿",
+  "ui.Matched garden pair": "Foto ubi abụọ dabara",
+  "ui.Turn over garden card": "Tụgharịa kaadị ubi",
+  "ui.🌿 Turn cards back": "🌿 Tụgharịa kaadị azụ",
+  "ui.Your Memory Garden is blooming!": "Ubi ncheta gị na-ama ifuru!",
+  "ui.All three pairs found. Beautifully done — enjoy this little moment.": "Ị chọtara ụzọ atọ niile. Ị mere nke ọma — nwee ọṅụ n'oge a.",
+  "ui.Arrange the letters into a gentle word. Take your time, or reveal the answer whenever you wish.": "Hazie mkpụrụedemede ka ha bụrụ okwu ọma. Were oge gị ma ọ bụ gosi azịza mgbe ọ bụla ị chọrọ.",
+  "ui.Beautifully done!": "Ị mere nke ọma!",
+  "ui.Design a bouquet by choosing flowers in your favourite colours.": "Mepụta ùkwù ifuru site n'ịhọrọ agba kachasị amasị gị."
 }
