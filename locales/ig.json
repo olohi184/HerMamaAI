@@ -379,5 +379,13 @@
   "ui.💗 A kind reminder": "💗 Ncheta ọma",
   "safety.emergency_translation_notice": "A na-egosi ozi mberede n'asụsụ Bekee ruo mgbe ndị ọkachamara nyochara ntụgharị nduzi ahụike. Ọ bụrụ na ị nwere mgbaàmà siri ike, chọọ enyemaka ahụike ozugbo n'onwe gị; echela azịza ngwa a.",
   "safety.review_status": "Ngwa nnwale mmụta a anaghị achọpụta ọrịa, enye enyemaka mberede ma ọ bụ ndụmọdụ ahụike nkeonwe. Nnyocha ngwa ahụ nke onye ọkachamara ahụike mere apụtaghị na a kwadoro ntụgharị asụsụ ndị a.",
-  "nav.🌱 AdaptiveCare": "🌱 Nlekọta na-agbanwe dịka mkpa"
+  "nav.🌱 AdaptiveCare": "🌱 Nlekọta na-agbanwe dịka mkpa",
+  "ui.**Important:** Being listed by the Federal Ministry of Health does not mean HerMamaAI has verified maternity services, opening hours, emergency capacity, precise map location or current operations. **None of these hospitals is claimed as a HerMamaAI partner.** Confirm details with the facility before a non-urgent visit.": "**Ihe dị mkpa:** Ịdị na ndepụta Ministri Ahụike apụtaghị na HerMamaAI enyochala ọrụ nlekọta nne, oge mmeghe, ikike mberede, ebe ziri ezi na maapụ ma ọ bụ ọrụ ugbu a. **A naghị ekwu na ụlọ ọgwụ ndị a bụ ndị mmekọ HerMamaAI.** Kwenye nkọwa na ụlọ ọgwụ tupu nleta na-abụghị mberede.",
+  "ui.**City not listed?** This starter directory covers the cities represented by the ministry's teaching-hospital list, not every Nigerian city or maternity facility. Contact your local primary healthcare centre or state health authority for other options. In an emergency, use the nearest appropriate emergency service instead of travelling to a distant listed hospital.": "**Obodo gị adịghị na ndepụta?** Ndepụta mmalite a gụnyere obodo ndị dị na ndepụta ụlọ ọgwụ nkuzi nke ministri, ọ bụghị obodo niile ma ọ bụ ebe nlekọta nne na Naịjirịa. Kpọtụrụ ụlọ ọrụ nlekọta ahụike mbụ ma ọ bụ ndị isi ahụike steeti gị maka nhọrọ ndị ọzọ. N'oge mberede, jiri ọrụ mberede kwesịrị ekwesị kacha nso kama ịga ụlọ ọgwụ dị anya.",
+  "ui.Source: Federal Ministry of Health and Social Welfare, Teaching Hospitals directory. Directory needs periodic rechecking, independent service verification and clinical review before real-world pilot use.": "Isi mmalite: Ministri Ahụike na Ọdịmma Ọha nke Gọọmentị Etiti, ndepụta ụlọ ọgwụ nkuzi. A chọrọ nyocha ugboro ugboro, nkwenye ọrụ n'onwe ya na nyocha ndị ọkachamara ahụike tupu nnwale n'ụwa n'ezie.",
+  "ui.Do you currently provide antenatal and postnatal care?": "Ị na-enye nlekọta afọ ime na mgbe ọmụmụ nwa ugbu a?",
+  "ui.Are the relevant services available on the day I plan to visit?": "Ọrụ ndị ahụ ọ ga-adị n'ụbọchị m chọrọ ịbịa?",
+  "ui.Do I need a referral or appointment?": "Achọrọ m akwụkwọ ntụgharị ma ọ bụ oge nleta?",
+  "ui.What are the emergency and after-hours arrangements?": "Kedu usoro mberede na mgbe oge ọrụ gachara?",
+  "ui.Can you confirm the correct entrance and address?": "Ị nwere ike ikwenye ụzọ mbata na adreesị ziri ezi?"
 }
