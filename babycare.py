@@ -156,7 +156,7 @@ def render_babycare():
         other_vaccine = st.text_input(ui("If Other, type the vaccine name"), max_chars=100) if vaccine == "Other" else ""
         dose = st.text_input(ui("Dose number as shown on card (optional)"), max_chars=40)
         administered = st.date_input(ui("Date administered"), value=date.today(), max_value=date.today(), key="babycare_administered")
-        clinic = st.text_input("Clinic (optional — avoid personal details)", max_chars=100)
+        clinic = st.text_input(ui("Clinic (optional — avoid personal details)"), max_chars=100)
         submitted = st.form_submit_button(ui("Save to this session"))
     if submitted:
         selected = other_vaccine.strip() if vaccine == "Other" else vaccine
@@ -178,14 +178,14 @@ def render_babycare():
         writer = csv.DictWriter(output, fieldnames=["Vaccine / dose", "Date administered", "Clinic (optional)", "Status"])
         writer.writeheader()
         writer.writerows(records)
-        st.download_button("⬇️ Download parent-reported record (CSV)", output.getvalue(), file_name="hermamaai_parent_reported_immunizations.csv", mime="text/csv")
+        st.download_button(ui("⬇️ Download parent-reported record (CSV)"), output.getvalue(), file_name="hermamaai_parent_reported_immunizations.csv", mime="text/csv")
         if st.button(ui("Clear all temporary immunization entries")):
             baby["records"] = []
             st.rerun()
     else:
         st.caption(ui("No immunization entries recorded in this session."))
     st.markdown("### " + ui("Check official guidance"))
-    st.link_button("Nigeria Ministry of Health childhood schedule ↗", "https://health.gov.ng/wp-content/uploads/2025/06/SCD-Guideline-Final-2nd-Edition.pdf", use_container_width=True)
-    st.link_button("UNICEF Nigeria immunization schedule ↗", "https://www.unicef.org/nigeria/documents/nigeria-immunization-schedule", use_container_width=True)
-    st.link_button("Nigeria National Primary Health Care Development Agency ↗", "https://nphcda.gov.ng/", use_container_width=True)
+    st.link_button(ui("Nigeria Ministry of Health childhood schedule ↗"), "https://health.gov.ng/wp-content/uploads/2025/06/SCD-Guideline-Final-2nd-Edition.pdf", use_container_width=True)
+    st.link_button(ui("UNICEF Nigeria immunization schedule ↗"), "https://www.unicef.org/nigeria/documents/nigeria-immunization-schedule", use_container_width=True)
+    st.link_button(ui("Nigeria National Primary Health Care Development Agency ↗"), "https://nphcda.gov.ng/", use_container_width=True)
     st.caption("Before real-world clinical use: confirm schedule and vaccine names with NPHCDA and a Nigerian immunization clinician; complete privacy, accessibility, and safeguarding review.")
