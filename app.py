@@ -1,7 +1,7 @@
 import streamlit as st
 from mamacare import render_mamacare
 from adaptivecare import render_adaptivecare
-from localization.language_manager import choose_language, localized_navigation
+from localization.language_manager import choose_language, localized_navigation, t
 from datetime import date, datetime, time, timedelta
 from html import escape
 
@@ -178,23 +178,23 @@ if st.session_state.page == "🏡 Home":
     <div class="hm-logo-focus"><img src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="HerMamaAI mother and baby brand logo"></div>
     <p class="hm-single-message">Compassionate guidance for pregnancy, postpartum recovery and beyond.</p>
     </section>""", unsafe_allow_html=True)
-    st.caption("FUNCTIONAL RESEARCH & INNOVATION PROTOTYPE · ABUJA, NIGERIA")
+    st.caption(t("home.prototype"))
 
 # Navigation stays near the top so key services are easy to reach on Android.
 choose_language()
 if st.session_state.hm_language != "en":
-    st.info("Language preview: navigation labels are draft translations. Maternal health guidance remains in English until reviewed.")
+    st.info(t("language.notice"))
 nav = ["🏡 Home","👶 BabyCare","🤰 Pregnancy care","💞 MamaCare journey","💗 Postpartum recovery","📅 CareCalendar","🌷 Emotional wellness","🏥 Find care","📖 Learning hub","🌼 Calm Corner"]
 if st.session_state.page == "🏡 Home":
-    st.markdown("#### Explore care and support")
+    st.markdown("#### " + t("home.explore"))
     quick = [
-        ("🤰 Pregnancy", "🤰 Pregnancy care"),
-        ("💞 MamaCare", "💞 MamaCare journey"),
-        ("👶 BabyCare", "👶 BabyCare"),
-        ("📅 Calendar", "📅 CareCalendar"),
-        ("🏥 Find Care", "🏥 Find care"),
-        ("🌷 Wellness", "🌷 Emotional wellness"),
-        ("🌱 AdaptiveCare", "🌱 AdaptiveCare"),
+        (t("home.pregnancy"), "🤰 Pregnancy care"),
+        (t("home.mamacare"), "💞 MamaCare journey"),
+        (t("home.babycare"), "👶 BabyCare"),
+        (t("home.calendar"), "📅 CareCalendar"),
+        (t("home.findcare"), "🏥 Find care"),
+        (t("home.wellness"), "🌷 Emotional wellness"),
+        (t("home.adaptive"), "🌱 AdaptiveCare"),
     ]
     for offset in range(0, len(quick), 2):
         cols = st.columns(2)
