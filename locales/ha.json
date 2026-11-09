@@ -218,5 +218,12 @@
   "ui.Check-in saved. Suggestions have been refreshed using the latest session record.": "An ajiye binciken. An sabunta shawarwari bisa bayanan zaman ƙarshe.",
   "ui.You selected {goal} as your wellness goal.": "Kin zaɓi {goal} a matsayin burin jin daɗinki.",
   "ui.You selected {capacity} energy.": "Kin zaɓi kuzarin {capacity}.",
-  "ui.The context is {stage}; this does not change clinical advice or imply stage-specific medical recommendations.": "Yanayin shi ne {stage}; wannan ba ya canza shawarar likita ko bayar da shawarwarin lafiya na musamman."
+  "ui.The context is {stage}; this does not change clinical advice or imply stage-specific medical recommendations.": "Yanayin shi ne {stage}; wannan ba ya canza shawarar likita ko bayar da shawarwarin lafiya na musamman.",
+  "ui.Review your discharge instructions, arrange your recommended postnatal contact, and ask for support with rest, food, feeding and recovery.": "Duba umarnin sallamarki daga asibiti, shirya ziyarar bayan haihuwa da aka ba ki, sannan ki nemi taimako wajen hutu, abinci, shayarwa da murmurewa.",
+  "ui.Discuss fever, worsening pain, wound concerns, feeding difficulties or other symptoms with a qualified healthcare professional.": "Tattauna zazzabi, ciwo da ke ƙaruwa, matsalolin rauni, wahalar shayarwa ko wasu alamomi da ƙwararren ma'aikacin lafiya.",
+  "ui.Serious complications can develop after leaving hospital. Seek assessment for new or worsening symptoms. Emotional well-being deserves attention too.": "Matsaloli masu tsanani na iya faruwa bayan fita daga asibiti. Nemi dubawa idan sabbin alamomi sun bayyana ko sun tsananta. Lafiyar zuciya ma tana da muhimmanci.",
+  "ui.Ask about healing, mood, sleep, contraception if relevant, feeding and any ongoing symptoms. Follow your own maternity team's schedule.": "Tambayi game da warkewa, yanayin zuciya, barci, tsarin iyali idan ya dace, shayarwa da alamomin da ke ci gaba. Bi jadawalin ƙungiyar kula da haihuwarki.",
+  "ui.Postpartum concerns can continue or begin after six weeks. Seek care whenever needed; do not wait for an appointment.": "Matsalolin bayan haihuwa na iya ci gaba ko farawa bayan mako shida. Nemi kulawar lafiya duk lokacin da ake buƙata; kada ki jira alƙawari.",
+  "ui.Consider asking someone you trust for one specific practical task today.": "Ki yi tunanin neman amintaccen mutum ya taimaka miki da aiki guda yau.",
+  "ui.You deserve care, rest and support.": "Kin cancanci kulawa, hutu da tallafi."
 }
