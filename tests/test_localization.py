@@ -10,6 +10,7 @@ NAV_KEYS = (
     "nav.💞 MamaCare journey", "nav.💗 Postpartum recovery",
     "nav.📅 CareCalendar", "nav.🌷 Emotional wellness",
     "nav.🏥 Find care", "nav.📖 Learning hub", "nav.🌼 Calm Corner",
+    "nav.🌱 AdaptiveCare",
 )
 
 class LocalizationTests(unittest.TestCase):
