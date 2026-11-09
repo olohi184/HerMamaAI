@@ -284,7 +284,7 @@ elif page == "🤰 Pregnancy care":
     st.subheader(ui("Questions for your maternity team"))
     for i,q in enumerate(["When should I attend my next antenatal visit?","Which symptoms mean I should seek urgent help?","Which medicines or supplements are appropriate for me?","What is my birth and emergency transport plan?"]):
         st.checkbox(ui(q),key=f"preg_{i}")
-    st.error(ui("Seek urgent medical assessment for vaginal bleeding, severe abdominal pain, severe headache or vision changes, seizures, chest pain or trouble breathing.") + ("\n\nEnglish reference: Seek urgent medical assessment for vaginal bleeding, severe abdominal pain, severe headache or vision changes, seizures, chest pain or trouble breathing." if st.session_state.get("hm_language", "en") != "en" else ""))
+    st.error(ui("Seek urgent medical assessment for vaginal bleeding, severe abdominal pain, severe headache or vision changes, seizures, chest pain or trouble breathing.") + ("\n\n" + ui("English reference:") + " Seek urgent medical assessment for vaginal bleeding, severe abdominal pain, severe headache or vision changes, seizures, chest pain or trouble breathing." if st.session_state.get("hm_language", "en") != "en" else ""))
 
     st.markdown("#### " + ui("Pregnancy learning topics"))
     with st.expander(ui("Nutrition, rest and everyday well-being")):
@@ -302,7 +302,7 @@ elif page == "💞 MamaCare journey":
     render_mamacare(go)
 
 elif page == "💗 Postpartum recovery":
-    st.markdown('<div class="section-head">💗 Postpartum recovery</div>',unsafe_allow_html=True)
+    st.markdown('<div class="section-head">' + escape(ui("💗 Postpartum recovery")) + '</div>',unsafe_allow_html=True)
     st.markdown(f'<p class="lead">{escape(t("post.intro"))}</p>',unsafe_allow_html=True)
     with st.expander(ui("The first days after birth"),expanded=True):
         st.write("Ask your team about bleeding, pain, feeding, wound care, blood pressure checks where indicated, sleep, and when to return for follow-up.")
@@ -311,7 +311,7 @@ elif page == "💗 Postpartum recovery":
     with st.expander(ui("Beyond six weeks")):
         st.write("Persistent pain, mood changes, bladder or pelvic-floor symptoms, feeding concerns or other ongoing difficulties deserve professional assessment.")
     st.button(ui("Explore MamaCare Continuity →"),type="primary",use_container_width=True,on_click=go,args=("💞 MamaCare journey",))
-    st.error(ui("**Urgent warning signs:** Heavy bleeding, chest pain, trouble breathing, seizures, severe headache or vision changes, fainting, fever with severe illness, or thoughts of harming yourself or your baby. Seek emergency medical care immediately.") + ("\n\nEnglish reference: **Urgent warning signs:** Heavy bleeding, chest pain, trouble breathing, seizures, severe headache or vision changes, fainting, fever with severe illness, or thoughts of harming yourself or your baby. Seek emergency medical care immediately." if st.session_state.get("hm_language", "en") != "en" else ""))
+    st.error(ui("**Urgent warning signs:** Heavy bleeding, chest pain, trouble breathing, seizures, severe headache or vision changes, fainting, fever with severe illness, or thoughts of harming yourself or your baby. Seek emergency medical care immediately.") + ("\n\n" + ui("English reference:") + " **Urgent warning signs:** Heavy bleeding, chest pain, trouble breathing, seizures, severe headache or vision changes, fainting, fever with severe illness, or thoughts of harming yourself or your baby. Seek emergency medical care immediately." if st.session_state.get("hm_language", "en") != "en" else ""))
 
     st.markdown("#### " + ui("More postpartum recovery topics"))
     with st.expander(ui("Healing and comfort")):
