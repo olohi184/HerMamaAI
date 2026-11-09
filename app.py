@@ -201,21 +201,21 @@ if st.session_state.page == "🏡 Home":
         for col, (label, target) in zip(cols, quick[offset:offset + 2]):
             with col:
                 st.button(label, key="quick_" + target, use_container_width=True, on_click=go, args=(target,))
-st.selectbox("Explore all HerMamaAI sections", nav, index=nav.index(st.session_state.page) if st.session_state.page in nav else 0, format_func=localized_navigation, key="hm_mobile_nav", on_change=lambda: go(st.session_state.hm_mobile_nav))
-with st.expander("Important safety information", expanded=False):
+st.selectbox(t("nav.explore"), nav, index=nav.index(st.session_state.page) if st.session_state.page in nav else 0, format_func=localized_navigation, key="hm_mobile_nav", on_change=lambda: go(st.session_state.hm_mobile_nav))
+with st.expander(t("safety.heading"), expanded=False):
     st.warning("HerMamaAI is an educational research prototype. Content has not been clinically reviewed. It is not a clinician, diagnosis tool, medical device or emergency service. For serious symptoms, seek immediate in-person medical care.")
-st.caption("Educational demonstration only · Not a substitute for professional medical care.")
+st.caption(t("safety.caption"))
 page = st.session_state.page
 if page == "🌱 AdaptiveCare":
     render_adaptivecare()
 
 if page == "🏡 Home":
-    st.markdown('<div class="section-head" style="text-align:center">Welcome to HerMamaAI</div>', unsafe_allow_html=True)
-    st.markdown('<p class="lead" style="text-align:center">Support from pregnancy through postpartum and baby care.</p>', unsafe_allow_html=True)
-    with st.expander("About this research prototype"):
-        st.write("HerMamaAI demonstrates pregnancy education, postpartum wellbeing, emotional wellness, healthcare navigation and childhood immunization planning. It is in demonstration and evaluation and has not been clinically validated.")
-    st.markdown('<div class="soft"><b>Care continues after childbirth.</b> Learn when to contact your maternity team and how to prepare for follow-up care.</div>',unsafe_allow_html=True)
-    st.button("🌼 Visit the Motherhood Calm Corner →", key="home_calm", use_container_width=True, on_click=go, args=("🌼 Calm Corner",))
+    st.markdown(f'<div class="section-head" style="text-align:center">{escape(t("home.welcome"))}</div>', unsafe_allow_html=True)
+    st.markdown(f'<p class="lead" style="text-align:center">{escape(t("home.lead"))}</p>', unsafe_allow_html=True)
+    with st.expander(t("home.about")):
+        st.write(t("home.about_body"))
+    st.markdown(f'<div class="soft"><b>{escape(t("home.continues"))}</b> Learn when to contact your maternity team and how to prepare for follow-up care.</div>',unsafe_allow_html=True)
+    st.button(t("home.calm"), key="home_calm", use_container_width=True, on_click=go, args=("🌼 Calm Corner",))
 
 elif page == "📅 CareCalendar":
     st.markdown('<div class="section-head">📅 My CareCalendar</div>',unsafe_allow_html=True)
