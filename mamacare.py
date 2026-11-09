@@ -1,6 +1,6 @@
 """Educational postpartum continuity module for HerMamaAI. No database storage."""
 import streamlit as st
-from localization.language_manager import ui, display_option
+from localization.language_manager import ui, display_option, t
 
 STAGES = {
     "Days 1–7": ("Early recovery", "Review your discharge instructions, arrange your recommended postnatal contact, and ask for support with rest, food, feeding and recovery."),
@@ -20,7 +20,7 @@ DANGER = [
 
 def render_mamacare(go=None):
     st.markdown("## " + ui("🌷 MamaCare Continuity"))
-    st.write("Care does not end at childbirth. Explore supportive postpartum information and prepare for follow-up with your maternity team.")
+    st.write(t("mama.intro"))
     st.warning("Educational prototype only — not a diagnosis, clinical assessment or emergency service. This content has not yet undergone clinical review.")
     st.markdown("### " + ui("Your postpartum care journey"))
     st.caption("Choose what you need today. These are educational tools, not clinical monitoring.")
