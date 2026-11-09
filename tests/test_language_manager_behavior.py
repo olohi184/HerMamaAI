@@ -49,8 +49,16 @@ class LanguageManagerTests(unittest.TestCase):
     def test_option_display_does_not_mutate_value(self):
         source = "Demo parent profiles"
         self.fake.session_state["hm_language"] = "ha"
-        self.assertEqual(self.lm.display_option(source), self.lm._load("ha")["ui." + source])
+        self.assertEqual(self.lm.display_option(source), source)  # not on Phase 1 allowlist
         self.assertEqual(source, "Demo parent profiles")
+
+    def test_phase_one_clinical_guidance_stays_english(self):
+        self.fake.session_state["hm_language"] = "ha"
+        for key in ("safety.mamacare_physical", "safety.mamacare_emotional", "mama.intro", "preg.intro"):
+            with self.subTest(key=key):
+                self.assertEqual(self.lm.t(key), self.lm.label(key, "en"))
+        self.assertEqual(self.lm.ui("Heavy bleeding requires emergency care"), "Heavy bleeding requires emergency care")
+        self.assertEqual(self.lm.ui("Demo baby profiles"), "Demo baby profiles")
 
     def test_dynamic_placeholder(self):
         key = "ui.A gentle hint: the word begins with {letter}. You can try again or reveal the answer."
