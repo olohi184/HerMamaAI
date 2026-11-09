@@ -688,26 +688,26 @@ elif page == "🌼 Calm Corner":
         st.caption("All game choices are temporary for this app session and are not saved as personal records.")
     st.markdown("### 💗 A kind reminder")
     st.write(ui("You deserve support, rest and care. Taking a small break is enough for now."))
-    st.button("Return to Emotional Wellness →",key="calm_return",use_container_width=True,on_click=go,args=("🌷 Emotional wellness",))
+    st.button(ui("Return to Emotional Wellness →"),key="calm_return",use_container_width=True,on_click=go,args=("🌷 Emotional wellness",))
 
 else:
     st.markdown('<div class="section-head">📖 Learning hub</div>',unsafe_allow_html=True)
     st.markdown(f'<p class="lead">{escape(t("learn.intro"))}</p>',unsafe_allow_html=True)
-    with st.expander("Why postnatal visits matter",expanded=True):
-        st.write("Postnatal care helps qualified professionals identify complications, support recovery and address emotional or feeding concerns. Follow the schedule your healthcare team recommends.")
-    with st.expander("What to bring to an appointment"):
-        st.write("Bring your discharge notes if available, a medication list, and questions about symptoms, feeding, recovery and your next follow-up.")
-    with st.expander("When to seek emergency help"):
+    with st.expander(ui("Why postnatal visits matter"),expanded=True):
+        st.write(ui("Postnatal care helps qualified professionals identify complications, support recovery and address emotional or feeding concerns. Follow the schedule your healthcare team recommends."))
+    with st.expander(ui("What to bring to an appointment")):
+        st.write(ui("Bring your discharge notes if available, a medication list, and questions about symptoms, feeding, recovery and your next follow-up."))
+    with st.expander(ui("When to seek emergency help")):
         st.write("Heavy bleeding, chest pain, difficulty breathing, seizures, severe headache or vision changes, fainting, severe illness with fever, or thoughts of harming yourself or your baby need urgent professional attention.")
-    with st.expander("Pregnancy: planning questions"):
+    with st.expander(ui("Pregnancy: planning questions")):
         st.write(ui("Discuss antenatal visits, recommended screening, medicines, nutrition, baby's movement, delivery plans and emergency transport with your maternity team."))
-    with st.expander("Postpartum: the weeks after birth"):
-        st.write("Discuss healing, feeding, sleep, blood pressure checks where indicated, emotional health and continued follow-up. Recovery may continue beyond six weeks.")
-    with st.expander("Emotional well-being and seeking help"):
+    with st.expander(ui("Postpartum: the weeks after birth")):
+        st.write(ui("Discuss healing, feeding, sleep, blood pressure checks where indicated, emotional health and continued follow-up. Recovery may continue beyond six weeks."))
+    with st.expander(ui("Emotional well-being and seeking help")):
         st.write("A trusted person and a qualified healthcare professional can help with persistent or worsening emotional distress. Severe confusion or thoughts of harm need emergency care.")
-    with st.expander("Using HerMamaAI safely"):
+    with st.expander(ui("Using HerMamaAI safely")):
         st.write(ui("HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice."))
     st.button(ui("🌼 Try the Calm Corner"),key="learning_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
-    st.caption("Educational content requires clinical review before a real-world health pilot.")
+    st.caption(ui("Educational content requires clinical review before a real-world health pilot."))
 
 st.markdown('<div class="footer"><b>HerMamaAI · Functional Research &amp; Innovation Prototype · Version 5.2</b> — Developed by WechimAI Integrated Engineering &amp; ICT Ltd · Abuja, Nigeria.<br>Educational demonstration and evaluation only; not clinically validated, a medical device, a diagnosis tool or an emergency service. BabyCare family profiles, vaccination entries and planned visits are temporary session-only demonstration data, not securely retained medical records. Do not enter real personal or child health information. Independent clinical review, safeguarding, accessibility testing, privacy assessment and secure account infrastructure are required before a real-world pilot.</div>',unsafe_allow_html=True)
