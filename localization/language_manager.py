@@ -23,8 +23,12 @@ def choose_language():
         options=list(LANGUAGES),
         format_func=lambda code: LANGUAGES[code],
         key="hm_language",
-        help="Phase 1 translates navigation only. Medical guidance remains in English until reviewed."
+        help=label("language.help")
     )
+
+def t(key):
+    """Translate a content key, falling back to reviewed English source."""
+    return label(key)
 
 def localized_navigation(page):
     return label("nav." + page)
