@@ -208,7 +208,6 @@ with st.expander(t("safety.heading"), expanded=False):
 st.caption(t("safety.caption"))
 if st.session_state.hm_language != "en":
     st.warning(t("safety.emergency_translation_notice"))
-    st.caption(t("safety.review_status"))
 page = st.session_state.page
 if page == "🌱 AdaptiveCare":
     render_adaptivecare()
