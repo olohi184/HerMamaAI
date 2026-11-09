@@ -23,16 +23,16 @@ def render_mamacare(go=None):
     st.write(t("mama.intro"))
     st.warning("Educational prototype only — not a diagnosis, clinical assessment or emergency service. This content has not yet undergone clinical review.")
     st.markdown("### " + ui("Your postpartum care journey"))
-    st.caption("Choose what you need today. These are educational tools, not clinical monitoring.")
+    st.caption(ui("Choose what you need today. These are educational tools, not clinical monitoring."))
     options = ["🌼 Recovery guidance", "💗 Gentle check-in", "🚨 Warning signs", "📅 Follow-up planning"]
     section = st.radio(ui("Explore your care"), options, format_func=display_option, horizontal=True, key="mc_section", label_visibility="collapsed")
     st.divider()
     if section == options[0]:
         phase = st.selectbox(ui("Choose a recovery stage"), list(STAGES), format_func=display_option, key="mamacare_phase")
         title, guidance = STAGES[phase]
-        st.subheader(title)
+        st.subheader(ui(title))
         st.write(guidance)
-        st.caption("These stages are educational, not a prescribed follow-up schedule. Every recovery is different.")
+        st.caption(ui("These stages are educational, not a prescribed follow-up schedule. Every recovery is different."))
         if go is not None:
             st.button(ui("🌼 Visit Calm Corner →"), key="mc_calm", on_click=go, args=("🌼 Calm Corner",), use_container_width=True)
     elif section == options[1]:
@@ -57,7 +57,7 @@ def render_mamacare(go=None):
         st.caption("This list is not exhaustive. Seek care for any concerning symptoms.")
     elif section == options[3]:
         st.subheader(ui("My follow-up checklist"))
-        st.write("Use your maternity team's own follow-up instructions and appointment schedule.")
+        st.write(ui("Use your maternity team's own follow-up instructions and appointment schedule."))
         tasks = [
             "Confirm my next postpartum appointment",
             "Write down questions about pain, bleeding or healing",
@@ -66,7 +66,7 @@ def render_mamacare(go=None):
             "Arrange transport or someone to accompany me if needed",
         ]
         for i, task in enumerate(tasks):
-            st.checkbox(task, key=f"mc_task_{i}")
+            st.checkbox(ui(task), key=f"mc_task_{i}")
         if go is not None:
             st.button(ui("📅 Open CareCalendar →"), key="mc_calendar", on_click=go, args=("📅 CareCalendar",), use_container_width=True)
-        st.caption("Checklists are session-only. This module does not book appointments or send reminders.")
+        st.caption(ui("Checklists are session-only. This module does not book appointments or send reminders."))
