@@ -20,3 +20,13 @@ jobs:
         run: python scripts/audit_localization.py
       - name: Test language switching and safety disclosures
         run: python -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Inventory remaining untranslated interface copy
+        if: always()
+        run: python scripts/report_untranslated_ui.py > untranslated-ui-report.txt
+      - name: Upload localization inventory
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: untranslated-ui-inventory
+          path: untranslated-ui-report.txt
+          if-no-files-found: warn
