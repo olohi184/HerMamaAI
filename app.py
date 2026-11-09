@@ -184,7 +184,7 @@ if st.session_state.page == "🏡 Home":
 choose_language()
 if st.session_state.hm_language != "en":
     st.info(t("language.notice"))
-nav = ["🏡 Home","👶 BabyCare","🤰 Pregnancy care","💞 MamaCare journey","💗 Postpartum recovery","📅 CareCalendar","🌷 Emotional wellness","🏥 Find care","📖 Learning hub","🌼 Calm Corner"]
+nav = ["🏡 Home","👶 BabyCare","🤰 Pregnancy care","💞 MamaCare journey","💗 Postpartum recovery","📅 CareCalendar","🌷 Emotional wellness","🏥 Find care","📖 Learning hub","🌼 Calm Corner","🌱 AdaptiveCare"]
 if st.session_state.page == "🏡 Home":
     st.markdown("#### " + t("home.explore"))
     quick = [
@@ -209,7 +209,7 @@ page = st.session_state.page
 if page == "🌱 AdaptiveCare":
     render_adaptivecare()
 
-if page == "🏡 Home":
+elif page == "🏡 Home":
     st.markdown(f'<div class="section-head" style="text-align:center">{escape(t("home.welcome"))}</div>', unsafe_allow_html=True)
     st.markdown(f'<p class="lead" style="text-align:center">{escape(t("home.lead"))}</p>', unsafe_allow_html=True)
     with st.expander(t("home.about")):
@@ -236,7 +236,7 @@ elif page == "📅 CareCalendar":
         submitted = st.form_submit_button(ui("Add to my calendar"),type="primary",use_container_width=True)
         if submitted:
             st.session_state.care_appointments.append({"kind":kind,"date":ap_date,"time":ap_time,"note":note.strip()})
-            st.success("Added to this session's calendar. This does not book a clinic visit.")
+            st.success(ui("Added to this session's calendar. This does not book a clinic visit."))
     st.markdown("#### " + ui("My planned appointments"))
     items = sorted(enumerate(st.session_state.care_appointments),key=lambda x:(x[1]["date"],x[1]["time"]))
     if not items:
