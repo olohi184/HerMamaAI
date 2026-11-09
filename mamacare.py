@@ -37,7 +37,7 @@ def render_mamacare(go=None):
             st.button(ui("🌼 Visit Calm Corner →"), key="mc_calm", on_click=go, args=("🌼 Calm Corner",), use_container_width=True)
     elif section == options[1]:
         st.subheader(ui("How are you feeling today?"))
-        st.caption("Optional self-reflection only. Answers remain in the current Streamlit session and are not sent to a healthcare professional.")
+        st.caption(ui("Optional self-reflection only. Answers remain in the current Streamlit session and are not sent to a healthcare professional."))
         physical = st.radio(ui("Physical recovery"), ["Comfortable today", "Some concerns", "I need medical help"], format_func=display_option, index=None, key="mc_physical")
         mood = st.radio(ui("Emotional well-being"), ["Doing okay", "Having a difficult day", "I need support"], format_func=display_option, index=None, key="mc_mood")
         support = st.radio(ui("Support around you"), ["I have support", "I could use more help"], format_func=display_option, index=None, key="mc_support")
@@ -54,7 +54,7 @@ def render_mamacare(go=None):
         for item in DANGER:
             st.markdown("- " + item)
         st.error("If any of these occur, go to the nearest emergency department or contact local emergency services immediately. Do not wait for an app response.")
-        st.caption("This list is not exhaustive. Seek care for any concerning symptoms.")
+        st.caption(ui("This list is not exhaustive. Seek care for any concerning symptoms."))
     elif section == options[3]:
         st.subheader(ui("My follow-up checklist"))
         st.write(ui("Use your maternity team's own follow-up instructions and appointment schedule."))
