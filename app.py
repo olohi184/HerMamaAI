@@ -287,9 +287,9 @@ elif page == "🤰 Pregnancy care":
     with st.expander("Nutrition, rest and everyday well-being"):
         st.write("Ask your maternity team about a varied diet, food safety, hydration, recommended supplements, activity, rest and any individual restrictions. Avoid starting or stopping medicines or supplements based on app content.")
     with st.expander("Understanding antenatal checks"):
-        st.write("Antenatal visits may include blood pressure measurement, laboratory tests, screening, fetal growth monitoring and discussion of symptoms. What is appropriate depends on your stage of pregnancy, medical history and local guidance.")
+        st.write(ui("Antenatal visits may include blood pressure measurement, laboratory tests, screening, fetal growth monitoring and discussion of symptoms. What is appropriate depends on your stage of pregnancy, medical history and local guidance."))
     with st.expander("Preparing for delivery"):
-        st.write("Discuss where you plan to give birth, how you will travel there, whom to contact, what to pack and who can support you. Review emergency arrangements with your maternity team.")
+        st.write(ui("Discuss where you plan to give birth, how you will travel there, whom to contact, what to pack and who can support you. Review emergency arrangements with your maternity team."))
     with st.expander("Questions about baby's movement"):
         st.write("Ask your maternity team what movements to expect and what to do if movement decreases or changes. Seek prompt professional assessment for concerns about reduced movement; do not wait for an app or a scheduled visit.")
     st.markdown("#### " + ui("A small step today"))
@@ -312,7 +312,7 @@ elif page == "💗 Postpartum recovery":
 
     st.markdown("#### More postpartum recovery topics")
     with st.expander("Healing and comfort"):
-        st.write("Recovery varies after vaginal birth and caesarean birth. Ask your clinician about pain control, incision or perineal care, expected bleeding, safe activity and when to seek assessment for changes.")
+        st.write(ui("Recovery varies after vaginal birth and caesarean birth. Ask your clinician about pain control, incision or perineal care, expected bleeding, safe activity and when to seek assessment for changes."))
     with st.expander("Feeding support without judgment"):
         st.write("Whether breastfeeding, formula feeding or combining approaches, seek individualized guidance from qualified professionals if feeding is painful, difficult or worrying. Your well-being matters too.")
     with st.expander("Sleep, fatigue and asking for practical help"):
@@ -700,13 +700,13 @@ else:
     with st.expander("When to seek emergency help"):
         st.write("Heavy bleeding, chest pain, difficulty breathing, seizures, severe headache or vision changes, fainting, severe illness with fever, or thoughts of harming yourself or your baby need urgent professional attention.")
     with st.expander("Pregnancy: planning questions"):
-        st.write("Discuss antenatal visits, recommended screening, medicines, nutrition, baby's movement, delivery plans and emergency transport with your maternity team.")
+        st.write(ui("Discuss antenatal visits, recommended screening, medicines, nutrition, baby's movement, delivery plans and emergency transport with your maternity team."))
     with st.expander("Postpartum: the weeks after birth"):
         st.write("Discuss healing, feeding, sleep, blood pressure checks where indicated, emotional health and continued follow-up. Recovery may continue beyond six weeks.")
     with st.expander("Emotional well-being and seeking help"):
         st.write("A trusted person and a qualified healthcare professional can help with persistent or worsening emotional distress. Severe confusion or thoughts of harm need emergency care.")
     with st.expander("Using HerMamaAI safely"):
-        st.write("HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice.")
+        st.write(ui("HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice."))
     st.button(ui("🌼 Try the Calm Corner"),key="learning_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
     st.caption("Educational content requires clinical review before a real-world health pilot.")
 
