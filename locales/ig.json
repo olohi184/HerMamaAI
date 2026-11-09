@@ -393,5 +393,10 @@
   "ui.Demo privacy: check-ins exist only in this Streamlit session; they are not synced across visits or sent to healthcare providers. Do not enter personal or medical information.": "Nzuzo nnwale: ndekọ nlele onwe gị dị naanị n'oge Streamlit a; a naghị ejikọta ha n'etiti nleta ma ọ bụ zigara ndị ọrụ ahụike. Etinyela ozi nkeonwe ma ọ bụ nke ahụike.",
   "ui.Personal wellness planning and check-in controls are hidden when you request health assistance.": "A na-ezo atụmatụ ọdịmma nkeonwe na njikwa nlele onwe gị mgbe ị rịọrọ enyemaka ahụike.",
   "ui.This version intentionally stores no medical history, names, symptoms, or location. There are no automatic notifications or provider integrations. For early pilot use, clinical, privacy, security and accessibility reviews are still required.": "Ụdị a anaghị echekwa akụkọ ahụike, aha, mgbaàmà ma ọ bụ ebe mmadụ nọ. Enweghị ọkwa akpaaka ma ọ bụ njikọ ndị na-enye nlekọta. A ka chọrọ nyocha ahụike, nzuzo, nchekwa na nnweta tupu nnwale mbụ.",
-  "ui.🌱 AdaptiveCare": "🌱 AdaptiveCare"
+  "ui.🌱 AdaptiveCare": "🌱 AdaptiveCare",
+  "ui.Clinic (optional — avoid personal details)": "Ụlọ ọgwụ (nhọrọ — etinyela nkọwa nkeonwe)",
+  "ui.⬇️ Download parent-reported record (CSV)": "⬇️ Budata ndekọ nne/nna nyere (CSV)",
+  "ui.Nigeria Ministry of Health childhood schedule ↗": "Usoro ụmụaka nke Ministri Ahụike Naịjirịa ↗",
+  "ui.UNICEF Nigeria immunization schedule ↗": "Usoro ịgba ọgwụ mgbochi UNICEF Naịjirịa ↗",
+  "ui.Nigeria National Primary Health Care Development Agency ↗": "Ụlọ Ọrụ Mmepe Nlekọta Ahụike Mbụ Naịjirịa ↗"
 }
