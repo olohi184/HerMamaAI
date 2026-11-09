@@ -378,5 +378,6 @@
   "ui.Choose a flower to create something lovely.": "Choose a flower to create something lovely.",
   "ui.💗 A kind reminder": "💗 A kind reminder",
   "safety.emergency_translation_notice": "Emergency information is shown in English while translated medical guidance awaits qualified review. If you have serious symptoms, seek immediate in-person medical help; do not wait for an app response.",
-  "safety.review_status": "This educational prototype does not provide diagnoses, emergency response, or personalized medical advice. Healthcare-practitioner review of the app does not establish validation of these draft translations."
+  "safety.review_status": "This educational prototype does not provide diagnoses, emergency response, or personalized medical advice. Healthcare-practitioner review of the app does not establish validation of these draft translations.",
+  "nav.🌱 AdaptiveCare": "🌱 AdaptiveCare"
 }
