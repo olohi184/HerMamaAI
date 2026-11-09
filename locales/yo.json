@@ -60,7 +60,7 @@
   "ui.Some concerns": "Mo ní àwọn àníyàn díẹ̀",
   "ui.I need medical help": "Mo nílò ìrànlọ́wọ́ ìṣègùn",
   "ui.Doing okay": "Mo wà dáadáa",
-  "ui.Having a difficult day": "Ọjọ́ òní ṣòro fún mi",
+  "ui.Having a difficult day": "Ọjọ́ mi ṣòro lónìí",
   "ui.I need support": "Mo nílò ìtìlẹ́yìn",
   "ui.I have support": "Mo ní ìtìlẹ́yìn",
   "ui.I could use more help": "Mo lè nílò ìrànlọ́wọ́ sí i",
@@ -186,8 +186,8 @@
   "ui.Beyond 6 weeks": "Lẹ́yìn ọ̀sẹ̀ 6",
   "ui.Early recovery": "Ìbẹ̀rẹ̀ ìmúpadàbọ̀",
   "ui.Recovery takes time": "Ìmúpadàbọ̀ ń gba àkókò",
-  "ui.Stay connected": "Máa bá ẹgbẹ́ ìlera sọ̀rọ̀",
-  "ui.Prepare for your review": "Múra sílẹ̀ fún àyẹ̀wò",
+  "ui.Stay connected": "Máa bá àwọn ènìyàn sọ̀rọ̀",
+  "ui.Prepare for your review": "Múrasílẹ̀ fún àyẹ̀wò rẹ",
   "ui.Care continues": "Ìtọ́jú ń tẹ̀ síwájú",
   "ui.Confirm my next postpartum appointment": "Jẹ́rìí sí ìpàdé ìtọ́jú lẹ́yìn ìbímọ tó tẹ̀ lé e",
   "ui.Write down questions about pain, bleeding or healing": "Kọ àwọn ìbéèrè nípa ìrora, ẹ̀jẹ̀ tàbí ìwòsàn sílẹ̀",
@@ -387,5 +387,7 @@
   "ui.Are the relevant services available on the day I plan to visit?": "Ṣé àwọn iṣẹ́ náà yóò wà ní ọjọ́ tí mo fẹ́ wá?",
   "ui.Do I need a referral or appointment?": "Ṣé mo nílò ìtọ́kasí tàbí ìpàdé?",
   "ui.What are the emergency and after-hours arrangements?": "Kí ni ètò pajawiri àti iṣẹ́ lẹ́yìn wákàtí iṣẹ́?",
-  "ui.Can you confirm the correct entrance and address?": "Ṣé ẹ lè jẹ́rìí ẹnu-ọ̀nà àti àdírẹ́sì tó tọ́?"
+  "ui.Can you confirm the correct entrance and address?": "Ṣé ẹ lè jẹ́rìí ẹnu-ọ̀nà àti àdírẹ́sì tó tọ́?",
+  "ui.Optional self-reflection only. Answers remain in the current Streamlit session and are not sent to a healthcare professional.": "Ìrònú nípa ara rẹ jẹ́ àṣàyàn nìkan. Àwọn ìdáhùn wà nínú ìgbà ìlò Streamlit yìí, a kò rán wọn sí amọ̀ṣẹ́dunjú ìlera.",
+  "ui.This list is not exhaustive. Seek care for any concerning symptoms.": "Àtòjọ yìí kò pé. Wá ìtọ́jú fún àmì àìsàn èyíkéyìí tó ń yọ ọ́ lẹ́nu."
 }
