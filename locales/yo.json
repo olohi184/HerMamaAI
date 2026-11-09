@@ -335,5 +335,19 @@
   "ui.Privacy: entries are held in this app session only. They are not saved to a database or sent to a clinic. Avoid entering personal medical information or identifying clinic details on a shared device.": "Ìpamọ́: àkọsílẹ̀ wà fún ìgbà ìlò àpù yìí nìkan. A kò fi pamọ́ sínú ibi ìpamọ́ tàbí rán sí ilé ìwòsàn. Má tẹ ìsọfúnni ìlera ara ẹni tàbí ìdánimọ̀ ilé ìwòsàn lórí ẹ̀rọ tí ẹlòmíràn ń lò.",
   "ui.Enter the appointment date and time given by your maternity team, select Add to my calendar, then use the .ics download button. Open the downloaded file in your phone's calendar and confirm that the event appears. The exported event requests a reminder 1 day before the appointment; whether an alert appears depends on your phone calendar app and notification settings. HerMamaAI itself does not send notifications. For appointments less than 1 day away, set a suitable reminder manually in your calendar.": "Tẹ ọjọ́ àti àkókò tí ẹgbẹ́ ìtọ́jú rẹ fún ọ, yan fífi kún kàlẹ́ńdà, kí o sì gba fáìlì .ics. Ṣí i nínú kàlẹ́ńdà fóònù rẹ kí o jẹ́rìí pé ó hàn. Fáìlì náà ń béèrè ìrántí ọjọ́ kan ṣáájú ìpàdé; ìkìlọ̀ dá lórí ètò fóònù rẹ. HerMamaAI fúnra rẹ kì í rán ìkìlọ̀. Fún ìpàdé tó kù díẹ̀ ju ọjọ́ kan lọ, ṣètò ìrántí fúnra rẹ.",
   "ui.Bring any maternity notes you have, a list of medicines or supplements, questions you want answered, and any instructions your maternity team has given you. Ask a trusted person to help with transport if needed.": "Mú àwọn ìwé ìtọ́jú oyún rẹ, àtòjọ oògùn tàbí àfikún oúnjẹ, àwọn ìbéèrè rẹ àti ìtọ́sọ́nà ẹgbẹ́ ìtọ́jú rẹ. Béèrè ìrànlọ́wọ́ ọkọ̀ lọ́wọ́ ẹni tí o gbẹ́kẹ̀ lé tí ó bá yẹ.",
-  "ui.All game choices are temporary for this app session and are not saved as personal records.": "Gbogbo àṣàyàn eré jẹ́ fún ìgbà ìlò yìí nìkan, a kò fi wọ́n pamọ́ gẹ́gẹ́ bí àkọsílẹ̀ ara ẹni."
+  "ui.All game choices are temporary for this app session and are not saved as personal records.": "Gbogbo àṣàyàn eré jẹ́ fún ìgbà ìlò yìí nìkan, a kò fi wọ́n pamọ́ gẹ́gẹ́ bí àkọsílẹ̀ ara ẹni.",
+  "ui.🌼 Motherhood Calm Corner": "🌼 Ibi ìsinmi fún ìyá",
+  "ui.Playing now ✓": "Eré ń lọ lọ́wọ́ ✓",
+  "ui.Explore activity →": "Ṣàwárí ìṣe →",
+  "ui.A little space to grow, at your own pace. 🌿": "Ibi kékeré láti dàgbà ní ìrìn tirẹ. 🌿",
+  "ui.Discover three matching pairs of cheerful garden pictures. No clock, no score — just a peaceful moment.": "Wá àwòrán ọgbà mẹ́ta-mẹ́ta tí wọ́n bá ara wọn mu. Kò sí aago tàbí àmì — ìgbà ìsinmi nìkan.",
+  "ui.🌸 A little garden of surprises 🌿": "🌸 Ọgbà kékeré ti ìyàlẹ́nu 🌿",
+  "ui.Matched garden pair": "Àwòrán ọgbà méjì ti bá ara wọn mu",
+  "ui.Turn over garden card": "Yí káàdì ọgbà padà",
+  "ui.🌿 Turn cards back": "🌿 Yí àwọn káàdì padà",
+  "ui.Your Memory Garden is blooming!": "Ọgbà ìrántí rẹ ń tanná!",
+  "ui.All three pairs found. Beautifully done — enjoy this little moment.": "O ti rí gbogbo mẹ́tẹ̀ẹ̀ta. O ṣe dáadáa — gbádùn àkókò yìí.",
+  "ui.Arrange the letters into a gentle word. Take your time, or reveal the answer whenever you wish.": "Ṣètò àwọn lẹ́tà di ọ̀rọ̀ rere. Má ṣe kánjú, tàbí fi ìdáhùn hàn nígbà tí o bá fẹ́.",
+  "ui.Beautifully done!": "O ṣe dáadáa!",
+  "ui.Design a bouquet by choosing flowers in your favourite colours.": "Ṣẹ̀dá ìdì òdòdó pẹ̀lú àwọn àwọ̀ tí o fẹ́ràn."
 }
