@@ -218,5 +218,12 @@
   "ui.Check-in saved. Suggestions have been refreshed using the latest session record.": "A ti fi àkọsílẹ̀ pamọ́. A ti ṣe àtúnṣe àwọn àbá gẹ́gẹ́ bí àkọsílẹ̀ tuntun.",
   "ui.You selected {goal} as your wellness goal.": "O yan {goal} gẹ́gẹ́ bí àfojúsùn àlàáfíà rẹ.",
   "ui.You selected {capacity} energy.": "O yan agbára {capacity}.",
-  "ui.The context is {stage}; this does not change clinical advice or imply stage-specific medical recommendations.": "Ipò náà ni {stage}; èyí kò yí ìmọ̀ràn ìṣègùn padà tàbí fi ìmọ̀ràn ìlera pàtó hàn."
+  "ui.The context is {stage}; this does not change clinical advice or imply stage-specific medical recommendations.": "Ipò náà ni {stage}; èyí kò yí ìmọ̀ràn ìṣègùn padà tàbí fi ìmọ̀ràn ìlera pàtó hàn.",
+  "ui.Review your discharge instructions, arrange your recommended postnatal contact, and ask for support with rest, food, feeding and recovery.": "Ṣàyẹ̀wò ìtọ́sọ́nà tí a fún ọ nígbà tí o kúrò ní ilé ìwòsàn, ṣètò ìbẹ̀wò lẹ́yìn ìbímọ, kí o sì béèrè ìrànlọ́wọ́ fún ìsinmi, oúnjẹ, fífún ọmọ ní oúnjẹ àti ìmúpadàbọ̀.",
+  "ui.Discuss fever, worsening pain, wound concerns, feeding difficulties or other symptoms with a qualified healthcare professional.": "Jíròrò ibà, ìrora tó ń pọ̀ sí i, ìṣòro ọgbẹ́, ìṣòro fífún ọmọ ní oúnjẹ tàbí àwọn àmì mìíràn pẹ̀lú amọ̀ṣẹ́dunjú ìlera.",
+  "ui.Serious complications can develop after leaving hospital. Seek assessment for new or worsening symptoms. Emotional well-being deserves attention too.": "Àwọn ìṣòro tó le lè ṣẹlẹ̀ lẹ́yìn tí a kúrò ní ilé ìwòsàn. Wá àyẹ̀wò fún àmì tuntun tàbí tó ń burú sí i. Ìlera ọkàn náà ṣe pàtàkì.",
+  "ui.Ask about healing, mood, sleep, contraception if relevant, feeding and any ongoing symptoms. Follow your own maternity team's schedule.": "Béèrè nípa ìwòsàn, ìmọ̀lára, oorun, ìdènà oyún tí ó bá yẹ, fífún ọmọ ní oúnjẹ àti àwọn àmì tó ṣì wà. Tẹ̀lé ètò ẹgbẹ́ ìtọ́jú ìyá rẹ.",
+  "ui.Postpartum concerns can continue or begin after six weeks. Seek care whenever needed; do not wait for an appointment.": "Àwọn ìṣòro lẹ́yìn ìbímọ lè tẹ̀ síwájú tàbí bẹ̀rẹ̀ lẹ́yìn ọ̀sẹ̀ mẹ́fà. Wá ìtọ́jú nígbà tí o bá nílò rẹ; má ṣe dúró de ìpàdé.",
+  "ui.Consider asking someone you trust for one specific practical task today.": "Ronú láti béèrè lọ́wọ́ ẹni tí o gbẹ́kẹ̀ lé kí ó ṣe iṣẹ́ kan fún ọ lónìí.",
+  "ui.You deserve care, rest and support.": "O yẹ fún ìtọ́jú, ìsinmi àti ìtìlẹ́yìn."
 }
