@@ -615,8 +615,8 @@ elif page == "🌼 Calm Corner":
             st.session_state.word_index = 0
         scrambled, answer, encouragement = puzzles[st.session_state.word_index % len(puzzles)]
         tiles = "".join('<span class="mama-letter-tile">'+escape(letter)+'</span>' for letter in scrambled)
-        st.markdown('<div class="mama-word-tiles" aria-label="Scrambled letters: '+escape(" ".join(scrambled))+'">'+tiles+'</div>', unsafe_allow_html=True)
-        guess = st.text_input("Your answer", key=f"word_guess_{st.session_state.word_index}", max_chars=20, placeholder="Type the word here")
+        st.markdown('<div class="mama-word-tiles" aria-label="'+escape(ui("Scrambled letters: "))+escape(" ".join(scrambled))+'">'+tiles+'</div>', unsafe_allow_html=True)
+        guess = st.text_input(ui("Your answer"), key=f"word_guess_{st.session_state.word_index}", max_chars=20, placeholder=ui("Type the word here"))
         w1, w2, w3 = st.columns(3)
         with w1:
             check_clicked = st.button(ui("Check word"), key="word_check", use_container_width=True)
@@ -632,27 +632,27 @@ elif page == "🌼 Calm Corner":
             if guess.strip().upper().replace(" ", "") == answer:
                 st.session_state.word_feedback = ("correct", encouragement)
             else:
-                st.session_state.word_feedback = ("hint", "A gentle hint: the word begins with "+answer[0]+". You can try again or reveal the answer.")
+                st.session_state.word_feedback = ("hint", answer[0])
         if reveal_clicked:
-            st.session_state.word_feedback = ("reveal", answer+" — "+encouragement)
+            st.session_state.word_feedback = ("reveal", (answer, encouragement))
         feedback = st.session_state.get("word_feedback")
         if feedback:
             kind, message = feedback
             if kind == "correct":
-                st.markdown('<div class="mama-word-celebrate" role="status"><span class="mama-word-flowers">🌸 🌷 🌼 🦋</span><strong>'+escape(ui("Beautifully done!"))+'</strong><span>'+escape(message)+'</span></div>', unsafe_allow_html=True)
+                st.markdown('<div class="mama-word-celebrate" role="status"><span class="mama-word-flowers">🌸 🌷 🌼 🦋</span><strong>'+escape(ui("Beautifully done!"))+'</strong><span>'+escape(ui(message))+'</span></div>', unsafe_allow_html=True)
             elif kind == "reveal":
-                st.info(message)
+                st.info(message[0] + " — " + ui(message[1]))
             else:
-                st.info(message)
+                st.info(ui("A gentle hint: the word begins with {letter}. You can try again or reveal the answer.").format(letter=message))
 
         st.divider()
     if st.session_state.calm_activity == 4:
         st.markdown("### " + ui("🫙 Game 5: Gratitude Jar"))
-        st.write("Collect kind thoughts in your jar. No journal, account or personal details needed.")
+        st.write(ui("Collect kind thoughts in your jar. No journal, account or personal details needed."))
         affirmations = ["🌸 A small moment of peace", "💜 Kindness toward myself", "🌿 A chance to rest", "☀️ A fresh beginning", "🦋 Support when I need it"]
         if "jar_notes" not in st.session_state:
             st.session_state.jar_notes = []
-        chosen_note = st.selectbox("Choose a thought to keep", affirmations, key="jar_choice")
+        chosen_note = st.selectbox(ui("Choose a thought to keep"), affirmations, format_func=display_option, key="jar_choice")
         j1, j2 = st.columns(2)
         with j1:
             if st.button(ui("💗 Add to my jar"), key="jar_add", use_container_width=True):
@@ -663,7 +663,7 @@ elif page == "🌼 Calm Corner":
             if st.button(ui("↺ Empty my jar"), key="jar_clear", use_container_width=True):
                 st.session_state.jar_notes = []
                 st.rerun()
-        jar_contents = "<div class='jar-notes'>"+"<br>".join(escape(n) for n in st.session_state.jar_notes)+"</div>" if st.session_state.jar_notes else "<div class='jar-notes'>Your jar is ready for kind thoughts.</div>"
+        jar_contents = "<div class='jar-notes'>"+"<br>".join(escape(ui(n)) for n in st.session_state.jar_notes)+"</div>" if st.session_state.jar_notes else "<div class='jar-notes'>" + escape(ui("Your jar is ready for kind thoughts.")) + "</div>"
         st.markdown('<div class="mama-jar-stage"><div class="jar-icon">🫙</div>'+jar_contents+'</div>', unsafe_allow_html=True)
 
         st.divider()
@@ -673,20 +673,20 @@ elif page == "🌼 Calm Corner":
         bloom_choices = {"Pink blossom 🌸":"🌸", "Purple flower 🪻":"🪻", "Yellow sunflower 🌻":"🌻", "Red hibiscus 🌺":"🌺", "White daisy 🌼":"🌼"}
         if "bouquet" not in st.session_state:
             st.session_state.bouquet = []
-        bloom_name = st.selectbox("Pick a flower", list(bloom_choices), key="bouquet_choice")
+        bloom_name = st.selectbox(ui("Pick a flower"), list(bloom_choices), format_func=display_option, key="bouquet_choice")
         b1, b2 = st.columns(2)
         with b1:
-            if st.button("🌷 Add to bouquet", key="bouquet_add", use_container_width=True):
+            if st.button(ui("🌷 Add to bouquet"), key="bouquet_add", use_container_width=True):
                 st.session_state.bouquet = (st.session_state.bouquet + [bloom_choices[bloom_name]])[-18:]
                 st.rerun()
         with b2:
-            if st.button("↺ New bouquet", key="bouquet_reset", use_container_width=True):
+            if st.button(ui("↺ New bouquet"), key="bouquet_reset", use_container_width=True):
                 st.session_state.bouquet = []
                 st.rerun()
-        bouquet_content = '<div class="mama-flowers">'+" ".join(st.session_state.bouquet)+'</div>' if st.session_state.bouquet else '<div class="mama-empty">💐 Your bouquet begins here.<br>Choose a flower to create something lovely.</div>'
+        bouquet_content = '<div class="mama-flowers">'+" ".join(st.session_state.bouquet)+'</div>' if st.session_state.bouquet else '<div class="mama-empty">💐 ' + escape(ui('Your bouquet begins here.')) + '<br>' + escape(ui('Choose a flower to create something lovely.')) + '</div>'
         st.markdown('<div class="mama-garden-stage">'+bouquet_content+'</div>', unsafe_allow_html=True)
         st.caption(ui("All game choices are temporary for this app session and are not saved as personal records."))
-    st.markdown("### 💗 A kind reminder")
+    st.markdown("### " + ui("💗 A kind reminder"))
     st.write(ui("You deserve support, rest and care. Taking a small break is enough for now."))
     st.button(ui("Return to Emotional Wellness →"),key="calm_return",use_container_width=True,on_click=go,args=("🌷 Emotional wellness",))
 
