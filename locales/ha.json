@@ -393,5 +393,10 @@
   "ui.Demo privacy: check-ins exist only in this Streamlit session; they are not synced across visits or sent to healthcare providers. Do not enter personal or medical information.": "Sirrin gwaji: bayanan duba kai suna nan ne kawai a wannan zaman Streamlit; ba a haɗa su tsakanin ziyara ko aika su ga ma'aikatan lafiya. Kada ki shigar da bayanan sirri ko na lafiya.",
   "ui.Personal wellness planning and check-in controls are hidden when you request health assistance.": "A ɓoye tsarin jin daɗi da zaɓin duba kai idan kin nemi taimakon lafiya.",
   "ui.This version intentionally stores no medical history, names, symptoms, or location. There are no automatic notifications or provider integrations. For early pilot use, clinical, privacy, security and accessibility reviews are still required.": "Wannan sigar ba ta adana tarihin lafiya, sunaye, alamomi ko wuri. Babu sanarwar atomatik ko haɗin kai da masu ba da kulawa. Kafin gwaji na farko, ana buƙatar bitar lafiya, sirri, tsaro da samun dama.",
-  "ui.🌱 AdaptiveCare": "🌱 AdaptiveCare"
+  "ui.🌱 AdaptiveCare": "🌱 AdaptiveCare",
+  "ui.Clinic (optional — avoid personal details)": "Asibiti (na zaɓi — kar a saka bayanan sirri)",
+  "ui.⬇️ Download parent-reported record (CSV)": "⬇️ Sauke rikodin da iyaye suka bayar (CSV)",
+  "ui.Nigeria Ministry of Health childhood schedule ↗": "Jadawalin yara na Ma'aikatar Lafiyar Najeriya ↗",
+  "ui.UNICEF Nigeria immunization schedule ↗": "Jadawalin rigakafi na UNICEF Najeriya ↗",
+  "ui.Nigeria National Primary Health Care Development Agency ↗": "Hukumar Raya Kiwon Lafiya ta Farko ta Najeriya ↗"
 }
