@@ -214,7 +214,7 @@ if page == "🏡 Home":
     st.markdown(f'<p class="lead" style="text-align:center">{escape(t("home.lead"))}</p>', unsafe_allow_html=True)
     with st.expander(t("home.about")):
         st.write(t("home.about_body"))
-    st.markdown(f'<div class="soft"><b>{escape(t("home.continues"))}</b> Learn when to contact your maternity team and how to prepare for follow-up care.</div>',unsafe_allow_html=True)
+    st.markdown(f'<div class="soft"><b>{escape(t("home.continues"))}</b> {escape(t("home.continues_body"))}</div>',unsafe_allow_html=True)
     st.button(t("home.calm"), key="home_calm", use_container_width=True, on_click=go, args=("🌼 Calm Corner",))
 
 elif page == "📅 CareCalendar":
