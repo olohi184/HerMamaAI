@@ -59,10 +59,10 @@
   "ui.Comfortable today": "Ina jin daɗi yau",
   "ui.Some concerns": "Ina da wasu damuwa",
   "ui.I need medical help": "Ina buƙatar taimakon likita",
-  "ui.Doing okay": "Ina lafiya",
-  "ui.Having a difficult day": "Yau yana da wahala",
+  "ui.Doing okay": "Ina jin daɗi",
+  "ui.Having a difficult day": "Yau rana ce mai wahala",
   "ui.I need support": "Ina buƙatar tallafi",
-  "ui.I have support": "Ina da tallafi",
+  "ui.I have support": "Ina da masu taimako",
   "ui.I could use more help": "Ina buƙatar ƙarin taimako",
   "ui.Postpartum warning signs": "Alamomin gargaɗi bayan haihuwa",
   "ui.My follow-up checklist": "Jerin abubuwan kulawata ta gaba",
@@ -387,5 +387,7 @@
   "ui.Are the relevant services available on the day I plan to visit?": "Shin ayyukan suna samuwa a ranar da zan zo?",
   "ui.Do I need a referral or appointment?": "Ina buƙatar takardar tura ni ko alƙawari?",
   "ui.What are the emergency and after-hours arrangements?": "Mene ne tsarin gaggawa da bayan lokutan aiki?",
-  "ui.Can you confirm the correct entrance and address?": "Za ku iya tabbatar da ƙofar shiga da adireshin daidai?"
+  "ui.Can you confirm the correct entrance and address?": "Za ku iya tabbatar da ƙofar shiga da adireshin daidai?",
+  "ui.Optional self-reflection only. Answers remain in the current Streamlit session and are not sent to a healthcare professional.": "Tunanin kai na zaɓi ne kawai. Amsoshi suna cikin wannan zaman Streamlit kuma ba a aika su ga ƙwararren lafiya.",
+  "ui.This list is not exhaustive. Seek care for any concerning symptoms.": "Wannan jerin bai ƙunshi komai ba. Nemi kulawar lafiya idan kina da wata alama mai damuwa."
 }
