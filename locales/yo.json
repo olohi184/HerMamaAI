@@ -379,5 +379,13 @@
   "ui.💗 A kind reminder": "💗 Ìrántí rere",
   "safety.emergency_translation_notice": "A ń fi ìsọfúnni pajawiri hàn ní Gẹ̀ẹ́sì títí tí àwọn amọ̀ṣẹ́dunjú yóò fi ṣàyẹ̀wò ìtumọ̀ ìtọ́sọ́nà ìlera. Bí o bá ní àmì àìsàn tó le, wá ìrànlọ́wọ́ ìṣègùn ní ojúkojú lẹ́sẹ̀kẹsẹ̀; má dúró de ìdáhùn àpù.",
   "safety.review_status": "Àpù àpẹẹrẹ ẹ̀kọ́ yìí kì í ṣe àyẹ̀wò àìsàn, ìrànlọ́wọ́ pajawiri tàbí ìmọ̀ràn ìṣègùn fún ẹni kọọkan. Àyẹ̀wò àpù láti ọwọ́ amọ̀ṣẹ́dunjú ìlera kò túmọ̀ sí pé a ti jẹ́rìí àwọn ìtumọ̀ àpẹẹrẹ wọ̀nyí.",
-  "nav.🌱 AdaptiveCare": "🌱 Ìtọ́jú tó ń bá ipò mu"
+  "nav.🌱 AdaptiveCare": "🌱 Ìtọ́jú tó ń bá ipò mu",
+  "ui.**Important:** Being listed by the Federal Ministry of Health does not mean HerMamaAI has verified maternity services, opening hours, emergency capacity, precise map location or current operations. **None of these hospitals is claimed as a HerMamaAI partner.** Confirm details with the facility before a non-urgent visit.": "**Pàtàkì:** Wíwà nínú àtòjọ Ilé-iṣẹ́ Ìlera kò túmọ̀ sí pé HerMamaAI ti jẹ́rìí iṣẹ́ ìtọ́jú ìyá, wákàtí iṣẹ́, agbára pajawiri, ibi gangan lórí máàpù tàbí ìṣiṣẹ́ lọ́wọ́lọ́wọ́. **A kò sọ pé àwọn ilé ìwòsàn wọ̀nyí jẹ́ alábàáṣiṣẹ́ HerMamaAI.** Jẹ́rìí ìsọfúnni lọ́dọ̀ ilé ìwòsàn kí o tó lọ fún ìbẹ̀wò tí kì í ṣe pajawiri.",
+  "ui.**City not listed?** This starter directory covers the cities represented by the ministry's teaching-hospital list, not every Nigerian city or maternity facility. Contact your local primary healthcare centre or state health authority for other options. In an emergency, use the nearest appropriate emergency service instead of travelling to a distant listed hospital.": "**Ìlú rẹ kò sí nínú àtòjọ?** Àtòjọ ìbẹ̀rẹ̀ yìí bo àwọn ìlú tó wà nínú àtòjọ ilé ìwòsàn ìkọ́ni ti ilé-iṣẹ́, kì í ṣe gbogbo ìlú tàbí ilé ìtọ́jú ìyá ní Nàìjíríà. Kan sí ilé ìlera àkọ́kọ́ tàbí aláṣẹ ìlera ìpínlẹ̀ rẹ fún àṣàyàn mìíràn. Ní pajawiri, lo iṣẹ́ pajawiri tó yẹ tó sún mọ́ ọ dípò rírìn jìnà sí ilé ìwòsàn inú àtòjọ.",
+  "ui.Source: Federal Ministry of Health and Social Welfare, Teaching Hospitals directory. Directory needs periodic rechecking, independent service verification and clinical review before real-world pilot use.": "Orísun: Ilé-iṣẹ́ Ìlera àti Àlàáfíà Àwùjọ ti Ìjọba Àpapọ̀, àtòjọ àwọn ilé ìwòsàn ìkọ́ni. A nílò àtúnyẹ̀wò déédéé, ìjẹ́rìí iṣẹ́ lọ́tọ̀ àti àyẹ̀wò amọ̀ṣẹ́dunjú ìlera kí a tó dán án wò ní ayé gidi.",
+  "ui.Do you currently provide antenatal and postnatal care?": "Ṣé ẹ ń pèsè ìtọ́jú oyún àti lẹ́yìn ìbímọ lọ́wọ́lọ́wọ́?",
+  "ui.Are the relevant services available on the day I plan to visit?": "Ṣé àwọn iṣẹ́ náà yóò wà ní ọjọ́ tí mo fẹ́ wá?",
+  "ui.Do I need a referral or appointment?": "Ṣé mo nílò ìtọ́kasí tàbí ìpàdé?",
+  "ui.What are the emergency and after-hours arrangements?": "Kí ni ètò pajawiri àti iṣẹ́ lẹ́yìn wákàtí iṣẹ́?",
+  "ui.Can you confirm the correct entrance and address?": "Ṣé ẹ lè jẹ́rìí ẹnu-ọ̀nà àti àdírẹ́sì tó tọ́?"
 }
