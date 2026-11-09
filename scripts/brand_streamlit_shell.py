@@ -24,7 +24,7 @@ shutil.copyfile(LOGO, ICON)
 html = HTML.read_text(encoding="utf-8")
 icon_link = '<link rel="icon" type="image/png" href="./favicon.png?v=hermamaai-20261109" />'
 html, count = re.subn(
-    r'<link\\s+[^>]*rel=["\\\'](?:shortcut\\s+)?icon["\\\'][^>]*>',
+    r"""<link\s+[^>]*rel=["'](?:shortcut\s+)?icon["'][^>]*>""",
     icon_link,
     html,
     flags=re.IGNORECASE,
@@ -34,6 +34,6 @@ if not count:
     # version has changed its default favicon markup.
     if "</head>" not in html:
         raise SystemExit("Branding failed: Streamlit index.html has no </head>")
-    html = html.replace("</head>", f"  {icon_link}\\n</head>", 1)
+    html = html.replace("</head>", f"  {icon_link}\n</head>", 1)
 HTML.write_text(html, encoding="utf-8")
 print(f"HerMamaAI initial favicon installed: {ICON}; HTML links updated: {count}")
