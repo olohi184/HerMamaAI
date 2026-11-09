@@ -218,8 +218,8 @@ if page == "🏡 Home":
     st.button(t("home.calm"), key="home_calm", use_container_width=True, on_click=go, args=("🌼 Calm Corner",))
 
 elif page == "📅 CareCalendar":
-    st.markdown('<div class="section-head">📅 My CareCalendar</div>',unsafe_allow_html=True)
-    st.markdown('<p class="lead">A simple place to organize antenatal and postnatal visits, and explore topics to discuss with your maternity team.</p>',unsafe_allow_html=True)
+    st.markdown('<div class="section-head">' + escape(ui('📅 My CareCalendar')) + '</div>',unsafe_allow_html=True)
+    st.markdown('<p class="lead">' + escape(ui('A simple place to organize antenatal and postnatal visits, and explore topics to discuss with your maternity team.')) + '</p>',unsafe_allow_html=True)
     st.info("**Two different things:** Your appointments are dates you enter from your care plan. Suggested milestones below are educational topics only — not booked appointments or a personalized medical schedule.")
     st.caption("Privacy: entries are held in this app session only. They are not saved to a database or sent to a clinic. Avoid entering personal medical information or identifying clinic details on a shared device.")
     if "care_appointments" not in st.session_state:
@@ -251,27 +251,27 @@ elif page == "📅 CareCalendar":
                 return str(value).replace("\\","\\\\").replace(";","\\;").replace(",","\\,").replace("\n","\\n")
             title=ics_safe("HerMamaAI: "+ap["kind"]+(" - "+ap["note"] if ap["note"] else ""))
             ics="\r\n".join(["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//WechimAI//HerMamaAI//EN","BEGIN:VEVENT","UID:hermamaai-"+str(original_index)+"-"+start.strftime("%Y%m%dT%H%M%S")+"@local","DTSTAMP:"+datetime.utcnow().strftime("%Y%m%dT%H%M%SZ"),"DTSTART:"+start.strftime("%Y%m%dT%H%M%S"),"DTEND:"+end.strftime("%Y%m%dT%H%M%S"),"SUMMARY:"+title,"DESCRIPTION:Personal planning reminder only. Confirm timing with your maternity team. Time is local to your calendar.","BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:HerMamaAI appointment reminder - confirm details with your maternity team.","TRIGGER:-P1D","END:VALARM","END:VEVENT","END:VCALENDAR",""])
-            st.download_button("⬇️ Add to phone calendar (.ics)",data=ics,file_name="hermamaai-appointment.ics",mime="text/calendar",key=f"ics_{original_index}",use_container_width=True)
+            st.download_button(ui("⬇️ Add to phone calendar (.ics)"),data=ics,file_name="hermamaai-appointment.ics",mime="text/calendar",key=f"ics_{original_index}",use_container_width=True)
         with c2:
-            if st.button("Remove",key=f"remove_{original_index}",use_container_width=True):
+            if st.button(ui("Remove"),key=f"remove_{original_index}",use_container_width=True):
                 st.session_state.care_appointments.pop(original_index)
                 st.rerun()
-    st.markdown("#### Educational antenatal milestones")
-    st.caption("These are discussion prompts, not dates or a substitute for local antenatal guidance. Your maternity team determines your individual care schedule.")
-    with st.expander("Early pregnancy · Establishing antenatal care",expanded=True):
-        st.write("Discuss when to begin antenatal care, recommended screening, nutrition and supplements, medicines, and whom to call for urgent concerns.")
-    with st.expander("Middle pregnancy · Ongoing monitoring"):
-        st.write("Ask about the recommended timing of check-ups, scans and tests, your baby's development, and any symptoms that concern you.")
-    with st.expander("Later pregnancy · Preparing for birth"):
-        st.write("Discuss your birth preferences, delivery location, transport plan, emergency contacts and postpartum follow-up arrangements.")
-    with st.expander("After delivery · Continuing postnatal care"):
-        st.write("Ask your maternity team when to return after discharge, what recovery symptoms need assessment, and how to obtain feeding and emotional support.")
+    st.markdown("#### " + ui("Educational antenatal milestones"))
+    st.caption(ui("These are discussion prompts, not dates or a substitute for local antenatal guidance. Your maternity team determines your individual care schedule."))
+    with st.expander(ui("Early pregnancy · Establishing antenatal care"),expanded=True):
+        st.write(ui("Discuss when to begin antenatal care, recommended screening, nutrition and supplements, medicines, and whom to call for urgent concerns."))
+    with st.expander(ui("Middle pregnancy · Ongoing monitoring")):
+        st.write(ui("Ask about the recommended timing of check-ups, scans and tests, your baby's development, and any symptoms that concern you."))
+    with st.expander(ui("Later pregnancy · Preparing for birth")):
+        st.write(ui("Discuss your birth preferences, delivery location, transport plan, emergency contacts and postpartum follow-up arrangements."))
+    with st.expander(ui("After delivery · Continuing postnatal care")):
+        st.write(ui("Ask your maternity team when to return after discharge, what recovery symptoms need assessment, and how to obtain feeding and emotional support."))
     st.error("**Urgent symptoms?** Heavy bleeding, seizures, chest pain, difficulty breathing, severe headache or visual changes, fainting, or thoughts of harming yourself or your baby need immediate professional help. Do not wait for a calendar reminder.")
 
-    st.markdown("#### Make your calendar work for you")
-    with st.expander("How to add a reminder to your phone"):
+    st.markdown("#### " + ui("Make your calendar work for you"))
+    with st.expander(ui("How to add a reminder to your phone")):
         st.write("Enter the appointment date and time given by your maternity team, select Add to my calendar, then use the .ics download button. Open the downloaded file in your phone's calendar and confirm that the event appears. The exported event requests a reminder 1 day before the appointment; whether an alert appears depends on your phone calendar app and notification settings. HerMamaAI itself does not send notifications. For appointments less than 1 day away, set a suitable reminder manually in your calendar.")
-    with st.expander("What to prepare before a visit"):
+    with st.expander(ui("What to prepare before a visit")):
         st.write("Bring any maternity notes you have, a list of medicines or supplements, questions you want answered, and any instructions your maternity team has given you. Ask a trusted person to help with transport if needed.")
 
 elif page == "🤰 Pregnancy care":
