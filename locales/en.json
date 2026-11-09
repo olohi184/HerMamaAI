@@ -9,5 +9,17 @@
   "nav.🏥 Find care": "🏥 Find care",
   "nav.📖 Learning hub": "📖 Learning hub",
   "nav.🌼 Calm Corner": "🌼 Calm Corner",
-  "notice": "Language preview: clinical guidance is currently available in English only."
+  "notice": "Language preview: clinical guidance is currently available in English only.",
+  "home.explore": "Explore care and support",
+  "home.tagline": "Compassionate guidance for pregnancy, postpartum recovery and beyond.",
+  "home.prototype": "FUNCTIONAL RESEARCH & INNOVATION PROTOTYPE · ABUJA, NIGERIA",
+  "home.pregnancy": "🤰 Pregnancy",
+  "home.mamacare": "💞 MamaCare",
+  "home.babycare": "👶 BabyCare",
+  "home.calendar": "📅 Calendar",
+  "home.findcare": "🏥 Find Care",
+  "home.wellness": "🌷 Wellness",
+  "home.adaptive": "🌱 AdaptiveCare",
+  "language.help": "Choose your preferred language. Some maternal-health content is still in English while translations undergo review.",
+  "language.notice": "Translation in progress: some maternal-health guidance remains in English until reviewed. Do not rely on unreviewed translations for medical decisions."
 }
