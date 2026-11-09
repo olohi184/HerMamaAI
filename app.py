@@ -278,12 +278,12 @@ elif page == "📅 CareCalendar":
         st.write(ui("Bring any maternity notes you have, a list of medicines or supplements, questions you want answered, and any instructions your maternity team has given you. Ask a trusted person to help with transport if needed."))
 
 elif page == "🤰 Pregnancy care":
-    st.markdown('<div class="section-head">🤰 Pregnancy care</div>',unsafe_allow_html=True)
+    st.markdown('<div class="section-head">' + escape(ui("🤰 Pregnancy care")) + '</div>',unsafe_allow_html=True)
     st.markdown(f'<p class="lead">{escape(t("preg.intro"))}</p>',unsafe_allow_html=True)
     st.button(ui("📅 Plan an antenatal visit in CareCalendar →"),use_container_width=True,on_click=go,args=("📅 CareCalendar",))
     st.subheader(ui("Questions for your maternity team"))
     for i,q in enumerate(["When should I attend my next antenatal visit?","Which symptoms mean I should seek urgent help?","Which medicines or supplements are appropriate for me?","What is my birth and emergency transport plan?"]):
-        st.checkbox(q,key=f"preg_{i}")
+        st.checkbox(ui(q),key=f"preg_{i}")
     st.error("Seek urgent medical assessment for vaginal bleeding, severe abdominal pain, severe headache or vision changes, seizures, chest pain or trouble breathing.")
 
     st.markdown("#### " + ui("Pregnancy learning topics"))
