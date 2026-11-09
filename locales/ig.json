@@ -244,5 +244,22 @@
   "ui.Discuss where you plan to give birth, how you will travel there, whom to contact, what to pack and who can support you. Review emergency arrangements with your maternity team.": "Kwurịta ebe ị chọrọ ịmụ nwa, otu ị ga-esi ruo ebe ahụ, onye ị ga-akpọtụrụ, ihe ị ga-akwakọba na onye ga-akwado gị. Soro ndị otu nlekọta nne gị tụlee atụmatụ mberede.",
   "ui.Recovery varies after vaginal birth and caesarean birth. Ask your clinician about pain control, incision or perineal care, expected bleeding, safe activity and when to seek assessment for changes.": "Mgbake dị iche mgbe ọmụmụ nwa site n'ụzọ nkịtị ma ọ bụ ịwa ahụ. Jụọ onye nlekọta ahụike banyere njikwa mgbu, nlekọta ọnya, ọbara a na-atụ anya, ọrụ dị mma na mgbe a ga-achọ nyocha.",
   "ui.Discuss antenatal visits, recommended screening, medicines, nutrition, baby's movement, delivery plans and emergency transport with your maternity team.": "Kwurịta nleta afọ ime, nyocha a tụrụ aro, ọgwụ, nri, mmegharị nwa, atụmatụ ọmụmụ na njem mberede na ndị otu nlekọta nne gị.",
-  "ui.HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice.": "HerMamaAI bụ ihe ngosi maka mmụta izugbe na nhazi onwe. Ọ naghị achọpụta ọrịa, nyochaa mgbaàmà, zipụ oge nleta n'ụlọ ọgwụ ma ọ bụ dochie ndụmọdụ dọkịta."
+  "ui.HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice.": "HerMamaAI bụ ihe ngosi maka mmụta izugbe na nhazi onwe. Ọ naghị achọpụta ọrịa, nyochaa mgbaàmà, zipụ oge nleta n'ụlọ ọgwụ ma ọ bụ dochie ndụmọdụ dọkịta.",
+  "ui.Protects against severe tuberculosis.": "Ọ na-enyere aka ichebe megide ụkwara nta siri ike.",
+  "ui.Oral drops protecting against polio.": "Mkpụrụ ọgwụ ọnụ na-echebe megide polio.",
+  "ui.Injection protecting against polio.": "Ịgba ọgwụ na-echebe megide polio.",
+  "ui.Protects against hepatitis B and related liver disease.": "Ọ na-echebe megide hepatitis B na ọrịa imeju metụtara ya.",
+  "ui.Protects against diphtheria, tetanus, whooping cough, hepatitis B and Hib.": "Ọ na-echebe megide diphtheria, tetanus, ụkwara nta whooping cough, hepatitis B na Hib.",
+  "ui.Protects against serious pneumococcal infections including some pneumonia and meningitis.": "Ọ na-echebe megide ọrịa pneumococcal siri ike gụnyere ụfọdụ pneumonia na meningitis.",
+  "ui.Protects against severe rotavirus diarrhoea.": "Ọ na-echebe megide afọ ọsịsa rotavirus siri ike.",
+  "ui.Protects against measles; MR also protects against rubella.": "Ọ na-echebe megide measles; MR na-echebekwa megide rubella.",
+  "ui.Protects against yellow fever.": "Ọ na-echebe megide yellow fever.",
+  "ui.Protects against some meningococcal infections.": "Ọ na-echebe megide ụfọdụ ọrịa meningococcal.",
+  "ui.Helps reduce malaria illness; local rollout varies.": "Ọ na-enyere aka ibelata ọrịa ịba; nnweta ya dị iche n'ebe dị iche.",
+  "ui.Supplement supporting vision and immunity.": "Ihe mgbakwunye na-akwado ịhụ ụzọ na mgbochi ọrịa.",
+  "ui.Tap a vaccine name to learn what it helps protect against.": "Pịa aha ọgwụ mgbochi iji mụta ihe ọ na-echebe megide.",
+  "ui.📚 Understand the vaccines": "📚 Ghọta ọgwụ mgbochi",
+  "ui.📅 Plan a future vaccination visit": "📅 Hazie nleta ọgwụ mgbochi n'ọdịnihu",
+  "ui.✅ Record a vaccine already received": "✅ Dekọọ ọgwụ mgbochi enyerelarị",
+  "ui.📊 My saved vaccination entries": "📊 Ndekọ ọgwụ mgbochi m echekwara"
 }
