@@ -44,5 +44,19 @@ class LocalizationTests(unittest.TestCase):
                 for key in required:
                     self.assertTrue(catalogue.get(key), f"{language}: missing {key}")
 
+    def test_phase_one_english_medical_fallback_policy(self):
+        manager = (ROOT / "localization" / "language_manager.py").read_text(encoding="utf-8")
+        self.assertIn('CLINICAL_PREFIXES =', manager)
+        self.assertIn('return label(key, "en")', manager)
+        self.assertIn("SAFE_UI_LABELS = frozenset", manager)
+        self.assertIn("if source not in SAFE_UI_LABELS:", manager)
+
+    def test_mamacare_medical_warning_has_no_duplicate_reference(self):
+        source = (ROOT / "mamacare.py").read_text(encoding="utf-8")
+        self.assertIn('st.warning(t("safety.mamacare_physical"))', source)
+        self.assertIn('st.warning(t("safety.mamacare_emotional"))', source)
+        self.assertNotIn('t("safety.english_reference")', source)
+        self.assertNotIn("{english}", source)
+
 if __name__ == "__main__":
     unittest.main()
