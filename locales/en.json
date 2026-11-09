@@ -387,5 +387,7 @@
   "ui.Are the relevant services available on the day I plan to visit?": "Are the relevant services available on the day I plan to visit?",
   "ui.Do I need a referral or appointment?": "Do I need a referral or appointment?",
   "ui.What are the emergency and after-hours arrangements?": "What are the emergency and after-hours arrangements?",
-  "ui.Can you confirm the correct entrance and address?": "Can you confirm the correct entrance and address?"
+  "ui.Can you confirm the correct entrance and address?": "Can you confirm the correct entrance and address?",
+  "ui.Optional self-reflection only. Answers remain in the current Streamlit session and are not sent to a healthcare professional.": "Optional self-reflection only. Answers remain in the current Streamlit session and are not sent to a healthcare professional.",
+  "ui.This list is not exhaustive. Seek care for any concerning symptoms.": "This list is not exhaustive. Seek care for any concerning symptoms."
 }
