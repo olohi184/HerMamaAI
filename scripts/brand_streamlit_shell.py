@@ -72,6 +72,6 @@ guard = """<script data-hermamaai-tab-icon>
 })();
 </script>"""
 if 'data-hermamaai-tab-icon' not in html:
-    html = html.replace('</head>', guard + '\\n</head>', 1)
+    html = html.replace('</head>', guard + '\n</head>', 1)
 HTML.write_text(html, encoding="utf-8")
 print(f"HerMamaAI initial favicon installed: {ICON}; HTML links updated: {count}")
