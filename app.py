@@ -346,7 +346,7 @@ elif page == "🏥 Find care":
     render_find_care()
 
 elif page == "🌼 Calm Corner":
-    st.markdown('<div class="section-head">🌼 Motherhood Calm Corner</div>',unsafe_allow_html=True)
+    st.markdown('<div class="section-head">' + escape(ui("🌼 Motherhood Calm Corner")) + '</div>',unsafe_allow_html=True)
     st.markdown(f'<p class="lead">{escape(t("calm.intro"))}</p>',unsafe_allow_html=True)
     st.info("These are general relaxation activities, not treatment for anxiety, depression or physical symptoms. Stop any activity that feels uncomfortable. If you feel unwell or have urgent symptoms, seek professional medical care.")
     st.subheader(ui("Choose a gentle activity"))
@@ -404,7 +404,7 @@ elif page == "🌼 Calm Corner":
                     + ('<div class="calm-selected">● Currently selected</div>' if active else '') + '</div>',
                     unsafe_allow_html=True
                 )
-                if st.button("Playing now ✓" if active else "Explore activity →", key=f"calm_choice_{index}", use_container_width=True):
+                if st.button(ui("Playing now ✓" if active else "Explore activity →"), key=f"calm_choice_{index}", use_container_width=True):
                     st.session_state.calm_activity = index
                     st.rerun()
     st.divider()
@@ -477,7 +477,7 @@ elif page == "🌼 Calm Corner":
                        '<div class="hm-garden-hill"></div><div class="hm-garden-hill two"></div>'
                        '<div class="hm-garden-flowerbed">'+blooms+'</div></div>')
         st.markdown(garden_html,unsafe_allow_html=True)
-        st.markdown('<p class="hm-garden-caption">A little space to grow, at your own pace. 🌿</p>',unsafe_allow_html=True)
+        st.markdown('<p class="hm-garden-caption">' + escape(ui("A little space to grow, at your own pace. 🌿")) + '</p>',unsafe_allow_html=True)
         g1,g2=st.columns(2)
         with g1:
             if st.button(ui("🌷 Plant a flower"),key="plant_flower",use_container_width=True):
@@ -564,14 +564,14 @@ elif page == "🌼 Calm Corner":
     if st.session_state.calm_activity == 2:
         import random
         st.markdown("### " + ui("🦋 Game 3: Memory Garden"))
-        st.write("Discover three matching pairs of cheerful garden pictures. No clock, no score — just a peaceful moment.")
+        st.write(ui("Discover three matching pairs of cheerful garden pictures. No clock, no score — just a peaceful moment."))
         if "memory_cards" not in st.session_state:
             st.session_state.memory_cards = ["🌷", "🦋", "💗", "🌷", "💗", "🦋"]
             random.shuffle(st.session_state.memory_cards)
             st.session_state.memory_open = []
             st.session_state.memory_found = []
         cards = st.session_state.memory_cards
-        st.markdown('<div class="mama-memory-intro">🌸 &nbsp; A little garden of surprises &nbsp; 🌿</div>', unsafe_allow_html=True)
+        st.markdown('<div class="mama-memory-intro">' + escape(ui("🌸 A little garden of surprises 🌿")) + '</div>', unsafe_allow_html=True)
         for row_start in (0, 3):
             cols = st.columns(3)
             for offset, col in enumerate(cols):
@@ -583,7 +583,7 @@ elif page == "🌼 Calm Corner":
                 if state_style:
                     st.markdown(f'<style>div.st-key-memory_{idx} button {{{state_style}}}</style>', unsafe_allow_html=True)
                 with col:
-                    if st.button(label, key=f"memory_{idx}", use_container_width=True, disabled=matched or flipped or len(st.session_state.memory_open)>=2, help=("Matched garden pair" if matched else "Turn over garden card")):
+                    if st.button(label, key=f"memory_{idx}", use_container_width=True, disabled=matched or flipped or len(st.session_state.memory_open)>=2, help=ui("Matched garden pair" if matched else "Turn over garden card")):
                         st.session_state.memory_open.append(idx)
                         st.rerun()
         if len(st.session_state.memory_open) == 2:
@@ -594,11 +594,11 @@ elif page == "🌼 Calm Corner":
                 st.rerun()
             else:
                 st.info("These pictures are different. Enjoy another look, then turn them back when you're ready.")
-                if st.button("🌿 Turn cards back", key="memory_flip_back", use_container_width=True):
+                if st.button(ui("🌿 Turn cards back"), key="memory_flip_back", use_container_width=True):
                     st.session_state.memory_open = []
                     st.rerun()
         if len(st.session_state.memory_found) == 6:
-            st.markdown('<div class="mama-memory-finish" role="status"><div class="mama-memory-flowers">🌸 🦋 🌷 💗 🌼</div><strong>Your Memory Garden is blooming!</strong><span>All three pairs found. Beautifully done — enjoy this little moment.</span></div>', unsafe_allow_html=True)
+            st.markdown('<div class="mama-memory-finish" role="status"><div class="mama-memory-flowers">🌸 🦋 🌷 💗 🌼</div><strong>' + escape(ui("Your Memory Garden is blooming!")) + '</strong><span>' + escape(ui("All three pairs found. Beautifully done — enjoy this little moment.")) + '</span></div>', unsafe_allow_html=True)
         if st.button(ui("↺ Play Memory Garden again"), key="memory_reset", use_container_width=True):
             st.session_state.memory_cards = ["🌷", "🦋", "💗", "🌷", "💗", "🦋"]
             random.shuffle(st.session_state.memory_cards)
@@ -609,7 +609,7 @@ elif page == "🌼 Calm Corner":
         st.divider()
     if st.session_state.calm_activity == 3:
         st.markdown("### " + ui("🔤 Game 4: Mama Word Garden"))
-        st.write("Arrange the letters into a gentle word. Take your time, or reveal the answer whenever you wish.")
+        st.write(ui("Arrange the letters into a gentle word. Take your time, or reveal the answer whenever you wish."))
         puzzles = [("ERAC", "CARE", "Care for yourself, too."), ("TSER", "REST", "Rest is valuable."), ("EPOH", "HOPE", "Small hopeful moments matter."), ("MOLBO", "BLOOM", "Grow at your own pace.")]
         if "word_index" not in st.session_state:
             st.session_state.word_index = 0
@@ -639,7 +639,7 @@ elif page == "🌼 Calm Corner":
         if feedback:
             kind, message = feedback
             if kind == "correct":
-                st.markdown('<div class="mama-word-celebrate" role="status"><span class="mama-word-flowers">🌸 🌷 🌼 🦋</span><strong>Beautifully done!</strong><span>'+escape(message)+'</span></div>', unsafe_allow_html=True)
+                st.markdown('<div class="mama-word-celebrate" role="status"><span class="mama-word-flowers">🌸 🌷 🌼 🦋</span><strong>'+escape(ui("Beautifully done!"))+'</strong><span>'+escape(message)+'</span></div>', unsafe_allow_html=True)
             elif kind == "reveal":
                 st.info(message)
             else:
@@ -669,7 +669,7 @@ elif page == "🌼 Calm Corner":
         st.divider()
     if st.session_state.calm_activity == 5:
         st.markdown("### " + ui("🎨 Game 6: Colour & Bloom"))
-        st.write("Design a bouquet by choosing flowers in your favourite colours.")
+        st.write(ui("Design a bouquet by choosing flowers in your favourite colours."))
         bloom_choices = {"Pink blossom 🌸":"🌸", "Purple flower 🪻":"🪻", "Yellow sunflower 🌻":"🌻", "Red hibiscus 🌺":"🌺", "White daisy 🌼":"🌼"}
         if "bouquet" not in st.session_state:
             st.session_state.bouquet = []
