@@ -8,7 +8,13 @@ from html import escape
 from mobile_branding import ensure_official_mobile_icons
 ensure_official_mobile_icons()
 
-st.set_page_config(page_title="HerMamaAI | Maternal Wellness", page_icon="HerMamaAI Mother and Baby Emblem.png", layout="wide", initial_sidebar_state="collapsed")
+# Use the actual PNG image, rather than passing its filename as an icon string.
+from pathlib import Path
+from PIL import Image
+_BRAND_LOGO = Path(__file__).resolve().parent / "HerMamaAI Mother and Baby Emblem.png"
+with Image.open(_BRAND_LOGO) as _logo:
+    _page_icon = _logo.copy()
+st.set_page_config(page_title="HerMamaAI | Maternal Wellness", page_icon=_page_icon, layout="wide", initial_sidebar_state="collapsed")
 # Attach the HerMamaAI install manifest to the top-level document.
 # Streamlit does not expose a native page-manifest configuration option.
 # This trusted, zero-height component only inserts a manifest link and theme color;
@@ -24,6 +30,24 @@ try {
     link.href = '/app/static/manifest.json?brand=official-20261108';
     link.setAttribute('data-hermamaai', 'true');
     doc.head.appendChild(link);
+  }
+  // Provide explicit icons for Safari tabs and iOS Add to Home Screen.
+  // Keep Streamlit's own favicon link aligned with the official brand.
+  const iconUrl = '/app/static/hermamaai-original-brand-192.png?v=6';
+  for (const rel of ['icon', 'shortcut icon', 'apple-touch-icon']) {
+    let link = doc.querySelector('link[rel="' + rel + '"][data-hermamaai]');
+    if (!link) {
+      link = doc.createElement('link');
+      link.rel = rel;
+      link.setAttribute('data-hermamaai', 'true');
+      doc.head.appendChild(link);
+    }
+    link.href = iconUrl;
+    link.type = 'image/png';
+    if (rel === 'apple-touch-icon') link.sizes = '192x192';
+  }
+  for (const link of doc.querySelectorAll('link[rel="icon"]:not([data-hermamaai]), link[rel="shortcut icon"]:not([data-hermamaai])')) {
+    link.remove();
   }
   if (!doc.querySelector('meta[name="theme-color"][data-hermamaai]')) {
     const meta = doc.createElement('meta');
