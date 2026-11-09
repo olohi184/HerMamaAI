@@ -1,7 +1,7 @@
 import streamlit as st
 from mamacare import render_mamacare
 from adaptivecare import render_adaptivecare
-from localization.language_manager import choose_language, localized_navigation, t
+from localization.language_manager import choose_language, localized_navigation, t, ui, display_option
 from datetime import date, datetime, time, timedelta
 from html import escape
 
@@ -225,22 +225,22 @@ elif page == "📅 CareCalendar":
     if "care_appointments" not in st.session_state:
         st.session_state.care_appointments = []
     with st.form("carecalendar_add",clear_on_submit=True):
-        st.markdown("#### Add an appointment")
-        kind = st.selectbox("Visit type",["Antenatal visit","Postnatal follow-up","Other maternity appointment"])
+        st.markdown("#### " + ui("Add an appointment"))
+        kind = st.selectbox(ui("Visit type"),["Antenatal visit","Postnatal follow-up","Other maternity appointment"])
         a,b = st.columns(2)
         with a:
-            ap_date = st.date_input("Appointment date",value=date.today(),min_value=date.today())
+            ap_date = st.date_input(ui("Appointment date"),value=date.today(),min_value=date.today())
         with b:
-            ap_time = st.time_input("Appointment time",value=time(10,0),step=1800)
-        note = st.text_input("Optional short label",placeholder="e.g. Routine check-up",max_chars=70)
-        submitted = st.form_submit_button("Add to my calendar",type="primary",use_container_width=True)
+            ap_time = st.time_input(ui("Appointment time"),value=time(10,0),step=1800)
+        note = st.text_input(ui("Optional short label"),placeholder="e.g. Routine check-up",max_chars=70)
+        submitted = st.form_submit_button(ui("Add to my calendar"),type="primary",use_container_width=True)
         if submitted:
             st.session_state.care_appointments.append({"kind":kind,"date":ap_date,"time":ap_time,"note":note.strip()})
             st.success("Added to this session's calendar. This does not book a clinic visit.")
-    st.markdown("#### My planned appointments")
+    st.markdown("#### " + ui("My planned appointments"))
     items = sorted(enumerate(st.session_state.care_appointments),key=lambda x:(x[1]["date"],x[1]["time"]))
     if not items:
-        st.caption("No appointments entered yet. Add a visit above to begin.")
+        st.caption(ui("No appointments entered yet. Add a visit above to begin."))
     for original_index, ap in items:
         st.markdown(f'<div class="timeline"><b>📍 {escape(ap["date"].strftime("%a %d %b %Y"))} · {escape(ap["time"].strftime("%I:%M %p"))}</b><br>{escape(ap["kind"])}{(" · " + escape(ap["note"])) if ap["note"] else ""}</div>',unsafe_allow_html=True)
         c1,c2=st.columns([3,1])
@@ -278,12 +278,12 @@ elif page == "🤰 Pregnancy care":
     st.markdown('<div class="section-head">🤰 Pregnancy care</div>',unsafe_allow_html=True)
     st.markdown('<p class="lead">Regular antenatal visits help your maternity team monitor your health and your baby’s development. Ask which appointments, tests and vaccinations are appropriate for you.</p>',unsafe_allow_html=True)
     st.button("📅 Plan an antenatal visit in CareCalendar →",use_container_width=True,on_click=go,args=("📅 CareCalendar",))
-    st.subheader("Questions for your maternity team")
+    st.subheader(ui("Questions for your maternity team"))
     for i,q in enumerate(["When should I attend my next antenatal visit?","Which symptoms mean I should seek urgent help?","Which medicines or supplements are appropriate for me?","What is my birth and emergency transport plan?"]):
         st.checkbox(q,key=f"preg_{i}")
     st.error("Seek urgent medical assessment for vaginal bleeding, severe abdominal pain, severe headache or vision changes, seizures, chest pain or trouble breathing.")
 
-    st.markdown("#### Pregnancy learning topics")
+    st.markdown("#### " + ui("Pregnancy learning topics"))
     with st.expander("Nutrition, rest and everyday well-being"):
         st.write("Ask your maternity team about a varied diet, food safety, hydration, recommended supplements, activity, rest and any individual restrictions. Avoid starting or stopping medicines or supplements based on app content.")
     with st.expander("Understanding antenatal checks"):
@@ -292,7 +292,7 @@ elif page == "🤰 Pregnancy care":
         st.write("Discuss where you plan to give birth, how you will travel there, whom to contact, what to pack and who can support you. Review emergency arrangements with your maternity team.")
     with st.expander("Questions about baby's movement"):
         st.write("Ask your maternity team what movements to expect and what to do if movement decreases or changes. Seek prompt professional assessment for concerns about reduced movement; do not wait for an app or a scheduled visit.")
-    st.markdown("#### A small step today")
+    st.markdown("#### " + ui("A small step today"))
     st.checkbox("I have written down a question to ask at my next antenatal visit.",key="preg_extra")
     
 elif page == "💞 MamaCare journey":
@@ -324,11 +324,11 @@ elif page == "🌷 Emotional wellness":
     st.markdown('<div class="section-head">🌷 Emotional wellness</div>',unsafe_allow_html=True)
     st.markdown('<p class="lead">Pregnancy and new motherhood can bring many emotions. You deserve support and space to talk about how you feel.</p>',unsafe_allow_html=True)
     card("You can ask for help","💬","If sadness, anxiety, hopelessness or overwhelm persists, worsens, or affects daily life, speak with a qualified healthcare professional.")
-    st.subheader("Gentle ways to reach out")
+    st.subheader(ui("Gentle ways to reach out"))
     st.write("• Tell someone you trust how you are feeling.\n\n• Ask for practical help with meals, chores or childcare.\n\n• Discuss mood and sleep concerns at a postnatal appointment.")
     st.error("If you may harm yourself or someone else, or experience severe confusion or unusual perceptions, seek emergency medical help immediately and ask a trusted person to stay with you.")
 
-    st.markdown("#### Emotional wellness toolkit")
+    st.markdown("#### " + ui("Emotional wellness toolkit"))
     with st.expander("Check in with yourself"):
         st.write("You might gently ask: What do I need today? Have I eaten and rested as much as I can? Is there someone I can talk to? These prompts are not a mental-health assessment.")
     with st.expander("Simple connection ideas"):
@@ -349,7 +349,7 @@ elif page == "🌼 Calm Corner":
     st.markdown('<div class="section-head">🌼 Motherhood Calm Corner</div>',unsafe_allow_html=True)
     st.markdown('<p class="lead">A gentle, optional pause for mothers and mothers-to-be. Play at your own pace, or simply rest. No scores, competition, or personal information required.</p>',unsafe_allow_html=True)
     st.info("These are general relaxation activities, not treatment for anxiety, depression or physical symptoms. Stop any activity that feels uncomfortable. If you feel unwell or have urgent symptoms, seek professional medical care.")
-    st.subheader("Choose a gentle activity")
+    st.subheader(ui("Choose a gentle activity"))
     st.caption("Pick a peaceful moment just for you. No pressure, no scores.")
     activities = [
         ("🌸", "Grow your garden", "Plant flowers and watch your little garden bloom.", "#fff0f7", "#a91470"),
