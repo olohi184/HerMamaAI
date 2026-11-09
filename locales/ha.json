@@ -389,5 +389,9 @@
   "ui.What are the emergency and after-hours arrangements?": "Mene ne tsarin gaggawa da bayan lokutan aiki?",
   "ui.Can you confirm the correct entrance and address?": "Za ku iya tabbatar da ƙofar shiga da adireshin daidai?",
   "ui.Optional self-reflection only. Answers remain in the current Streamlit session and are not sent to a healthcare professional.": "Tunanin kai na zaɓi ne kawai. Amsoshi suna cikin wannan zaman Streamlit kuma ba a aika su ga ƙwararren lafiya.",
-  "ui.This list is not exhaustive. Seek care for any concerning symptoms.": "Wannan jerin bai ƙunshi komai ba. Nemi kulawar lafiya idan kina da wata alama mai damuwa."
+  "ui.This list is not exhaustive. Seek care for any concerning symptoms.": "Wannan jerin bai ƙunshi komai ba. Nemi kulawar lafiya idan kina da wata alama mai damuwa.",
+  "ui.Demo privacy: check-ins exist only in this Streamlit session; they are not synced across visits or sent to healthcare providers. Do not enter personal or medical information.": "Sirrin gwaji: bayanan duba kai suna nan ne kawai a wannan zaman Streamlit; ba a haɗa su tsakanin ziyara ko aika su ga ma'aikatan lafiya. Kada ki shigar da bayanan sirri ko na lafiya.",
+  "ui.Personal wellness planning and check-in controls are hidden when you request health assistance.": "A ɓoye tsarin jin daɗi da zaɓin duba kai idan kin nemi taimakon lafiya.",
+  "ui.This version intentionally stores no medical history, names, symptoms, or location. There are no automatic notifications or provider integrations. For early pilot use, clinical, privacy, security and accessibility reviews are still required.": "Wannan sigar ba ta adana tarihin lafiya, sunaye, alamomi ko wuri. Babu sanarwar atomatik ko haɗin kai da masu ba da kulawa. Kafin gwaji na farko, ana buƙatar bitar lafiya, sirri, tsaro da samun dama.",
+  "ui.🌱 AdaptiveCare": "🌱 AdaptiveCare"
 }
