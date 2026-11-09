@@ -218,5 +218,12 @@
   "ui.Check-in saved. Suggestions have been refreshed using the latest session record.": "Check-in saved. Suggestions have been refreshed using the latest session record.",
   "ui.You selected {goal} as your wellness goal.": "You selected {goal} as your wellness goal.",
   "ui.You selected {capacity} energy.": "You selected {capacity} energy.",
-  "ui.The context is {stage}; this does not change clinical advice or imply stage-specific medical recommendations.": "The context is {stage}; this does not change clinical advice or imply stage-specific medical recommendations."
+  "ui.The context is {stage}; this does not change clinical advice or imply stage-specific medical recommendations.": "The context is {stage}; this does not change clinical advice or imply stage-specific medical recommendations.",
+  "ui.Review your discharge instructions, arrange your recommended postnatal contact, and ask for support with rest, food, feeding and recovery.": "Review your discharge instructions, arrange your recommended postnatal contact, and ask for support with rest, food, feeding and recovery.",
+  "ui.Discuss fever, worsening pain, wound concerns, feeding difficulties or other symptoms with a qualified healthcare professional.": "Discuss fever, worsening pain, wound concerns, feeding difficulties or other symptoms with a qualified healthcare professional.",
+  "ui.Serious complications can develop after leaving hospital. Seek assessment for new or worsening symptoms. Emotional well-being deserves attention too.": "Serious complications can develop after leaving hospital. Seek assessment for new or worsening symptoms. Emotional well-being deserves attention too.",
+  "ui.Ask about healing, mood, sleep, contraception if relevant, feeding and any ongoing symptoms. Follow your own maternity team's schedule.": "Ask about healing, mood, sleep, contraception if relevant, feeding and any ongoing symptoms. Follow your own maternity team's schedule.",
+  "ui.Postpartum concerns can continue or begin after six weeks. Seek care whenever needed; do not wait for an appointment.": "Postpartum concerns can continue or begin after six weeks. Seek care whenever needed; do not wait for an appointment.",
+  "ui.Consider asking someone you trust for one specific practical task today.": "Consider asking someone you trust for one specific practical task today.",
+  "ui.You deserve care, rest and support.": "You deserve care, rest and support."
 }
