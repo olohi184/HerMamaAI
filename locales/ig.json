@@ -60,7 +60,7 @@
   "ui.Some concerns": "Enwere m ụfọdụ nchegbu",
   "ui.I need medical help": "Achọrọ m enyemaka ahụike",
   "ui.Doing okay": "Adị m mma",
-  "ui.Having a difficult day": "Taa siri ike",
+  "ui.Having a difficult day": "Taa siri m ike",
   "ui.I need support": "Achọrọ m nkwado",
   "ui.I have support": "Enwere m nkwado",
   "ui.I could use more help": "Achọrọ m enyemaka ọzọ",
@@ -187,7 +187,7 @@
   "ui.Early recovery": "Mmalite mgbake",
   "ui.Recovery takes time": "Mgbake na-ewe oge",
   "ui.Stay connected": "Nọgide na-akpakọrịta",
-  "ui.Prepare for your review": "Kwadebe maka nyocha",
+  "ui.Prepare for your review": "Kwadebe maka nyocha gị",
   "ui.Care continues": "Nlekọta na-aga n'ihu",
   "ui.Confirm my next postpartum appointment": "Kwenye oge nleta m ọzọ mgbe ọmụmụ nwa",
   "ui.Write down questions about pain, bleeding or healing": "Dee ajụjụ gbasara mgbu, ọbara ọgbụgba ma ọ bụ mgbake",
@@ -387,5 +387,7 @@
   "ui.Are the relevant services available on the day I plan to visit?": "Ọrụ ndị ahụ ọ ga-adị n'ụbọchị m chọrọ ịbịa?",
   "ui.Do I need a referral or appointment?": "Achọrọ m akwụkwọ ntụgharị ma ọ bụ oge nleta?",
   "ui.What are the emergency and after-hours arrangements?": "Kedu usoro mberede na mgbe oge ọrụ gachara?",
-  "ui.Can you confirm the correct entrance and address?": "Ị nwere ike ikwenye ụzọ mbata na adreesị ziri ezi?"
+  "ui.Can you confirm the correct entrance and address?": "Ị nwere ike ikwenye ụzọ mbata na adreesị ziri ezi?",
+  "ui.Optional self-reflection only. Answers remain in the current Streamlit session and are not sent to a healthcare professional.": "Ntụgharị uche onwe gị bụ nhọrọ naanị. Azịza na-anọ n'oge Streamlit a, a naghị ezigara ndị ọkachamara ahụike ha.",
+  "ui.This list is not exhaustive. Seek care for any concerning symptoms.": "Ndepụta a ezughị oke. Chọọ nlekọta maka mgbaàmà ọ bụla na-enye gị nsogbu."
 }
