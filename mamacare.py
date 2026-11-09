@@ -42,9 +42,13 @@ def render_mamacare(go=None):
         mood = st.radio(ui("Emotional well-being"), ["Doing okay", "Having a difficult day", "I need support"], format_func=display_option, index=None, key="mc_mood")
         support = st.radio(ui("Support around you"), ["I have support", "I could use more help"], format_func=display_option, index=None, key="mc_support")
         if physical == "I need medical help":
-            st.warning("Contact your maternity care team promptly. For severe or sudden symptoms, seek emergency care now.")
+            st.warning(t("safety.mamacare_physical"))
+            if st.session_state.get("hm_language", "en") != "en":
+                st.caption(f'{t("safety.english_reference")} {english}')
         if mood == "I need support":
-            st.warning("Contact a qualified healthcare professional and someone you trust. If you may harm yourself or your baby, seek emergency help now and do not stay alone.")
+            st.warning(t("safety.mamacare_emotional"))
+            if st.session_state.get("hm_language", "en") != "en":
+                st.caption(f'{t("safety.english_reference")} {english}')
         if support == "I could use more help":
             st.info(ui("Consider asking someone you trust for one specific practical task today."))
         if physical or mood or support:
