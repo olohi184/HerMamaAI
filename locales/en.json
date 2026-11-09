@@ -335,5 +335,19 @@
   "ui.Privacy: entries are held in this app session only. They are not saved to a database or sent to a clinic. Avoid entering personal medical information or identifying clinic details on a shared device.": "Privacy: entries are held in this app session only. They are not saved to a database or sent to a clinic. Avoid entering personal medical information or identifying clinic details on a shared device.",
   "ui.Enter the appointment date and time given by your maternity team, select Add to my calendar, then use the .ics download button. Open the downloaded file in your phone's calendar and confirm that the event appears. The exported event requests a reminder 1 day before the appointment; whether an alert appears depends on your phone calendar app and notification settings. HerMamaAI itself does not send notifications. For appointments less than 1 day away, set a suitable reminder manually in your calendar.": "Enter the appointment date and time given by your maternity team, select Add to my calendar, then use the .ics download button. Open the downloaded file in your phone's calendar and confirm that the event appears. The exported event requests a reminder 1 day before the appointment; whether an alert appears depends on your phone calendar app and notification settings. HerMamaAI itself does not send notifications. For appointments less than 1 day away, set a suitable reminder manually in your calendar.",
   "ui.Bring any maternity notes you have, a list of medicines or supplements, questions you want answered, and any instructions your maternity team has given you. Ask a trusted person to help with transport if needed.": "Bring any maternity notes you have, a list of medicines or supplements, questions you want answered, and any instructions your maternity team has given you. Ask a trusted person to help with transport if needed.",
-  "ui.All game choices are temporary for this app session and are not saved as personal records.": "All game choices are temporary for this app session and are not saved as personal records."
+  "ui.All game choices are temporary for this app session and are not saved as personal records.": "All game choices are temporary for this app session and are not saved as personal records.",
+  "ui.🌼 Motherhood Calm Corner": "🌼 Motherhood Calm Corner",
+  "ui.Playing now ✓": "Playing now ✓",
+  "ui.Explore activity →": "Explore activity →",
+  "ui.A little space to grow, at your own pace. 🌿": "A little space to grow, at your own pace. 🌿",
+  "ui.Discover three matching pairs of cheerful garden pictures. No clock, no score — just a peaceful moment.": "Discover three matching pairs of cheerful garden pictures. No clock, no score — just a peaceful moment.",
+  "ui.🌸 A little garden of surprises 🌿": "🌸 A little garden of surprises 🌿",
+  "ui.Matched garden pair": "Matched garden pair",
+  "ui.Turn over garden card": "Turn over garden card",
+  "ui.🌿 Turn cards back": "🌿 Turn cards back",
+  "ui.Your Memory Garden is blooming!": "Your Memory Garden is blooming!",
+  "ui.All three pairs found. Beautifully done — enjoy this little moment.": "All three pairs found. Beautifully done — enjoy this little moment.",
+  "ui.Arrange the letters into a gentle word. Take your time, or reveal the answer whenever you wish.": "Arrange the letters into a gentle word. Take your time, or reveal the answer whenever you wish.",
+  "ui.Beautifully done!": "Beautifully done!",
+  "ui.Design a bouquet by choosing flowers in your favourite colours.": "Design a bouquet by choosing flowers in your favourite colours."
 }
