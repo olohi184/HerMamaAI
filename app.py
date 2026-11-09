@@ -220,8 +220,8 @@ if page == "🏡 Home":
 elif page == "📅 CareCalendar":
     st.markdown('<div class="section-head">' + escape(ui('📅 My CareCalendar')) + '</div>',unsafe_allow_html=True)
     st.markdown('<p class="lead">' + escape(ui('A simple place to organize antenatal and postnatal visits, and explore topics to discuss with your maternity team.')) + '</p>',unsafe_allow_html=True)
-    st.info("**Two different things:** Your appointments are dates you enter from your care plan. Suggested milestones below are educational topics only — not booked appointments or a personalized medical schedule.")
-    st.caption("Privacy: entries are held in this app session only. They are not saved to a database or sent to a clinic. Avoid entering personal medical information or identifying clinic details on a shared device.")
+    st.info(ui("**Two different things:** Your appointments are dates you enter from your care plan. Suggested milestones below are educational topics only — not booked appointments or a personalized medical schedule."))
+    st.caption(ui("Privacy: entries are held in this app session only. They are not saved to a database or sent to a clinic. Avoid entering personal medical information or identifying clinic details on a shared device."))
     if "care_appointments" not in st.session_state:
         st.session_state.care_appointments = []
     with st.form("carecalendar_add",clear_on_submit=True):
@@ -270,9 +270,9 @@ elif page == "📅 CareCalendar":
 
     st.markdown("#### " + ui("Make your calendar work for you"))
     with st.expander(ui("How to add a reminder to your phone")):
-        st.write("Enter the appointment date and time given by your maternity team, select Add to my calendar, then use the .ics download button. Open the downloaded file in your phone's calendar and confirm that the event appears. The exported event requests a reminder 1 day before the appointment; whether an alert appears depends on your phone calendar app and notification settings. HerMamaAI itself does not send notifications. For appointments less than 1 day away, set a suitable reminder manually in your calendar.")
+        st.write(ui("Enter the appointment date and time given by your maternity team, select Add to my calendar, then use the .ics download button. Open the downloaded file in your phone's calendar and confirm that the event appears. The exported event requests a reminder 1 day before the appointment; whether an alert appears depends on your phone calendar app and notification settings. HerMamaAI itself does not send notifications. For appointments less than 1 day away, set a suitable reminder manually in your calendar."))
     with st.expander(ui("What to prepare before a visit")):
-        st.write("Bring any maternity notes you have, a list of medicines or supplements, questions you want answered, and any instructions your maternity team has given you. Ask a trusted person to help with transport if needed.")
+        st.write(ui("Bring any maternity notes you have, a list of medicines or supplements, questions you want answered, and any instructions your maternity team has given you. Ask a trusted person to help with transport if needed."))
 
 elif page == "🤰 Pregnancy care":
     st.markdown('<div class="section-head">🤰 Pregnancy care</div>',unsafe_allow_html=True)
@@ -685,7 +685,7 @@ elif page == "🌼 Calm Corner":
                 st.rerun()
         bouquet_content = '<div class="mama-flowers">'+" ".join(st.session_state.bouquet)+'</div>' if st.session_state.bouquet else '<div class="mama-empty">💐 Your bouquet begins here.<br>Choose a flower to create something lovely.</div>'
         st.markdown('<div class="mama-garden-stage">'+bouquet_content+'</div>', unsafe_allow_html=True)
-        st.caption("All game choices are temporary for this app session and are not saved as personal records.")
+        st.caption(ui("All game choices are temporary for this app session and are not saved as personal records."))
     st.markdown("### 💗 A kind reminder")
     st.write(ui("You deserve support, rest and care. Taking a small break is enough for now."))
     st.button(ui("Return to Emotional Wellness →"),key="calm_return",use_container_width=True,on_click=go,args=("🌷 Emotional wellness",))
