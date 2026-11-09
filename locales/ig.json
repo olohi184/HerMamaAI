@@ -225,5 +225,19 @@
   "ui.Ask about healing, mood, sleep, contraception if relevant, feeding and any ongoing symptoms. Follow your own maternity team's schedule.": "Jụọ maka mgbake, mmetụta uche, ụra, igbochi afọ ime ma ọ bụrụ na ọ dị mkpa, inye nwa nri na mgbaàmà ndị na-aga n'ihu. Soro oge ndị otu nlekọta nne gị.",
   "ui.Postpartum concerns can continue or begin after six weeks. Seek care whenever needed; do not wait for an appointment.": "Nsogbu mgbe ọmụmụ nwa nwere ike ịga n'ihu ma ọ bụ malite mgbe izu isii gafere. Chọọ nlekọta mgbe ọ bụla ọ dị mkpa; echela ruo oge nleta.",
   "ui.Consider asking someone you trust for one specific practical task today.": "Tụlee ịrịọ onye ị tụkwasịrị obi ka o nyere gị aka n'otu ọrụ taa.",
-  "ui.You deserve care, rest and support.": "I kwesịrị nlekọta, izu ike na nkwado."
+  "ui.You deserve care, rest and support.": "I kwesịrị nlekọta, izu ike na nkwado.",
+  "ui.All listed states and FCT": "Steeti niile na FCT edepụtara",
+  "ui.All listed cities": "Obodo niile edepụtara",
+  "ui.Phase 2 expansion — explore teaching hospitals in seven additional states": "Mgbasawanye nkeji nke abụọ — chọpụta ụlọ ọgwụ nkuzi na steeti asaa ọzọ",
+  "ui.These are existing directory listings, not newly verified maternity providers. Hospital-specific maternity services, contacts and operating capacity remain unconfirmed unless evidence is shown on a hospital card.": "Ndị a bụ ndepụta ụlọ ọgwụ dịbu, ọ bụghị ndị nlekọta nne e nyochara ọhụrụ. Ekwenyeghị ọrụ, kọntaktị na ikike ụlọ ọgwụ ọ bụla ma ọ bụrụ na e gosighị ihe akaebe.",
+  "ui.Institution listed in government directory · Service availability unverified · No partnership claimed": "Ụlọ ọrụ dị na ndepụta gọọmentị · Ekwenyeghị na ọrụ dị · Enweghị mmekọrịta a na-ekwu",
+  "ui.Published maternity-service evidence available · Current clinic hours and capacity NOT confirmed": "Ihe akaebe ọrụ nlekọta nne e bipụtara dị · EKWENYEghị oge na ikike ụlọ ọgwụ ugbu a",
+  "ui.Hospital-specific maternity services and contact details awaiting review": "Ọrụ nlekọta nne na kọntaktị ụlọ ọgwụ na-eche nyocha",
+  "ui.🏥 View maternity-service evidence ↗": "🏥 Lee ihe akaebe ọrụ nlekọta nne ↗",
+  "ui.☎️ View published contact source ↗": "☎️ Lee isi mmalite kọntaktị e bipụtara ↗",
+  "ui.🗺️ Search on Google Maps / Directions ↗": "🗺️ Chọọ na Google Maps / Ntuziaka ↗",
+  "ui.📖 View government source ↗": "📖 Lee isi mmalite gọọmentị ↗",
+  "ui.Published hospital contact (not independently tested): ": "Kọntaktị ụlọ ọgwụ e bipụtara (anwaleghị ya n'onwe ya): ",
+  "ui.Showing {count} government-listed institution(s). Not an exhaustive list of Nigerian hospitals.": "A na-egosi ụlọ ọrụ {count} dị na ndepụta gọọmentị. Nke a abụghị ndepụta ụlọ ọgwụ Naịjirịa niile.",
+  "ui.Only phone numbers supported by published hospital information or a hospital-management notice are shown; they have not been independently tested. HerMamaAI does not request your live location or store your medical information here.": "A na-egosi naanị nọmba ekwentị e bipụtara site n'ụlọ ọgwụ ma ọ bụ ọkwa ndị isi; anwaleghị ha n'onwe ha. HerMamaAI anaghị arịọ ebe ị nọ ugbu a ma ọ bụ chekwaa ozi ahụike gị ebe a."
 }
