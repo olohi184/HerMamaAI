@@ -393,5 +393,10 @@
   "ui.Demo privacy: check-ins exist only in this Streamlit session; they are not synced across visits or sent to healthcare providers. Do not enter personal or medical information.": "Ìpamọ́ àpẹẹrẹ: àkọsílẹ̀ ìṣàyẹ̀wò ara ẹni wà nínú ìgbà ìlò Streamlit yìí nìkan; a kò so wọ́n pọ̀ láàárín ìbẹ̀wò tàbí rán sí àwọn amọ̀ṣẹ́dunjú ìlera. Má tẹ ìsọfúnni ara ẹni tàbí ìlera sí i.",
   "ui.Personal wellness planning and check-in controls are hidden when you request health assistance.": "A ń fi ètò àlàáfíà ara ẹni àti àwọn ìṣàkóso ìṣàyẹ̀wò ara ẹni pamọ́ nígbà tí o bá béèrè ìrànlọ́wọ́ ìlera.",
   "ui.This version intentionally stores no medical history, names, symptoms, or location. There are no automatic notifications or provider integrations. For early pilot use, clinical, privacy, security and accessibility reviews are still required.": "Ẹ̀yà yìí kò fi ìtàn ìlera, orúkọ, àmì àìsàn tàbí ibi tí ènìyàn wà pamọ́. Kò sí ìkìlọ̀ aládàáṣe tàbí ìsopọ̀ pẹ̀lú olùpèsè ìtọ́jú. A ṣì nílò àyẹ̀wò ìlera, ìpamọ́, ààbò àti ìrọ̀rùn lílò ṣáájú ìdánwò àkọ́kọ́.",
-  "ui.🌱 AdaptiveCare": "🌱 AdaptiveCare"
+  "ui.🌱 AdaptiveCare": "🌱 AdaptiveCare",
+  "ui.Clinic (optional — avoid personal details)": "Ilé ìwòsàn (àṣàyàn — má fi ìsọfúnni ara ẹni sí i)",
+  "ui.⬇️ Download parent-reported record (CSV)": "⬇️ Gba àkọsílẹ̀ tí òbí fúnni (CSV)",
+  "ui.Nigeria Ministry of Health childhood schedule ↗": "Ètò ìtọ́jú ọmọ ti Ilé-iṣẹ́ Ìlera Nàìjíríà ↗",
+  "ui.UNICEF Nigeria immunization schedule ↗": "Ètò àjẹsára UNICEF Nàìjíríà ↗",
+  "ui.Nigeria National Primary Health Care Development Agency ↗": "Ilé-iṣẹ́ Ìdàgbàsókè Ìtọ́jú Ìlera Àkọ́kọ́ Nàìjíríà ↗"
 }
