@@ -149,5 +149,14 @@
   "ui.10 weeks": "10 weeks",
   "ui.14 weeks": "14 weeks",
   "ui.9 months": "9 months",
-  "ui.15 months": "15 months"
+  "ui.15 months": "15 months",
+  "preg.intro": "Regular antenatal visits help your maternity team monitor your health and your baby’s development. Ask which appointments, tests and vaccinations are appropriate for you.",
+  "post.intro": "Recovery continues beyond discharge, and serious complications can arise even after an uncomplicated birth. Keep your recommended postnatal appointments.",
+  "well.intro": "Pregnancy and new motherhood can bring many emotions. You deserve support and space to talk about how you feel.",
+  "calm.intro": "A gentle, optional pause for mothers and mothers-to-be. Play at your own pace, or simply rest. No scores, competition, or personal information required.",
+  "learn.intro": "A simple collection of topics to discuss with qualified maternity professionals.",
+  "baby.intro": "This is an educational immunization planning demonstration, not a medical record or official vaccination schedule. Confirm vaccines and timing with a qualified provider.",
+  "find.intro": "Explore a starter directory of government-listed teaching hospitals in Abuja and other Nigerian cities. This is a planning aid, not a clinical referral or booking service.",
+  "mama.intro": "Care does not end at childbirth. Explore supportive postpartum information and prepare for follow-up with your maternity team.",
+  "ac.intro": "Experimental, rule-based maternal wellness habit support • Educational demonstration"
 }
