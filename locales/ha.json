@@ -335,5 +335,19 @@
   "ui.Privacy: entries are held in this app session only. They are not saved to a database or sent to a clinic. Avoid entering personal medical information or identifying clinic details on a shared device.": "Sirri: ana riƙe bayanan a wannan zaman manhaja kawai. Ba a adana su a ma'ajiyar bayanai ko aika su asibiti. Kada ki shigar da bayanan lafiyarki ko sunan asibiti a na'urar da ake rabawa.",
   "ui.Enter the appointment date and time given by your maternity team, select Add to my calendar, then use the .ics download button. Open the downloaded file in your phone's calendar and confirm that the event appears. The exported event requests a reminder 1 day before the appointment; whether an alert appears depends on your phone calendar app and notification settings. HerMamaAI itself does not send notifications. For appointments less than 1 day away, set a suitable reminder manually in your calendar.": "Shigar da rana da lokacin da ma'aikatan lafiyarki suka ba ki, zaɓi ƙara a kalanda, sannan zazzage fayil ɗin .ics. Buɗe shi a kalandar wayarki ki tabbatar taron ya bayyana. Fayil ɗin yana neman tunatarwa kwana ɗaya kafin alƙawari; fitowar sanarwa ya danganta da saitunan wayarki. HerMamaAI ba ya aika sanarwa. Idan alƙawari bai kai kwana ɗaya ba, saita tunatarwa da kanki.",
   "ui.Bring any maternity notes you have, a list of medicines or supplements, questions you want answered, and any instructions your maternity team has given you. Ask a trusted person to help with transport if needed.": "Kawo takardun kula da ciki da kike da su, jerin magunguna ko ƙarin sinadari, tambayoyin da kike so a amsa, da umarnin ma'aikatan lafiyarki. Nemi amintaccen mutum ya taimaka da sufuri idan ana buƙata.",
-  "ui.All game choices are temporary for this app session and are not saved as personal records.": "Dukkan zaɓin wasa na wannan zaman kawai ne, ba a adana su a matsayin bayanan mutum."
+  "ui.All game choices are temporary for this app session and are not saved as personal records.": "Dukkan zaɓin wasa na wannan zaman kawai ne, ba a adana su a matsayin bayanan mutum.",
+  "ui.🌼 Motherhood Calm Corner": "🌼 Wurin natsuwar uwa",
+  "ui.Playing now ✓": "Ana wasa yanzu ✓",
+  "ui.Explore activity →": "Binciki aikin →",
+  "ui.A little space to grow, at your own pace. 🌿": "Ƙaramin wuri don bunƙasa a hankali. 🌿",
+  "ui.Discover three matching pairs of cheerful garden pictures. No clock, no score — just a peaceful moment.": "Nemo nau'i uku na hotunan lambu masu kama. Babu agogo ko maki — lokacin natsuwa kawai.",
+  "ui.🌸 A little garden of surprises 🌿": "🌸 Ƙaramin lambun abubuwan mamaki 🌿",
+  "ui.Matched garden pair": "An haɗa hotunan lambu",
+  "ui.Turn over garden card": "Juya katin lambu",
+  "ui.🌿 Turn cards back": "🌿 Mayar da katuna",
+  "ui.Your Memory Garden is blooming!": "Lambun ƙwaƙwalwarki na fure!",
+  "ui.All three pairs found. Beautifully done — enjoy this little moment.": "An gano duk nau'i ukun. Kin yi kyau — ji daɗin wannan lokacin.",
+  "ui.Arrange the letters into a gentle word. Take your time, or reveal the answer whenever you wish.": "Tsara haruffa su zama kalma mai daɗi. Ki yi a hankali ko ki nuna amsar idan kina so.",
+  "ui.Beautifully done!": "Kin yi kyau!",
+  "ui.Design a bouquet by choosing flowers in your favourite colours.": "Ƙirƙiri tarin furanni da launukan da kike so."
 }
