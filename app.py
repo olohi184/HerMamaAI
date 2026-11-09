@@ -174,9 +174,9 @@ h1,h2,h3{color:#43145e}
 
 # Compact brand header is shown only on the homepage, leaving feature pages room to breathe.
 if st.session_state.page == "🏡 Home":
-    st.markdown("""<section class="hm-hero hm-hero-refined">
+    st.markdown(f"""<section class="hm-hero hm-hero-refined">
     <div class="hm-logo-focus"><img src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="HerMamaAI mother and baby brand logo"></div>
-    <p class="hm-single-message">Compassionate guidance for pregnancy, postpartum recovery and beyond.</p>
+    <p class="hm-single-message">{escape(t("home.tagline"))}</p>
     </section>""", unsafe_allow_html=True)
     st.caption(t("home.prototype"))
 
