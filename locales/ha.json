@@ -225,5 +225,19 @@
   "ui.Ask about healing, mood, sleep, contraception if relevant, feeding and any ongoing symptoms. Follow your own maternity team's schedule.": "Tambayi game da warkewa, yanayin zuciya, barci, tsarin iyali idan ya dace, shayarwa da alamomin da ke ci gaba. Bi jadawalin ƙungiyar kula da haihuwarki.",
   "ui.Postpartum concerns can continue or begin after six weeks. Seek care whenever needed; do not wait for an appointment.": "Matsalolin bayan haihuwa na iya ci gaba ko farawa bayan mako shida. Nemi kulawar lafiya duk lokacin da ake buƙata; kada ki jira alƙawari.",
   "ui.Consider asking someone you trust for one specific practical task today.": "Ki yi tunanin neman amintaccen mutum ya taimaka miki da aiki guda yau.",
-  "ui.You deserve care, rest and support.": "Kin cancanci kulawa, hutu da tallafi."
+  "ui.You deserve care, rest and support.": "Kin cancanci kulawa, hutu da tallafi.",
+  "ui.All listed states and FCT": "Dukkan jihohi da FCT da aka lissafo",
+  "ui.All listed cities": "Dukkan biranen da aka lissafo",
+  "ui.Phase 2 expansion — explore teaching hospitals in seven additional states": "Faɗaɗa mataki na biyu — binciki asibitocin koyarwa a ƙarin jihohi bakwai",
+  "ui.These are existing directory listings, not newly verified maternity providers. Hospital-specific maternity services, contacts and operating capacity remain unconfirmed unless evidence is shown on a hospital card.": "Waɗannan jerin asibitoci ne da ake da su, ba sabbin wuraren kula da haihuwa da aka tabbatar ba. Ba a tabbatar da ayyuka, lambobin tuntuɓa da damar aiki ba sai inda aka nuna shaida.",
+  "ui.Institution listed in government directory · Service availability unverified · No partnership claimed": "Ụlọ aiki a jerin gwamnati · Ba a tabbatar da samuwar ayyuka ba · Babu haɗin gwiwa da ake ikirari",
+  "ui.Published maternity-service evidence available · Current clinic hours and capacity NOT confirmed": "Akwai shaidar ayyukan haihuwa da aka wallafa · Ba a tabbatar da lokutan aiki da damar asibiti ba",
+  "ui.Hospital-specific maternity services and contact details awaiting review": "Ana jiran duba ayyukan haihuwa da bayanan tuntuɓar asibitin",
+  "ui.🏥 View maternity-service evidence ↗": "🏥 Duba shaidar ayyukan haihuwa ↗",
+  "ui.☎️ View published contact source ↗": "☎️ Duba tushen bayanan tuntuɓa ↗",
+  "ui.🗺️ Search on Google Maps / Directions ↗": "🗺️ Nemo a Google Maps / Hanya ↗",
+  "ui.📖 View government source ↗": "📖 Duba tushen gwamnati ↗",
+  "ui.Published hospital contact (not independently tested): ": "Bayanan tuntuɓar asibiti da aka wallafa (ba a gwada su ba): ",
+  "ui.Showing {count} government-listed institution(s). Not an exhaustive list of Nigerian hospitals.": "Ana nuna cibiyoyi {count} daga jerin gwamnati. Wannan ba cikakken jerin asibitocin Najeriya ba ne.",
+  "ui.Only phone numbers supported by published hospital information or a hospital-management notice are shown; they have not been independently tested. HerMamaAI does not request your live location or store your medical information here.": "Ana nuna lambobin waya da aka wallafa daga asibiti ko sanarwar gudanarwa kawai; ba a gwada su kai tsaye ba. HerMamaAI ba ya neman wurinki kai tsaye ko adana bayanan lafiyarki a nan."
 }
