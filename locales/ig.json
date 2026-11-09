@@ -149,5 +149,14 @@
   "ui.10 weeks": "Izu iri",
   "ui.14 weeks": "Izu iri na anọ",
   "ui.9 months": "Ọnwa itoolu",
-  "ui.15 months": "Ọnwa iri na ise"
+  "ui.15 months": "Ọnwa iri na ise",
+  "preg.intro": "Nleta nlekọta afọ ime mgbe niile na-enyere ndị ọrụ ahụike gị aka ileba anya na ahụike gị na uto nwa gị. Jụọ ha banyere nleta, ule na ọgwụ mgbochi kwesịrị ekwesị.",
+  "post.intro": "Mgbake na-aga n'ihu mgbe a hapụrụ ụlọ ọgwụ. Nsogbu siri ike nwere ike ịpụta ọbụna mgbe ọmụmụ nwa gara nke ọma. Gaa nleta nlekọta mgbe ọmụmụ nwa a tụrụ aro.",
+  "well.intro": "Afọ ime na ịbụ nne ọhụrụ nwere ike iweta mmetụta dị iche iche. I kwesịrị nkwado na ohere ikwu otú ọ dị gị.",
+  "calm.intro": "Oge izu ike dị nro maka ndị nne na ndị na-atụ anya ịbụ nne. Gwuo egwu nwayọọ ma ọ bụ zuru ike. Enweghị akara, asọmpi ma ọ bụ ozi nkeonwe achọrọ.",
+  "learn.intro": "Nchịkọta isiokwu ị ga-atụle na ndị ọkachamara nlekọta nne.",
+  "baby.intro": "Nke a bụ ihe ngosi nhazi ọgwụ mgbochi maka mmụta naanị; ọ bụghị ndekọ ahụike ma ọ bụ usoro ọgwụ mgbochi gọọmentị. Kwenye ọgwụ mgbochi na oge ya n'aka ọkachamara ahụike.",
+  "find.intro": "Chọpụta ndepụta ụlọ ọgwụ nkuzi gọọmentị depụtara na Abuja na obodo ndị ọzọ na Naịjirịa. Nke a bụ enyemaka nhazi, ọ bụghị ntụgharị onye ọrịa ma ọ bụ ọrụ idobe oge.",
+  "mama.intro": "Nlekọta anaghị akwụsị mgbe ọmụmụ nwa gasịrị. Chọpụta ozi nkwado mgbe ọmụmụ nwa ma kwadebe maka nleta ọzọ.",
+  "ac.intro": "Ngosipụta nkwado omume ọdịmma nne dabere n'iwu • Maka mmụta naanị"
 }
