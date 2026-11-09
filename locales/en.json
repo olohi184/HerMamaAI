@@ -43,5 +43,6 @@
   "ac.dashboard": "Wellness check-in dashboard",
   "ac.count": "Check-ins this session",
   "ac.completed_count": "Self-reported completed check-ins",
-  "ac.clear": "Clear session records"
+  "ac.clear": "Clear session records",
+  "home.continues_body": "Learn when to contact your maternity team and how to prepare for follow-up care."
 }
