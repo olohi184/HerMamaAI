@@ -244,5 +244,22 @@
   "ui.Discuss where you plan to give birth, how you will travel there, whom to contact, what to pack and who can support you. Review emergency arrangements with your maternity team.": "Tattauna inda za ki haihu, yadda za ki isa can, wanda za ki tuntuɓa, kayan da za ki ɗauka da wanda zai taimaka. Duba shirin gaggawa tare da ma'aikatan lafiyarki.",
   "ui.Recovery varies after vaginal birth and caesarean birth. Ask your clinician about pain control, incision or perineal care, expected bleeding, safe activity and when to seek assessment for changes.": "Murmurewa ya bambanta bayan haihuwa ta al'ada ko tiyata. Tambayi likitanki game da rage ciwo, kula da rauni, zubar jinin da ake tsammani, ayyukan da suka dace da lokacin neman dubawa.",
   "ui.Discuss antenatal visits, recommended screening, medicines, nutrition, baby's movement, delivery plans and emergency transport with your maternity team.": "Tattauna ziyarar ciki, gwaje-gwajen da aka ba da shawara, magunguna, abinci, motsin jariri, shirin haihuwa da sufuri na gaggawa tare da ma'aikatan lafiyarki.",
-  "ui.HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice.": "HerMamaAI samfurin gwaji ne don ilimi da shiri na mutum. Ba ya gano cuta, sa ido kan alamomi, aika alƙawari ga asibiti ko maye gurbin shawarar likita."
+  "ui.HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice.": "HerMamaAI samfurin gwaji ne don ilimi da shiri na mutum. Ba ya gano cuta, sa ido kan alamomi, aika alƙawari ga asibiti ko maye gurbin shawarar likita.",
+  "ui.Protects against severe tuberculosis.": "Yana taimakawa kariya daga tarin fuka mai tsanani.",
+  "ui.Oral drops protecting against polio.": "Digon baki don kariya daga shan inna.",
+  "ui.Injection protecting against polio.": "Allura don kariya daga shan inna.",
+  "ui.Protects against hepatitis B and related liver disease.": "Yana taimakawa kariya daga hepatitis B da cututtukan hanta masu alaƙa.",
+  "ui.Protects against diphtheria, tetanus, whooping cough, hepatitis B and Hib.": "Yana taimakawa kariya daga diphtheria, tetanus, tari mai tsanani, hepatitis B da Hib.",
+  "ui.Protects against serious pneumococcal infections including some pneumonia and meningitis.": "Yana taimakawa kariya daga cututtukan pneumococcal masu tsanani, ciki har da wasu nau'in ciwon huhu da sankarau.",
+  "ui.Protects against severe rotavirus diarrhoea.": "Yana taimakawa kariya daga gudawa mai tsanani ta rotavirus.",
+  "ui.Protects against measles; MR also protects against rubella.": "Yana taimakawa kariya daga kyanda; MR kuma yana karewa daga rubella.",
+  "ui.Protects against yellow fever.": "Yana taimakawa kariya daga zazzaɓin shawara.",
+  "ui.Protects against some meningococcal infections.": "Yana taimakawa kariya daga wasu cututtukan meningococcal.",
+  "ui.Helps reduce malaria illness; local rollout varies.": "Yana taimakawa rage kamuwa da zazzaɓin cizon sauro; samuwarsa ta bambanta da yanki.",
+  "ui.Supplement supporting vision and immunity.": "Ƙarin sinadari mai taimakawa gani da garkuwar jiki.",
+  "ui.Tap a vaccine name to learn what it helps protect against.": "Danna sunan rigakafi don sanin cututtukan da yake taimakawa kariya daga su.",
+  "ui.📚 Understand the vaccines": "📚 Fahimci rigakafin",
+  "ui.📅 Plan a future vaccination visit": "📅 Shirya ziyarar rigakafi ta gaba",
+  "ui.✅ Record a vaccine already received": "✅ Rubuta rigakafin da aka riga aka yi",
+  "ui.📊 My saved vaccination entries": "📊 Bayanan rigakafin da na ajiye"
 }
