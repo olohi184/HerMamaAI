@@ -1,5 +1,6 @@
 """Educational postpartum continuity module for HerMamaAI. No database storage."""
 import streamlit as st
+from localization.language_manager import ui, display_option
 
 STAGES = {
     "Days 1–7": ("Early recovery", "Review your discharge instructions, arrange your recommended postnatal contact, and ask for support with rest, food, feeding and recovery."),
@@ -24,22 +25,22 @@ def render_mamacare(go=None):
     st.markdown("### Your postpartum care journey")
     st.caption("Choose what you need today. These are educational tools, not clinical monitoring.")
     options = ["🌼 Recovery guidance", "💗 Gentle check-in", "🚨 Warning signs", "📅 Follow-up planning"]
-    section = st.radio("Explore your care", options, horizontal=True, key="mc_section", label_visibility="collapsed")
+    section = st.radio(ui("Explore your care"), options, format_func=display_option, horizontal=True, key="mc_section", label_visibility="collapsed")
     st.divider()
     if section == options[0]:
-        phase = st.selectbox("Choose a recovery stage", list(STAGES), key="mamacare_phase")
+        phase = st.selectbox(ui("Choose a recovery stage"), list(STAGES), format_func=display_option, key="mamacare_phase")
         title, guidance = STAGES[phase]
         st.subheader(title)
         st.write(guidance)
         st.caption("These stages are educational, not a prescribed follow-up schedule. Every recovery is different.")
         if go is not None:
-            st.button("🌼 Visit Calm Corner →", key="mc_calm", on_click=go, args=("🌼 Calm Corner",), use_container_width=True)
+            st.button(ui("🌼 Visit Calm Corner →"), key="mc_calm", on_click=go, args=("🌼 Calm Corner",), use_container_width=True)
     elif section == options[1]:
-        st.subheader("How are you feeling today?")
+        st.subheader(ui("How are you feeling today?"))
         st.caption("Optional self-reflection only. Answers remain in the current Streamlit session and are not sent to a healthcare professional.")
-        physical = st.radio("Physical recovery", ["Comfortable today", "Some concerns", "I need medical help"], index=None, key="mc_physical")
-        mood = st.radio("Emotional well-being", ["Doing okay", "Having a difficult day", "I need support"], index=None, key="mc_mood")
-        support = st.radio("Support around you", ["I have support", "I could use more help"], index=None, key="mc_support")
+        physical = st.radio(ui("Physical recovery"), ["Comfortable today", "Some concerns", "I need medical help"], format_func=display_option, index=None, key="mc_physical")
+        mood = st.radio(ui("Emotional well-being"), ["Doing okay", "Having a difficult day", "I need support"], format_func=display_option, index=None, key="mc_mood")
+        support = st.radio(ui("Support around you"), ["I have support", "I could use more help"], format_func=display_option, index=None, key="mc_support")
         if physical == "I need medical help":
             st.warning("Contact your maternity care team promptly. For severe or sudden symptoms, seek emergency care now.")
         if mood == "I need support":
@@ -49,13 +50,13 @@ def render_mamacare(go=None):
         if physical or mood or support:
             st.write("You deserve care, rest and support.")
     elif section == options[2]:
-        st.subheader("Postpartum warning signs")
+        st.subheader(ui("Postpartum warning signs"))
         for item in DANGER:
             st.markdown("- " + item)
         st.error("If any of these occur, go to the nearest emergency department or contact local emergency services immediately. Do not wait for an app response.")
         st.caption("This list is not exhaustive. Seek care for any concerning symptoms.")
     elif section == options[3]:
-        st.subheader("My follow-up checklist")
+        st.subheader(ui("My follow-up checklist"))
         st.write("Use your maternity team's own follow-up instructions and appointment schedule.")
         tasks = [
             "Confirm my next postpartum appointment",
@@ -67,5 +68,5 @@ def render_mamacare(go=None):
         for i, task in enumerate(tasks):
             st.checkbox(task, key=f"mc_task_{i}")
         if go is not None:
-            st.button("📅 Open CareCalendar →", key="mc_calendar", on_click=go, args=("📅 CareCalendar",), use_container_width=True)
+            st.button(ui("📅 Open CareCalendar →"), key="mc_calendar", on_click=go, args=("📅 CareCalendar",), use_container_width=True)
         st.caption("Checklists are session-only. This module does not book appointments or send reminders.")
