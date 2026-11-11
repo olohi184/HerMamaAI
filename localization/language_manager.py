@@ -138,6 +138,10 @@ SAFE_UI_LABELS = frozenset({
     "A gentle hint: the word begins with {letter}. You can try again or reveal the answer.",
     "Collect kind thoughts in your jar. No journal, account or personal details needed.",
     "All game choices are temporary for this app session and are not saved as personal records.",
+    "Visit type",
+    "Antenatal visit",
+    "Postnatal follow-up",
+    "Other maternity appointment",
 })
 
 
@@ -156,7 +160,12 @@ def ui(source):
     """Localize interface labels, retaining English for medical guidance."""
     if source not in SAFE_UI_LABELS:
         return source
-    return label("ui." + source) if "ui." + source in _load(st.session_state.get("hm_language", "en")) else source
+    catalog = _load(st.session_state.get("hm_language", "en"))
+    if "ui." + source in catalog:
+        return label("ui." + source)
+    if "nav." + source in catalog:
+        return label("nav." + source)
+    return source
 
 
 def display_option(value):
