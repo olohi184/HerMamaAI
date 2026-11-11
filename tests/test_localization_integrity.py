@@ -167,7 +167,12 @@ class LocalizationIntegrityTests(unittest.TestCase):
         # depends on the browser and installed voices.
         self.assertIn("SpeechSynthesisUtterance", app)
         self.assertIn("getVoices()", app)
-        self.assertIn("No matching language voice is available", app)
+        self.assertIn("item.messages.voice_unavailable", app)
+        for lang, catalog in self.catalogs.items():
+            for key in ("listen", "stop", "unsupported", "voice_unavailable",
+                        "finished", "playback_error", "playing", "stopped"):
+                with self.subTest(language=lang, audio_key=key):
+                    self.assertTrue(catalog["audio." + key].strip())
         self.assertIn("addEventListener('click'", app)
         self.assertIn("Only Calm Corner activity descriptions are eligible", app)
         self.assertNotIn("synth.speak(utterance);\\n    });\\n    synth.speak", app)
