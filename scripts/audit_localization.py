@@ -63,7 +63,11 @@ def main():
                 if isinstance(arg, ast.Constant) and isinstance(arg.value, str):
                     key = ("ui." if function.id == "ui" else "") + arg.value
                     referenced.add(key)
-    missing_references = referenced - keys
+    # ui() also supports nav.<source> for shared navigation labels.
+    missing_references = {
+        key for key in referenced
+        if key not in keys and not (key.startswith("ui.") and "nav." + key[3:] in keys)
+    }
     for key in sorted(missing_references):
         failures.append(f"Referenced translation missing: {key}")
     print(f"Checked {len(PYTHON_FILES)} Python files and {len(keys)} translation keys across {len(LANGUAGES)} languages.")
