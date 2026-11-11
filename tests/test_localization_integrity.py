@@ -59,10 +59,12 @@ class LocalizationIntegrityTests(unittest.TestCase):
                     break
         self.assertIsNotNone(whitelist)
         for source in whitelist:
+            # Some navigation names use the dedicated nav.* catalog namespace.
             key = "ui." + source
+            nav_key = "nav." + source
             for lang, items in self.catalogs.items():
                 with self.subTest(language=lang, key=key):
-                    self.assertIn(key, items)
+                    self.assertTrue(key in items or nav_key in items)
 
     def test_performance_fix_is_retained(self):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
