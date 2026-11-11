@@ -66,6 +66,39 @@ class LocalizationIntegrityTests(unittest.TestCase):
                 with self.subTest(language=lang, key=key):
                     self.assertTrue(key in items or nav_key in items)
 
+    def test_navigation_fallback_is_available_for_shared_labels(self):
+        manager = (ROOT / "localization" / "language_manager.py").read_text(encoding="utf-8")
+        self.assertIn('if "nav." + source in catalog:', manager)
+        self.assertIn('return label("nav." + source)', manager)
+
+    def test_calendar_display_preserves_stored_appointment_types(self):
+        app = (ROOT / "app.py").read_text(encoding="utf-8")
+        self.assertIn('format_func=display_option)', app)
+        self.assertIn('escape(display_option(ap["kind"]))', app)
+        self.assertIn('"kind":kind', app)
+
+    def test_ui_labels_are_present_in_english_catalog(self):
+        # Detect typos and missing source keys before expanding the whitelist.
+        import ast
+        manager = (ROOT / "localization" / "language_manager.py").read_text(encoding="utf-8")
+        tree = ast.parse(manager)
+        for node in tree.body:
+            if isinstance(node, ast.Assign) and any(
+                isinstance(target, ast.Name) and target.id == "SAFE_UI_LABELS"
+                for target in node.targets
+            ):
+                whitelist = ast.literal_eval(node.value.args[0])
+                break
+        else:
+            self.fail("SAFE_UI_LABELS not found")
+        english = self.catalogs["en"]
+        for source in whitelist:
+            with self.subTest(source=source):
+                self.assertTrue(
+                    "ui." + source in english or "nav." + source in english,
+                    f"Missing English translation key for {source!r}",
+                )
+
     def test_performance_fix_is_retained(self):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
         self.assertNotIn("new MutationObserver(", app)
