@@ -417,6 +417,55 @@ elif page == "🌼 Calm Corner":
                 if st.button(ui("Playing now ✓" if active else "Explore activity →"), key=f"calm_choice_{index}", use_container_width=True):
                     st.session_state.calm_activity = index
                     st.rerun()
+    # Optional, user-triggered browser audio for non-medical Calm Corner text only.
+    # The browser must have a matching installed voice; do not silently use a
+    # different language or claim offline/multilingual audio availability.
+    import json as _audio_json
+    _spoken_code = st.session_state.get("hm_language", "en")
+    _speech_tags = {"en": "en", "ha": "ha", "yo": "yo", "ig": "ig"}
+    _spoken_description = ui(activities[st.session_state.calm_activity][2])
+    _speech_data = _audio_json.dumps({
+        "text": _spoken_description, "language": _speech_tags.get(_spoken_code, "en")
+    }).replace("<", "\\u003c")
+    components.html("""
+    <div style="font:14px system-ui,sans-serif;color:#6b4771">
+      <button id="hm-speak" type="button" style="padding:9px 14px;border-radius:10px;border:1px solid #b57cbd;background:#fff;color:#682c73;cursor:pointer">🔊 Listen to selected activity</button>
+      <button id="hm-stop" type="button" style="padding:9px 14px;border-radius:10px;border:1px solid #ddd;background:#fff;cursor:pointer">Stop</button>
+      <p id="hm-audio-status" role="status" aria-live="polite" style="margin:5px 0"></p>
+    </div>
+    <script>
+    const item = """ + _speech_data + """;
+    const status = document.getElementById('hm-audio-status');
+    const synth = window.speechSynthesis;
+    const voiceFor = () => {
+      if (!synth) return null;
+      return synth.getVoices().find(v => v.lang.toLowerCase().split('-')[0] === item.language);
+    };
+    document.getElementById('hm-speak').addEventListener('click', () => {
+      if (!synth || !window.SpeechSynthesisUtterance) {
+        status.textContent = 'Audio is not supported by this browser.'; return;
+      }
+      const voice = voiceFor();
+      if (!voice) {
+        status.textContent = 'No matching language voice is available on this device. Please use the written text.';
+        return;
+      }
+      synth.cancel();
+      const utterance = new SpeechSynthesisUtterance(item.text);
+      utterance.lang = voice.lang;
+      utterance.voice = voice;
+      utterance.onend = () => { status.textContent = 'Finished playing.'; };
+      utterance.onerror = () => { status.textContent = 'Audio could not play. Please use the written text.'; };
+      status.textContent = 'Playing selected activity...';
+      synth.speak(utterance);
+    });
+    document.getElementById('hm-stop').addEventListener('click', () => {
+      if (synth) synth.cancel();
+      status.textContent = 'Stopped.';
+    });
+    </script>
+    """, height=90)
+    st.caption("Audio is optional and device-dependent. Only Calm Corner activity descriptions are eligible; medical guidance is not read aloud.")
     st.divider()
     st.markdown("""<style>
     @keyframes mamaBloom { from {opacity:0;transform:translateY(9px) scale(.9)} to {opacity:1;transform:translateY(0) scale(1)} }
