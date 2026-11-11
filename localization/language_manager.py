@@ -43,6 +43,14 @@ SAFE_UI_LABELS = frozenset({
     "🌷 MamaCare Continuity", "🏡 Home", "📖 Learning hub",
     "🌷 Emotional wellness", "💞 MamaCare journey",
     "My follow-up checklist", "Choose a recovery stage",
+    # Additional non-clinical interface copy used in MamaCare and AdaptiveCare.
+    "Optional self-reflection only. Answers remain in the current Streamlit session and are not sent to a healthcare professional.",
+    "Consider asking someone you trust for one specific practical task today.",
+    "You deserve care, rest and support.",
+    "Checklists are session-only. This module does not book appointments or send reminders.",
+    "🌱 AdaptiveCare",
+    "Check-in saved. Suggestions have been refreshed using the latest session record.",
+    "You already saved a check-in for this goal today. You can clear the session and retest if needed.",
 })
 
 
