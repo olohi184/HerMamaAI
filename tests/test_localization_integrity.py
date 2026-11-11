@@ -99,6 +99,28 @@ class LocalizationIntegrityTests(unittest.TestCase):
                     f"Missing English translation key for {source!r}",
                 )
 
+    def test_every_ui_call_has_a_catalog_entry(self):
+        # This does not imply clinical approval: untranslated health copy may
+        # deliberately remain in English until separately reviewed.
+        import ast
+        sources = ("app.py", "babycare.py", "find_care.py", "mamacare.py", "adaptivecare.py")
+        english = self.catalogs["en"]
+        for filename in sources:
+            tree = ast.parse((ROOT / filename).read_text(encoding="utf-8"))
+            for node in ast.walk(tree):
+                if not isinstance(node, ast.Call) or not isinstance(node.func, ast.Name):
+                    continue
+                if node.func.id != "ui" or not node.args:
+                    continue
+                arg = node.args[0]
+                if not isinstance(arg, ast.Constant) or not isinstance(arg.value, str):
+                    continue
+                with self.subTest(file=filename, line=node.lineno):
+                    self.assertTrue(
+                        "ui." + arg.value in english or "nav." + arg.value in english,
+                        f"Missing locale entry for ui() text in {filename}:{node.lineno}: {arg.value!r}",
+                    )
+
     def test_performance_fix_is_retained(self):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
         self.assertNotIn("new MutationObserver(", app)
