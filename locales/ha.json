@@ -418,5 +418,13 @@
   "ui.Collect small moments worth remembering.": "Tara ƙananan lokutan farin ciki da za ka tuna.",
   "ui.Create a colourful bouquet of flowers.": "Ƙirƙiri kwandon furanni masu launuka.",
   "ui.Pick a peaceful moment just for you. No pressure, no scores.": "Zaɓi ɗan lokacin natsuwa domin kanki. Babu matsin lamba, babu maki.",
-  "ui.Currently selected": "An zaɓa yanzu"
+  "ui.Currently selected": "An zaɓa yanzu",
+  "audio.listen": "Saurari aikin da aka zaɓa",
+  "audio.stop": "Tsaya",
+  "audio.unsupported": "Wannan burauzar ba ta goyon bayan sauti.",
+  "audio.voice_unavailable": "Babu muryar wannan harshe a na'urarka. Da fatan a karanta rubutun.",
+  "audio.finished": "An gama sauraro.",
+  "audio.playback_error": "Ba a iya kunna sautin ba. Da fatan a karanta rubutun.",
+  "audio.playing": "Ana kunna aikin da aka zaɓa...",
+  "audio.stopped": "An dakatar."
 }
