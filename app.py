@@ -321,7 +321,7 @@ elif page == "💗 Postpartum recovery":
         st.write("Emotional changes can affect parents and relationships. Talk openly with someone you trust and contact a qualified professional if distress persists, intensifies or interferes with daily life.")
     
 elif page == "🌷 Emotional wellness":
-    st.markdown('<div class="section-head">🌷 Emotional wellness</div>',unsafe_allow_html=True)
+    st.markdown('<div class="section-head">' + escape(ui("🌷 Emotional wellness")) + '</div>',unsafe_allow_html=True)
     st.markdown(f'<p class="lead">{escape(t("well.intro"))}</p>',unsafe_allow_html=True)
     card("You can ask for help","💬","If sadness, anxiety, hopelessness or overwhelm persists, worsens, or affects daily life, speak with a qualified healthcare professional.")
     st.subheader(ui("Gentle ways to reach out"))
