@@ -1,6 +1,12 @@
 # HerMamaAI multilingual release review package (draft)
 
-**Status:** Not release-ready. Development branch only. This document is an inventory and sign-off checklist, not evidence of clinical validation or completed testing.
+**Status:** Practitioner review reported for all four languages; technical release checks and reviewed-version reconciliation remain outstanding. Not release-ready. Development branch only. This document is an inventory and sign-off checklist, not evidence of clinical validation or completed testing.
+
+## Practitioner review confirmation (reported by project owner, 11 November 2026)
+
+The project owner confirms that a healthcare practitioner reviewed and approved the medical instructions in **English, Hausa, Yoruba and Igbo**. This is recorded as **owner-reported practitioner approval**, not independently verified clinical validation or a claim that the currently committed translation strings are identical to the reviewed versions.
+
+**Release reconciliation still required:** identify the reviewed text/version and reviewer approval record; compare the reviewed language content against the current catalogs and hard-coded guidance. Only after confirming exact content correspondence should the English-only clinical fallback be lifted. This avoids publishing unreviewed edits made after approval.
 
 ## Scope and current implementation
 
