@@ -8,6 +8,22 @@ The project owner confirms that a healthcare practitioner reviewed and approved 
 
 **Release reconciliation still required:** use the live production version as the reported reviewed baseline; compare its medical guidance against the development branch's catalogs and hard-coded guidance. Record any differences for review. Only after confirming exact content correspondence should the English-only clinical fallback be lifted. This avoids publishing unreviewed edits made after approval.
 
+## Initial source comparison: live baseline (`main`) vs development branch
+
+A read-only comparison of the GitHub `main` and multilingual development branch was conducted on 11 November 2026. It compares repository source, **not a live-browser capture**. It does not establish which exact production commit the practitioner saw.
+
+| Module | Production alert calls | Development alert calls | Exactly unchanged alert expressions |
+| --- | ---: | ---: | ---: |
+| `app.py` | 11 | 12 | 4 |
+| `mamacare.py` | 5 | 5 | 1 |
+| `adaptivecare.py` | 5 | 5 | 3 |
+| `babycare.py` | 8 | 8 | 5 |
+| `find_care.py` | 3 | 3 | 2 |
+
+**Interpretation:** Most alert expressions differ textually, sometimes only because they now use `ui()` or `t()`. These counts do not establish changed clinical meaning, and identical expressions do not prove that dynamic content is unchanged. In particular, `app.py` and `mamacare.py` include altered emergency/disclaimer rendering. These differences must be resolved before removing the English clinical fallback.
+
+**Next reconciliation:** compare the fully rendered English and three translated clinical messages from the practitioner-reviewed live release against the current branch, including warnings outside `st.error`, `st.warning`, and `st.info`. Identify additions made after the review and obtain focused sign-off only for changed wording.
+
 ## Scope and current implementation
 
 - Languages: English (en), Hausa (ha), Yoruba (yo), Igbo (ig).
