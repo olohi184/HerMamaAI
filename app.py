@@ -63,11 +63,8 @@ try {
     }
   };
   syncBrandIcons();
-  if (!window.parent.__hermamaaiFaviconObserver) {
-    const observer = new MutationObserver(() => syncBrandIcons());
-    observer.observe(doc.head, {childList: true});
-    window.parent.__hermamaaiFaviconObserver = observer;
-  }
+  // Keep the production performance fix: do not observe and repeatedly
+  // modify Streamlit's document head on rerenders.
   if (!doc.querySelector('meta[name="theme-color"][data-hermamaai]')) {
     const meta = doc.createElement('meta');
     meta.name = 'theme-color';
