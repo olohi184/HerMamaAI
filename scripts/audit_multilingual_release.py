@@ -38,6 +38,10 @@ def main():
         if "new MutationObserver(" in source:
             failures.append(f"Persistent MutationObserver pattern found in {filename}")
     print("Languages:", ", ".join(LANGS))
+    # A successful static audit is not a release authorization. In particular,
+    # production practitioner review cannot be inferred from catalog parity.
+    print("Clinical review: owner-reported in-app approval of four languages")
+    print("Reviewed production wording vs this branch: NOT YET RECONCILED")
     print("Catalog keys:", len(english))
     print("Catalog parity:", "PASS" if not any("missing=" in f for f in failures) else "FAIL")
     print("Python syntax and English clinical fallback:", "PASS" if not failures else "CHECK")
