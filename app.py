@@ -226,7 +226,7 @@ elif page == "📅 CareCalendar":
         st.session_state.care_appointments = []
     with st.form("carecalendar_add",clear_on_submit=True):
         st.markdown("#### " + ui("Add an appointment"))
-        kind = st.selectbox(ui("Visit type"),["Antenatal visit","Postnatal follow-up","Other maternity appointment"])
+        kind = st.selectbox(ui("Visit type"),["Antenatal visit","Postnatal follow-up","Other maternity appointment"], format_func=display_option)
         a,b = st.columns(2)
         with a:
             ap_date = st.date_input(ui("Appointment date"),value=date.today(),min_value=date.today())
