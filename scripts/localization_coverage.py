@@ -65,6 +65,8 @@ def main():
     print(f"Deferred / English fallback: {len(deferred)}")
     print(f"Missing catalog entries: {len(missing)}")
     print(f"Long hardcoded Streamlit text candidates: {len(hardcoded_body)}")
+    print("NOTE: Candidate counts are not translation quality or clinical safety results.")
+    print("NOTE: Dynamic expressions and HTML text may require manual review.")
     for title, items in (("Missing entries", missing), ("Deferred for review", deferred), ("Hardcoded body text candidates", hardcoded_body)):
         print(f"\\n{title}:")
         for location, value in items:
