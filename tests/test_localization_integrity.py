@@ -46,6 +46,24 @@ class LocalizationIntegrityTests(unittest.TestCase):
                         sorted(PLACEHOLDER.findall(self.catalogs[lang][key])),
                     )
 
+    def test_interface_translation_keys_exist(self):
+        manager = (ROOT / "localization" / "language_manager.py").read_text(encoding="utf-8")
+        # Every explicitly allowed UI translation must have an entry in each catalog.
+        import ast
+        tree = ast.parse(manager)
+        whitelist = None
+        for node in tree.body:
+            if isinstance(node, ast.Assign):
+                if any(isinstance(target, ast.Name) and target.id == "SAFE_UI_LABELS" for target in node.targets):
+                    whitelist = ast.literal_eval(node.value.args[0])
+                    break
+        self.assertIsNotNone(whitelist)
+        for source in whitelist:
+            key = "ui." + source
+            for lang, items in self.catalogs.items():
+                with self.subTest(language=lang, key=key):
+                    self.assertIn(key, items)
+
     def test_performance_fix_is_retained(self):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
         self.assertNotIn("new MutationObserver(", app)
