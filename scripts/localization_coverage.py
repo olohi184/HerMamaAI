@@ -29,9 +29,21 @@ def main():
     approved = 0
     missing = []
     deferred = []
+    hardcoded_body = []
     for filename in FILES:
         tree = ast.parse((ROOT / filename).read_text(encoding="utf-8"))
         for node in ast.walk(tree):
+            if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute):
+                if (
+                    isinstance(node.func.value, ast.Name)
+                    and node.func.value.id == "st"
+                    and node.func.attr in {"write", "markdown", "caption", "info", "warning", "error", "success", "subheader"}
+                    and node.args
+                    and isinstance(node.args[0], ast.Constant)
+                    and isinstance(node.args[0].value, str)
+                    and len(node.args[0].value.strip()) >= 40
+                ):
+                    hardcoded_body.append((f"{filename}:{node.lineno}", node.args[0].value))
             if not isinstance(node, ast.Call) or not isinstance(node.func, ast.Name):
                 continue
             if node.func.id != "ui" or not node.args:
@@ -52,7 +64,8 @@ def main():
     print(f"Allowlisted for interface localization: {approved}")
     print(f"Deferred / English fallback: {len(deferred)}")
     print(f"Missing catalog entries: {len(missing)}")
-    for title, items in (("Missing entries", missing), ("Deferred for review", deferred)):
+    print(f"Long hardcoded Streamlit text candidates: {len(hardcoded_body)}")
+    for title, items in (("Missing entries", missing), ("Deferred for review", deferred), ("Hardcoded body text candidates", hardcoded_body)):
         print(f"\\n{title}:")
         for location, value in items:
             print(f"  {location}: {value[:140]}")
