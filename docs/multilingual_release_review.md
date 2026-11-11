@@ -4,9 +4,9 @@
 
 ## Practitioner review confirmation (reported by project owner, 11 November 2026)
 
-The project owner confirms that a healthcare practitioner reviewed and approved the medical instructions in **English, Hausa, Yoruba and Igbo**. This is recorded as **owner-reported practitioner approval**, not independently verified clinical validation or a claim that the currently committed translation strings are identical to the reviewed versions.
+The project owner confirms that a healthcare practitioner reviewed and approved the medical instructions in **English, Hausa, Yoruba and Igbo**, **directly on the live HerMamaAI website** (not using a separate review document). This is recorded as **owner-reported practitioner approval**, not independently verified clinical validation or a claim that the currently committed translation strings are identical to the reviewed versions.
 
-**Release reconciliation still required:** identify the reviewed text/version and reviewer approval record; compare the reviewed language content against the current catalogs and hard-coded guidance. Only after confirming exact content correspondence should the English-only clinical fallback be lifted. This avoids publishing unreviewed edits made after approval.
+**Release reconciliation still required:** use the live production version as the reported reviewed baseline; compare its medical guidance against the development branch's catalogs and hard-coded guidance. Record any differences for review. Only after confirming exact content correspondence should the English-only clinical fallback be lifted. This avoids publishing unreviewed edits made after approval.
 
 ## Scope and current implementation
 
