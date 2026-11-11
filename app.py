@@ -443,29 +443,59 @@ elif page == "🌼 Calm Corner":
     document.getElementById('hm-listen-label').textContent = item.messages.listen;
     document.getElementById('hm-stop-label').textContent = item.messages.stop;
     const synth = window.speechSynthesis;
-    const voiceFor = () => {
-      if (!synth) return null;
-      return synth.getVoices().find(v => v.lang.toLowerCase().split('-')[0] === item.language);
+    let voices = [];
+    let activeUtterance = null;
+    const refreshVoices = () => {
+      voices = synth ? synth.getVoices() : [];
+      return voices;
     };
+    const voiceFor = () => refreshVoices().find(v =>
+      (v.lang || '').toLowerCase().split(/[-_]/)[0] === item.language
+    );
+    // Safari and Chrome may populate voices after the component first renders.
+    if (synth) {
+      refreshVoices();
+      if (synth.addEventListener) {
+        synth.addEventListener('voiceschanged', refreshVoices);
+      } else {
+        synth.onvoiceschanged = refreshVoices;
+      }
+    }
     document.getElementById('hm-speak').addEventListener('click', () => {
       if (!synth || !window.SpeechSynthesisUtterance) {
         status.textContent = item.messages.unsupported; return;
       }
       const voice = voiceFor();
       if (!voice) {
-        status.textContent = item.messages.voice_unavailable;
+        // Display the translated explanation and the requested language code.
+        // Do not silently fall back to an English voice.
+        status.textContent = item.messages.voice_unavailable + ' (' + item.language + ')';
         return;
       }
       synth.cancel();
       const utterance = new SpeechSynthesisUtterance(item.text);
+      activeUtterance = utterance; // Keep a reference until playback ends.
       utterance.lang = voice.lang;
       utterance.voice = voice;
-      utterance.onend = () => { status.textContent = item.messages.finished; };
-      utterance.onerror = () => { status.textContent = item.messages.playback_error; };
+      utterance.onstart = () => { status.textContent = item.messages.playing; };
+      utterance.onend = () => {
+        if (activeUtterance === utterance) {
+          status.textContent = item.messages.finished;
+          activeUtterance = null;
+        }
+      };
+      utterance.onerror = (event) => {
+        if (activeUtterance === utterance) {
+          status.textContent = item.messages.playback_error +
+            (event.error ? ' (' + event.error + ')' : '');
+          activeUtterance = null;
+        }
+      };
       status.textContent = item.messages.playing;
       synth.speak(utterance);
     });
     document.getElementById('hm-stop').addEventListener('click', () => {
+      activeUtterance = null;
       if (synth) synth.cancel();
       status.textContent = item.messages.stopped;
     });
