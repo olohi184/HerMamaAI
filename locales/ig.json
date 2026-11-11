@@ -418,5 +418,13 @@
   "ui.Collect small moments worth remembering.": "Chịkọta obere oge obi ụtọ ị ga-echeta.",
   "ui.Create a colourful bouquet of flowers.": "Mepụta ùkwù okooko osisi mara mma nwere agba dị iche iche.",
   "ui.Pick a peaceful moment just for you. No pressure, no scores.": "Họrọ obere oge udo maka onwe gị. Enweghị nrụgide, enweghị akara asọmpi.",
-  "ui.Currently selected": "Nke ahọpụtara ugbu a"
+  "ui.Currently selected": "Nke ahọpụtara ugbu a",
+  "audio.listen": "Gee ntị n'ihe omume ahọpụtara",
+  "audio.stop": "Kwụsị",
+  "audio.unsupported": "Ihe nchọgharị a anaghị akwado ụda.",
+  "audio.voice_unavailable": "Enweghị olu asụsụ a na ngwaọrụ gị. Biko gụọ ederede ahụ.",
+  "audio.finished": "Ọgụgụ agwụla.",
+  "audio.playback_error": "Enweghị ike ịkpọ ụda ahụ. Biko gụọ ederede ahụ.",
+  "audio.playing": "A na-agụ ihe omume ahọpụtara...",
+  "audio.stopped": "A kwụsịrị."
 }
