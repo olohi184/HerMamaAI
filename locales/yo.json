@@ -418,5 +418,13 @@
   "ui.Collect small moments worth remembering.": "Kó àwọn àkókò kékeré tó dùn mọ́ ọ jọ.",
   "ui.Create a colourful bouquet of flowers.": "Ṣẹ̀dá ìdìpọ̀ òdòdó aláwọ̀ mèremère.",
   "ui.Pick a peaceful moment just for you. No pressure, no scores.": "Yan ìṣẹ́jú ìdákẹ́jẹ́ fún ara rẹ. Kò sí ìfipá, kò sí àmì ìdíje.",
-  "ui.Currently selected": "Èyí ni a yàn lọ́wọ́lọ́wọ́"
+  "ui.Currently selected": "Èyí ni a yàn lọ́wọ́lọ́wọ́",
+  "audio.listen": "Gbọ́ iṣẹ́ tí o yàn",
+  "audio.stop": "Dáwọ́ dúró",
+  "audio.unsupported": "Ẹ̀rọ aṣàwákiri yìí kò ṣe àtìlẹ́yìn fún ohùn.",
+  "audio.voice_unavailable": "Kò sí ohùn èdè yìí lórí ẹ̀rọ rẹ. Jọ̀wọ́ ka ọ̀rọ̀ tí a kọ.",
+  "audio.finished": "Ohùn ti parí.",
+  "audio.playback_error": "A kò lè ṣe ohùn náà. Jọ̀wọ́ ka ọ̀rọ̀ tí a kọ.",
+  "audio.playing": "A ń ka iṣẹ́ tí o yàn...",
+  "audio.stopped": "A ti dáwọ́ dúró."
 }
