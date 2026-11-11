@@ -51,6 +51,11 @@ SAFE_UI_LABELS = frozenset({
     "🌱 AdaptiveCare",
     "Check-in saved. Suggestions have been refreshed using the latest session record.",
     "You already saved a check-in for this goal today. You can clear the session and retest if needed.",
+    "📅 Open CareCalendar →",
+    "You selected {goal} as your wellness goal.",
+    "You selected {capacity} energy.",
+    "Transparent if/then rules based on your choices; no AI diagnosis or machine-learning prediction.",
+    "Share of check-ins marked completed; NOT a measure of medical outcomes or clinical adherence.",
 })
 
 
