@@ -161,6 +161,24 @@ class LocalizationIntegrityTests(unittest.TestCase):
             for node in ast.walk(t_func)
         ), "Clinical fallback to English was removed without documented review")
 
+    def test_audio_is_opt_in_and_nonclinical(self):
+        app = (ROOT / "app.py").read_text(encoding="utf-8")
+        # A speech synthesis implementation is present, but availability
+        # depends on the browser and installed voices.
+        self.assertIn("SpeechSynthesisUtterance", app)
+        self.assertIn("getVoices()", app)
+        self.assertIn("No matching language voice is available", app)
+        self.assertIn("addEventListener('click'", app)
+        self.assertIn("Only Calm Corner activity descriptions are eligible", app)
+        self.assertNotIn("synth.speak(utterance);\\n    });\\n    synth.speak", app)
+
+    def test_clinical_review_is_not_equated_with_release_approval(self):
+        report = (ROOT / "docs" / "multilingual_release_review.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("directly on the live HerMamaAI website", report)
+        self.assertIn("Release reconciliation still required", report)
+
     def test_performance_fix_is_retained(self):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
         self.assertNotIn("new MutationObserver(", app)
