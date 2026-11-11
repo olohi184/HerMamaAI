@@ -350,7 +350,7 @@ elif page == "🌼 Calm Corner":
     st.markdown(f'<p class="lead">{escape(t("calm.intro"))}</p>',unsafe_allow_html=True)
     st.info("These are general relaxation activities, not treatment for anxiety, depression or physical symptoms. Stop any activity that feels uncomfortable. If you feel unwell or have urgent symptoms, seek professional medical care.")
     st.subheader(ui("Choose a gentle activity"))
-    st.caption("Pick a peaceful moment just for you. No pressure, no scores.")
+    st.caption(ui("Pick a peaceful moment just for you. No pressure, no scores."))
     activities = [
         ("🌸", "Grow your garden", "Plant flowers and watch your little garden bloom.", "#fff0f7", "#a91470"),
         ("☁️", "Gentle moments", "Find a calm scene and enjoy a quiet pause.", "#eef5ff", "#385e9b"),
