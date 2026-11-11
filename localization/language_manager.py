@@ -131,6 +131,13 @@ SAFE_UI_LABELS = frozenset({
     "Emotional well-being and seeking help",
     "Using HerMamaAI safely",
     "🌼 Try the Calm Corner",
+    "Added to this session's calendar. This does not book a clinic visit.",
+    "📅 Plan an antenatal visit in CareCalendar →",
+    "Tap **Plant a flower** to create a little garden. There is no timer and no wrong move.",
+    "Arrange the letters into a gentle word. Take your time, or reveal the answer whenever you wish.",
+    "A gentle hint: the word begins with {letter}. You can try again or reveal the answer.",
+    "Collect kind thoughts in your jar. No journal, account or personal details needed.",
+    "All game choices are temporary for this app session and are not saved as personal records.",
 })
 
 
