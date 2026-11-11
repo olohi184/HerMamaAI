@@ -2,8 +2,7 @@
 
 Run only on a developer machine, never in the Streamlit request path.
 Yoruba: verified Meta MMS model (CC BY-NC 4.0, research evaluation only).
-Igbo: no verified official Meta MMS-TTS checkpoint; requires an explicitly
-selected, reviewed Igbo model with compatible VITS/Transformers interface.
+Igbo: community Soro-TTS Igbo VITS checkpoint for research evaluation only.
 Do not register output in approved_manifest.json automatically.
 """
 import argparse
@@ -14,7 +13,7 @@ SCRIPTS = {
     "yo": "Gbin àwọn òdòdó, kí o sì wo ọgbà kékeré rẹ bí ó ṣe ń dàgbà.",
     "ig": "Kụọ okooko osisi ma lelee obere ubi gị ka ọ na-eto.",
 }
-VERIFIED_MODELS = {"yo": "facebook/mms-tts-yor"}
+VERIFIED_MODELS = {"yo": "facebook/mms-tts-yor", "ig": "Shinzmann/soro-tts-ibo"}
 
 
 def main():
@@ -23,10 +22,8 @@ def main():
     parser.add_argument("--model-id", help="Explicitly selected Igbo VITS model after license and compatibility review")
     parser.add_argument("--offline", action="store_true", help="Use cached model files only")
     args = parser.parse_args()
-    if args.language == "ig" and not args.model_id:
-        parser.error("No verified official Igbo MMS-TTS model. Select and review a suitable Igbo model first; supply --model-id only after checking its license and compatibility.")
-    if args.language == "yo" and args.model_id:
-        parser.error("Yoruba uses the reviewed model identifier; do not override it.")
+    if args.model_id:
+        parser.error("Model overrides are disabled; use the explicitly reviewed checkpoint for this language.")
     model_id = args.model_id or VERIFIED_MODELS[args.language]
     if args.offline:
         os.environ["HF_HUB_OFFLINE"] = "1"
