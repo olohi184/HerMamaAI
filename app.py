@@ -424,18 +424,24 @@ elif page == "🌼 Calm Corner":
     _spoken_code = st.session_state.get("hm_language", "en")
     _speech_tags = {"en": "en", "ha": "ha", "yo": "yo", "ig": "ig"}
     _spoken_description = ui(activities[st.session_state.calm_activity][2])
+    _audio_keys = ("listen", "stop", "unsupported", "voice_unavailable",
+                   "finished", "playback_error", "playing", "stopped")
     _speech_data = _audio_json.dumps({
-        "text": _spoken_description, "language": _speech_tags.get(_spoken_code, "en")
-    }).replace("<", "\\u003c")
+        "text": _spoken_description,
+        "language": _speech_tags.get(_spoken_code, "en"),
+        "messages": {key: t("audio." + key) for key in _audio_keys},
+    }, ensure_ascii=False).replace("<", "\\u003c")
     components.html("""
     <div style="font:14px system-ui,sans-serif;color:#6b4771">
-      <button id="hm-speak" type="button" style="padding:9px 14px;border-radius:10px;border:1px solid #b57cbd;background:#fff;color:#682c73;cursor:pointer">🔊 Listen to selected activity</button>
-      <button id="hm-stop" type="button" style="padding:9px 14px;border-radius:10px;border:1px solid #ddd;background:#fff;cursor:pointer">Stop</button>
+      <button id="hm-speak" type="button" style="padding:9px 14px;border-radius:10px;border:1px solid #b57cbd;background:#fff;color:#682c73;cursor:pointer">🔊 <span id="hm-listen-label"></span></button>
+      <button id="hm-stop" type="button" style="padding:9px 14px;border-radius:10px;border:1px solid #ddd;background:#fff;cursor:pointer"><span id="hm-stop-label"></span></button>
       <p id="hm-audio-status" role="status" aria-live="polite" style="margin:5px 0"></p>
     </div>
     <script>
     const item = """ + _speech_data + """;
     const status = document.getElementById('hm-audio-status');
+    document.getElementById('hm-listen-label').textContent = item.messages.listen;
+    document.getElementById('hm-stop-label').textContent = item.messages.stop;
     const synth = window.speechSynthesis;
     const voiceFor = () => {
       if (!synth) return null;
@@ -443,25 +449,25 @@ elif page == "🌼 Calm Corner":
     };
     document.getElementById('hm-speak').addEventListener('click', () => {
       if (!synth || !window.SpeechSynthesisUtterance) {
-        status.textContent = 'Audio is not supported by this browser.'; return;
+        status.textContent = item.messages.unsupported; return;
       }
       const voice = voiceFor();
       if (!voice) {
-        status.textContent = 'No matching language voice is available on this device. Please use the written text.';
+        status.textContent = item.messages.voice_unavailable;
         return;
       }
       synth.cancel();
       const utterance = new SpeechSynthesisUtterance(item.text);
       utterance.lang = voice.lang;
       utterance.voice = voice;
-      utterance.onend = () => { status.textContent = 'Finished playing.'; };
-      utterance.onerror = () => { status.textContent = 'Audio could not play. Please use the written text.'; };
-      status.textContent = 'Playing selected activity...';
+      utterance.onend = () => { status.textContent = item.messages.finished; };
+      utterance.onerror = () => { status.textContent = item.messages.playback_error; };
+      status.textContent = item.messages.playing;
       synth.speak(utterance);
     });
     document.getElementById('hm-stop').addEventListener('click', () => {
       if (synth) synth.cancel();
-      status.textContent = 'Stopped.';
+      status.textContent = item.messages.stopped;
     });
     </script>
     """, height=90)
