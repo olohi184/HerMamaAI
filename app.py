@@ -62,6 +62,7 @@ try {
       head.appendChild(apple);
     }
   };
+  // Set the favicon once; no repeated head mutations on rerenders.
   syncBrandIcons();
   // Avoid a persistent head observer: Streamlit may update favicon links during
   // rerenders, and observing/removing those links can cause repeated DOM work.
