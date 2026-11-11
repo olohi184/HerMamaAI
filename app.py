@@ -394,12 +394,22 @@ elif page == "🌼 Calm Corner":
         for offset, col in enumerate(cols):
             index = start + offset
             symbol, name, description, background, accent = activities[index]
+            # Reuse existing translated game headings for the activity cards.
+            game_heading = (
+                "🌸 Game 1: Grow your garden",
+                "☁️ Game 2: Gentle moments",
+                "🦋 Game 3: Memory Garden",
+                "🔤 Game 4: Mama Word Garden",
+                "🫙 Game 5: Gratitude Jar",
+                "🎨 Game 6: Colour & Bloom",
+            )[index]
+            localized_name = ui(game_heading)
             active = st.session_state.calm_activity == index
             with col:
                 st.markdown(
                     '<div class="calm-activity-card'+(' selected' if active else '')+'" style="background:'+background+'">'
                     '<div class="calm-activity-icon">'+symbol+'</div>'
-                    '<div class="calm-activity-title" style="color:'+accent+'">'+name+'</div>'
+                    '<div class="calm-activity-title" style="color:'+accent+'">'+escape(localized_name)+'</div>'
                     '<div class="calm-activity-desc">'+description+'</div>'
                     + ('<div class="calm-selected">● Currently selected</div>' if active else '') + '</div>',
                     unsafe_allow_html=True
