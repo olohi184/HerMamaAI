@@ -418,5 +418,13 @@
   "ui.Collect small moments worth remembering.": "Collect small moments worth remembering.",
   "ui.Create a colourful bouquet of flowers.": "Create a colourful bouquet of flowers.",
   "ui.Pick a peaceful moment just for you. No pressure, no scores.": "Pick a peaceful moment just for you. No pressure, no scores.",
-  "ui.Currently selected": "Currently selected"
+  "ui.Currently selected": "Currently selected",
+  "audio.listen": "Listen to selected activity",
+  "audio.stop": "Stop",
+  "audio.unsupported": "Audio is not supported by this browser.",
+  "audio.voice_unavailable": "No matching language voice is available on this device. Please use the written text.",
+  "audio.finished": "Finished playing.",
+  "audio.playback_error": "Audio could not play. Please use the written text.",
+  "audio.playing": "Playing selected activity...",
+  "audio.stopped": "Stopped."
 }
