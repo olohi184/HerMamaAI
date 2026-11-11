@@ -411,7 +411,7 @@ elif page == "🌼 Calm Corner":
                     '<div class="calm-activity-icon">'+symbol+'</div>'
                     '<div class="calm-activity-title" style="color:'+accent+'">'+escape(localized_name)+'</div>'
                     '<div class="calm-activity-desc">'+escape(ui(description))+'</div>'
-                    + ('<div class="calm-selected">● Currently selected</div>' if active else '') + '</div>',
+                    + ('<div class="calm-selected">● '+escape(ui("Currently selected"))+'</div>' if active else '') + '</div>',
                     unsafe_allow_html=True
                 )
                 if st.button(ui("Playing now ✓" if active else "Explore activity →"), key=f"calm_choice_{index}", use_container_width=True):
