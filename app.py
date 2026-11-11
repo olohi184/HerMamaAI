@@ -62,12 +62,11 @@ try {
       head.appendChild(apple);
     }
   };
+  // Set the favicon once; no repeated head mutations on rerenders.
   syncBrandIcons();
-  if (!window.parent.__hermamaaiFaviconObserver) {
-    const observer = new MutationObserver(() => syncBrandIcons());
-    observer.observe(doc.head, {childList: true});
-    window.parent.__hermamaaiFaviconObserver = observer;
-  }
+  // Avoid a persistent head observer: Streamlit may update favicon links during
+  // rerenders, and observing/removing those links can cause repeated DOM work.
+  // A one-time icon sync is sufficient for the initial page load.
   if (!doc.querySelector('meta[name="theme-color"][data-hermamaai]')) {
     const meta = doc.createElement('meta');
     meta.name = 'theme-color';
