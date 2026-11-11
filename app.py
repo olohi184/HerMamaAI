@@ -410,7 +410,7 @@ elif page == "🌼 Calm Corner":
                     '<div class="calm-activity-card'+(' selected' if active else '')+'" style="background:'+background+'">'
                     '<div class="calm-activity-icon">'+symbol+'</div>'
                     '<div class="calm-activity-title" style="color:'+accent+'">'+escape(localized_name)+'</div>'
-                    '<div class="calm-activity-desc">'+description+'</div>'
+                    '<div class="calm-activity-desc">'+escape(ui(description))+'</div>'
                     + ('<div class="calm-selected">● Currently selected</div>' if active else '') + '</div>',
                     unsafe_allow_html=True
                 )
