@@ -121,6 +121,46 @@ class LocalizationIntegrityTests(unittest.TestCase):
                         f"Missing locale entry for ui() text in {filename}:{node.lineno}: {arg.value!r}",
                     )
 
+    def test_calm_corner_descriptions_are_localized_in_every_catalog(self):
+        descriptions = (
+            "Plant flowers and watch your little garden bloom.",
+            "Find a calm scene and enjoy a quiet pause.",
+            "Match cheerful pictures at your own pace.",
+            "Unscramble gentle, encouraging words.",
+            "Collect small moments worth remembering.",
+            "Create a colourful bouquet of flowers.",
+        )
+        app = (ROOT / "app.py").read_text(encoding="utf-8")
+        manager = (ROOT / "localization" / "language_manager.py").read_text(encoding="utf-8")
+        self.assertIn("escape(ui(description))", app)
+        for description in descriptions:
+            self.assertIn(description, app)
+            self.assertIn(repr(description).replace("'", '"'), manager)
+            for lang, items in self.catalogs.items():
+                with self.subTest(language=lang, description=description):
+                    self.assertTrue(items["ui." + description].strip())
+
+    def test_unreviewed_clinical_prefixes_stay_english(self):
+        manager = (ROOT / "localization" / "language_manager.py").read_text(encoding="utf-8")
+        import ast
+        tree = ast.parse(manager)
+        funcs = {
+            node.name: node for node in tree.body
+            if isinstance(node, ast.FunctionDef)
+        }
+        self.assertIn("t", funcs)
+        t_func = funcs["t"]
+        self.assertTrue(any(
+            isinstance(node, ast.Return)
+            and isinstance(node.value, ast.Call)
+            and isinstance(node.value.func, ast.Name)
+            and node.value.func.id == "label"
+            and len(node.value.args) >= 2
+            and isinstance(node.value.args[1], ast.Constant)
+            and node.value.args[1].value == "en"
+            for node in ast.walk(t_func)
+        ), "Clinical fallback to English was removed without documented review")
+
     def test_performance_fix_is_retained(self):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
         self.assertNotIn("new MutationObserver(", app)
