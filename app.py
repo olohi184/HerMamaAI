@@ -397,7 +397,7 @@ elif page == "🌼 Calm Corner":
             # Reuse existing translated game headings for the activity cards.
             game_heading = (
                 "🌸 Game 1: Grow your garden",
-                "☁️ Game 2: Gentle moments",
+                "☁️ Game 2: Choose a gentle moment",
                 "🦋 Game 3: Memory Garden",
                 "🔤 Game 4: Mama Word Garden",
                 "🫙 Game 5: Gratitude Jar",
