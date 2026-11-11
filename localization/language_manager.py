@@ -173,6 +173,7 @@ SAFE_UI_LABELS = frozenset({
     "💗 Postpartum recovery",
     "Your bouquet begins here.",
     "Choose a flower to create something lovely.",
+    "Pick a peaceful moment just for you. No pressure, no scores.",
     "Indicative visit milestones and vaccines to discuss",
     "Tap a vaccine name to learn what it helps protect against.",
     "✅ Record a vaccine already received",
