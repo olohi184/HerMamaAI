@@ -242,7 +242,7 @@ elif page == "📅 CareCalendar":
     if not items:
         st.caption(ui("No appointments entered yet. Add a visit above to begin."))
     for original_index, ap in items:
-        st.markdown(f'<div class="timeline"><b>📍 {escape(ap["date"].strftime("%a %d %b %Y"))} · {escape(ap["time"].strftime("%I:%M %p"))}</b><br>{escape(ap["kind"])}{(" · " + escape(ap["note"])) if ap["note"] else ""}</div>',unsafe_allow_html=True)
+        st.markdown(f'<div class="timeline"><b>📍 {escape(ap["date"].strftime("%a %d %b %Y"))} · {escape(ap["time"].strftime("%I:%M %p"))}</b><br>{escape(display_option(ap["kind"]))}{(" · " + escape(ap["note"])) if ap["note"] else ""}</div>',unsafe_allow_html=True)
         c1,c2=st.columns([3,1])
         with c1:
             start=datetime.combine(ap["date"],ap["time"])
