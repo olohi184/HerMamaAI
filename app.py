@@ -431,10 +431,7 @@ elif page == "🌼 Calm Corner":
             ))
         else:
             st.info(t("audio.voice_unavailable"))
-            st.caption(
-                "Offline audio for this language and activity is awaiting "
-                "reviewed recordings. Written activities remain available."
-            )
+            st.caption(t("calm.offline_audio_pending"))
     else:
         # Optional, user-triggered browser audio for non-medical Calm Corner text only.
         # The browser must have a matching installed voice; do not silently use a
@@ -584,7 +581,11 @@ elif page == "🌼 Calm Corner":
         planted = st.session_state.garden_count
         blooms = "".join('<span class="hm-garden-flower" aria-label="flower">'+flowers[i % len(flowers)]+'</span>' for i in range(planted))
         if not blooms:
-            blooms = '<div class="hm-garden-empty">🌱 Your peaceful garden begins here.<br>Plant a flower and watch it bloom.</div>'
+            blooms = ('<div class="hm-garden-empty">'
+                      + escape(t("calm.garden_empty_title"))
+                      + '<br>'
+                      + escape(t("calm.garden_empty_instruction"))
+                      + '</div>')
         garden_html = ('<div class="hm-garden" role="img" aria-label="A peaceful illustrated garden with '
                        +str(planted)+' planted flowers"><div class="hm-garden-sun"></div>'
                        '<div class="hm-garden-cloud">☁️</div><div class="hm-garden-butterfly">🦋</div>'
@@ -602,7 +603,7 @@ elif page == "🌼 Calm Corner":
                 st.session_state.garden_count=0
                 st.rerun()
         if st.session_state.garden_count>=24:
-            st.success("Your garden is blooming! You can enjoy it or start again.")
+            st.success(t("calm.garden_complete"))
     if st.session_state.calm_activity == 1:
         st.markdown("### " + ui("☁️ Game 2: Choose a gentle moment"))
         moments = {
