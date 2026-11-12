@@ -204,7 +204,9 @@ with st.expander(t("safety.heading"), expanded=False):
     st.caption(t("safety.review_status"))
 st.caption(t("safety.caption"))
 if st.session_state.hm_language != "en":
-    st.warning(t("safety.emergency_translation_notice"))
+    # This is a translation-status notice, not a translated clinical instruction.
+    # Display the local-language draft alongside the English safety fallback.
+    st.warning(label("safety.emergency_translation_notice") + "\n\n" + label("safety.emergency_translation_notice", "en"))
 page = st.session_state.page
 if page == "🌱 AdaptiveCare":
     render_adaptivecare()
