@@ -110,6 +110,12 @@ SAFE_UI_LABELS = frozenset({
     "Educational antenatal milestones",
     "Make your calendar work for you",
     "Questions for your maternity team",
+    # Four antenatal discussion questions approved for Hausa, Yoruba and Igbo review.
+    # Emergency warnings and clinical guidance remain in English pending separate review.
+    "When should I attend my next antenatal visit?",
+    "Which symptoms mean I should seek urgent help?",
+    "Which medicines or supplements are appropriate for me?",
+    "What is my birth and emergency transport plan?",
     "Pregnancy learning topics",
     "Nutrition, rest and everyday well-being",
     "Understanding antenatal checks",
