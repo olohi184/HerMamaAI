@@ -32,6 +32,11 @@ CLINICAL_PREFIXES = ("preg.", "post.", "baby.", "mama.", "well.", "learn.", "saf
 # Only explicitly approved non-medical interface labels are translated in Phase 1.
 # Everything else defaults to the English source, including new text added later.
 SAFE_UI_LABELS = frozenset({
+    "Moderate",
+    "None",
+    "Choose from these optional small steps; you can adjust at any time.",
+    "Take a short rest break",
+    "Set aside a quiet wind-down period",
     "Explore your care", "Your postpartum care journey",
     "Choose what you need today. These are educational tools, not clinical monitoring.",
     "How are you feeling today?", "Physical recovery", "Emotional well-being",
