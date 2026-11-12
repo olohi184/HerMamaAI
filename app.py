@@ -1,7 +1,7 @@
 import streamlit as st
 from mamacare import render_mamacare
 from adaptivecare import render_adaptivecare
-from localization.language_manager import choose_language, localized_navigation, t, ui, display_option
+from localization.language_manager import choose_language, localized_navigation, t, ui, display_option, label as localized_label
 from datetime import date, datetime, time, timedelta
 from html import escape
 
@@ -206,7 +206,7 @@ st.caption(t("safety.caption"))
 if st.session_state.hm_language != "en":
     # This is a translation-status notice, not a translated clinical instruction.
     # Display the local-language draft alongside the English safety fallback.
-    st.warning(label("safety.emergency_translation_notice") + "\n\n" + label("safety.emergency_translation_notice", "en"))
+    st.warning(localized_label("safety.emergency_translation_notice") + "\n\n" + localized_label("safety.emergency_translation_notice", "en"))
 page = st.session_state.page
 if page == "🌱 AdaptiveCare":
     render_adaptivecare()
