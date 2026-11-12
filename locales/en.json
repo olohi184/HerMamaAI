@@ -426,5 +426,9 @@
   "audio.finished": "Finished playing.",
   "audio.playback_error": "Audio could not play. Please use the written text.",
   "audio.playing": "Playing selected activity...",
-  "audio.stopped": "Stopped."
+  "audio.stopped": "Stopped.",
+  "calm.offline_audio_pending": "Offline audio for this language and activity is awaiting reviewed recordings. Written activities remain available.",
+  "calm.garden_empty_title": "🌱 Your peaceful garden begins here.",
+  "calm.garden_empty_instruction": "Plant a flower and watch it bloom.",
+  "calm.garden_complete": "Your garden is blooming! You can enjoy it or start again."
 }
