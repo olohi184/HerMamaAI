@@ -426,5 +426,9 @@
   "audio.finished": "Ọgụgụ agwụla.",
   "audio.playback_error": "Enweghị ike ịkpọ ụda ahụ. Biko gụọ ederede ahụ.",
   "audio.playing": "A na-agụ ihe omume ahọpụtara...",
-  "audio.stopped": "A kwụsịrị."
+  "audio.stopped": "A kwụsịrị.",
+  "calm.offline_audio_pending": "A ka na-eche ndekọ ụda a nyochara maka asụsụ na egwuregwu a. Ị ka nwere ike iji egwuregwu ndị e dere ede.",
+  "calm.garden_empty_title": "🌱 Ubi udo gị na-amalite ebe a.",
+  "calm.garden_empty_instruction": "Kụọ ifuru ma lee ka ọ na-eto.",
+  "calm.garden_complete": "Ubi gị na-ama ifuru! Ị nwere ike ịnụ ụtọ ya ma ọ bụ malite ọzọ."
 }
