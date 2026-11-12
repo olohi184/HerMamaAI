@@ -426,5 +426,9 @@
   "audio.finished": "Ohùn ti parí.",
   "audio.playback_error": "A kò lè ṣe ohùn náà. Jọ̀wọ́ ka ọ̀rọ̀ tí a kọ.",
   "audio.playing": "A ń ka iṣẹ́ tí o yàn...",
-  "audio.stopped": "A ti dáwọ́ dúró."
+  "audio.stopped": "A ti dáwọ́ dúró.",
+  "calm.offline_audio_pending": "A ń dúró de àwọn àkọsílẹ̀ ohùn tí a ti ṣàyẹ̀wò fún èdè àti eré yìí. Àwọn eré tí a kọ sílẹ̀ ṣì wà fún lílò.",
+  "calm.garden_empty_title": "🌱 Ọgbà ìdákẹ́jẹ́ rẹ bẹ̀rẹ̀ níbí.",
+  "calm.garden_empty_instruction": "Gbin òdòdó kí o sì wo bí ó ṣe ń dàgbà.",
+  "calm.garden_complete": "Ọgbà rẹ ń yọ̀! O lè gbádùn rẹ tàbí bẹ̀rẹ̀ lẹ́ẹ̀kansi."
 }
