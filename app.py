@@ -62,6 +62,7 @@ try {
       head.appendChild(apple);
     }
   };
+  // Set the favicon once; no repeated head mutations on rerenders.
   syncBrandIcons();
   // Keep the production performance fix: do not observe and repeatedly
   // modify Streamlit's document head on rerenders.
