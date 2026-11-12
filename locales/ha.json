@@ -426,5 +426,9 @@
   "audio.finished": "An gama sauraro.",
   "audio.playback_error": "Ba a iya kunna sautin ba. Da fatan a karanta rubutun.",
   "audio.playing": "Ana kunna aikin da aka zaɓa...",
-  "audio.stopped": "An dakatar."
+  "audio.stopped": "An dakatar.",
+  "calm.offline_audio_pending": "Ana jiran a duba a amince da rikodin sauti na wannan harshe da aikin. Har yanzu ana iya amfani da ayyukan da aka rubuta.",
+  "calm.garden_empty_title": "🌱 Lambun natsuwarki yana farawa a nan.",
+  "calm.garden_empty_instruction": "Shuka fure ki kalli yadda yake bunƙasa.",
+  "calm.garden_complete": "Lambunki yana bunƙasa! Za ki iya jin daɗinsa ko ki sake farawa."
 }
