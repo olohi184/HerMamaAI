@@ -1,7 +1,7 @@
 import streamlit as st
 from mamacare import render_mamacare
 from adaptivecare import render_adaptivecare
-from localization.language_manager import choose_language, localized_navigation
+from localization.language_manager import choose_language, localized_navigation, t, ui, display_option, label as localized_label
 from datetime import date, datetime, time, timedelta
 from html import escape
 
@@ -64,9 +64,8 @@ try {
   };
   // Set the favicon once; no repeated head mutations on rerenders.
   syncBrandIcons();
-  // Avoid a persistent head observer: Streamlit may update favicon links during
-  // rerenders, and observing/removing those links can cause repeated DOM work.
-  // A one-time icon sync is sufficient for the initial page load.
+  // Keep the production performance fix: do not observe and repeatedly
+  // modify Streamlit's document head on rerenders.
   if (!doc.querySelector('meta[name="theme-color"][data-hermamaai]')) {
     const meta = doc.createElement('meta');
     meta.name = 'theme-color';
@@ -173,75 +172,80 @@ h1,h2,h3{color:#43145e}
 
 # Compact brand header is shown only on the homepage, leaving feature pages room to breathe.
 if st.session_state.page == "🏡 Home":
-    st.markdown("""<section class="hm-hero hm-hero-refined">
+    st.markdown(f"""<section class="hm-hero hm-hero-refined">
     <div class="hm-logo-focus"><img src="https://raw.githubusercontent.com/olohi184/HerMamaAI/main/HerMamaAI%20Mother%20and%20Baby%20Emblem.png" alt="HerMamaAI mother and baby brand logo"></div>
-    <p class="hm-single-message">Compassionate guidance for pregnancy, postpartum recovery and beyond.</p>
+    <p class="hm-single-message">{escape(t("home.tagline"))}</p>
     </section>""", unsafe_allow_html=True)
-    st.caption("FUNCTIONAL RESEARCH & INNOVATION PROTOTYPE · ABUJA, NIGERIA")
+    st.caption(t("home.prototype"))
 
 # Navigation stays near the top so key services are easy to reach on Android.
 choose_language()
 if st.session_state.hm_language != "en":
-    st.info("Language preview: navigation labels are draft translations. Maternal health guidance remains in English until reviewed.")
-nav = ["🏡 Home","👶 BabyCare","🤰 Pregnancy care","💞 MamaCare journey","💗 Postpartum recovery","📅 CareCalendar","🌷 Emotional wellness","🏥 Find care","📖 Learning hub","🌼 Calm Corner"]
+    st.info(t("language.notice"))
+nav = ["🏡 Home","👶 BabyCare","🤰 Pregnancy care","💞 MamaCare journey","💗 Postpartum recovery","📅 CareCalendar","🌷 Emotional wellness","🏥 Find care","📖 Learning hub","🌼 Calm Corner","🌱 AdaptiveCare"]
 if st.session_state.page == "🏡 Home":
-    st.markdown("#### Explore care and support")
+    st.markdown("#### " + t("home.explore"))
     quick = [
-        ("🤰 Pregnancy", "🤰 Pregnancy care"),
-        ("💞 MamaCare", "💞 MamaCare journey"),
-        ("👶 BabyCare", "👶 BabyCare"),
-        ("📅 Calendar", "📅 CareCalendar"),
-        ("🏥 Find Care", "🏥 Find care"),
-        ("🌷 Wellness", "🌷 Emotional wellness"),
-        ("🌱 AdaptiveCare", "🌱 AdaptiveCare"),
+        (t("home.pregnancy"), "🤰 Pregnancy care"),
+        (t("home.mamacare"), "💞 MamaCare journey"),
+        (t("home.babycare"), "👶 BabyCare"),
+        (t("home.calendar"), "📅 CareCalendar"),
+        (t("home.findcare"), "🏥 Find care"),
+        (t("home.wellness"), "🌷 Emotional wellness"),
+        (t("home.adaptive"), "🌱 AdaptiveCare"),
     ]
     for offset in range(0, len(quick), 2):
         cols = st.columns(2)
         for col, (label, target) in zip(cols, quick[offset:offset + 2]):
             with col:
                 st.button(label, key="quick_" + target, use_container_width=True, on_click=go, args=(target,))
-st.selectbox("Explore all HerMamaAI sections", nav, index=nav.index(st.session_state.page) if st.session_state.page in nav else 0, format_func=localized_navigation, key="hm_mobile_nav", on_change=lambda: go(st.session_state.hm_mobile_nav))
-with st.expander("Important safety information", expanded=False):
-    st.warning("HerMamaAI is an educational research prototype. Content has not been clinically reviewed. It is not a clinician, diagnosis tool, medical device or emergency service. For serious symptoms, seek immediate in-person medical care.")
-st.caption("Educational demonstration only · Not a substitute for professional medical care.")
+st.selectbox(t("nav.explore"), nav, index=nav.index(st.session_state.page) if st.session_state.page in nav else 0, format_func=localized_navigation, key="hm_mobile_nav", on_change=lambda: go(st.session_state.hm_mobile_nav))
+with st.expander(t("safety.heading"), expanded=False):
+    st.warning("HerMamaAI is an educational research prototype. It is not a clinician, diagnosis tool, medical device or emergency service. For serious symptoms, seek immediate in-person medical care.")
+    st.caption(t("safety.review_status"))
+st.caption(t("safety.caption"))
+if st.session_state.hm_language != "en":
+    # This is a translation-status notice, not a translated clinical instruction.
+    # Display the local-language draft alongside the English safety fallback.
+    st.warning(localized_label("safety.emergency_translation_notice") + "\n\n" + localized_label("safety.emergency_translation_notice", "en"))
 page = st.session_state.page
 if page == "🌱 AdaptiveCare":
     render_adaptivecare()
 
-if page == "🏡 Home":
-    st.markdown('<div class="section-head" style="text-align:center">Welcome to HerMamaAI</div>', unsafe_allow_html=True)
-    st.markdown('<p class="lead" style="text-align:center">Support from pregnancy through postpartum and baby care.</p>', unsafe_allow_html=True)
-    with st.expander("About this research prototype"):
-        st.write("HerMamaAI demonstrates pregnancy education, postpartum wellbeing, emotional wellness, healthcare navigation and childhood immunization planning. It is in demonstration and evaluation and has not been clinically validated.")
-    st.markdown('<div class="soft"><b>Care continues after childbirth.</b> Learn when to contact your maternity team and how to prepare for follow-up care.</div>',unsafe_allow_html=True)
-    st.button("🌼 Visit the Motherhood Calm Corner →", key="home_calm", use_container_width=True, on_click=go, args=("🌼 Calm Corner",))
+elif page == "🏡 Home":
+    st.markdown(f'<div class="section-head" style="text-align:center">{escape(t("home.welcome"))}</div>', unsafe_allow_html=True)
+    st.markdown(f'<p class="lead" style="text-align:center">{escape(t("home.lead"))}</p>', unsafe_allow_html=True)
+    with st.expander(t("home.about")):
+        st.write(t("home.about_body"))
+    st.markdown(f'<div class="soft"><b>{escape(t("home.continues"))}</b> {escape(t("home.continues_body"))}</div>',unsafe_allow_html=True)
+    st.button(t("home.calm"), key="home_calm", use_container_width=True, on_click=go, args=("🌼 Calm Corner",))
 
 elif page == "📅 CareCalendar":
-    st.markdown('<div class="section-head">📅 My CareCalendar</div>',unsafe_allow_html=True)
-    st.markdown('<p class="lead">A simple place to organize antenatal and postnatal visits, and explore topics to discuss with your maternity team.</p>',unsafe_allow_html=True)
-    st.info("**Two different things:** Your appointments are dates you enter from your care plan. Suggested milestones below are educational topics only — not booked appointments or a personalized medical schedule.")
-    st.caption("Privacy: entries are held in this app session only. They are not saved to a database or sent to a clinic. Avoid entering personal medical information or identifying clinic details on a shared device.")
+    st.markdown('<div class="section-head">' + escape(ui('📅 My CareCalendar')) + '</div>',unsafe_allow_html=True)
+    st.markdown('<p class="lead">' + escape(ui('A simple place to organize antenatal and postnatal visits, and explore topics to discuss with your maternity team.')) + '</p>',unsafe_allow_html=True)
+    st.info(ui("**Two different things:** Your appointments are dates you enter from your care plan. Suggested milestones below are educational topics only — not booked appointments or a personalized medical schedule."))
+    st.caption(ui("Privacy: entries are held in this app session only. They are not saved to a database or sent to a clinic. Avoid entering personal medical information or identifying clinic details on a shared device."))
     if "care_appointments" not in st.session_state:
         st.session_state.care_appointments = []
     with st.form("carecalendar_add",clear_on_submit=True):
-        st.markdown("#### Add an appointment")
-        kind = st.selectbox("Visit type",["Antenatal visit","Postnatal follow-up","Other maternity appointment"])
+        st.markdown("#### " + ui("Add an appointment"))
+        kind = st.selectbox(ui("Visit type"),["Antenatal visit","Postnatal follow-up","Other maternity appointment"], format_func=display_option)
         a,b = st.columns(2)
         with a:
-            ap_date = st.date_input("Appointment date",value=date.today(),min_value=date.today())
+            ap_date = st.date_input(ui("Appointment date"),value=date.today(),min_value=date.today())
         with b:
-            ap_time = st.time_input("Appointment time",value=time(10,0),step=1800)
-        note = st.text_input("Optional short label",placeholder="e.g. Routine check-up",max_chars=70)
-        submitted = st.form_submit_button("Add to my calendar",type="primary",use_container_width=True)
+            ap_time = st.time_input(ui("Appointment time"),value=time(10,0),step=1800)
+        note = st.text_input(ui("Optional short label"),placeholder="e.g. Routine check-up",max_chars=70)
+        submitted = st.form_submit_button(ui("Add to my calendar"),type="primary",use_container_width=True)
         if submitted:
             st.session_state.care_appointments.append({"kind":kind,"date":ap_date,"time":ap_time,"note":note.strip()})
-            st.success("Added to this session's calendar. This does not book a clinic visit.")
-    st.markdown("#### My planned appointments")
+            st.success(ui("Added to this session's calendar. This does not book a clinic visit."))
+    st.markdown("#### " + ui("My planned appointments"))
     items = sorted(enumerate(st.session_state.care_appointments),key=lambda x:(x[1]["date"],x[1]["time"]))
     if not items:
-        st.caption("No appointments entered yet. Add a visit above to begin.")
+        st.caption(ui("No appointments entered yet. Add a visit above to begin."))
     for original_index, ap in items:
-        st.markdown(f'<div class="timeline"><b>📍 {escape(ap["date"].strftime("%a %d %b %Y"))} · {escape(ap["time"].strftime("%I:%M %p"))}</b><br>{escape(ap["kind"])}{(" · " + escape(ap["note"])) if ap["note"] else ""}</div>',unsafe_allow_html=True)
+        st.markdown(f'<div class="timeline"><b>📍 {escape(ap["date"].strftime("%a %d %b %Y"))} · {escape(ap["time"].strftime("%I:%M %p"))}</b><br>{escape(display_option(ap["kind"]))}{(" · " + escape(ap["note"])) if ap["note"] else ""}</div>',unsafe_allow_html=True)
         c1,c2=st.columns([3,1])
         with c1:
             start=datetime.combine(ap["date"],ap["time"])
@@ -250,91 +254,91 @@ elif page == "📅 CareCalendar":
                 return str(value).replace("\\","\\\\").replace(";","\\;").replace(",","\\,").replace("\n","\\n")
             title=ics_safe("HerMamaAI: "+ap["kind"]+(" - "+ap["note"] if ap["note"] else ""))
             ics="\r\n".join(["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//WechimAI//HerMamaAI//EN","BEGIN:VEVENT","UID:hermamaai-"+str(original_index)+"-"+start.strftime("%Y%m%dT%H%M%S")+"@local","DTSTAMP:"+datetime.utcnow().strftime("%Y%m%dT%H%M%SZ"),"DTSTART:"+start.strftime("%Y%m%dT%H%M%S"),"DTEND:"+end.strftime("%Y%m%dT%H%M%S"),"SUMMARY:"+title,"DESCRIPTION:Personal planning reminder only. Confirm timing with your maternity team. Time is local to your calendar.","BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:HerMamaAI appointment reminder - confirm details with your maternity team.","TRIGGER:-P1D","END:VALARM","END:VEVENT","END:VCALENDAR",""])
-            st.download_button("⬇️ Add to phone calendar (.ics)",data=ics,file_name="hermamaai-appointment.ics",mime="text/calendar",key=f"ics_{original_index}",use_container_width=True)
+            st.download_button(ui("⬇️ Add to phone calendar (.ics)"),data=ics,file_name="hermamaai-appointment.ics",mime="text/calendar",key=f"ics_{original_index}",use_container_width=True)
         with c2:
-            if st.button("Remove",key=f"remove_{original_index}",use_container_width=True):
+            if st.button(ui("Remove"),key=f"remove_{original_index}",use_container_width=True):
                 st.session_state.care_appointments.pop(original_index)
                 st.rerun()
-    st.markdown("#### Educational antenatal milestones")
-    st.caption("These are discussion prompts, not dates or a substitute for local antenatal guidance. Your maternity team determines your individual care schedule.")
-    with st.expander("Early pregnancy · Establishing antenatal care",expanded=True):
-        st.write("Discuss when to begin antenatal care, recommended screening, nutrition and supplements, medicines, and whom to call for urgent concerns.")
-    with st.expander("Middle pregnancy · Ongoing monitoring"):
-        st.write("Ask about the recommended timing of check-ups, scans and tests, your baby's development, and any symptoms that concern you.")
-    with st.expander("Later pregnancy · Preparing for birth"):
-        st.write("Discuss your birth preferences, delivery location, transport plan, emergency contacts and postpartum follow-up arrangements.")
-    with st.expander("After delivery · Continuing postnatal care"):
-        st.write("Ask your maternity team when to return after discharge, what recovery symptoms need assessment, and how to obtain feeding and emotional support.")
+    st.markdown("#### " + ui("Educational antenatal milestones"))
+    st.caption(ui("These are discussion prompts, not dates or a substitute for local antenatal guidance. Your maternity team determines your individual care schedule."))
+    with st.expander(ui("Early pregnancy · Establishing antenatal care"),expanded=True):
+        st.write(ui("Discuss when to begin antenatal care, recommended screening, nutrition and supplements, medicines, and whom to call for urgent concerns."))
+    with st.expander(ui("Middle pregnancy · Ongoing monitoring")):
+        st.write(ui("Ask about the recommended timing of check-ups, scans and tests, your baby's development, and any symptoms that concern you."))
+    with st.expander(ui("Later pregnancy · Preparing for birth")):
+        st.write(ui("Discuss your birth preferences, delivery location, transport plan, emergency contacts and postpartum follow-up arrangements."))
+    with st.expander(ui("After delivery · Continuing postnatal care")):
+        st.write(ui("Ask your maternity team when to return after discharge, what recovery symptoms need assessment, and how to obtain feeding and emotional support."))
     st.error("**Urgent symptoms?** Heavy bleeding, seizures, chest pain, difficulty breathing, severe headache or visual changes, fainting, or thoughts of harming yourself or your baby need immediate professional help. Do not wait for a calendar reminder.")
 
-    st.markdown("#### Make your calendar work for you")
-    with st.expander("How to add a reminder to your phone"):
-        st.write("Enter the appointment date and time given by your maternity team, select Add to my calendar, then use the .ics download button. Open the downloaded file in your phone's calendar and confirm that the event appears. The exported event requests a reminder 1 day before the appointment; whether an alert appears depends on your phone calendar app and notification settings. HerMamaAI itself does not send notifications. For appointments less than 1 day away, set a suitable reminder manually in your calendar.")
-    with st.expander("What to prepare before a visit"):
-        st.write("Bring any maternity notes you have, a list of medicines or supplements, questions you want answered, and any instructions your maternity team has given you. Ask a trusted person to help with transport if needed.")
+    st.markdown("#### " + ui("Make your calendar work for you"))
+    with st.expander(ui("How to add a reminder to your phone")):
+        st.write(ui("Enter the appointment date and time given by your maternity team, select Add to my calendar, then use the .ics download button. Open the downloaded file in your phone's calendar and confirm that the event appears. The exported event requests a reminder 1 day before the appointment; whether an alert appears depends on your phone calendar app and notification settings. HerMamaAI itself does not send notifications. For appointments less than 1 day away, set a suitable reminder manually in your calendar."))
+    with st.expander(ui("What to prepare before a visit")):
+        st.write(ui("Bring any maternity notes you have, a list of medicines or supplements, questions you want answered, and any instructions your maternity team has given you. Ask a trusted person to help with transport if needed."))
 
 elif page == "🤰 Pregnancy care":
-    st.markdown('<div class="section-head">🤰 Pregnancy care</div>',unsafe_allow_html=True)
-    st.markdown('<p class="lead">Regular antenatal visits help your maternity team monitor your health and your baby’s development. Ask which appointments, tests and vaccinations are appropriate for you.</p>',unsafe_allow_html=True)
-    st.button("📅 Plan an antenatal visit in CareCalendar →",use_container_width=True,on_click=go,args=("📅 CareCalendar",))
-    st.subheader("Questions for your maternity team")
+    st.markdown('<div class="section-head">' + escape(ui("🤰 Pregnancy care")) + '</div>',unsafe_allow_html=True)
+    st.markdown(f'<p class="lead">{escape(t("preg.intro"))}</p>',unsafe_allow_html=True)
+    st.button(ui("📅 Plan an antenatal visit in CareCalendar →"),use_container_width=True,on_click=go,args=("📅 CareCalendar",))
+    st.subheader(ui("Questions for your maternity team"))
     for i,q in enumerate(["When should I attend my next antenatal visit?","Which symptoms mean I should seek urgent help?","Which medicines or supplements are appropriate for me?","What is my birth and emergency transport plan?"]):
-        st.checkbox(q,key=f"preg_{i}")
+        st.checkbox(ui(q),key=f"preg_{i}")
     st.error("Seek urgent medical assessment for vaginal bleeding, severe abdominal pain, severe headache or vision changes, seizures, chest pain or trouble breathing.")
 
-    st.markdown("#### Pregnancy learning topics")
-    with st.expander("Nutrition, rest and everyday well-being"):
-        st.write("Ask your maternity team about a varied diet, food safety, hydration, recommended supplements, activity, rest and any individual restrictions. Avoid starting or stopping medicines or supplements based on app content.")
-    with st.expander("Understanding antenatal checks"):
-        st.write("Antenatal visits may include blood pressure measurement, laboratory tests, screening, fetal growth monitoring and discussion of symptoms. What is appropriate depends on your stage of pregnancy, medical history and local guidance.")
-    with st.expander("Preparing for delivery"):
-        st.write("Discuss where you plan to give birth, how you will travel there, whom to contact, what to pack and who can support you. Review emergency arrangements with your maternity team.")
-    with st.expander("Questions about baby's movement"):
+    st.markdown("#### " + ui("Pregnancy learning topics"))
+    with st.expander(ui("Nutrition, rest and everyday well-being")):
+        st.write(ui("Ask your maternity team about a varied diet, food safety, hydration, recommended supplements, activity, rest and any individual restrictions. Avoid starting or stopping medicines or supplements based on app content."))
+    with st.expander(ui("Understanding antenatal checks")):
+        st.write(ui("Antenatal visits may include blood pressure measurement, laboratory tests, screening, fetal growth monitoring and discussion of symptoms. What is appropriate depends on your stage of pregnancy, medical history and local guidance."))
+    with st.expander(ui("Preparing for delivery")):
+        st.write(ui("Discuss where you plan to give birth, how you will travel there, whom to contact, what to pack and who can support you. Review emergency arrangements with your maternity team."))
+    with st.expander(ui("Questions about baby's movement")):
         st.write("Ask your maternity team what movements to expect and what to do if movement decreases or changes. Seek prompt professional assessment for concerns about reduced movement; do not wait for an app or a scheduled visit.")
-    st.markdown("#### A small step today")
-    st.checkbox("I have written down a question to ask at my next antenatal visit.",key="preg_extra")
+    st.markdown("#### " + ui("A small step today"))
+    st.checkbox(ui("I have written down a question to ask at my next antenatal visit."),key="preg_extra")
     
 elif page == "💞 MamaCare journey":
     render_mamacare(go)
 
 elif page == "💗 Postpartum recovery":
-    st.markdown('<div class="section-head">💗 Postpartum recovery</div>',unsafe_allow_html=True)
-    st.markdown('<p class="lead">Recovery continues beyond discharge, and serious complications can arise even after an uncomplicated birth. Keep your recommended postnatal appointments.</p>',unsafe_allow_html=True)
-    with st.expander("The first days after birth",expanded=True):
+    st.markdown('<div class="section-head">' + escape(ui("💗 Postpartum recovery")) + '</div>',unsafe_allow_html=True)
+    st.markdown(f'<p class="lead">{escape(t("post.intro"))}</p>',unsafe_allow_html=True)
+    with st.expander(ui("The first days after birth"),expanded=True):
         st.write("Ask your team about bleeding, pain, feeding, wound care, blood pressure checks where indicated, sleep, and when to return for follow-up.")
-    with st.expander("Weeks 2–6: stay connected"):
+    with st.expander(ui("Weeks 2–6: stay connected")):
         st.write("Do not dismiss new or worsening symptoms. Contact your maternity facility if you miss an appointment or are concerned about recovery.")
-    with st.expander("Beyond six weeks"):
+    with st.expander(ui("Beyond six weeks")):
         st.write("Persistent pain, mood changes, bladder or pelvic-floor symptoms, feeding concerns or other ongoing difficulties deserve professional assessment.")
-    st.button("Explore MamaCare Continuity →",type="primary",use_container_width=True,on_click=go,args=("💞 MamaCare journey",))
+    st.button(ui("Explore MamaCare Continuity →"),type="primary",use_container_width=True,on_click=go,args=("💞 MamaCare journey",))
     st.error("**Urgent warning signs:** Heavy bleeding, chest pain, trouble breathing, seizures, severe headache or vision changes, fainting, fever with severe illness, or thoughts of harming yourself or your baby. Seek emergency medical care immediately.")
 
-    st.markdown("#### More postpartum recovery topics")
-    with st.expander("Healing and comfort"):
-        st.write("Recovery varies after vaginal birth and caesarean birth. Ask your clinician about pain control, incision or perineal care, expected bleeding, safe activity and when to seek assessment for changes.")
-    with st.expander("Feeding support without judgment"):
+    st.markdown("#### " + ui("More postpartum recovery topics"))
+    with st.expander(ui("Healing and comfort")):
+        st.write(ui("Recovery varies after vaginal birth and caesarean birth. Ask your clinician about pain control, incision or perineal care, expected bleeding, safe activity and when to seek assessment for changes."))
+    with st.expander(ui("Feeding support without judgment")):
         st.write("Whether breastfeeding, formula feeding or combining approaches, seek individualized guidance from qualified professionals if feeding is painful, difficult or worrying. Your well-being matters too.")
-    with st.expander("Sleep, fatigue and asking for practical help"):
-        st.write("Rest can be difficult with a newborn. Consider asking trusted people for help with household tasks and discuss severe or persistent exhaustion with your care team.")
-    with st.expander("Mood and relationships after birth"):
+    with st.expander(ui("Sleep, fatigue and asking for practical help")):
+        st.write(ui("Rest can be difficult with a newborn. Consider asking trusted people for help with household tasks and discuss severe or persistent exhaustion with your care team."))
+    with st.expander(ui("Mood and relationships after birth")):
         st.write("Emotional changes can affect parents and relationships. Talk openly with someone you trust and contact a qualified professional if distress persists, intensifies or interferes with daily life.")
     
 elif page == "🌷 Emotional wellness":
-    st.markdown('<div class="section-head">🌷 Emotional wellness</div>',unsafe_allow_html=True)
-    st.markdown('<p class="lead">Pregnancy and new motherhood can bring many emotions. You deserve support and space to talk about how you feel.</p>',unsafe_allow_html=True)
+    st.markdown('<div class="section-head">' + escape(ui("🌷 Emotional wellness")) + '</div>',unsafe_allow_html=True)
+    st.markdown(f'<p class="lead">{escape(t("well.intro"))}</p>',unsafe_allow_html=True)
     card("You can ask for help","💬","If sadness, anxiety, hopelessness or overwhelm persists, worsens, or affects daily life, speak with a qualified healthcare professional.")
-    st.subheader("Gentle ways to reach out")
+    st.subheader(ui("Gentle ways to reach out"))
     st.write("• Tell someone you trust how you are feeling.\n\n• Ask for practical help with meals, chores or childcare.\n\n• Discuss mood and sleep concerns at a postnatal appointment.")
     st.error("If you may harm yourself or someone else, or experience severe confusion or unusual perceptions, seek emergency medical help immediately and ask a trusted person to stay with you.")
 
-    st.markdown("#### Emotional wellness toolkit")
-    with st.expander("Check in with yourself"):
+    st.markdown("#### " + ui("Emotional wellness toolkit"))
+    with st.expander(ui("Check in with yourself")):
         st.write("You might gently ask: What do I need today? Have I eaten and rested as much as I can? Is there someone I can talk to? These prompts are not a mental-health assessment.")
-    with st.expander("Simple connection ideas"):
-        st.write("Consider sending a short message to a trusted friend, asking someone to sit with you, or sharing a specific task you need help with.")
-    with st.expander("When to seek professional support"):
+    with st.expander(ui("Simple connection ideas")):
+        st.write(ui("Consider sending a short message to a trusted friend, asking someone to sit with you, or sharing a specific task you need help with."))
+    with st.expander(ui("When to seek professional support")):
         st.write("Persistent sadness, intense anxiety, hopelessness, inability to function, or distressing thoughts deserve prompt assessment by a qualified healthcare professional. Emergency symptoms need immediate help.")
-    st.button("🌼 Open the Calm Corner",key="wellness_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
+    st.button(ui("🌼 Open the Calm Corner"),key="wellness_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
     
 elif page == "👶 BabyCare":
     from babycare import render_babycare
@@ -345,11 +349,11 @@ elif page == "🏥 Find care":
     render_find_care()
 
 elif page == "🌼 Calm Corner":
-    st.markdown('<div class="section-head">🌼 Motherhood Calm Corner</div>',unsafe_allow_html=True)
-    st.markdown('<p class="lead">A gentle, optional pause for mothers and mothers-to-be. Play at your own pace, or simply rest. No scores, competition, or personal information required.</p>',unsafe_allow_html=True)
+    st.markdown('<div class="section-head">' + escape(ui("🌼 Motherhood Calm Corner")) + '</div>',unsafe_allow_html=True)
+    st.markdown(f'<p class="lead">{escape(t("calm.intro"))}</p>',unsafe_allow_html=True)
     st.info("These are general relaxation activities, not treatment for anxiety, depression or physical symptoms. Stop any activity that feels uncomfortable. If you feel unwell or have urgent symptoms, seek professional medical care.")
-    st.subheader("Choose a gentle activity")
-    st.caption("Pick a peaceful moment just for you. No pressure, no scores.")
+    st.subheader(ui("Choose a gentle activity"))
+    st.caption(ui("Pick a peaceful moment just for you. No pressure, no scores."))
     activities = [
         ("🌸", "Grow your garden", "Plant flowers and watch your little garden bloom.", "#fff0f7", "#a91470"),
         ("☁️", "Gentle moments", "Find a calm scene and enjoy a quiet pause.", "#eef5ff", "#385e9b"),
@@ -393,19 +397,130 @@ elif page == "🌼 Calm Corner":
         for offset, col in enumerate(cols):
             index = start + offset
             symbol, name, description, background, accent = activities[index]
+            # Reuse existing translated game headings for the activity cards.
+            game_heading = (
+                "🌸 Game 1: Grow your garden",
+                "☁️ Game 2: Choose a gentle moment",
+                "🦋 Game 3: Memory Garden",
+                "🔤 Game 4: Mama Word Garden",
+                "🫙 Game 5: Gratitude Jar",
+                "🎨 Game 6: Colour & Bloom",
+            )[index]
+            localized_name = ui(game_heading)
             active = st.session_state.calm_activity == index
             with col:
                 st.markdown(
                     '<div class="calm-activity-card'+(' selected' if active else '')+'" style="background:'+background+'">'
                     '<div class="calm-activity-icon">'+symbol+'</div>'
-                    '<div class="calm-activity-title" style="color:'+accent+'">'+name+'</div>'
-                    '<div class="calm-activity-desc">'+description+'</div>'
-                    + ('<div class="calm-selected">● Currently selected</div>' if active else '') + '</div>',
+                    '<div class="calm-activity-title" style="color:'+accent+'">'+escape(localized_name)+'</div>'
+                    '<div class="calm-activity-desc">'+escape(ui(description))+'</div>'
+                    + ('<div class="calm-selected">● '+escape(ui("Currently selected"))+'</div>' if active else '') + '</div>',
                     unsafe_allow_html=True
                 )
-                if st.button("Playing now ✓" if active else "Explore activity →", key=f"calm_choice_{index}", use_container_width=True):
+                if st.button(ui("Playing now ✓" if active else "Explore activity →"), key=f"calm_choice_{index}", use_container_width=True):
                     st.session_state.calm_activity = index
                     st.rerun()
+    # Offline-first, reviewed recordings for Nigerian languages. Never substitute
+    # an English browser voice for a missing Hausa/Yoruba/Igbo recording.
+    from localization.offline_calm_audio import approved_audio_path
+    _spoken_code = st.session_state.get("hm_language", "en")
+    if _spoken_code in ("ha", "yo", "ig"):
+        _approved_recording = approved_audio_path(
+            _spoken_code, st.session_state.calm_activity
+        )
+        if _approved_recording is not None:
+            st.audio(str(_approved_recording), format=(
+                "audio/mpeg" if _approved_recording.suffix == ".mp3" else "audio/wav"
+            ))
+        else:
+            st.info(t("audio.voice_unavailable"))
+            st.caption(t("calm.offline_audio_pending"))
+    else:
+        # Optional, user-triggered browser audio for non-medical Calm Corner text only.
+        # The browser must have a matching installed voice; do not silently use a
+        # different language or claim offline/multilingual audio availability.
+        import json as _audio_json
+        _spoken_code = st.session_state.get("hm_language", "en")
+        _speech_tags = {"en": "en", "ha": "ha", "yo": "yo", "ig": "ig"}
+        _spoken_description = ui(activities[st.session_state.calm_activity][2])
+        _audio_keys = ("listen", "stop", "unsupported", "voice_unavailable",
+                       "finished", "playback_error", "playing", "stopped")
+        _speech_data = _audio_json.dumps({
+            "text": _spoken_description,
+            "language": _speech_tags.get(_spoken_code, "en"),
+            "messages": {key: t("audio." + key) for key in _audio_keys},
+        }, ensure_ascii=False).replace("<", "\\u003c")
+        components.html("""
+        <div style="font:14px system-ui,sans-serif;color:#6b4771">
+          <button id="hm-speak" type="button" style="padding:9px 14px;border-radius:10px;border:1px solid #b57cbd;background:#fff;color:#682c73;cursor:pointer">🔊 <span id="hm-listen-label"></span></button>
+          <button id="hm-stop" type="button" style="padding:9px 14px;border-radius:10px;border:1px solid #ddd;background:#fff;cursor:pointer"><span id="hm-stop-label"></span></button>
+          <p id="hm-audio-status" role="status" aria-live="polite" style="margin:5px 0"></p>
+        </div>
+        <script>
+        const item = """ + _speech_data + """;
+        const status = document.getElementById('hm-audio-status');
+        document.getElementById('hm-listen-label').textContent = item.messages.listen;
+        document.getElementById('hm-stop-label').textContent = item.messages.stop;
+        const synth = window.speechSynthesis;
+        let voices = [];
+        let activeUtterance = null;
+        const refreshVoices = () => {
+          voices = synth ? synth.getVoices() : [];
+          return voices;
+        };
+        const voiceFor = () => refreshVoices().find(v =>
+          (v.lang || '').toLowerCase().split(/[-_]/)[0] === item.language
+        );
+        // Safari and Chrome may populate voices after the component first renders.
+        if (synth) {
+          refreshVoices();
+          if (synth.addEventListener) {
+            synth.addEventListener('voiceschanged', refreshVoices);
+          } else {
+            synth.onvoiceschanged = refreshVoices;
+          }
+        }
+        document.getElementById('hm-speak').addEventListener('click', () => {
+          if (!synth || !window.SpeechSynthesisUtterance) {
+            status.textContent = item.messages.unsupported; return;
+          }
+          const voice = voiceFor();
+          if (!voice) {
+            // Display the translated explanation and the requested language code.
+            // Do not silently fall back to an English voice.
+            status.textContent = item.messages.voice_unavailable + ' (' + item.language + ')';
+            return;
+          }
+          synth.cancel();
+          const utterance = new SpeechSynthesisUtterance(item.text);
+          activeUtterance = utterance; // Keep a reference until playback ends.
+          utterance.lang = voice.lang;
+          utterance.voice = voice;
+          utterance.onstart = () => { status.textContent = item.messages.playing; };
+          utterance.onend = () => {
+            if (activeUtterance === utterance) {
+              status.textContent = item.messages.finished;
+              activeUtterance = null;
+            }
+          };
+          utterance.onerror = (event) => {
+            if (activeUtterance === utterance) {
+              status.textContent = item.messages.playback_error +
+                (event.error ? ' (' + event.error + ')' : '');
+              activeUtterance = null;
+            }
+          };
+          status.textContent = item.messages.playing;
+          synth.speak(utterance);
+        });
+        document.getElementById('hm-stop').addEventListener('click', () => {
+          activeUtterance = null;
+          if (synth) synth.cancel();
+          status.textContent = item.messages.stopped;
+        });
+        </script>
+        """, height=90)
+        st.caption("Audio is optional and device-dependent. Only Calm Corner activity descriptions are eligible; medical guidance is not read aloud.")
     st.divider()
     st.markdown("""<style>
     @keyframes mamaBloom { from {opacity:0;transform:translateY(9px) scale(.9)} to {opacity:1;transform:translateY(0) scale(1)} }
@@ -438,8 +553,8 @@ elif page == "🌼 Calm Corner":
     @media(prefers-reduced-motion:reduce){.mama-garden-stage .mama-flowers,.mama-scene-stage .scene-icon,.mama-jar-stage .jar-icon{animation:none!important}}
     </style>""",unsafe_allow_html=True)
     if st.session_state.calm_activity == 0:
-        st.markdown("### 🌸 Game 1: Grow your garden")
-        st.write("Tap **Plant a flower** to create a little garden. There is no timer and no wrong move.")
+        st.markdown("### " + ui("🌸 Game 1: Grow your garden"))
+        st.write(ui("Tap **Plant a flower** to create a little garden. There is no timer and no wrong move."))
         if "garden_count" not in st.session_state:
             st.session_state.garden_count = 0
         flowers = ["🌷","🌸","🌻","🌼","🪻","🌺"]
@@ -469,27 +584,31 @@ elif page == "🌼 Calm Corner":
         planted = st.session_state.garden_count
         blooms = "".join('<span class="hm-garden-flower" aria-label="flower">'+flowers[i % len(flowers)]+'</span>' for i in range(planted))
         if not blooms:
-            blooms = '<div class="hm-garden-empty">🌱 Your peaceful garden begins here.<br>Plant a flower and watch it bloom.</div>'
+            blooms = ('<div class="hm-garden-empty">'
+                      + escape(t("calm.garden_empty_title"))
+                      + '<br>'
+                      + escape(t("calm.garden_empty_instruction"))
+                      + '</div>')
         garden_html = ('<div class="hm-garden" role="img" aria-label="A peaceful illustrated garden with '
                        +str(planted)+' planted flowers"><div class="hm-garden-sun"></div>'
                        '<div class="hm-garden-cloud">☁️</div><div class="hm-garden-butterfly">🦋</div>'
                        '<div class="hm-garden-hill"></div><div class="hm-garden-hill two"></div>'
                        '<div class="hm-garden-flowerbed">'+blooms+'</div></div>')
         st.markdown(garden_html,unsafe_allow_html=True)
-        st.markdown('<p class="hm-garden-caption">A little space to grow, at your own pace. 🌿</p>',unsafe_allow_html=True)
+        st.markdown('<p class="hm-garden-caption">' + escape(ui("A little space to grow, at your own pace. 🌿")) + '</p>',unsafe_allow_html=True)
         g1,g2=st.columns(2)
         with g1:
-            if st.button("🌷 Plant a flower",key="plant_flower",use_container_width=True):
+            if st.button(ui("🌷 Plant a flower"),key="plant_flower",use_container_width=True):
                 st.session_state.garden_count=min(24,st.session_state.garden_count+1)
                 st.rerun()
         with g2:
-            if st.button("↺ Start a new garden",key="reset_garden",use_container_width=True):
+            if st.button(ui("↺ Start a new garden"),key="reset_garden",use_container_width=True):
                 st.session_state.garden_count=0
                 st.rerun()
         if st.session_state.garden_count>=24:
-            st.success("Your garden is blooming! You can enjoy it or start again.")
+            st.success(t("calm.garden_complete"))
     if st.session_state.calm_activity == 1:
-        st.markdown("### ☁️ Game 2: Choose a gentle moment")
+        st.markdown("### " + ui("☁️ Game 2: Choose a gentle moment"))
         moments = {
             "🌤️ A peaceful morning":"Imagine a quiet morning, a comfortable chair and a warm cup of something you enjoy.",
             "🌿 A garden breeze":"Picture leaves moving softly in a garden. Notice the colors and shapes around you.",
@@ -562,15 +681,15 @@ elif page == "🌼 Calm Corner":
         st.divider()
     if st.session_state.calm_activity == 2:
         import random
-        st.markdown("### 🦋 Game 3: Memory Garden")
-        st.write("Discover three matching pairs of cheerful garden pictures. No clock, no score — just a peaceful moment.")
+        st.markdown("### " + ui("🦋 Game 3: Memory Garden"))
+        st.write(ui("Discover three matching pairs of cheerful garden pictures. No clock, no score — just a peaceful moment."))
         if "memory_cards" not in st.session_state:
             st.session_state.memory_cards = ["🌷", "🦋", "💗", "🌷", "💗", "🦋"]
             random.shuffle(st.session_state.memory_cards)
             st.session_state.memory_open = []
             st.session_state.memory_found = []
         cards = st.session_state.memory_cards
-        st.markdown('<div class="mama-memory-intro">🌸 &nbsp; A little garden of surprises &nbsp; 🌿</div>', unsafe_allow_html=True)
+        st.markdown('<div class="mama-memory-intro">' + escape(ui("🌸 A little garden of surprises 🌿")) + '</div>', unsafe_allow_html=True)
         for row_start in (0, 3):
             cols = st.columns(3)
             for offset, col in enumerate(cols):
@@ -582,7 +701,7 @@ elif page == "🌼 Calm Corner":
                 if state_style:
                     st.markdown(f'<style>div.st-key-memory_{idx} button {{{state_style}}}</style>', unsafe_allow_html=True)
                 with col:
-                    if st.button(label, key=f"memory_{idx}", use_container_width=True, disabled=matched or flipped or len(st.session_state.memory_open)>=2, help=("Matched garden pair" if matched else "Turn over garden card")):
+                    if st.button(label, key=f"memory_{idx}", use_container_width=True, disabled=matched or flipped or len(st.session_state.memory_open)>=2, help=ui("Matched garden pair" if matched else "Turn over garden card")):
                         st.session_state.memory_open.append(idx)
                         st.rerun()
         if len(st.session_state.memory_open) == 2:
@@ -593,12 +712,12 @@ elif page == "🌼 Calm Corner":
                 st.rerun()
             else:
                 st.info("These pictures are different. Enjoy another look, then turn them back when you're ready.")
-                if st.button("🌿 Turn cards back", key="memory_flip_back", use_container_width=True):
+                if st.button(ui("🌿 Turn cards back"), key="memory_flip_back", use_container_width=True):
                     st.session_state.memory_open = []
                     st.rerun()
         if len(st.session_state.memory_found) == 6:
-            st.markdown('<div class="mama-memory-finish" role="status"><div class="mama-memory-flowers">🌸 🦋 🌷 💗 🌼</div><strong>Your Memory Garden is blooming!</strong><span>All three pairs found. Beautifully done — enjoy this little moment.</span></div>', unsafe_allow_html=True)
-        if st.button("↺ Play Memory Garden again", key="memory_reset", use_container_width=True):
+            st.markdown('<div class="mama-memory-finish" role="status"><div class="mama-memory-flowers">🌸 🦋 🌷 💗 🌼</div><strong>' + escape(ui("Your Memory Garden is blooming!")) + '</strong><span>' + escape(ui("All three pairs found. Beautifully done — enjoy this little moment.")) + '</span></div>', unsafe_allow_html=True)
+        if st.button(ui("↺ Play Memory Garden again"), key="memory_reset", use_container_width=True):
             st.session_state.memory_cards = ["🌷", "🦋", "💗", "🌷", "💗", "🦋"]
             random.shuffle(st.session_state.memory_cards)
             st.session_state.memory_open = []
@@ -607,22 +726,22 @@ elif page == "🌼 Calm Corner":
 
         st.divider()
     if st.session_state.calm_activity == 3:
-        st.markdown("### 🔤 Game 4: Mama Word Garden")
-        st.write("Arrange the letters into a gentle word. Take your time, or reveal the answer whenever you wish.")
+        st.markdown("### " + ui("🔤 Game 4: Mama Word Garden"))
+        st.write(ui("Arrange the letters into a gentle word. Take your time, or reveal the answer whenever you wish."))
         puzzles = [("ERAC", "CARE", "Care for yourself, too."), ("TSER", "REST", "Rest is valuable."), ("EPOH", "HOPE", "Small hopeful moments matter."), ("MOLBO", "BLOOM", "Grow at your own pace.")]
         if "word_index" not in st.session_state:
             st.session_state.word_index = 0
         scrambled, answer, encouragement = puzzles[st.session_state.word_index % len(puzzles)]
         tiles = "".join('<span class="mama-letter-tile">'+escape(letter)+'</span>' for letter in scrambled)
-        st.markdown('<div class="mama-word-tiles" aria-label="Scrambled letters: '+escape(" ".join(scrambled))+'">'+tiles+'</div>', unsafe_allow_html=True)
-        guess = st.text_input("Your answer", key=f"word_guess_{st.session_state.word_index}", max_chars=20, placeholder="Type the word here")
+        st.markdown('<div class="mama-word-tiles" aria-label="'+escape(ui("Scrambled letters: "))+escape(" ".join(scrambled))+'">'+tiles+'</div>', unsafe_allow_html=True)
+        guess = st.text_input(ui("Your answer"), key=f"word_guess_{st.session_state.word_index}", max_chars=20, placeholder=ui("Type the word here"))
         w1, w2, w3 = st.columns(3)
         with w1:
-            check_clicked = st.button("Check word", key="word_check", use_container_width=True)
+            check_clicked = st.button(ui("Check word"), key="word_check", use_container_width=True)
         with w2:
-            reveal_clicked = st.button("Reveal word", key="word_reveal", use_container_width=True)
+            reveal_clicked = st.button(ui("Reveal word"), key="word_reveal", use_container_width=True)
         with w3:
-            next_clicked = st.button("Next word →", key="word_next", use_container_width=True)
+            next_clicked = st.button(ui("Next word →"), key="word_next", use_container_width=True)
         if next_clicked:
             st.session_state.word_index += 1
             st.session_state.pop("word_feedback", None)
@@ -631,82 +750,82 @@ elif page == "🌼 Calm Corner":
             if guess.strip().upper().replace(" ", "") == answer:
                 st.session_state.word_feedback = ("correct", encouragement)
             else:
-                st.session_state.word_feedback = ("hint", "A gentle hint: the word begins with "+answer[0]+". You can try again or reveal the answer.")
+                st.session_state.word_feedback = ("hint", answer[0])
         if reveal_clicked:
-            st.session_state.word_feedback = ("reveal", answer+" — "+encouragement)
+            st.session_state.word_feedback = ("reveal", (answer, encouragement))
         feedback = st.session_state.get("word_feedback")
         if feedback:
             kind, message = feedback
             if kind == "correct":
-                st.markdown('<div class="mama-word-celebrate" role="status"><span class="mama-word-flowers">🌸 🌷 🌼 🦋</span><strong>Beautifully done!</strong><span>'+escape(message)+'</span></div>', unsafe_allow_html=True)
+                st.markdown('<div class="mama-word-celebrate" role="status"><span class="mama-word-flowers">🌸 🌷 🌼 🦋</span><strong>'+escape(ui("Beautifully done!"))+'</strong><span>'+escape(ui(message))+'</span></div>', unsafe_allow_html=True)
             elif kind == "reveal":
-                st.info(message)
+                st.info(message[0] + " — " + ui(message[1]))
             else:
-                st.info(message)
+                st.info(ui("A gentle hint: the word begins with {letter}. You can try again or reveal the answer.").format(letter=message))
 
         st.divider()
     if st.session_state.calm_activity == 4:
-        st.markdown("### 🫙 Game 5: Gratitude Jar")
-        st.write("Collect kind thoughts in your jar. No journal, account or personal details needed.")
+        st.markdown("### " + ui("🫙 Game 5: Gratitude Jar"))
+        st.write(ui("Collect kind thoughts in your jar. No journal, account or personal details needed."))
         affirmations = ["🌸 A small moment of peace", "💜 Kindness toward myself", "🌿 A chance to rest", "☀️ A fresh beginning", "🦋 Support when I need it"]
         if "jar_notes" not in st.session_state:
             st.session_state.jar_notes = []
-        chosen_note = st.selectbox("Choose a thought to keep", affirmations, key="jar_choice")
+        chosen_note = st.selectbox(ui("Choose a thought to keep"), affirmations, format_func=display_option, key="jar_choice")
         j1, j2 = st.columns(2)
         with j1:
-            if st.button("💗 Add to my jar", key="jar_add", use_container_width=True):
+            if st.button(ui("💗 Add to my jar"), key="jar_add", use_container_width=True):
                 if chosen_note not in st.session_state.jar_notes:
                     st.session_state.jar_notes.append(chosen_note)
                 st.rerun()
         with j2:
-            if st.button("↺ Empty my jar", key="jar_clear", use_container_width=True):
+            if st.button(ui("↺ Empty my jar"), key="jar_clear", use_container_width=True):
                 st.session_state.jar_notes = []
                 st.rerun()
-        jar_contents = "<div class='jar-notes'>"+"<br>".join(escape(n) for n in st.session_state.jar_notes)+"</div>" if st.session_state.jar_notes else "<div class='jar-notes'>Your jar is ready for kind thoughts.</div>"
+        jar_contents = "<div class='jar-notes'>"+"<br>".join(escape(ui(n)) for n in st.session_state.jar_notes)+"</div>" if st.session_state.jar_notes else "<div class='jar-notes'>" + escape(ui("Your jar is ready for kind thoughts.")) + "</div>"
         st.markdown('<div class="mama-jar-stage"><div class="jar-icon">🫙</div>'+jar_contents+'</div>', unsafe_allow_html=True)
 
         st.divider()
     if st.session_state.calm_activity == 5:
-        st.markdown("### 🎨 Game 6: Colour & Bloom")
-        st.write("Design a bouquet by choosing flowers in your favourite colours.")
+        st.markdown("### " + ui("🎨 Game 6: Colour & Bloom"))
+        st.write(ui("Design a bouquet by choosing flowers in your favourite colours."))
         bloom_choices = {"Pink blossom 🌸":"🌸", "Purple flower 🪻":"🪻", "Yellow sunflower 🌻":"🌻", "Red hibiscus 🌺":"🌺", "White daisy 🌼":"🌼"}
         if "bouquet" not in st.session_state:
             st.session_state.bouquet = []
-        bloom_name = st.selectbox("Pick a flower", list(bloom_choices), key="bouquet_choice")
+        bloom_name = st.selectbox(ui("Pick a flower"), list(bloom_choices), format_func=display_option, key="bouquet_choice")
         b1, b2 = st.columns(2)
         with b1:
-            if st.button("🌷 Add to bouquet", key="bouquet_add", use_container_width=True):
+            if st.button(ui("🌷 Add to bouquet"), key="bouquet_add", use_container_width=True):
                 st.session_state.bouquet = (st.session_state.bouquet + [bloom_choices[bloom_name]])[-18:]
                 st.rerun()
         with b2:
-            if st.button("↺ New bouquet", key="bouquet_reset", use_container_width=True):
+            if st.button(ui("↺ New bouquet"), key="bouquet_reset", use_container_width=True):
                 st.session_state.bouquet = []
                 st.rerun()
-        bouquet_content = '<div class="mama-flowers">'+" ".join(st.session_state.bouquet)+'</div>' if st.session_state.bouquet else '<div class="mama-empty">💐 Your bouquet begins here.<br>Choose a flower to create something lovely.</div>'
+        bouquet_content = '<div class="mama-flowers">'+" ".join(st.session_state.bouquet)+'</div>' if st.session_state.bouquet else '<div class="mama-empty">💐 ' + escape(ui('Your bouquet begins here.')) + '<br>' + escape(ui('Choose a flower to create something lovely.')) + '</div>'
         st.markdown('<div class="mama-garden-stage">'+bouquet_content+'</div>', unsafe_allow_html=True)
-        st.caption("All game choices are temporary for this app session and are not saved as personal records.")
-    st.markdown("### 💗 A kind reminder")
-    st.write("You deserve support, rest and care. Taking a small break is enough for now.")
-    st.button("Return to Emotional Wellness →",key="calm_return",use_container_width=True,on_click=go,args=("🌷 Emotional wellness",))
+        st.caption(ui("All game choices are temporary for this app session and are not saved as personal records."))
+    st.markdown("### " + ui("💗 A kind reminder"))
+    st.write(ui("You deserve support, rest and care. Taking a small break is enough for now."))
+    st.button(ui("Return to Emotional Wellness →"),key="calm_return",use_container_width=True,on_click=go,args=("🌷 Emotional wellness",))
 
 else:
     st.markdown('<div class="section-head">📖 Learning hub</div>',unsafe_allow_html=True)
-    st.markdown('<p class="lead">A simple collection of topics to discuss with qualified maternity professionals.</p>',unsafe_allow_html=True)
-    with st.expander("Why postnatal visits matter",expanded=True):
-        st.write("Postnatal care helps qualified professionals identify complications, support recovery and address emotional or feeding concerns. Follow the schedule your healthcare team recommends.")
-    with st.expander("What to bring to an appointment"):
-        st.write("Bring your discharge notes if available, a medication list, and questions about symptoms, feeding, recovery and your next follow-up.")
-    with st.expander("When to seek emergency help"):
+    st.markdown(f'<p class="lead">{escape(t("learn.intro"))}</p>',unsafe_allow_html=True)
+    with st.expander(ui("Why postnatal visits matter"),expanded=True):
+        st.write(ui("Postnatal care helps qualified professionals identify complications, support recovery and address emotional or feeding concerns. Follow the schedule your healthcare team recommends."))
+    with st.expander(ui("What to bring to an appointment")):
+        st.write(ui("Bring your discharge notes if available, a medication list, and questions about symptoms, feeding, recovery and your next follow-up."))
+    with st.expander(ui("When to seek emergency help")):
         st.write("Heavy bleeding, chest pain, difficulty breathing, seizures, severe headache or vision changes, fainting, severe illness with fever, or thoughts of harming yourself or your baby need urgent professional attention.")
-    with st.expander("Pregnancy: planning questions"):
-        st.write("Discuss antenatal visits, recommended screening, medicines, nutrition, baby's movement, delivery plans and emergency transport with your maternity team.")
-    with st.expander("Postpartum: the weeks after birth"):
-        st.write("Discuss healing, feeding, sleep, blood pressure checks where indicated, emotional health and continued follow-up. Recovery may continue beyond six weeks.")
-    with st.expander("Emotional well-being and seeking help"):
+    with st.expander(ui("Pregnancy: planning questions")):
+        st.write(ui("Discuss antenatal visits, recommended screening, medicines, nutrition, baby's movement, delivery plans and emergency transport with your maternity team."))
+    with st.expander(ui("Postpartum: the weeks after birth")):
+        st.write(ui("Discuss healing, feeding, sleep, blood pressure checks where indicated, emotional health and continued follow-up. Recovery may continue beyond six weeks."))
+    with st.expander(ui("Emotional well-being and seeking help")):
         st.write("A trusted person and a qualified healthcare professional can help with persistent or worsening emotional distress. Severe confusion or thoughts of harm need emergency care.")
-    with st.expander("Using HerMamaAI safely"):
-        st.write("HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice.")
-    st.button("🌼 Try the Calm Corner",key="learning_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
-    st.caption("Educational content requires clinical review before a real-world health pilot.")
+    with st.expander(ui("Using HerMamaAI safely")):
+        st.write(ui("HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice."))
+    st.button(ui("🌼 Try the Calm Corner"),key="learning_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
+    st.caption(ui("Educational content requires clinical review before a real-world health pilot."))
 
-st.markdown('<div class="footer"><b>HerMamaAI · Functional Research &amp; Innovation Prototype · Version 5.2</b> — Developed by WechimAI Integrated Engineering &amp; ICT Ltd · Abuja, Nigeria.<br>Educational demonstration and evaluation only; not clinically validated, a medical device, a diagnosis tool or an emergency service. BabyCare family profiles, vaccination entries and planned visits are temporary session-only demonstration data, not securely retained medical records. Do not enter real personal or child health information. Independent clinical review, safeguarding, accessibility testing, privacy assessment and secure account infrastructure are required before a real-world pilot.</div>',unsafe_allow_html=True)
+st.markdown('<div class="footer"><b>HerMamaAI AdaptiveCare | Maternal &amp; Child Health Digital Innovation | Version 5.2</b><br>Developed by <b>WechimAI Integrated Engineering &amp; ICT Ltd</b> · Abuja, Nigeria.<br>Multilingual maternal and child health education, pregnancy and postnatal wellness support, and family-care planning. Existing health guidance has been reviewed by a qualified healthcare practitioner.<br><b>Safety &amp; Privacy:</b> For education and support only; not a substitute for professional medical advice, diagnosis, treatment or emergency services. Not clinically validated or approved as a medical device. BabyCare profiles, vaccination entries and planned visits are temporary session-based demonstration data, not securely retained medical records. Do not enter real personal or child health information. Additional privacy, safeguarding, accessibility and security assessments are needed before real-world deployment.</div>',unsafe_allow_html=True)

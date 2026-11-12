@@ -1,14 +1,18 @@
 name: Multilingual interface smoke tests
 on:
   push:
-    branches: [feature/multilingual-adaptivecare]
+    branches: [feature/full-content-localization-foundation-20261109]
   pull_request:
     paths:
       - 'app.py'
       - 'locales/**'
       - 'localization/**'
-      - 'tests/test_localization.py'
+      - 'tests/**'
       - '.github/workflows/multilingual-smoke.yml'
+      - 'mamacare.py'
+      - 'adaptivecare.py'
+      - 'babycare.py'
+      - 'find_care.py'
 jobs:
   smoke:
     runs-on: ubuntu-latest

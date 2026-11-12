@@ -10,6 +10,7 @@ NAV_KEYS = (
     "nav.💞 MamaCare journey", "nav.💗 Postpartum recovery",
     "nav.📅 CareCalendar", "nav.🌷 Emotional wellness",
     "nav.🏥 Find care", "nav.📖 Learning hub", "nav.🌼 Calm Corner",
+    "nav.🌱 AdaptiveCare",
 )
 
 class LocalizationTests(unittest.TestCase):
@@ -32,10 +33,30 @@ class LocalizationTests(unittest.TestCase):
         self.assertIn("on_change=lambda: go(st.session_state.hm_mobile_nav)", app)
         self.assertIn("choose_language()", app)
 
-    def test_no_clinical_translation_catalogue_yet(self):
+    def test_content_localization_and_safety_notices(self):
+        required = ("safety.emergency_translation_notice", "safety.review_status",
+                    "ui.Demo parent profiles", "ui.Demo baby profiles")
+        english = json.loads((ROOT / "locales" / "en.json").read_text(encoding="utf-8"))
         for language in LANGUAGES:
-            catalogue = json.loads((ROOT / "locales" / f"{language}.json").read_text(encoding="utf-8"))
-            self.assertTrue(all(key.startswith("nav.") or key == "notice" for key in catalogue))
+            with self.subTest(language=language):
+                catalogue = json.loads((ROOT / "locales" / f"{language}.json").read_text(encoding="utf-8"))
+                self.assertEqual(set(catalogue), set(english))
+                for key in required:
+                    self.assertTrue(catalogue.get(key), f"{language}: missing {key}")
+
+    def test_phase_one_english_medical_fallback_policy(self):
+        manager = (ROOT / "localization" / "language_manager.py").read_text(encoding="utf-8")
+        self.assertIn('CLINICAL_PREFIXES =', manager)
+        self.assertIn('return label(key, "en")', manager)
+        self.assertIn("SAFE_UI_LABELS = frozenset", manager)
+        self.assertIn("if source not in SAFE_UI_LABELS:", manager)
+
+    def test_mamacare_medical_warning_has_no_duplicate_reference(self):
+        source = (ROOT / "mamacare.py").read_text(encoding="utf-8")
+        self.assertIn('st.warning(t("safety.mamacare_physical"))', source)
+        self.assertIn('st.warning(t("safety.mamacare_emotional"))', source)
+        self.assertNotIn('t("safety.english_reference")', source)
+        self.assertNotIn("{english}", source)
 
 if __name__ == "__main__":
     unittest.main()

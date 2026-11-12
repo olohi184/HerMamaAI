@@ -1,0 +1,15 @@
+name: Runner startup diagnostic
+on:
+  push:
+    branches:
+      - feature/full-content-localization-foundation-20261109
+  workflow_dispatch:
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Verify runner starts
+        run: |
+          echo "Runner successfully started"
+          python3 --version

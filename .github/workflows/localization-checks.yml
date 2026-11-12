@@ -1,0 +1,38 @@
+name: Localization static checks
+
+on:
+  pull_request:
+  push:
+    branches:
+      - feature/full-content-localization-foundation-20261109
+
+jobs:
+  localization:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Print Python and workspace diagnostics
+        run: |
+          python --version
+          pwd
+          ls -la
+          ls -la locales tests scripts
+      - name: Check Python syntax
+        run: python -m compileall -q app.py mamacare.py adaptivecare.py adaptive_engine.py babycare.py find_care.py localization scripts
+      - name: Check translation key coverage and placeholders
+        run: python scripts/audit_localization.py
+      - name: Test language switching and safety disclosures
+        run: python -m unittest discover -s tests -p 'test_*.py' -v
+      - name: Inventory remaining untranslated interface copy
+        if: always()
+        run: python scripts/report_untranslated_ui.py > untranslated-ui-report.txt
+      - name: Upload localization inventory
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: untranslated-ui-inventory
+          path: untranslated-ui-report.txt
+          if-no-files-found: warn
