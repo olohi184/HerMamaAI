@@ -1,5 +1,6 @@
 """Streamlit AdaptiveCare v2 interface: rule-based, educational, session-only."""
-from datetime import date
+from datetime import date, timedelta
+from html import escape
 import streamlit as st
 from localization.language_manager import t, ui, display_option
 from adaptive_engine import GOALS, STAGES, CAPACITIES, CONCERNS, progress_summary
@@ -19,7 +20,21 @@ def localize_reason(reason):
     return ui(reason)
 
 def render_adaptivecare():
-    st.title(ui("🌱 AdaptiveCare"))
+    st.markdown("""<style>
+    .ari-hero {background:linear-gradient(125deg,#592b68,#884478);color:white;padding:1.4rem;border-radius:1.2rem;margin-bottom:1rem}
+    .ari-hero h2 {color:white!important;margin:0;font-size:1.65rem!important}
+    .ari-hero p {color:white!important;margin:.5rem 0 0}
+    .ari-week {display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.3rem;margin:1rem 0}
+    .ari-day {text-align:center;border:1px solid #e4d4e8;border-radius:.65rem;padding:.55rem .1rem;background:white;color:#41264b;font-size:.78rem}
+    .ari-day strong {display:block;font-size:1.1rem}
+    .ari-day.done {background:#e4f3eb;color:#24583d;border-color:#b8d8c5}
+    @media(max-width:480px){.ari-hero{padding:1rem}.ari-day{font-size:.68rem}}
+    </style>""", unsafe_allow_html=True)
+    st.markdown(
+        '<div class="ari-hero"><small>HERMAMAAI · ADAPTIVECARE 2.0</small>'
+        f'<h2>{escape(ui("Your wellness companion"))}</h2>'
+        f'<p>{escape(ui("Every small step matters."))}</p></div>',
+        unsafe_allow_html=True)
     st.caption(t("ac.intro"))
     st.warning("Not clinically reviewed or validated. Not a medical device, diagnosis, symptom checker, triage tool or emergency service. For urgent or severe symptoms, seek immediate in-person medical care.")
     st.info(ui("Demo privacy: check-ins exist only in this Streamlit session; they are not synced across visits or sent to healthcare providers. Do not enter personal or medical information."))
@@ -52,6 +67,7 @@ def render_adaptivecare():
         return
 
     st.subheader(t("ac.steps"))
+    st.markdown("**" + ui("Your adaptive wellness plan") + "**")
     st.info(ui(plan.message))
     activity_checks = [st.checkbox(ui(action), key=f"ari_activity_{date.today()}_{goal}_{i}") for i, action in enumerate(plan.actions)]
     st.caption(ui("All activities are optional. Rest is a valid choice."))
@@ -79,6 +95,18 @@ def render_adaptivecare():
     c.metric(ui("Consistency (7 days)"), weekly["weekly_streak"])
     st.caption(ui("A missed day is not a failure. These counts are not clinical outcomes."))
     st.progress(weekly["completed_days"] / 7)
+    today = date.today()
+    done_dates = {row["date"] for row in log if row.get("completed") is True}
+    tiles = []
+    for offset in range(6, -1, -1):
+        day = today - timedelta(days=offset)
+        done = day.isoformat() in done_dates
+        status = ui("Activity recorded") if done else ui("No completed activity recorded")
+        css = "ari-day done" if done else "ari-day"
+        marker = "✓" if done else "○"
+        tiles.append(f'<div class="{css}" title="{escape(status, quote=True)}"><span>{day.day:02d}</span><strong>{marker}</strong></div>')
+    st.markdown('<div class="ari-week">' + "".join(tiles) + "</div>", unsafe_allow_html=True)
+    st.caption(ui("Past seven days: a check mark means at least one optional activity was recorded."))
     summary = progress_summary(log)
     left, right = st.columns(2)
     left.metric(t("ac.count"), summary["checkins"])
