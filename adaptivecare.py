@@ -24,6 +24,12 @@ def render_adaptivecare():
     .ari-hero {background:linear-gradient(125deg,#592b68,#884478);color:white;padding:1.4rem;border-radius:1.2rem;margin-bottom:1rem}
     .ari-hero h2 {color:white!important;margin:0;font-size:1.65rem!important}
     .ari-hero p {color:white!important;margin:.5rem 0 0}
+    .ari-coach {background:#f0e3f3;border:1px solid #dcc6e2;border-left:5px solid #884478;border-radius:1rem;padding:1.2rem;color:#41264b;margin:.6rem 0 1rem}
+    .ari-coach h3 {color:#592b68!important;margin:0 0 .5rem;font-size:1.1rem!important}
+    .ari-metrics {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.6rem;margin:.8rem 0}
+    .ari-metric {background:#fff;border:1px solid #e4d4e8;border-radius:1rem;padding:1rem;color:#41264b;overflow-wrap:anywhere}
+    .ari-metric strong {display:block;color:#70366f;font-size:1.8rem}
+    @media(max-width:480px){.ari-metric{padding:.6rem;font-size:.75rem}.ari-metric strong{font-size:1.4rem}}
     .ari-week {display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.3rem;margin:1rem 0}
     .ari-day {text-align:center;border:1px solid #e4d4e8;border-radius:.65rem;padding:.55rem .1rem;background:white;color:#41264b;font-size:.78rem}
     .ari-day strong {display:block;font-size:1.1rem}
@@ -36,7 +42,7 @@ def render_adaptivecare():
         f'<p>{escape(ui("Every small step matters."))}</p></div>',
         unsafe_allow_html=True)
     st.caption(t("ac.intro"))
-    st.warning("Not clinically reviewed or validated. Not a medical device, diagnosis, symptom checker, triage tool or emergency service. For urgent or severe symptoms, seek immediate in-person medical care.")
+    st.warning("Existing maternal-health guidance has been reviewed by a qualified healthcare practitioner. The new adaptive wellness planner provides non-clinical support; it does not diagnose, triage or provide emergency care. For urgent or severe symptoms, seek immediate in-person medical care.")
     st.info(ui("Demo privacy: check-ins exist only in this Streamlit session; they are not synced across visits or sent to healthcare providers. Do not enter personal or medical information."))
     if "adaptivecare_v2_log" not in st.session_state:
         st.session_state.adaptivecare_v2_log = []
@@ -67,8 +73,7 @@ def render_adaptivecare():
         return
 
     st.subheader(t("ac.steps"))
-    st.markdown("**" + ui("Your adaptive wellness plan") + "**")
-    st.info(ui(plan.message))
+    st.markdown(f'<div class="ari-coach"><h3>{escape(ui("Your adaptive wellness plan"))}</h3>{escape(ui(plan.message))}</div>', unsafe_allow_html=True)
     activity_checks = [st.checkbox(ui(action), key=f"ari_activity_{date.today()}_{goal}_{i}") for i, action in enumerate(plan.actions)]
     st.caption(ui("All activities are optional. Rest is a valid choice."))
     with st.expander(t("ac.why")):
@@ -89,10 +94,8 @@ def render_adaptivecare():
 
     st.subheader(t("ac.dashboard"))
     weekly = weekly_progress(log)
-    a, b, c = st.columns(3)
-    a.metric(ui("Check-in days (7 days)"), weekly["recorded_days"])
-    b.metric(ui("Activity days (7 days)"), weekly["completed_days"])
-    c.metric(ui("Consistency (7 days)"), weekly["weekly_streak"])
+    metrics = [("Check-in days (7 days)", "recorded_days"), ("Activity days (7 days)", "completed_days"), ("Consistency (7 days)", "weekly_streak")]
+    st.markdown('<div class="ari-metrics">' + "".join(f'<div class="ari-metric">{escape(ui(label))}<strong>{weekly[key]}</strong></div>' for label, key in metrics) + "</div>", unsafe_allow_html=True)
     st.caption(ui("A missed day is not a failure. These counts are not clinical outcomes."))
     st.progress(weekly["completed_days"] / 7)
     today = date.today()
