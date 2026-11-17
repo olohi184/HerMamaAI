@@ -2,7 +2,8 @@
 from datetime import date
 import streamlit as st
 from localization.language_manager import t, ui, display_option
-from adaptive_engine import GOALS, STAGES, CAPACITIES, CONCERNS, build_plan, progress_summary
+from adaptive_engine import GOALS, STAGES, CAPACITIES, CONCERNS, progress_summary
+from adaptive_recovery import recovery_plan, weekly_progress
 
 def localize_reason(reason):
     """Localize rule explanations without changing the rule engine's stored values."""
@@ -27,13 +28,21 @@ def render_adaptivecare():
     log = st.session_state.adaptivecare_v2_log
     if st.session_state.pop("ac_saved_notice", False):
         st.success(ui("Check-in saved. Suggestions have been refreshed using the latest session record."))
+    if st.button(ui("Clear wellness history"), key="ari_delete"):
+        log.clear()
+        st.rerun()
+    consent = st.checkbox(ui("I agree to use temporary session storage for optional wellness tracking."), key="ari_consent")
+    if not consent:
+        log.clear()
+    st.subheader(ui("Daily wellness check-in"))
     stage = st.selectbox(t("ac.context"), STAGES, format_func=display_option, key="ac_stage")
     goal = st.selectbox(t("ac.goal"), list(GOALS), format_func=display_option, key="ac_goal")
     capacity = st.select_slider(t("ac.energy"), options=CAPACITIES, format_func=display_option, value="Moderate", key="ac_capacity")
     setback = st.checkbox(t("ac.restart"), key="ac_setback")
     concern = st.selectbox(t("ac.concern"), CONCERNS, format_func=display_option, key="ac_concern")
-    previous = next((row["completed"] for row in reversed(log) if row.get("goal") == goal), None)
-    plan = build_plan(stage, goal, capacity, setback, concern, previous)
+    sleep = st.radio(ui("How did you sleep?"), ("Restful", "Interrupted", "Poor"), format_func=display_option, horizontal=True, key="ari_sleep")
+    stress = st.radio(ui("Stress today"), ("Low", "Moderate", "High"), format_func=display_option, horizontal=True, key="ari_stress")
+    plan = recovery_plan(stage=stage, goal=goal, capacity=capacity, setback=setback, concern=concern, sleep=sleep, stress=stress, history=log if consent else ())
     if plan.urgency != "none":
         if plan.urgency == "urgent":
             st.error(plan.support)
@@ -43,26 +52,33 @@ def render_adaptivecare():
         return
 
     st.subheader(t("ac.steps"))
-    st.write(ui(plan.message))
-    for action in plan.actions:
-        st.write("• " + ui(action))
+    st.info(ui(plan.message))
+    activity_checks = [st.checkbox(ui(action), key=f"ari_activity_{date.today()}_{goal}_{i}") for i, action in enumerate(plan.actions)]
+    st.caption(ui("All activities are optional. Rest is a valid choice."))
     with st.expander(t("ac.why")):
         for reason in plan.explanation:
             st.write("• " + localize_reason(reason))
         st.caption(ui("Transparent if/then rules based on your choices; no AI diagnosis or machine-learning prediction."))
 
-    completed = st.checkbox(t("ac.completed"), key="ac_completed")
-    if st.button(t("ac.save"), type="primary", key="ac_save"):
-        if log and log[-1]["date"] == date.today().isoformat() and log[-1]["goal"] == goal:
+    completed = any(activity_checks)
+    if st.button(t("ac.save"), type="primary", key="ac_save", disabled=not consent):
+        if any(row["date"] == date.today().isoformat() and row["goal"] == goal for row in log):
             st.info(ui("You already saved a check-in for this goal today. You can clear the session and retest if needed."))
         else:
             log.append({"date": date.today().isoformat(), "context": stage,
                         "goal": goal, "energy": capacity, "restart": setback,
-                        "completed": bool(completed)})
+                        "completed": bool(completed), "sleep": sleep, "stress": stress})
             st.session_state.ac_saved_notice = True
             st.rerun()
 
     st.subheader(t("ac.dashboard"))
+    weekly = weekly_progress(log)
+    a, b, c = st.columns(3)
+    a.metric(ui("Check-in days (7 days)"), weekly["recorded_days"])
+    b.metric(ui("Activity days (7 days)"), weekly["completed_days"])
+    c.metric(ui("Consistency (7 days)"), weekly["weekly_streak"])
+    st.caption(ui("A missed day is not a failure. These counts are not clinical outcomes."))
+    st.progress(weekly["completed_days"] / 7)
     summary = progress_summary(log)
     left, right = st.columns(2)
     left.metric(t("ac.count"), summary["checkins"])
