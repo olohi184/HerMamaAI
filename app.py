@@ -199,7 +199,7 @@ if st.session_state.page == "🏡 Home":
         for col, (label, target) in zip(cols, quick[offset:offset + 2]):
             with col:
                 st.button(label, key="quick_" + target, use_container_width=True, on_click=go, args=(target,))
-st.selectbox(t("nav.explore"), nav, index=nav.index(st.session_state.page) if st.session_state.page in nav else 0, format_func=localized_navigation, key="hm_mobile_nav", on_change=lambda: go(st.session_state.hm_mobile_nav))
+st.selectbox(t("nav.explore"), nav, index=nav.index(st.session_state.page) if st.session_state.page in nav else 0, format_func=localized_navigation, key="hm_mobile_nav", on_change=lambda: go(st.session_state.get("hm_mobile_nav") or st.session_state.get("page", "🏡 Home")))
 with st.expander(t("safety.heading"), expanded=False):
     st.warning("HerMamaAI is an educational research prototype. It is not a clinician, diagnosis tool, medical device or emergency service. For serious symptoms, seek immediate in-person medical care.")
     st.caption(t("safety.review_status"))

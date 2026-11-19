@@ -1,0 +1,13 @@
+
+# HerMamaAI V2 deployment protection
+.venv/
+venv/
+__pycache__/
+*.pyc
+backups/
+*.bak
+.env
+.env.*
+.streamlit/secrets.toml
+.DS_Store
+.pytest_cache/
