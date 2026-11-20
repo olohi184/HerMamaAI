@@ -32,6 +32,17 @@ CLINICAL_PREFIXES = ("preg.", "post.", "baby.", "mama.", "well.", "learn.", "saf
 # Only explicitly approved non-medical interface labels are translated in Phase 1.
 # Everything else defaults to the English source, including new text added later.
 SAFE_UI_LABELS = frozenset({
+    # Draft non-clinical AdaptiveCare labels; native-speaker review pending.
+    "Your wellness companion",
+    "Every small step matters.",
+    "Daily wellness check-in",
+    "How did you sleep?",
+    "Stress today",
+    "Your adaptive wellness plan",
+    "Temporary wellness progress",
+    "Activity recorded",
+    "No completed activity recorded",
+
     # Additional non-clinical labels with existing translations in all three catalogs.
     "Wellness context",
     "Rest and recovery",

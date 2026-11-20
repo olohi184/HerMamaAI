@@ -14,7 +14,7 @@ class MobileNavigationStaticTests(unittest.TestCase):
     def test_navigation_selection_keeps_internal_ids(self):
         source = (ROOT / "app.py").read_text(encoding="utf-8")
         self.assertIn("format_func=localized_navigation", source)
-        self.assertIn("on_change=lambda: go(st.session_state.hm_mobile_nav)", source)
+        self.assertIn('on_change=lambda: go(st.session_state.get("hm_mobile_nav") or st.session_state.get("page", "🏡 Home"))' , source)
 
     def test_localized_labels_have_nonempty_values(self):
         for language in ("en", "ha", "yo", "ig"):

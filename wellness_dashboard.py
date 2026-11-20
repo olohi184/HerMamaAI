@@ -105,7 +105,7 @@ def render_wellness_dashboard(rows):
 
         st.altair_chart(
             chart,
-            use_container_width=True
+            width="stretch"
         )
 
         st.caption(
@@ -192,7 +192,7 @@ def render_wellness_dashboard(rows):
 
         st.altair_chart(
             chart,
-            use_container_width=True
+            width="stretch"
         )
 
     st.divider()
@@ -220,7 +220,7 @@ def render_wellness_dashboard(rows):
             st.dataframe(
                 df[available].rename(columns=fields),
                 hide_index=True,
-                use_container_width=True
+                width="stretch"
             )
 
     st.markdown("#### 💗 AdaptiveCare Encouragement")

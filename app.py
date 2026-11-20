@@ -20,7 +20,7 @@ st.set_page_config(page_title="HerMamaAI | Maternal Wellness", page_icon=_page_i
 # This trusted, zero-height component only inserts a manifest link and theme color;
 # it does not register a service worker or cache sensitive maternal-health data.
 import streamlit.components.v1 as components
-components.html("""
+st.iframe("""
 <script>
 try {
   const doc = window.parent.document;
@@ -77,7 +77,7 @@ try {
   // In browsers that restrict iframe parent access, the main app stays functional.
 }
 </script>
-""", height=0)
+""", height=1)
 # Reduce Streamlit developer controls; Cloud-managed Fork/GitHub links may remain.
 st.set_option("client.toolbarMode", "minimal")
 PAGES = ["🏡 Home", "👶 BabyCare", "📅 CareCalendar", "🤰 Pregnancy care", "💞 MamaCare journey", "💗 Postpartum recovery", "🌷 Emotional wellness", "🏥 Find care", "📖 Learning hub", "🌼 Calm Corner", "🌱 AdaptiveCare"]
@@ -198,7 +198,7 @@ if st.session_state.page == "🏡 Home":
         cols = st.columns(2)
         for col, (label, target) in zip(cols, quick[offset:offset + 2]):
             with col:
-                st.button(label, key="quick_" + target, use_container_width=True, on_click=go, args=(target,))
+                st.button(label, key="quick_" + target, width="stretch", on_click=go, args=(target,))
 st.selectbox(t("nav.explore"), nav, index=nav.index(st.session_state.page) if st.session_state.page in nav else 0, format_func=localized_navigation, key="hm_mobile_nav", on_change=lambda: go(st.session_state.get("hm_mobile_nav") or st.session_state.get("page", "🏡 Home")))
 with st.expander(t("safety.heading"), expanded=False):
     st.warning("HerMamaAI is an educational research prototype. It is not a clinician, diagnosis tool, medical device or emergency service. For serious symptoms, seek immediate in-person medical care.")
@@ -218,7 +218,7 @@ elif page == "🏡 Home":
     with st.expander(t("home.about")):
         st.write(t("home.about_body"))
     st.markdown(f'<div class="soft"><b>{escape(t("home.continues"))}</b> {escape(t("home.continues_body"))}</div>',unsafe_allow_html=True)
-    st.button(t("home.calm"), key="home_calm", use_container_width=True, on_click=go, args=("🌼 Calm Corner",))
+    st.button(t("home.calm"), key="home_calm", width="stretch", on_click=go, args=("🌼 Calm Corner",))
 
 elif page == "📅 CareCalendar":
     st.markdown('<div class="section-head">' + escape(ui('📅 My CareCalendar')) + '</div>',unsafe_allow_html=True)
@@ -236,7 +236,7 @@ elif page == "📅 CareCalendar":
         with b:
             ap_time = st.time_input(ui("Appointment time"),value=time(10,0),step=1800)
         note = st.text_input(ui("Optional short label"),placeholder="e.g. Routine check-up",max_chars=70)
-        submitted = st.form_submit_button(ui("Add to my calendar"),type="primary",use_container_width=True)
+        submitted = st.form_submit_button(ui("Add to my calendar"),type="primary",width="stretch")
         if submitted:
             st.session_state.care_appointments.append({"kind":kind,"date":ap_date,"time":ap_time,"note":note.strip()})
             st.success(ui("Added to this session's calendar. This does not book a clinic visit."))
@@ -254,9 +254,9 @@ elif page == "📅 CareCalendar":
                 return str(value).replace("\\","\\\\").replace(";","\\;").replace(",","\\,").replace("\n","\\n")
             title=ics_safe("HerMamaAI: "+ap["kind"]+(" - "+ap["note"] if ap["note"] else ""))
             ics="\r\n".join(["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//WechimAI//HerMamaAI//EN","BEGIN:VEVENT","UID:hermamaai-"+str(original_index)+"-"+start.strftime("%Y%m%dT%H%M%S")+"@local","DTSTAMP:"+datetime.utcnow().strftime("%Y%m%dT%H%M%SZ"),"DTSTART:"+start.strftime("%Y%m%dT%H%M%S"),"DTEND:"+end.strftime("%Y%m%dT%H%M%S"),"SUMMARY:"+title,"DESCRIPTION:Personal planning reminder only. Confirm timing with your maternity team. Time is local to your calendar.","BEGIN:VALARM","ACTION:DISPLAY","DESCRIPTION:HerMamaAI appointment reminder - confirm details with your maternity team.","TRIGGER:-P1D","END:VALARM","END:VEVENT","END:VCALENDAR",""])
-            st.download_button(ui("⬇️ Add to phone calendar (.ics)"),data=ics,file_name="hermamaai-appointment.ics",mime="text/calendar",key=f"ics_{original_index}",use_container_width=True)
+            st.download_button(ui("⬇️ Add to phone calendar (.ics)"),data=ics,file_name="hermamaai-appointment.ics",mime="text/calendar",key=f"ics_{original_index}",width="stretch")
         with c2:
-            if st.button(ui("Remove"),key=f"remove_{original_index}",use_container_width=True):
+            if st.button(ui("Remove"),key=f"remove_{original_index}",width="stretch"):
                 st.session_state.care_appointments.pop(original_index)
                 st.rerun()
     st.markdown("#### " + ui("Educational antenatal milestones"))
@@ -280,7 +280,7 @@ elif page == "📅 CareCalendar":
 elif page == "🤰 Pregnancy care":
     st.markdown('<div class="section-head">' + escape(ui("🤰 Pregnancy care")) + '</div>',unsafe_allow_html=True)
     st.markdown(f'<p class="lead">{escape(t("preg.intro"))}</p>',unsafe_allow_html=True)
-    st.button(ui("📅 Plan an antenatal visit in CareCalendar →"),use_container_width=True,on_click=go,args=("📅 CareCalendar",))
+    st.button(ui("📅 Plan an antenatal visit in CareCalendar →"),width="stretch",on_click=go,args=("📅 CareCalendar",))
     st.subheader(ui("Questions for your maternity team"))
     for i,q in enumerate(["When should I attend my next antenatal visit?","Which symptoms mean I should seek urgent help?","Which medicines or supplements are appropriate for me?","What is my birth and emergency transport plan?"]):
         st.checkbox(ui(q),key=f"preg_{i}")
@@ -310,7 +310,7 @@ elif page == "💗 Postpartum recovery":
         st.write("Do not dismiss new or worsening symptoms. Contact your maternity facility if you miss an appointment or are concerned about recovery.")
     with st.expander(ui("Beyond six weeks")):
         st.write("Persistent pain, mood changes, bladder or pelvic-floor symptoms, feeding concerns or other ongoing difficulties deserve professional assessment.")
-    st.button(ui("Explore MamaCare Continuity →"),type="primary",use_container_width=True,on_click=go,args=("💞 MamaCare journey",))
+    st.button(ui("Explore MamaCare Continuity →"),type="primary",width="stretch",on_click=go,args=("💞 MamaCare journey",))
     st.error("**Urgent warning signs:** Heavy bleeding, chest pain, trouble breathing, seizures, severe headache or vision changes, fainting, fever with severe illness, or thoughts of harming yourself or your baby. Seek emergency medical care immediately.")
 
     st.markdown("#### " + ui("More postpartum recovery topics"))
@@ -338,7 +338,7 @@ elif page == "🌷 Emotional wellness":
         st.write(ui("Consider sending a short message to a trusted friend, asking someone to sit with you, or sharing a specific task you need help with."))
     with st.expander(ui("When to seek professional support")):
         st.write("Persistent sadness, intense anxiety, hopelessness, inability to function, or distressing thoughts deserve prompt assessment by a qualified healthcare professional. Emergency symptoms need immediate help.")
-    st.button(ui("🌼 Open the Calm Corner"),key="wellness_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
+    st.button(ui("🌼 Open the Calm Corner"),key="wellness_calm",width="stretch",on_click=go,args=("🌼 Calm Corner",))
     
 elif page == "👶 BabyCare":
     from babycare import render_babycare
@@ -417,7 +417,7 @@ elif page == "🌼 Calm Corner":
                     + ('<div class="calm-selected">● '+escape(ui("Currently selected"))+'</div>' if active else '') + '</div>',
                     unsafe_allow_html=True
                 )
-                if st.button(ui("Playing now ✓" if active else "Explore activity →"), key=f"calm_choice_{index}", use_container_width=True):
+                if st.button(ui("Playing now ✓" if active else "Explore activity →"), key=f"calm_choice_{index}", width="stretch"):
                     st.session_state.calm_activity = index
                     st.rerun()
     # Offline-first, reviewed recordings for Nigerian languages. Never substitute
@@ -450,7 +450,7 @@ elif page == "🌼 Calm Corner":
             "language": _speech_tags.get(_spoken_code, "en"),
             "messages": {key: t("audio." + key) for key in _audio_keys},
         }, ensure_ascii=False).replace("<", "\\u003c")
-        components.html("""
+        st.iframe("""
         <div style="font:14px system-ui,sans-serif;color:#6b4771">
           <button id="hm-speak" type="button" style="padding:9px 14px;border-radius:10px;border:1px solid #b57cbd;background:#fff;color:#682c73;cursor:pointer">🔊 <span id="hm-listen-label"></span></button>
           <button id="hm-stop" type="button" style="padding:9px 14px;border-radius:10px;border:1px solid #ddd;background:#fff;cursor:pointer"><span id="hm-stop-label"></span></button>
@@ -598,11 +598,11 @@ elif page == "🌼 Calm Corner":
         st.markdown('<p class="hm-garden-caption">' + escape(ui("A little space to grow, at your own pace. 🌿")) + '</p>',unsafe_allow_html=True)
         g1,g2=st.columns(2)
         with g1:
-            if st.button(ui("🌷 Plant a flower"),key="plant_flower",use_container_width=True):
+            if st.button(ui("🌷 Plant a flower"),key="plant_flower",width="stretch"):
                 st.session_state.garden_count=min(24,st.session_state.garden_count+1)
                 st.rerun()
         with g2:
-            if st.button(ui("↺ Start a new garden"),key="reset_garden",use_container_width=True):
+            if st.button(ui("↺ Start a new garden"),key="reset_garden",width="stretch"):
                 st.session_state.garden_count=0
                 st.rerun()
         if st.session_state.garden_count>=24:
@@ -701,7 +701,7 @@ elif page == "🌼 Calm Corner":
                 if state_style:
                     st.markdown(f'<style>div.st-key-memory_{idx} button {{{state_style}}}</style>', unsafe_allow_html=True)
                 with col:
-                    if st.button(label, key=f"memory_{idx}", use_container_width=True, disabled=matched or flipped or len(st.session_state.memory_open)>=2, help=ui("Matched garden pair" if matched else "Turn over garden card")):
+                    if st.button(label, key=f"memory_{idx}", width="stretch", disabled=matched or flipped or len(st.session_state.memory_open)>=2, help=ui("Matched garden pair" if matched else "Turn over garden card")):
                         st.session_state.memory_open.append(idx)
                         st.rerun()
         if len(st.session_state.memory_open) == 2:
@@ -712,12 +712,12 @@ elif page == "🌼 Calm Corner":
                 st.rerun()
             else:
                 st.info("These pictures are different. Enjoy another look, then turn them back when you're ready.")
-                if st.button(ui("🌿 Turn cards back"), key="memory_flip_back", use_container_width=True):
+                if st.button(ui("🌿 Turn cards back"), key="memory_flip_back", width="stretch"):
                     st.session_state.memory_open = []
                     st.rerun()
         if len(st.session_state.memory_found) == 6:
             st.markdown('<div class="mama-memory-finish" role="status"><div class="mama-memory-flowers">🌸 🦋 🌷 💗 🌼</div><strong>' + escape(ui("Your Memory Garden is blooming!")) + '</strong><span>' + escape(ui("All three pairs found. Beautifully done — enjoy this little moment.")) + '</span></div>', unsafe_allow_html=True)
-        if st.button(ui("↺ Play Memory Garden again"), key="memory_reset", use_container_width=True):
+        if st.button(ui("↺ Play Memory Garden again"), key="memory_reset", width="stretch"):
             st.session_state.memory_cards = ["🌷", "🦋", "💗", "🌷", "💗", "🦋"]
             random.shuffle(st.session_state.memory_cards)
             st.session_state.memory_open = []
@@ -737,11 +737,11 @@ elif page == "🌼 Calm Corner":
         guess = st.text_input(ui("Your answer"), key=f"word_guess_{st.session_state.word_index}", max_chars=20, placeholder=ui("Type the word here"))
         w1, w2, w3 = st.columns(3)
         with w1:
-            check_clicked = st.button(ui("Check word"), key="word_check", use_container_width=True)
+            check_clicked = st.button(ui("Check word"), key="word_check", width="stretch")
         with w2:
-            reveal_clicked = st.button(ui("Reveal word"), key="word_reveal", use_container_width=True)
+            reveal_clicked = st.button(ui("Reveal word"), key="word_reveal", width="stretch")
         with w3:
-            next_clicked = st.button(ui("Next word →"), key="word_next", use_container_width=True)
+            next_clicked = st.button(ui("Next word →"), key="word_next", width="stretch")
         if next_clicked:
             st.session_state.word_index += 1
             st.session_state.pop("word_feedback", None)
@@ -773,12 +773,12 @@ elif page == "🌼 Calm Corner":
         chosen_note = st.selectbox(ui("Choose a thought to keep"), affirmations, format_func=display_option, key="jar_choice")
         j1, j2 = st.columns(2)
         with j1:
-            if st.button(ui("💗 Add to my jar"), key="jar_add", use_container_width=True):
+            if st.button(ui("💗 Add to my jar"), key="jar_add", width="stretch"):
                 if chosen_note not in st.session_state.jar_notes:
                     st.session_state.jar_notes.append(chosen_note)
                 st.rerun()
         with j2:
-            if st.button(ui("↺ Empty my jar"), key="jar_clear", use_container_width=True):
+            if st.button(ui("↺ Empty my jar"), key="jar_clear", width="stretch"):
                 st.session_state.jar_notes = []
                 st.rerun()
         jar_contents = "<div class='jar-notes'>"+"<br>".join(escape(ui(n)) for n in st.session_state.jar_notes)+"</div>" if st.session_state.jar_notes else "<div class='jar-notes'>" + escape(ui("Your jar is ready for kind thoughts.")) + "</div>"
@@ -794,11 +794,11 @@ elif page == "🌼 Calm Corner":
         bloom_name = st.selectbox(ui("Pick a flower"), list(bloom_choices), format_func=display_option, key="bouquet_choice")
         b1, b2 = st.columns(2)
         with b1:
-            if st.button(ui("🌷 Add to bouquet"), key="bouquet_add", use_container_width=True):
+            if st.button(ui("🌷 Add to bouquet"), key="bouquet_add", width="stretch"):
                 st.session_state.bouquet = (st.session_state.bouquet + [bloom_choices[bloom_name]])[-18:]
                 st.rerun()
         with b2:
-            if st.button(ui("↺ New bouquet"), key="bouquet_reset", use_container_width=True):
+            if st.button(ui("↺ New bouquet"), key="bouquet_reset", width="stretch"):
                 st.session_state.bouquet = []
                 st.rerun()
         bouquet_content = '<div class="mama-flowers">'+" ".join(st.session_state.bouquet)+'</div>' if st.session_state.bouquet else '<div class="mama-empty">💐 ' + escape(ui('Your bouquet begins here.')) + '<br>' + escape(ui('Choose a flower to create something lovely.')) + '</div>'
@@ -806,7 +806,7 @@ elif page == "🌼 Calm Corner":
         st.caption(ui("All game choices are temporary for this app session and are not saved as personal records."))
     st.markdown("### " + ui("💗 A kind reminder"))
     st.write(ui("You deserve support, rest and care. Taking a small break is enough for now."))
-    st.button(ui("Return to Emotional Wellness →"),key="calm_return",use_container_width=True,on_click=go,args=("🌷 Emotional wellness",))
+    st.button(ui("Return to Emotional Wellness →"),key="calm_return",width="stretch",on_click=go,args=("🌷 Emotional wellness",))
 
 else:
     st.markdown('<div class="section-head">📖 Learning hub</div>',unsafe_allow_html=True)
@@ -825,7 +825,7 @@ else:
         st.write("A trusted person and a qualified healthcare professional can help with persistent or worsening emotional distress. Severe confusion or thoughts of harm need emergency care.")
     with st.expander(ui("Using HerMamaAI safely")):
         st.write(ui("HerMamaAI is a prototype for general education and personal planning. It does not diagnose illness, monitor symptoms, send appointments to clinics or replace medical advice."))
-    st.button(ui("🌼 Try the Calm Corner"),key="learning_calm",use_container_width=True,on_click=go,args=("🌼 Calm Corner",))
+    st.button(ui("🌼 Try the Calm Corner"),key="learning_calm",width="stretch",on_click=go,args=("🌼 Calm Corner",))
     st.caption(ui("Educational content requires clinical review before a real-world health pilot."))
 
 st.markdown('<div class="footer"><b>HerMamaAI AdaptiveCare | Maternal &amp; Child Health Digital Innovation | Version 5.2</b><br>Developed by <b>WechimAI Integrated Engineering &amp; ICT Ltd</b> · Abuja, Nigeria.<br>Multilingual maternal and child health education, pregnancy and postnatal wellness support, and family-care planning. Existing health guidance has been reviewed by a qualified healthcare practitioner.<br><b>Safety &amp; Privacy:</b> For education and support only; not a substitute for professional medical advice, diagnosis, treatment or emergency services. The adaptive wellness features provide non-clinical support; this application is not intended as a medical device. BabyCare profiles, vaccination entries and planned visits are temporary session-based demonstration data, not securely retained medical records. Do not enter real personal or child health information. Additional privacy, safeguarding, accessibility and security assessments are needed before real-world deployment.</div>',unsafe_allow_html=True)

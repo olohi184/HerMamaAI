@@ -30,7 +30,7 @@ class LocalizationTests(unittest.TestCase):
     def test_internal_navigation_identifiers_preserved(self):
         app = (ROOT / "app.py").read_text(encoding="utf-8")
         self.assertIn("format_func=localized_navigation", app)
-        self.assertIn("on_change=lambda: go(st.session_state.hm_mobile_nav)", app)
+        self.assertIn('on_change=lambda: go(st.session_state.get("hm_mobile_nav") or st.session_state.get("page", "🏡 Home"))' , app)
         self.assertIn("choose_language()", app)
 
     def test_content_localization_and_safety_notices(self):

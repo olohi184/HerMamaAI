@@ -145,7 +145,7 @@ def render_babycare():
         baby["planned_visits"].append({"Visit": planned_age, "Planned date": planned_date.isoformat(), "Clinic": planned_clinic.strip(), "Status": "Planned only — not administered"})
         st.success(ui("Future visit saved to this demo baby's session."))
     if baby["planned_visits"]:
-        st.dataframe(baby["planned_visits"], use_container_width=True, hide_index=True)
+        st.dataframe(baby["planned_visits"], width="stretch", hide_index=True)
         for i, visit in enumerate(baby["planned_visits"]):
             st.download_button("📅 Download reminder: " + visit["Visit"] + " (" + visit["Planned date"] + ")", _ics(date.fromisoformat(visit["Planned date"]), visit["Visit"]), file_name="babycare_planned_visit_" + str(i+1) + ".ics", mime="text/calendar", key="babycare_planned_ics_" + str(i))
     st.markdown("### " + ui("✅ Record a vaccine already received"))
@@ -173,7 +173,7 @@ def render_babycare():
     st.metric(ui("Vaccination records for selected baby"), len(baby["records"]))
     st.caption(ui("Counts vaccination entries saved for this selected demo baby only. It is not a count of parents, babies or clinically verified vaccinations."))
     if records:
-        st.dataframe(records, use_container_width=True, hide_index=True)
+        st.dataframe(records, width="stretch", hide_index=True)
         output = io.StringIO()
         writer = csv.DictWriter(output, fieldnames=["Vaccine / dose", "Date administered", "Clinic (optional)", "Status"])
         writer.writeheader()
@@ -185,7 +185,7 @@ def render_babycare():
     else:
         st.caption(ui("No immunization entries recorded in this session."))
     st.markdown("### " + ui("Check official guidance"))
-    st.link_button(ui("Nigeria Ministry of Health childhood schedule ↗"), "https://health.gov.ng/wp-content/uploads/2025/06/SCD-Guideline-Final-2nd-Edition.pdf", use_container_width=True)
-    st.link_button(ui("UNICEF Nigeria immunization schedule ↗"), "https://www.unicef.org/nigeria/documents/nigeria-immunization-schedule", use_container_width=True)
-    st.link_button(ui("Nigeria National Primary Health Care Development Agency ↗"), "https://nphcda.gov.ng/", use_container_width=True)
+    st.link_button(ui("Nigeria Ministry of Health childhood schedule ↗"), "https://health.gov.ng/wp-content/uploads/2025/06/SCD-Guideline-Final-2nd-Edition.pdf", width="stretch")
+    st.link_button(ui("UNICEF Nigeria immunization schedule ↗"), "https://www.unicef.org/nigeria/documents/nigeria-immunization-schedule", width="stretch")
+    st.link_button(ui("Nigeria National Primary Health Care Development Agency ↗"), "https://nphcda.gov.ng/", width="stretch")
     st.caption("Before real-world clinical use: confirm schedule and vaccine names with NPHCDA and a Nigerian immunization clinician; complete privacy, accessibility, and safeguarding review.")

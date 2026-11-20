@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 LANGUAGES = ("en", "ha", "yo", "ig")
-PLACEHOLDER = re.compile(r"\\{([A-Za-z_][A-Za-z_0-9]*)\\}")
+PLACEHOLDER = re.compile(r"(?<!{){([A-Za-z_][A-Za-z_0-9]*)}(?!})")
 
 
 def catalog(code):

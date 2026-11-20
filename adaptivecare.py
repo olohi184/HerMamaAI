@@ -323,7 +323,7 @@ def render_adaptivecare():
     if log:
         st.progress(summary["completion_fraction"])
         st.caption(ui("Share of check-ins marked completed; NOT a measure of medical outcomes or clinical adherence."))
-        st.dataframe(list(reversed(log)), use_container_width=True, hide_index=True)
+        st.dataframe(list(reversed(log)), width="stretch", hide_index=True)
         if st.button(t("ac.clear"), key="ac_clear"):
             st.session_state.adaptivecare_v2_log = []
             st.rerun()

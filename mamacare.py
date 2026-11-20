@@ -34,7 +34,7 @@ def render_mamacare(go=None):
         st.write(ui(guidance))
         st.caption(ui("These stages are educational, not a prescribed follow-up schedule. Every recovery is different."))
         if go is not None:
-            st.button(ui("🌼 Visit Calm Corner →"), key="mc_calm", on_click=go, args=("🌼 Calm Corner",), use_container_width=True)
+            st.button(ui("🌼 Visit Calm Corner →"), key="mc_calm", on_click=go, args=("🌼 Calm Corner",), width="stretch")
     elif section == options[1]:
         st.subheader(ui("How are you feeling today?"))
         st.caption(ui("Optional self-reflection only. Answers remain in the current Streamlit session and are not sent to a healthcare professional."))
@@ -68,5 +68,5 @@ def render_mamacare(go=None):
         for i, task in enumerate(tasks):
             st.checkbox(ui(task), key=f"mc_task_{i}")
         if go is not None:
-            st.button(ui("📅 Open CareCalendar →"), key="mc_calendar", on_click=go, args=("📅 CareCalendar",), use_container_width=True)
+            st.button(ui("📅 Open CareCalendar →"), key="mc_calendar", on_click=go, args=("📅 CareCalendar",), width="stretch")
         st.caption(ui("Checklists are session-only. This module does not book appointments or send reminders."))

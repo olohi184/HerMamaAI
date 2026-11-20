@@ -54,7 +54,11 @@ def request_password_reset(email):
     client.auth.reset_password_email(
         email.strip(),
         {
-            "redirect_to": "http://127.0.0.1:8503"
+            "redirect_to": (
+                __import__("os").environ.get("PASSWORD_RECOVERY_URL")
+                or st.secrets.get("PASSWORD_RECOVERY_URL")
+                or "http://127.0.0.1:8503"
+            )
         }
     )
 def verify_recovery_token(token_hash):

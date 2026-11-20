@@ -101,18 +101,18 @@ def render_find_care():
             if details:
                 st.success(ui("Published maternity-service evidence available · Current clinic hours and capacity NOT confirmed"))
                 st.write(details["service"])
-                st.link_button(ui("🏥 View maternity-service evidence ↗"), details["service_url"], use_container_width=True)
+                st.link_button(ui("🏥 View maternity-service evidence ↗"), details["service_url"], width="stretch")
                 if details.get("contact"):
                     st.write(ui("Published hospital contact (not independently tested): ") + details["contact"])
                     if details.get("contact_note"):
                         st.caption(details["contact_note"])
-                    st.link_button(ui("☎️ View published contact source ↗"), details["contact_url"], use_container_width=True)
+                    st.link_button(ui("☎️ View published contact source ↗"), details["contact_url"], width="stretch")
             else:
                 st.caption(ui("Hospital-specific maternity services and contact details awaiting review"))
 
             query = quote(f"{name}, {city}, {region}, Nigeria", safe="")
-            st.link_button(ui("🗺️ Search on Google Maps / Directions ↗"), f"https://www.google.com/maps/search/?api=1&query={query}", use_container_width=True)
-            st.link_button(ui("📖 View government source ↗"), SOURCE_URL, use_container_width=True)
+            st.link_button(ui("🗺️ Search on Google Maps / Directions ↗"), f"https://www.google.com/maps/search/?api=1&query={query}", width="stretch")
+            st.link_button(ui("📖 View government source ↗"), SOURCE_URL, width="stretch")
     st.info("**City not listed?** This starter directory covers the cities represented by the ministry's teaching-hospital list, not every Nigerian city or maternity facility. Contact your local primary healthcare centre or state health authority for other options. In an emergency, use the nearest appropriate emergency service instead of travelling to a distant listed hospital.")
     with st.expander(ui("Questions to ask a facility before a routine visit")):
         st.markdown("\n".join("- " + ui(question) for question in ["Do you currently provide antenatal and postnatal care?","Are the relevant services available on the day I plan to visit?","Do I need a referral or appointment?","What are the emergency and after-hours arrangements?","Can you confirm the correct entrance and address?"]))
